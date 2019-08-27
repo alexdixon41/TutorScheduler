@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchedulingAlgorithm
+namespace TutorScheduler
 {
     /// <summary>
     /// Represents a location where student workers will be scheduled to work

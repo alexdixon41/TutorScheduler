@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchedulingAlgorithm
+namespace TutorScheduler
 {
     /// <summary>
     /// A weekly schedule of class meeting times organized by lists of Meetings for each day of the week.

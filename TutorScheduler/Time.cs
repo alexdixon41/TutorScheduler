@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchedulingAlgorithm
+namespace TutorScheduler
 {
     /// <summary>
     /// Simple time representation for 24-hour times

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchedulingAlgorithm
+namespace TutorScheduler
 {
     /// <summary>
     /// A single meeting time of a class on one day of the week. All times must be multiples of 5 minutes.
