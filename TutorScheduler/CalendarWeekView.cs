@@ -12,6 +12,9 @@ namespace CalendarWeekView
 {
     public partial class CalendarWeekView : Control
     {
+
+        public const int leftMargin = 60;           // distance from left side of client rectangle to left vertical border of calendar
+
         public CalendarWeekView()
         {
             InitializeComponent();
@@ -32,13 +35,12 @@ namespace CalendarWeekView
         /// Draw the day/hour grid and hour labels for the frame of the calendar
         /// </summary>
         private void DrawCalendarFrame()
-        {
-            int leftBorder = 60;
+        {            
             int rightBorder = 10;
             int topBorder = 30;                       
-            int width = this.ClientRectangle.Width - leftBorder - rightBorder;
+            int width = this.ClientRectangle.Width - leftMargin - rightBorder;
             int height = 1920;
-            int left = this.ClientRectangle.Left + leftBorder;
+            int left = this.ClientRectangle.Left + leftMargin;
             int top = this.ClientRectangle.Top + topBorder;
             int right = left + width;
             int bottom = top + height;            
@@ -65,7 +67,7 @@ namespace CalendarWeekView
                 }
                 else
                 {
-                    startX = 60;
+                    startX = leftMargin;
                 }
                 formGraphics.DrawLine(pen, new Point(startX, top + 40 * i), new Point(right, top + 40 * i));
             }
