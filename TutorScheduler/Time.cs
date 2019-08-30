@@ -48,7 +48,7 @@ namespace TutorScheduler
             return t1 < t2 || t1 == t2;
         }
 
-        public static bool operator >= (Time t1, Time t2)
+        public static bool operator >=(Time t1, Time t2)
         {
             return t1 > t2 || t1 == t2;
         }
@@ -61,6 +61,52 @@ namespace TutorScheduler
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        public static Time operator -(Time t1, Time t2)
+        {
+            Time laterTime;
+            Time earlierTime;
+            if (t1 < t2)
+            {
+                laterTime = t2;
+                earlierTime = t1;
+            }
+            else
+            {
+                laterTime = t1;
+                earlierTime = t2;
+            }
+            int borrowedHours = 0;           // set to 1 if an additional hour should be subtracted due to a borrow
+            int newMinutes = laterTime.minutes - earlierTime.minutes;
+            if (newMinutes < 0)
+            {
+                borrowedHours = 1;
+                newMinutes += 60;
+            }
+
+            int newHours = laterTime.hours - earlierTime.hours - borrowedHours;
+
+            return new Time(newHours, newMinutes);
+        }
+
+        public static Time operator +(Time t1, Time t2)
+        {
+            int carryHours = 0;             // set to 1 if an additional hour should be added due to a carry
+            int newMinutes = t1.minutes + t2.minutes;
+            if (newMinutes >= 60)
+            {
+                carryHours = 1;
+                newMinutes -= 60;
+            }
+
+            int newHours = t1.hours + t2.hours + carryHours;
+            if (newHours > 24)
+            {
+                throw new Exception("Resulting time should not exceed 24 hours");
+            }
+
+            return new Time(newHours, newMinutes);
         }
 
         /// <summary>

@@ -30,7 +30,7 @@
         {
             this.dayLabelPanel = new System.Windows.Forms.Panel();
             this.calendarPanel = new System.Windows.Forms.Panel();
-            this.calendarWeekView1 = new CalendarWeekView.CalendarWeekView();
+            this.calendarWeekView1 = new TutorScheduler.CalendarWeekView();
             this.calendarPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,7 +64,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calendarWeekView1.Location = new System.Drawing.Point(3, 3);
             this.calendarWeekView1.Name = "calendarWeekView1";
-            this.calendarWeekView1.Size = new System.Drawing.Size(811, 6843);
+            this.calendarWeekView1.Size = new System.Drawing.Size(769, 10125);
             this.calendarWeekView1.TabIndex = 0;
             this.calendarWeekView1.Text = "calendarWeekView1";
             // 
@@ -89,7 +89,7 @@
 
         #endregion
 
-        private CalendarWeekView.CalendarWeekView calendarWeekView1;
+        private CalendarWeekView calendarWeekView1;
         private System.Windows.Forms.Panel dayLabelPanel;
         private System.Windows.Forms.Panel calendarPanel;
     }

@@ -9,7 +9,7 @@ namespace TutorScheduler
     /// </summary>
     class Meeting
     {
-        // day name constants       
+        // day name constants - DO NOT CHANGE       
         public const int MONDAY = 0;
         public const int TUESDAY = 1;
         public const int WEDNESDAY = 2;

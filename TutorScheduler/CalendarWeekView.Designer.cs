@@ -1,4 +1,4 @@
-﻿namespace CalendarWeekView
+﻿namespace TutorScheduler
 {
     partial class CalendarWeekView
     {
