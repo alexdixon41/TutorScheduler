@@ -9,56 +9,28 @@ namespace TutorScheduler
     /// </summary>
     class ClassSchedule
     {
-        // lists of class meetings for each weekday, ordered by start time ascending
-        public List<Meeting> mondayClassMeetings = new List<Meeting>();         
-        public List<Meeting> tuesdayClassMeetings = new List<Meeting>();
-        public List<Meeting> wednesdayClassMeetings = new List<Meeting>();
-        public List<Meeting> thursdayClassMeetings = new List<Meeting>();
-        public List<Meeting> fridayClassMeetings = new List<Meeting>();
+        // lists of class meetings ordered by start time ascending
+        public List<CalendarEvent> classMeetings = new List<CalendarEvent>();
 
         /// <summary>
         /// Add a class meeting to the schedule, maintaining the start time ordering for the appropriate weekday meeting list.
         /// </summary>
         /// <param name="newClass">The new class meeting to add to the schedule</param>
-        public void AddClassMeeting(Meeting newClass)
-        {
-            List<Meeting> dayMeetings;          // which meeting list to add the class meeting to
-
-            // set the correct list by day of the week
-            switch (newClass.day)
+        public void AddClassMeeting(CalendarEvent newClass)
+        {            
+            // add the new class meeting to the schedule at the correct index to maintain the sequential ordering by start time and day
+            if (classMeetings.Count == 0)
             {
-                case Meeting.MONDAY:
-                    dayMeetings = mondayClassMeetings;
-                    break;
-                case Meeting.TUESDAY:
-                    dayMeetings = tuesdayClassMeetings;
-                    break;
-                case Meeting.WEDNESDAY:
-                    dayMeetings = wednesdayClassMeetings;
-                    break;
-                case Meeting.THURSDAY:
-                    dayMeetings = thursdayClassMeetings;
-                    break;
-                case Meeting.FRIDAY:
-                    dayMeetings = fridayClassMeetings;
-                    break;
-                default:
-                    return;
-            }
-
-            // add the new class meeting to the schedule at the correct index to maintain the sequential ordering by start time
-            if (dayMeetings.Count == 0)
-            {
-                dayMeetings.Add(newClass);
+                classMeetings.Add(newClass);
             }
             else
             {
-                int index = dayMeetings.Count - 1;                
-                while (newClass < dayMeetings[index] && index >= 0)
+                int index = classMeetings.Count - 1;                
+                while (newClass < classMeetings[index] && index >= 0)
                 {
                     index--;
                 }               
-                dayMeetings.Insert(index + 1, newClass);
+                classMeetings.Insert(index + 1, newClass);
             }
         }
 
@@ -66,9 +38,9 @@ namespace TutorScheduler
         /// Add an array of meetings to the schedule by iteratively calling the AddClassMeeting function.
         /// </summary>
         /// <param name="newClasses">Array of meetings to add to the class schedule</param>
-        public void AddClassMeetings(Meeting[] newClasses)
+        public void AddClassMeetings(CalendarEvent[] newClasses)
         {
-            foreach (Meeting classMeeting in newClasses)
+            foreach (CalendarEvent classMeeting in newClasses)
             {
                 AddClassMeeting(classMeeting);
             }

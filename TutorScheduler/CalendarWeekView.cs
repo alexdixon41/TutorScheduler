@@ -25,29 +25,83 @@ namespace TutorScheduler
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer |
                 ControlStyles.UserPaint |
                 ControlStyles.AllPaintingInWmPaint, true);
-            ResizeRedraw = false;
 
-            CalendarEvents.Add(new CalendarEvent(new Time(10, 10), new Time(11, 0), Meeting.MONDAY));
-            CalendarEvents.Add(new CalendarEvent(new Time(10, 10), new Time(11, 0), Meeting.WEDNESDAY));
-            CalendarEvents.Add(new CalendarEvent(new Time(10, 10), new Time(11, 0), Meeting.FRIDAY));
-            CalendarEvents.Add(new CalendarEvent(new Time(11, 15), new Time(12, 5), Meeting.MONDAY));
-            CalendarEvents.Add(new CalendarEvent(new Time(11, 15), new Time(12, 5), Meeting.WEDNESDAY));
-            CalendarEvents.Add(new CalendarEvent(new Time(14, 30), new Time(17, 15), Meeting.WEDNESDAY));            
-            CalendarEvents.Add(new CalendarEvent(new Time(12, 30), new Time(13, 45), Meeting.TUESDAY));
-            CalendarEvents.Add(new CalendarEvent(new Time(12, 30), new Time(13, 45), Meeting.THURSDAY));
-            CalendarEvents.Add(new CalendarEvent(new Time(14, 0), new Time(15, 15), Meeting.TUESDAY));
-            CalendarEvents.Add(new CalendarEvent(new Time(14, 0), new Time(15, 15), Meeting.THURSDAY));
-            CalendarEvents.Add(new CalendarEvent(new Time(16, 45), new Time(18, 0), Meeting.TUESDAY));
-            CalendarEvents.Add(new CalendarEvent(new Time(16, 45), new Time(18, 0), Meeting.THURSDAY));
+            //CalendarEvents.Add(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Monday, CalendarEvent.CLASS));
+            //CalendarEvents.Add(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Wednesday, CalendarEvent.CLASS));
+            //CalendarEvents.Add(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Friday, CalendarEvent.CLASS));
+            //CalendarEvents.Add(new CalendarEvent(new Time(11, 15), new Time(12, 5), (int)Day.Monday, CalendarEvent.CLASS));
+            //CalendarEvents.Add(new CalendarEvent(new Time(11, 15), new Time(12, 5), (int)Day.Wednesday, CalendarEvent.CLASS));
+            //CalendarEvents.Add(new CalendarEvent(new Time(14, 30), new Time(17, 15), (int)Day.Wednesday, CalendarEvent.CLASS));
+            //CalendarEvents.Add(new CalendarEvent(new Time(12, 30), new Time(13, 45), (int)Day.Tuesday, CalendarEvent.CLASS));
+            //CalendarEvents.Add(new CalendarEvent(new Time(12, 30), new Time(13, 45), (int)Day.Thursday, CalendarEvent.CLASS));
+            //CalendarEvents.Add(new CalendarEvent(new Time(14, 0), new Time(15, 15), (int)Day.Tuesday, CalendarEvent.CLASS));
+            //CalendarEvents.Add(new CalendarEvent(new Time(14, 0), new Time(15, 15), (int)Day.Thursday, CalendarEvent.CLASS));
+            //CalendarEvents.Add(new CalendarEvent(new Time(16, 45), new Time(18, 0), (int)Day.Tuesday, CalendarEvent.CLASS));
+            //CalendarEvents.Add(new CalendarEvent(new Time(16, 45), new Time(18, 0), (int)Day.Thursday, CalendarEvent.CLASS));
+          
+        }
+
+        internal void AddEvents(List<CalendarEvent> events)
+        {
+            CalendarEvents.AddRange(events);
+        }
+
+        internal CalendarEvent EventAt(Point p)
+        {
+            foreach (CalendarEvent calendarEvent in CalendarEvents)
+            {
+                if (calendarEvent.GetBounds().Contains(p))
+                {
+                    return calendarEvent;
+                }
+            }
+            return null;
+        }
+
+        protected override void OnLayout(LayoutEventArgs levent)
+        {
+            base.OnLayout(levent);
+
+            int width = this.ClientRectangle.Width - leftMargin - rightMargin;
+
+            foreach (CalendarEvent calendarEvent in CalendarEvents)
+            {
+                Time eventDuration = calendarEvent.EndTime - calendarEvent.StartTime;
+
+                int eventLeft = calendarEvent.Day * width / 5 + leftMargin;
+                int eventTop = 80 * calendarEvent.StartTime.hours + 4 * calendarEvent.StartTime.minutes / 3 + topMargin;
+                int eventWidth = width / 5 - 10;
+                int eventHeight = 80 * eventDuration.hours + 4 * eventDuration.minutes / 3;
+
+                calendarEvent.SetBounds(new Rectangle(eventLeft, eventTop, eventWidth, eventHeight));
+            }
+        }
+
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
+
+            CalendarEvent hitEvent = EventAt(e.Location);
+
+            // perform actions on event that was clicked
+            if (hitEvent != null)
+            {
+                hitEvent.OnClick();
+                this.Invalidate(hitEvent.GetBounds());
+            }
         }
 
         protected override void OnPaint(PaintEventArgs pe)
         {                                             
             DrawCalendarFrame(pe);
             DrawCalendarEvents(pe);
-            pe.Graphics.Flush();
+            pe.Graphics.Flush();           
         }       
 
+        /// <summary>
+        /// Draw each calendar event in CalendarEvents on the calendar view
+        /// </summary>
+        /// <param name="pe">PaintEventArgs for drawing graphics on the control</param>
         private void DrawCalendarEvents(PaintEventArgs pe)
         {
             if (CalendarEvents == null)
@@ -57,7 +111,7 @@ namespace TutorScheduler
             int width = this.ClientRectangle.Width - leftMargin - rightMargin;
             foreach (CalendarEvent calendarEvent in CalendarEvents)
             {
-                SolidBrush brush = new SolidBrush(Color.Red);                                            
+                SolidBrush brush = new SolidBrush(calendarEvent.Color);                                            
 
                 Time eventDuration = calendarEvent.EndTime - calendarEvent.StartTime;
 
@@ -78,6 +132,7 @@ namespace TutorScheduler
         /// <summary>
         /// Draw the day/hour grid and hour labels for the frame of the calendar
         /// </summary>
+        /// <param name="pe">PaintEventArgs for drawing graphics on the control</param>        
         private void DrawCalendarFrame(PaintEventArgs pe)
         {                                                       
             int width = this.ClientRectangle.Width - leftMargin - rightMargin;
