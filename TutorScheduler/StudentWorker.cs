@@ -6,9 +6,14 @@ namespace TutorScheduler
 {
     class StudentWorker
     {
+        public string Name;
         private ClassSchedule classSchedule;                 // the student's class schedule
         private AvailabilitySchedule availability = new AvailabilitySchedule();           // the student's work availability schedule
 
+        public StudentWorker(string name)
+        {
+            Name = name;
+        }
 
         public void SetClassSchedule(ClassSchedule schedule)
         {
@@ -64,7 +69,7 @@ namespace TutorScheduler
                         {
                             Time availableStart = WorkLocation.openingTimes[(int)day];
                             Time availableStop = ClassSchedule.GetPrecedingStopTime(dayClasses[i].StartTime);
-                            availability.AddAvailableTime(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY));
+                            availability.AddAvailableTime(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name));
                         }
                     }
                     else            // attempt to schedule availability between classes
@@ -74,7 +79,7 @@ namespace TutorScheduler
                         {
                             Time availableStart = ClassSchedule.GetSucceedingStartTime(dayClasses[i - 1].EndTime);
                             Time availableStop = ClassSchedule.GetPrecedingStopTime(dayClasses[i].StartTime);
-                            availability.AddAvailableTime(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY));
+                            availability.AddAvailableTime(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name));
                         }
                     }
 
@@ -85,7 +90,7 @@ namespace TutorScheduler
                         {
                             Time availableStart = ClassSchedule.GetSucceedingStartTime(dayClasses[i].EndTime);
                             Time availableStop = WorkLocation.closingTimes[day];
-                            availability.AddAvailableTime(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY));
+                            availability.AddAvailableTime(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name));
                         }
                     }
                 }

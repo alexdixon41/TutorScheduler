@@ -22,6 +22,7 @@ namespace TutorScheduler
         public CalendarWeekView()
         {            
             InitializeComponent();
+            ResizeRedraw = true;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer |
                 ControlStyles.UserPaint |
                 ControlStyles.AllPaintingInWmPaint, true);
@@ -111,7 +112,7 @@ namespace TutorScheduler
             int width = this.ClientRectangle.Width - leftMargin - rightMargin;
             foreach (CalendarEvent calendarEvent in CalendarEvents)
             {
-                SolidBrush brush = new SolidBrush(calendarEvent.Color);                                            
+                SolidBrush brush = new SolidBrush(calendarEvent.BackgroundColor);                                            
 
                 Time eventDuration = calendarEvent.EndTime - calendarEvent.StartTime;
 
@@ -124,7 +125,21 @@ namespace TutorScheduler
                 calendarEvent.SetBounds(new Rectangle(eventLeft, eventTop, eventWidth, eventHeight));
 
                 pe.Graphics.FillRectangle(brush, new Rectangle(eventLeft, eventTop, eventWidth, eventHeight));
+
+                // draw event text
+                brush.Color = calendarEvent.TextColor;
+                System.Drawing.Font font = new System.Drawing.Font("Segoe UI", 11, FontStyle.Bold);
                 
+                // draw text to fit within event bounds with no wrap - just cut off characters that don't fit
+                pe.Graphics.DrawString(calendarEvent.PrimaryText, font, brush, 
+                    new RectangleF(eventLeft + 5, eventTop + 5, eventWidth, eventHeight), new StringFormat(StringFormatFlags.NoWrap));
+
+                // draw secondary text below primary text in the same way, just not bold
+                font = new System.Drawing.Font("Segoe UI", 11, FontStyle.Regular);
+                pe.Graphics.DrawString(calendarEvent.SecondaryText, font, brush, 
+                    new RectangleF(eventLeft + 5, eventTop + 25, eventWidth, eventHeight), new StringFormat(StringFormatFlags.NoWrap));
+                
+
                 brush.Dispose();
             }
         }

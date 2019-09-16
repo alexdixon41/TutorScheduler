@@ -25,9 +25,14 @@ namespace TutorScheduler
         private int day;
         private Rectangle bounds;
 
+        internal Color BackgroundColor { get; set; }
+        internal Color TextColor;
+        internal string PrimaryText;
+        internal string SecondaryText;
+
         internal Time StartTime { get; set; }
         internal Time EndTime { get; set; }
-        internal Color Color { get; set; }
+       
 
         public int Day
         {
@@ -50,38 +55,52 @@ namespace TutorScheduler
         /// </summary>
         public void OnClick()
         {
-            if ((type == CLASS && Color.A == 255) || (type == WORK && Color.A == 200))
+            if ((type == CLASS && BackgroundColor.A == 255) || (type == WORK && BackgroundColor.A == 200))
             {
-                Color = Color.FromArgb(Color.A - 90, Color.R, Color.G, Color.B);
+                BackgroundColor = Color.FromArgb(BackgroundColor.A - 90, BackgroundColor.R, BackgroundColor.G, BackgroundColor.B);
             }
         }
 
-        public CalendarEvent(Time startTime, Time endTime, int day, int type)
+        public CalendarEvent(Time startTime, Time endTime, int day, int type, string primaryText)
         {
             if (startTime.minutes % 5 != 0 || endTime.minutes % 5 != 0)
             {
                 throw new Exception("All times must be a multiple of 5 minutes");
             }
 
-            this.StartTime = startTime;
-            this.EndTime = endTime;
+            StartTime = startTime;
+            EndTime = endTime;
             this.day = day;
             this.type = type;
+            PrimaryText = primaryText;
             
+            // set background color and text
             switch (type)
             {
                 case CLASS:
-                    Color = Color.Red;
+                    BackgroundColor = Color.Red;
+                    SecondaryText = "Class";
                     break;
                 case WORK:
-                    Color = Color.FromArgb(200, 255, 0, 0);
+                    BackgroundColor = Color.FromArgb(200, 255, 0, 0);
+                    SecondaryText = "Work";
                     break;
                 case AVAILABILITY:
-                    Color = Color.FromArgb(120, 255, 0, 0);
+                    BackgroundColor = Color.FromArgb(120, 255, 0, 0);
+                    SecondaryText = "Availability";
                     break;
                 default:
-                    Color = Color.Black;
-                    break;
+                    throw new Exception("Invalid CalendarEvent type");
+            }
+
+            // set text color based on background color
+            if (BackgroundColor.R * 0.299 + BackgroundColor.G * 0.587 + BackgroundColor.B * 0.114 > 150)
+            {
+                TextColor = Color.Black;               
+            }
+            else
+            {
+                TextColor = Color.White;
             }
         }
 
