@@ -21,5 +21,13 @@ namespace TutorScheduler
         {
             new AddClass().Show();
         }
+
+        private void ColorButton_Click(object sender, EventArgs e)
+        {
+            if(colorPicker.ShowDialog() == DialogResult.OK)
+            {
+                colorButton.BackColor = colorPicker.Color;
+            }
+        }
     }
 }

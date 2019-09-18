@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "Example Class",
             "12:30 pm",
             "1:45 pm",
@@ -43,8 +43,10 @@
             this.days = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.positionLabel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.colorPicker = new System.Windows.Forms.ColorDialog();
+            this.colorButton = new System.Windows.Forms.Button();
+            this.addSubjectButton = new System.Windows.Forms.Button();
             this.classEditPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,9 +56,9 @@
             this.nameLabel.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nameLabel.Location = new System.Drawing.Point(13, 13);
             this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(342, 45);
+            this.nameLabel.Size = new System.Drawing.Size(174, 45);
             this.nameLabel.TabIndex = 0;
-            this.nameLabel.Text = "Student Worker Name";
+            this.nameLabel.Text = "Alex Dixon";
             // 
             // classEditPanel
             // 
@@ -65,9 +67,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.classEditPanel.Controls.Add(this.addClassButton);
             this.classEditPanel.Controls.Add(this.classesListView);
-            this.classEditPanel.Location = new System.Drawing.Point(13, 329);
+            this.classEditPanel.Location = new System.Drawing.Point(13, 413);
             this.classEditPanel.Name = "classEditPanel";
-            this.classEditPanel.Size = new System.Drawing.Size(1225, 251);
+            this.classEditPanel.Size = new System.Drawing.Size(1225, 265);
             this.classEditPanel.TabIndex = 1;
             // 
             // addClassButton
@@ -95,10 +97,10 @@
             this.classesListView.FullRowSelect = true;
             this.classesListView.HideSelection = false;
             this.classesListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.classesListView.Location = new System.Drawing.Point(3, 61);
             this.classesListView.Name = "classesListView";
-            this.classesListView.Size = new System.Drawing.Size(1219, 187);
+            this.classesListView.Size = new System.Drawing.Size(1219, 201);
             this.classesListView.TabIndex = 0;
             this.classesListView.UseCompatibleStateImageBehavior = false;
             this.classesListView.View = System.Windows.Forms.View.Details;
@@ -126,59 +128,76 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label1.Location = new System.Drawing.Point(609, 75);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.label1.Location = new System.Drawing.Point(609, 80);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 29);
+            this.label1.Size = new System.Drawing.Size(87, 31);
             this.label1.TabIndex = 2;
             this.label1.Text = "Color:";
             // 
             // positionLabel
             // 
             this.positionLabel.AutoSize = true;
-            this.positionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.positionLabel.Location = new System.Drawing.Point(16, 75);
+            this.positionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.positionLabel.Location = new System.Drawing.Point(15, 95);
             this.positionLabel.Name = "positionLabel";
-            this.positionLabel.Size = new System.Drawing.Size(65, 29);
+            this.positionLabel.Size = new System.Drawing.Size(74, 31);
             this.positionLabel.TabIndex = 3;
             this.positionLabel.Text = "Guru";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label2.Location = new System.Drawing.Point(16, 131);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 29);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Subjects:";
-            // 
             // listBox1
             // 
+            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
+            this.listBox1.ItemHeight = 25;
             this.listBox1.Items.AddRange(new object[] {
-            "3",
-            "3",
-            "3",
-            "3",
-            "3",
-            "3",
-            "3",
-            "ghjk"});
-            this.listBox1.Location = new System.Drawing.Point(21, 175);
+            "CSC 185",
+            "CSC 190",
+            "CSC 310",
+            "CSC 313",
+            "CSC 320",
+            "CSC 340",
+            "CSC 541",
+            "MAT 112",
+            "MAT 114",
+            "MAT 234",
+            "STA 270"});
+            this.listBox1.Location = new System.Drawing.Point(13, 212);
             this.listBox1.MultiColumn = true;
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(479, 132);
+            this.listBox1.Size = new System.Drawing.Size(1225, 179);
+            this.listBox1.Sorted = true;
             this.listBox1.TabIndex = 5;
+            // 
+            // colorButton
+            // 
+            this.colorButton.BackColor = System.Drawing.Color.Red;
+            this.colorButton.ForeColor = System.Drawing.Color.Red;
+            this.colorButton.Location = new System.Drawing.Point(693, 80);
+            this.colorButton.Name = "colorButton";
+            this.colorButton.Size = new System.Drawing.Size(38, 35);
+            this.colorButton.TabIndex = 6;
+            this.colorButton.UseVisualStyleBackColor = false;
+            this.colorButton.Click += new System.EventHandler(this.ColorButton_Click);
+            // 
+            // addSubjectButton
+            // 
+            this.addSubjectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.addSubjectButton.Location = new System.Drawing.Point(12, 155);
+            this.addSubjectButton.Name = "addSubjectButton";
+            this.addSubjectButton.Size = new System.Drawing.Size(233, 51);
+            this.addSubjectButton.TabIndex = 7;
+            this.addSubjectButton.Text = "Add a Subject";
+            this.addSubjectButton.UseVisualStyleBackColor = true;
             // 
             // EditClassSchedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1250, 592);
+            this.ClientSize = new System.Drawing.Size(1250, 690);
+            this.Controls.Add(this.addSubjectButton);
+            this.Controls.Add(this.colorButton);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.positionLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.classEditPanel);
@@ -203,7 +222,9 @@
         private System.Windows.Forms.ColumnHeader days;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label positionLabel;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ColorDialog colorPicker;
+        private System.Windows.Forms.Button colorButton;
+        private System.Windows.Forms.Button addSubjectButton;
     }
 }
