@@ -74,7 +74,14 @@ namespace TutorScheduler
             calendarPanel.AutoScrollPosition = ScrollPosition;          
         }
 
-        private void StudentWorkersToolStripMenuItem_Click(object sender, EventArgs e)
+        //Add a student worker is clicked
+        private void AddStudentWorkerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        //View all student workers is clicked
+        private void ViewAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ViewAllWorkers form = new ViewAllWorkers();
             form.Show();

@@ -30,7 +30,6 @@
         {
             this.dayLabelPanel = new System.Windows.Forms.Panel();
             this.calendarPanel = new System.Windows.Forms.Panel();
-            this.calendarWeekView1 = new TutorScheduler.CalendarWeekView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +42,7 @@
             this.subjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addSubjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.calendarWeekView1 = new TutorScheduler.CalendarWeekView();
             this.calendarPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -70,17 +70,6 @@
             this.calendarPanel.Size = new System.Drawing.Size(838, 319);
             this.calendarPanel.TabIndex = 2;
             this.calendarPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.CalendarPanel_Scroll);
-            // 
-            // calendarWeekView1
-            // 
-            this.calendarWeekView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.calendarWeekView1.Location = new System.Drawing.Point(3, 3);
-            this.calendarWeekView1.Name = "calendarWeekView1";
-            this.calendarWeekView1.Size = new System.Drawing.Size(727, 15048);
-            this.calendarWeekView1.TabIndex = 0;
-            this.calendarWeekView1.Text = "calendarWeekView1";
             // 
             // menuStrip1
             // 
@@ -138,19 +127,20 @@
             this.studentWorkersToolStripMenuItem.Name = "studentWorkersToolStripMenuItem";
             this.studentWorkersToolStripMenuItem.Size = new System.Drawing.Size(129, 24);
             this.studentWorkersToolStripMenuItem.Text = "Student Workers";
-            this.studentWorkersToolStripMenuItem.Click += new System.EventHandler(this.StudentWorkersToolStripMenuItem_Click);
             // 
             // addStudentWorkerToolStripMenuItem
             // 
             this.addStudentWorkerToolStripMenuItem.Name = "addStudentWorkerToolStripMenuItem";
             this.addStudentWorkerToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
             this.addStudentWorkerToolStripMenuItem.Text = "Add Student Worker";
+            this.addStudentWorkerToolStripMenuItem.Click += new System.EventHandler(this.AddStudentWorkerToolStripMenuItem_Click);
             // 
             // viewAllToolStripMenuItem
             // 
             this.viewAllToolStripMenuItem.Name = "viewAllToolStripMenuItem";
             this.viewAllToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
             this.viewAllToolStripMenuItem.Text = "View All";
+            this.viewAllToolStripMenuItem.Click += new System.EventHandler(this.ViewAllToolStripMenuItem_Click);
             // 
             // subjectsToolStripMenuItem
             // 
@@ -164,14 +154,25 @@
             // addSubjectToolStripMenuItem
             // 
             this.addSubjectToolStripMenuItem.Name = "addSubjectToolStripMenuItem";
-            this.addSubjectToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.addSubjectToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
             this.addSubjectToolStripMenuItem.Text = "Add Subject";
             // 
             // viewAllToolStripMenuItem1
             // 
             this.viewAllToolStripMenuItem1.Name = "viewAllToolStripMenuItem1";
-            this.viewAllToolStripMenuItem1.Size = new System.Drawing.Size(216, 26);
+            this.viewAllToolStripMenuItem1.Size = new System.Drawing.Size(165, 26);
             this.viewAllToolStripMenuItem1.Text = "View All";
+            // 
+            // calendarWeekView1
+            // 
+            this.calendarWeekView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.calendarWeekView1.Location = new System.Drawing.Point(3, 3);
+            this.calendarWeekView1.Name = "calendarWeekView1";
+            this.calendarWeekView1.Size = new System.Drawing.Size(727, 16689);
+            this.calendarWeekView1.TabIndex = 0;
+            this.calendarWeekView1.Text = "calendarWeekView1";
             // 
             // Form1
             // 
