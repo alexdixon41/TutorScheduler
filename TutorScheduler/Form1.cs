@@ -95,6 +95,6 @@ namespace TutorScheduler
         private void Form1_Activated(object sender, EventArgs e)
         {
             calendarPanel.AutoScrollPosition = ScrollPosition;
-        }
+        }      
     }
 }
