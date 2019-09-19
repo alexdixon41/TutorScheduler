@@ -19,7 +19,7 @@ namespace TutorScheduler
 
         private void SelectedButton_Click(object sender, EventArgs e)
         {
-            EditClassSchedule form = new EditClassSchedule();
+            StudentWorkerInfoForm form = new StudentWorkerInfoForm();
             form.Show();
         }
     }

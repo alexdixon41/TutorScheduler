@@ -77,7 +77,7 @@ namespace TutorScheduler
         //Add a student worker is clicked
         private void AddStudentWorkerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            new StudentWorkerInfoForm().Show();
         }
 
         //View all student workers is clicked

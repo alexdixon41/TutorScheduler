@@ -1,4 +1,5 @@
-﻿namespace TutorScheduler
+﻿
+namespace TutorScheduler
 {
     partial class StudentWorkerInfoForm
     {
@@ -28,11 +29,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "Example Class",
             "12:30 pm",
             "1:45 pm",
             "T, TR"}, -1);
+            this.nameLabel = new System.Windows.Forms.Label();
             this.classEditPanel = new System.Windows.Forms.Panel();
             this.addClassButton = new System.Windows.Forms.Button();
             this.classesListView = new System.Windows.Forms.ListView();
@@ -41,14 +43,23 @@
             this.end = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.days = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
+            this.positionLabel = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.colorPicker = new System.Windows.Forms.ColorDialog();
             this.colorButton = new System.Windows.Forms.Button();
             this.addSubjectButton = new System.Windows.Forms.Button();
-            this.positionTextBox = new System.Windows.Forms.TextBox();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
             this.classEditPanel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameLabel.Location = new System.Drawing.Point(13, 13);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(174, 45);
+            this.nameLabel.TabIndex = 0;
+            this.nameLabel.Text = "Alex Dixon";
             // 
             // classEditPanel
             // 
@@ -87,7 +98,7 @@
             this.classesListView.FullRowSelect = true;
             this.classesListView.HideSelection = false;
             this.classesListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.classesListView.Location = new System.Drawing.Point(3, 61);
             this.classesListView.Name = "classesListView";
             this.classesListView.Size = new System.Drawing.Size(1219, 201);
@@ -124,6 +135,16 @@
             this.label1.Size = new System.Drawing.Size(87, 31);
             this.label1.TabIndex = 2;
             this.label1.Text = "Color:";
+            // 
+            // positionLabel
+            // 
+            this.positionLabel.AutoSize = true;
+            this.positionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.positionLabel.Location = new System.Drawing.Point(15, 95);
+            this.positionLabel.Name = "positionLabel";
+            this.positionLabel.Size = new System.Drawing.Size(74, 31);
+            this.positionLabel.TabIndex = 3;
+            this.positionLabel.Text = "Guru";
             // 
             // listBox1
             // 
@@ -170,37 +191,19 @@
             this.addSubjectButton.Text = "Add a Subject";
             this.addSubjectButton.UseVisualStyleBackColor = true;
             // 
-            // positionTextBox
-            // 
-            this.positionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.positionTextBox.Location = new System.Drawing.Point(12, 80);
-            this.positionTextBox.Name = "positionTextBox";
-            this.positionTextBox.Size = new System.Drawing.Size(233, 34);
-            this.positionTextBox.TabIndex = 8;
-            this.positionTextBox.Text = "Guru";
-            // 
-            // nameTextBox
-            // 
-            this.nameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.nameTextBox.Location = new System.Drawing.Point(12, 13);
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(550, 45);
-            this.nameTextBox.TabIndex = 9;
-            this.nameTextBox.Text = "Alex Dixon";
-            // 
-            // StudentWorkerInfoForm
+            // EditClassSchedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1250, 690);
-            this.Controls.Add(this.nameTextBox);
-            this.Controls.Add(this.positionTextBox);
             this.Controls.Add(this.addSubjectButton);
             this.Controls.Add(this.colorButton);
             this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.positionLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.classEditPanel);
-            this.Name = "StudentWorkerInfoForm";
+            this.Controls.Add(this.nameLabel);
+            this.Name = "EditClassSchedule";
             this.Text = "Edit Class Schedule";
             this.classEditPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -209,6 +212,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Panel classEditPanel;
         private System.Windows.Forms.Button addClassButton;
         private System.Windows.Forms.ListView classesListView;
@@ -217,11 +222,10 @@
         private System.Windows.Forms.ColumnHeader end;
         private System.Windows.Forms.ColumnHeader days;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label positionLabel;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ColorDialog colorPicker;
         private System.Windows.Forms.Button colorButton;
         private System.Windows.Forms.Button addSubjectButton;
-        private System.Windows.Forms.TextBox positionTextBox;
-        private System.Windows.Forms.TextBox nameTextBox;
     }
 }

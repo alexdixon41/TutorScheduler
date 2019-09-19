@@ -61,11 +61,11 @@
       <DependentUpon>CalendarWeekView.cs</DependentUpon>
     </Compile>
     <Compile Include="ClassSchedule.cs" />
-    <Compile Include="EditClassSchedule.cs">
+    <Compile Include="StudentWorkerInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditClassSchedule.Designer.cs">
-      <DependentUpon>EditClassSchedule.cs</DependentUpon>
+    <Compile Include="StudentWorkerInfoForm.Designer.cs">
+      <DependentUpon>StudentWorkerInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -96,8 +96,8 @@
     <EmbeddedResource Include="CalendarWeekView.resx">
       <DependentUpon>CalendarWeekView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditClassSchedule.resx">
-      <DependentUpon>EditClassSchedule.cs</DependentUpon>
+    <EmbeddedResource Include="StudentWorkerInfoForm.resx">
+      <DependentUpon>StudentWorkerInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
