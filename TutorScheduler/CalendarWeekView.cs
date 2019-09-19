@@ -75,7 +75,7 @@ namespace TutorScheduler
 
                 calendarEvent.SetBounds(new Rectangle(eventLeft, eventTop, eventWidth, eventHeight));
             }
-        }
+        }      
 
         protected override void OnMouseClick(MouseEventArgs e)
         {
