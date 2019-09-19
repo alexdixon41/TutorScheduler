@@ -73,5 +73,11 @@ namespace TutorScheduler
             // restore scroll position
             calendarPanel.AutoScrollPosition = ScrollPosition;          
         }
+
+        private void StudentWorkersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ViewAllWorkers form = new ViewAllWorkers();
+            form.Show();
+        }
     }
 }

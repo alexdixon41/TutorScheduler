@@ -77,6 +77,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudentWorker.cs" />
     <Compile Include="Time.cs" />
+    <Compile Include="ViewAllWorkers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewAllWorkers.Designer.cs">
+      <DependentUpon>ViewAllWorkers.cs</DependentUpon>
+    </Compile>
     <Compile Include="WorkLocation.cs" />
     <EmbeddedResource Include="AddClass.resx">
       <DependentUpon>AddClass.cs</DependentUpon>
@@ -99,6 +105,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ViewAllWorkers.resx">
+      <DependentUpon>ViewAllWorkers.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
