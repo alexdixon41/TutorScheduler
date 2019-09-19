@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace TutorScheduler
 { 
-    public partial class CalendarWeekView : ScrollableControl
+    public partial class CalendarWeekView : Control
     { 
         public const int leftMargin = 60;           // distance from left side of client rectangle to left vertical border of calendar
         public const int rightMargin = 10;

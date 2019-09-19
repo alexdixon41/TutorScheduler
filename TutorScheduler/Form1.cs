@@ -79,5 +79,15 @@ namespace TutorScheduler
             ViewAllWorkers form = new ViewAllWorkers();
             form.Show();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            calendarPanel.AutoScrollPosition = ScrollPosition;
+        }    
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            calendarPanel.AutoScrollPosition = ScrollPosition;
+        }
     }
 }
