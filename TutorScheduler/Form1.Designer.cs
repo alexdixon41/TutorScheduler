@@ -74,7 +74,7 @@
             // fridayLabel
             // 
             this.fridayLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.fridayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.fridayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.fridayLabel.Location = new System.Drawing.Point(688, 35);
             this.fridayLabel.Name = "fridayLabel";
             this.fridayLabel.Padding = new System.Windows.Forms.Padding(7);
@@ -85,7 +85,7 @@
             // thursdayLabel
             // 
             this.thursdayLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.thursdayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.thursdayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.thursdayLabel.Location = new System.Drawing.Point(532, 35);
             this.thursdayLabel.Name = "thursdayLabel";
             this.thursdayLabel.Padding = new System.Windows.Forms.Padding(7);
@@ -96,7 +96,7 @@
             // tuesdayLabel
             // 
             this.tuesdayLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tuesdayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.tuesdayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.tuesdayLabel.Location = new System.Drawing.Point(200, 35);
             this.tuesdayLabel.Name = "tuesdayLabel";
             this.tuesdayLabel.Padding = new System.Windows.Forms.Padding(7);
@@ -107,7 +107,7 @@
             // wednesdayLabel
             // 
             this.wednesdayLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.wednesdayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.wednesdayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.wednesdayLabel.Location = new System.Drawing.Point(347, 35);
             this.wednesdayLabel.Name = "wednesdayLabel";
             this.wednesdayLabel.Padding = new System.Windows.Forms.Padding(7);
@@ -118,7 +118,7 @@
             // mondayLabel
             // 
             this.mondayLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mondayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.mondayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.mondayLabel.Location = new System.Drawing.Point(60, 35);
             this.mondayLabel.Name = "mondayLabel";
             this.mondayLabel.Padding = new System.Windows.Forms.Padding(7);
@@ -255,7 +255,7 @@
             // addSubjectToolStripMenuItem
             // 
             this.addSubjectToolStripMenuItem.Name = "addSubjectToolStripMenuItem";
-            this.addSubjectToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.addSubjectToolStripMenuItem.Size = new System.Drawing.Size(186, 28);
             this.addSubjectToolStripMenuItem.Text = "Add Subject";
             this.addSubjectToolStripMenuItem.ToolTipText = "Add a new subject. A subject flyer can then be created for the new subject.";
             this.addSubjectToolStripMenuItem.Click += new System.EventHandler(this.AddSubjectToolStripMenuItem_Click);
@@ -263,7 +263,7 @@
             // viewAllToolStripMenuItem1
             // 
             this.viewAllToolStripMenuItem1.Name = "viewAllToolStripMenuItem1";
-            this.viewAllToolStripMenuItem1.Size = new System.Drawing.Size(224, 28);
+            this.viewAllToolStripMenuItem1.Size = new System.Drawing.Size(186, 28);
             this.viewAllToolStripMenuItem1.Text = "View All";
             this.viewAllToolStripMenuItem1.ToolTipText = "View all saved subjects";
             this.viewAllToolStripMenuItem1.Click += new System.EventHandler(this.ViewAllToolStripMenuItem1_Click);

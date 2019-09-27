@@ -44,26 +44,7 @@ namespace TutorScheduler
                 }
             }
             return null;
-        }
-
-        protected override void OnLayout(LayoutEventArgs levent)
-        {
-            base.OnLayout(levent);
-
-            int width = this.ClientRectangle.Width - leftMargin - rightMargin;
-
-            foreach (CalendarEvent calendarEvent in CalendarEvents)
-            {
-                Time eventDuration = calendarEvent.EndTime - calendarEvent.StartTime;
-
-                int eventLeft = calendarEvent.Day * width / 5 + leftMargin;
-                int eventTop = 80 * calendarEvent.StartTime.hours + 4 * calendarEvent.StartTime.minutes / 3 + topMargin;
-                int eventWidth = width / 5 - 10;
-                int eventHeight = 80 * eventDuration.hours + 4 * eventDuration.minutes / 3;
-
-                calendarEvent.SetBounds(new Rectangle(eventLeft, eventTop, eventWidth, eventHeight));
-            }
-        }      
+        }            
 
         protected override void OnMouseClick(MouseEventArgs e)
         {

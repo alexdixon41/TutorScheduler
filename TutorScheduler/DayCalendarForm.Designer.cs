@@ -41,8 +41,8 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.calendarPanel = new System.Windows.Forms.Panel();
-            this.dayLabelPanel = new System.Windows.Forms.Panel();
             this.calendarDayView1 = new TutorScheduler.CalendarDayView();
+            this.dayLabelPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.calendarPanel.SuspendLayout();
             this.SuspendLayout();
@@ -150,7 +150,7 @@
             this.subjectsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(881, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(863, 31);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -164,8 +164,19 @@
             this.calendarPanel.Controls.Add(this.calendarDayView1);
             this.calendarPanel.Location = new System.Drawing.Point(13, 148);
             this.calendarPanel.Name = "calendarPanel";
-            this.calendarPanel.Size = new System.Drawing.Size(838, 319);
+            this.calendarPanel.Size = new System.Drawing.Size(838, 290);
             this.calendarPanel.TabIndex = 5;
+            // 
+            // calendarDayView1
+            // 
+            this.calendarDayView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.calendarDayView1.Location = new System.Drawing.Point(4, 4);
+            this.calendarDayView1.Name = "calendarDayView1";
+            this.calendarDayView1.Size = new System.Drawing.Size(810, 1956);
+            this.calendarDayView1.TabIndex = 0;
+            this.calendarDayView1.Text = "calendarDayView1";
             // 
             // dayLabelPanel
             // 
@@ -178,23 +189,16 @@
             this.dayLabelPanel.Size = new System.Drawing.Size(838, 85);
             this.dayLabelPanel.TabIndex = 4;
             // 
-            // calendarDayView1
-            // 
-            this.calendarDayView1.Location = new System.Drawing.Point(4, 4);
-            this.calendarDayView1.Name = "calendarDayView1";
-            this.calendarDayView1.Size = new System.Drawing.Size(810, 315);
-            this.calendarDayView1.TabIndex = 0;
-            this.calendarDayView1.Text = "calendarDayView1";
-            // 
             // DayCalendarForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
+            this.ClientSize = new System.Drawing.Size(863, 450);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.calendarPanel);
             this.Controls.Add(this.dayLabelPanel);
             this.Name = "DayCalendarForm";
-            this.Size = new System.Drawing.Size(881, 497);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.calendarPanel.ResumeLayout(false);
