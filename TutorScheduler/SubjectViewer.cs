@@ -24,7 +24,7 @@ namespace TutorScheduler
         #endregion
         private void AddSubjectButton_Click(object sender, EventArgs e)
         {
-
+            new AddNewSubject().Show();
         }
 
         private void RemoveSubject_Click(object sender, EventArgs e)

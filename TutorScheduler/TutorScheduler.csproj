@@ -52,6 +52,12 @@
     <Compile Include="AddClass.Designer.cs">
       <DependentUpon>AddClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddNewSubject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewSubject.Designer.cs">
+      <DependentUpon>AddNewSubject.cs</DependentUpon>
+    </Compile>
     <Compile Include="AvailabilitySchedule.cs" />
     <Compile Include="CalendarEvent.cs" />
     <Compile Include="CalendarResize.cs" />
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CalendarDayView.resx">
       <DependentUpon>CalendarDayView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddNewSubject.resx">
+      <DependentUpon>AddNewSubject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CalendarWeekView.resx">
       <DependentUpon>CalendarWeekView.cs</DependentUpon>
