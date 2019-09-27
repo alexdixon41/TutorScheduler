@@ -19,7 +19,7 @@ namespace TutorScheduler
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-
+            new Form1().Show();
         }
     }
 }

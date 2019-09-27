@@ -10,7 +10,6 @@ namespace TutorScheduler
 
     public class CalendarResizedEventArgs : EventArgs
     {
-        public int[] dayStartPositions { get; set; }
-        public int dayWidth { get; set; }
+        public int[] dayStartPositions { get; set; }        
     }
 }

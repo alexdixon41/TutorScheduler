@@ -149,8 +149,7 @@ namespace TutorScheduler
             // fire the resize event with the needed positions for the day dividers
             CalendarResizedEventArgs r = new CalendarResizedEventArgs
             {
-                dayStartPositions = new int[] { left, left + width / 5, left + 2 * width / 5, left + 3 * width / 5, left + 4 * width / 5 },
-                dayWidth = width / 5
+                dayStartPositions = new int[] { left, left + width / 5, left + 2 * width / 5, left + 3 * width / 5, left + 4 * width / 5, right },                
             };
             resizeEvent?.Invoke(this, r);            
 

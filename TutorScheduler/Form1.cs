@@ -13,6 +13,7 @@ namespace TutorScheduler
     public partial class Form1 : Form
     {
         Point ScrollPosition = new Point(0, 0);         // save the scroll position so it can be restored when panel is resized
+        Label[] dayLabels;
 
         public Form1()
         {
@@ -21,7 +22,9 @@ namespace TutorScheduler
 
         private void Form1_Shown(object sender, EventArgs e)
         {            
-            this.MinimumSize = new Size(800, 600);            
+            this.MinimumSize = new Size(800, 600);    
+            
+            dayLabels = new Label[] { mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel };            
 
             ResizeHandler handler = new ResizeHandler(ResizeDayLabels);
             calendarWeekView1.resizeEvent += handler;
@@ -30,9 +33,7 @@ namespace TutorScheduler
 
             // scroll down until 7am is at the top of the panel when the form is first shown
             ScrollPosition = new Point(0, 592);
-            calendarPanel.AutoScrollPosition = ScrollPosition;
-
-            Console.WriteLine("ScrollPosition: " + ScrollPosition.X + ", " + ScrollPosition.Y + "\nAutoScrollPosition" + calendarPanel.AutoScrollPosition.X + ", " + calendarPanel.AutoScrollPosition.Y);
+            calendarPanel.AutoScrollPosition = ScrollPosition;            
 
             StudentWorker alex = new StudentWorker("Alex Dixon");
 
@@ -64,16 +65,11 @@ namespace TutorScheduler
         private void ResizeDayLabels(object sender, CalendarResizedEventArgs e)
         {
             // set position and width for each day label upon repaint
-            mondayLabel.Left = e.dayStartPositions[0];
-            mondayLabel.Width = e.dayWidth;
-            tuesdayLabel.Left = e.dayStartPositions[1];
-            tuesdayLabel.Width = e.dayWidth;
-            wednesdayLabel.Left = e.dayStartPositions[2];
-            wednesdayLabel.Width = e.dayWidth;
-            thursdayLabel.Left = e.dayStartPositions[3];
-            thursdayLabel.Width = e.dayWidth;
-            fridayLabel.Left = e.dayStartPositions[4];
-            fridayLabel.Width = e.dayWidth;
+            for (int i = 0; i < dayLabels.Length; i++)
+            {
+                dayLabels[i].Left = e.dayStartPositions[i];
+                dayLabels[i].Width = e.dayStartPositions[i + 1] - e.dayStartPositions[i] + 1;
+            }
 
             // restore scroll position
             calendarPanel.AutoScrollPosition = ScrollPosition;
@@ -118,8 +114,7 @@ namespace TutorScheduler
 
         private void Form1_Activated(object sender, EventArgs e)
         {
-            calendarPanel.AutoScrollPosition = ScrollPosition;
-            Console.WriteLine(calendarPanel.AutoScrollPosition.X + ", " + calendarPanel.AutoScrollPosition.Y);
+            calendarPanel.AutoScrollPosition = ScrollPosition;           
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
