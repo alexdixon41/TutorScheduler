@@ -35,12 +35,12 @@
             "MAT 235",
             "Calculus 2"}, -1);
             this.SubjectList = new System.Windows.Forms.ListView();
+            this.SubjectPrefix = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.SubjectName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AddSubjectButton = new System.Windows.Forms.Button();
             this.RemoveSubject = new System.Windows.Forms.Button();
             this.SearchButton = new System.Windows.Forms.Button();
             this.SubjectSearchTextBox = new System.Windows.Forms.TextBox();
-            this.SubjectPrefix = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.SubjectName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // SubjectList
@@ -50,22 +50,35 @@
             this.SubjectName});
             this.SubjectList.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.SubjectList.FullRowSelect = true;
+            this.SubjectList.HideSelection = false;
             this.SubjectList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2});
-            this.SubjectList.Location = new System.Drawing.Point(12, 57);
+            this.SubjectList.Location = new System.Drawing.Point(16, 70);
+            this.SubjectList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SubjectList.Name = "SubjectList";
-            this.SubjectList.Size = new System.Drawing.Size(576, 248);
+            this.SubjectList.Size = new System.Drawing.Size(767, 304);
             this.SubjectList.TabIndex = 0;
             this.SubjectList.UseCompatibleStateImageBehavior = false;
             this.SubjectList.View = System.Windows.Forms.View.Details;
             this.SubjectList.SelectedIndexChanged += new System.EventHandler(this.SubjectList_SelectedIndexChanged);
             // 
+            // SubjectPrefix
+            // 
+            this.SubjectPrefix.Text = "Subject Prefix";
+            this.SubjectPrefix.Width = 152;
+            // 
+            // SubjectName
+            // 
+            this.SubjectName.Text = "Subject Name";
+            this.SubjectName.Width = 476;
+            // 
             // AddSubjectButton
             // 
-            this.AddSubjectButton.Location = new System.Drawing.Point(12, 311);
+            this.AddSubjectButton.Location = new System.Drawing.Point(16, 383);
+            this.AddSubjectButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddSubjectButton.Name = "AddSubjectButton";
-            this.AddSubjectButton.Size = new System.Drawing.Size(112, 43);
+            this.AddSubjectButton.Size = new System.Drawing.Size(149, 53);
             this.AddSubjectButton.TabIndex = 1;
             this.AddSubjectButton.Text = "Add a Subject";
             this.AddSubjectButton.UseVisualStyleBackColor = true;
@@ -73,9 +86,10 @@
             // 
             // RemoveSubject
             // 
-            this.RemoveSubject.Location = new System.Drawing.Point(481, 311);
+            this.RemoveSubject.Location = new System.Drawing.Point(641, 383);
+            this.RemoveSubject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.RemoveSubject.Name = "RemoveSubject";
-            this.RemoveSubject.Size = new System.Drawing.Size(107, 43);
+            this.RemoveSubject.Size = new System.Drawing.Size(143, 53);
             this.RemoveSubject.TabIndex = 2;
             this.RemoveSubject.Text = "Remove";
             this.RemoveSubject.UseVisualStyleBackColor = true;
@@ -83,9 +97,10 @@
             // 
             // SearchButton
             // 
-            this.SearchButton.Location = new System.Drawing.Point(481, 12);
+            this.SearchButton.Location = new System.Drawing.Point(641, 15);
+            this.SearchButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(102, 28);
+            this.SearchButton.Size = new System.Drawing.Size(136, 34);
             this.SearchButton.TabIndex = 3;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
@@ -93,31 +108,23 @@
             // 
             // SubjectSearchTextBox
             // 
-            this.SubjectSearchTextBox.Location = new System.Drawing.Point(12, 17);
+            this.SubjectSearchTextBox.Location = new System.Drawing.Point(16, 21);
+            this.SubjectSearchTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SubjectSearchTextBox.Name = "SubjectSearchTextBox";
-            this.SubjectSearchTextBox.Size = new System.Drawing.Size(463, 20);
+            this.SubjectSearchTextBox.Size = new System.Drawing.Size(616, 22);
             this.SubjectSearchTextBox.TabIndex = 4;
-            // 
-            // SubjectPrefix
-            // 
-            this.SubjectPrefix.Text = "Subject Prefix";
-            this.SubjectPrefix.Width = 100;
-            // 
-            // SubjectName
-            // 
-            this.SubjectName.Text = "Subject Name";
-            this.SubjectName.Width = 476;
             // 
             // ViewAllSubjects
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.SubjectSearchTextBox);
             this.Controls.Add(this.SearchButton);
             this.Controls.Add(this.RemoveSubject);
             this.Controls.Add(this.AddSubjectButton);
             this.Controls.Add(this.SubjectList);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ViewAllSubjects";
             this.Text = "Subjects";
             this.ResumeLayout(false);

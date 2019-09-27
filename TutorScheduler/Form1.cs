@@ -107,8 +107,7 @@ namespace TutorScheduler
         //View all student workers is clicked
         private void ViewAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ViewAllWorkers form = new ViewAllWorkers();
-            form.Show();
+            new ViewAllWorkers().Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -135,6 +134,12 @@ namespace TutorScheduler
         private void MenuStrip1_MenuDeactivate(object sender, EventArgs e)
         {
             calendarPanel.AutoScrollPosition = ScrollPosition;
+        }
+
+        //View all subjects is clicked 
+        private void ViewAllToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            new ViewAllSubjects().Show();
         }
     }
 }
