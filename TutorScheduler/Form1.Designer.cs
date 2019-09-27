@@ -47,6 +47,8 @@
             this.subjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addSubjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dayViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calendarWeekView1 = new TutorScheduler.CalendarWeekView();
             this.dayLabelPanel.SuspendLayout();
             this.calendarPanel.SuspendLayout();
@@ -144,6 +146,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.viewToolStripMenuItem,
             this.studentWorkersToolStripMenuItem,
             this.subjectsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -249,6 +252,20 @@
             this.viewAllToolStripMenuItem1.Text = "View All";
             this.viewAllToolStripMenuItem1.ToolTipText = "View all saved subjects";
             // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dayViewToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(60, 27);
+            this.viewToolStripMenuItem.Text = "&View";
+            // 
+            // dayViewToolStripMenuItem
+            // 
+            this.dayViewToolStripMenuItem.Name = "dayViewToolStripMenuItem";
+            this.dayViewToolStripMenuItem.Size = new System.Drawing.Size(164, 28);
+            this.dayViewToolStripMenuItem.Text = "&Day View";
+            // 
             // calendarWeekView1
             // 
             this.calendarWeekView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -272,6 +289,7 @@
             this.Controls.Add(this.calendarPanel);
             this.Controls.Add(this.dayLabelPanel);
             this.KeyPreview = true;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -310,6 +328,8 @@
         private System.Windows.Forms.Label tuesdayLabel;
         private System.Windows.Forms.Label wednesdayLabel;
         private System.Windows.Forms.Label mondayLabel;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dayViewToolStripMenuItem;
     }
 }
 

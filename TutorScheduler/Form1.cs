@@ -13,7 +13,7 @@ namespace TutorScheduler
     public partial class Form1 : Form
     {
         Point ScrollPosition = new Point(0, 0);         // save the scroll position so it can be restored when panel is resized
-        Label[] dayLabels;
+        Label[] dayLabels;                              // the weekday labels on top of the calendar
 
         public Form1()
         {

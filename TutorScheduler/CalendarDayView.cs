@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace TutorScheduler
 { 
-    public partial class CalendarWeekView : Control
+    public partial class CalendarDayView : Control
     {
         public event ResizeHandler resizeEvent;
 
@@ -20,7 +20,7 @@ namespace TutorScheduler
 
         private List<CalendarEvent> CalendarEvents { get; set; } = new List<CalendarEvent>();
 
-        public CalendarWeekView()
+        public CalendarDayView()
         {         
             InitializeComponent();
             ResizeRedraw = true;

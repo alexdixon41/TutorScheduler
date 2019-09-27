@@ -55,6 +55,12 @@
     <Compile Include="AvailabilitySchedule.cs" />
     <Compile Include="CalendarEvent.cs" />
     <Compile Include="CalendarResize.cs" />
+    <Compile Include="CalendarDayView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CalendarDayView.Designer.cs">
+      <DependentUpon>CalendarDayView.cs</DependentUpon>
+    </Compile>
     <Compile Include="CalendarWeekView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -62,6 +68,12 @@
       <DependentUpon>CalendarWeekView.cs</DependentUpon>
     </Compile>
     <Compile Include="ClassSchedule.cs" />
+    <Compile Include="DayCalendarForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DayCalendarForm.Designer.cs">
+      <DependentUpon>DayCalendarForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,8 +112,14 @@
     <EmbeddedResource Include="AddClass.resx">
       <DependentUpon>AddClass.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CalendarDayView.resx">
+      <DependentUpon>CalendarDayView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CalendarWeekView.resx">
       <DependentUpon>CalendarWeekView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DayCalendarForm.resx">
+      <DependentUpon>DayCalendarForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
