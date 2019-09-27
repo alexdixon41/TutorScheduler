@@ -21,13 +21,18 @@ namespace TutorScheduler
 
         private void Form1_Shown(object sender, EventArgs e)
         {            
-            this.MinimumSize = new Size(800, 600);
+            this.MinimumSize = new Size(800, 600);            
 
-            // scroll down until 7am is at the top of the panel when the form is first shown
-            ScrollPosition = new Point(0, 592);            
-            calendarPanel.AutoScrollPosition = ScrollPosition;
+            ResizeHandler handler = new ResizeHandler(ResizeDayLabels);
+            calendarWeekView1.resizeEvent += handler;
 
             calendarPanel.MouseWheel += new MouseEventHandler(CalendarPanel_MouseWheel);        // add the MouseWheel event handler to calendarPanel
+
+            // scroll down until 7am is at the top of the panel when the form is first shown
+            ScrollPosition = new Point(0, 592);
+            calendarPanel.AutoScrollPosition = ScrollPosition;
+
+            Console.WriteLine("ScrollPosition: " + ScrollPosition.X + ", " + ScrollPosition.Y + "\nAutoScrollPosition" + calendarPanel.AutoScrollPosition.X + ", " + calendarPanel.AutoScrollPosition.Y);
 
             StudentWorker alex = new StudentWorker("Alex Dixon");
 
@@ -56,22 +61,41 @@ namespace TutorScheduler
             calendarWeekView1.AddEvents(alex.GetAvailabilitySchedule().availableTimes);
         }
 
+        private void ResizeDayLabels(object sender, CalendarResizedEventArgs e)
+        {
+            // set position and width for each day label upon repaint
+            mondayLabel.Left = e.dayStartPositions[0];
+            mondayLabel.Width = e.dayWidth;
+            tuesdayLabel.Left = e.dayStartPositions[1];
+            tuesdayLabel.Width = e.dayWidth;
+            wednesdayLabel.Left = e.dayStartPositions[2];
+            wednesdayLabel.Width = e.dayWidth;
+            thursdayLabel.Left = e.dayStartPositions[3];
+            thursdayLabel.Width = e.dayWidth;
+            fridayLabel.Left = e.dayStartPositions[4];
+            fridayLabel.Width = e.dayWidth;
+
+            // restore scroll position
+            calendarPanel.AutoScrollPosition = ScrollPosition;
+        }
+        
+
         private void CalendarPanel_Scroll(object sender, ScrollEventArgs e)
         {
             // save scroll position          
-            ScrollPosition = new Point(0, calendarPanel.AutoScrollPosition.Y * -1);           
+            ScrollPosition = new Point(0, Math.Abs(calendarPanel.AutoScrollPosition.Y));           
         }
 
         private void CalendarPanel_MouseWheel(object sender, MouseEventArgs e)
         {
             // save scroll position
-            ScrollPosition = new Point(0, calendarPanel.AutoScrollPosition.Y * -1);            
+            ScrollPosition = new Point(0, Math.Abs(calendarPanel.AutoScrollPosition.Y));            
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             // restore scroll position
-            calendarPanel.AutoScrollPosition = ScrollPosition;          
+            calendarPanel.AutoScrollPosition = ScrollPosition;            
         }
 
         //Add a student worker is clicked
@@ -95,6 +119,7 @@ namespace TutorScheduler
         private void Form1_Activated(object sender, EventArgs e)
         {
             calendarPanel.AutoScrollPosition = ScrollPosition;
+            Console.WriteLine(calendarPanel.AutoScrollPosition.X + ", " + calendarPanel.AutoScrollPosition.Y);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)

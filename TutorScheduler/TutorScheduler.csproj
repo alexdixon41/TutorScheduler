@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="AvailabilitySchedule.cs" />
     <Compile Include="CalendarEvent.cs" />
+    <Compile Include="CalendarResize.cs" />
     <Compile Include="CalendarWeekView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -61,6 +62,12 @@
       <DependentUpon>CalendarWeekView.cs</DependentUpon>
     </Compile>
     <Compile Include="ClassSchedule.cs" />
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="StudentWorkerInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CalendarWeekView.resx">
       <DependentUpon>CalendarWeekView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StudentWorkerInfoForm.resx">
       <DependentUpon>StudentWorkerInfoForm.cs</DependentUpon>

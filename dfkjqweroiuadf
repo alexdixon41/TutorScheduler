@@ -1,0 +1,390 @@
+[1mdiff --git a/TutorScheduler/CalendarWeekView.cs b/TutorScheduler/CalendarWeekView.cs[m
+[1mindex f9cc9b3..2f36329 100644[m
+[1m--- a/TutorScheduler/CalendarWeekView.cs[m
+[1m+++ b/TutorScheduler/CalendarWeekView.cs[m
+[36m@@ -11,35 +11,23 @@[m [musing System.Windows.Forms;[m
+ namespace TutorScheduler[m
+ { [m
+     public partial class CalendarWeekView : Control[m
+[31m-    { [m
+[31m-        public const int leftMargin = 60;           // distance from left side of client rectangle to left vertical border of calendar[m
+[32m+[m[32m    {[m
+[32m+[m[32m        public event ResizeHandler resizeEvent;[m
+[32m+[m
+[32m+[m[32m        public const int leftMargin = 60;           // distance from left side of client rectangle to left vertical border of Monday[m
+         public const int rightMargin = 10;[m
+[31m-        public const int topMargin = 30;[m
+[32m+[m[32m        public const int topMargin = 30;[m[41m        [m
+ [m
+         internal List<CalendarEvent> CalendarEvents { get; set; } = new List<CalendarEvent>();[m
+ [m
+         public CalendarWeekView()[m
+[31m-        {            [m
+[32m+[m[32m        {[m[41m         [m
+             InitializeComponent();[m
+             ResizeRedraw = true;[m
+             this.SetStyle(ControlStyles.OptimizedDoubleBuffer |[m
+                 ControlStyles.UserPaint |[m
+[31m-                ControlStyles.AllPaintingInWmPaint, true);[m
+[31m-[m
+[31m-            //CalendarEvents.Add(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Monday, CalendarEvent.CLASS));[m
+[31m-            //CalendarEvents.Add(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Wednesday, CalendarEvent.CLASS));[m
+[31m-            //CalendarEvents.Add(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Friday, CalendarEvent.CLASS));[m
+[31m-            //CalendarEvents.Add(new CalendarEvent(new Time(11, 15), new Time(12, 5), (int)Day.Monday, CalendarEvent.CLASS));[m
+[31m-            //CalendarEvents.Add(new CalendarEvent(new Time(11, 15), new Time(12, 5), (int)Day.Wednesday, CalendarEvent.CLASS));[m
+[31m-            //CalendarEvents.Add(new CalendarEvent(new Time(14, 30), new Time(17, 15), (int)Day.Wednesday, CalendarEvent.CLASS));[m
+[31m-            //CalendarEvents.Add(new CalendarEvent(new Time(12, 30), new Time(13, 45), (int)Day.Tuesday, CalendarEvent.CLASS));[m
+[31m-            //CalendarEvents.Add(new CalendarEvent(new Time(12, 30), new Time(13, 45), (int)Day.Thursday, CalendarEvent.CLASS));[m
+[31m-            //CalendarEvents.Add(new CalendarEvent(new Time(14, 0), new Time(15, 15), (int)Day.Tuesday, CalendarEvent.CLASS));[m
+[31m-            //CalendarEvents.Add(new CalendarEvent(new Time(14, 0), new Time(15, 15), (int)Day.Thursday, CalendarEvent.CLASS));[m
+[31m-            //CalendarEvents.Add(new CalendarEvent(new Time(16, 45), new Time(18, 0), (int)Day.Tuesday, CalendarEvent.CLASS));[m
+[31m-            //CalendarEvents.Add(new CalendarEvent(new Time(16, 45), new Time(18, 0), (int)Day.Thursday, CalendarEvent.CLASS));[m
+[31m-          [m
+[31m-        }[m
+[32m+[m[32m                ControlStyles.AllPaintingInWmPaint, true);[m[41m         [m
+[32m+[m[32m        }[m[41m      [m
+ [m
+         internal void AddEvents(List<CalendarEvent> events)[m
+         {[m
+[36m@@ -156,7 +144,15 @@[m [mnamespace TutorScheduler[m
+             int right = left + width;[m
+             int bottom = top + height;            [m
+ [m
+[31m-            System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.LightGray);                      [m
+[32m+[m[32m            System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.LightGray);[m
+[32m+[m[41m            [m
+[32m+[m[32m            // fire the resize event with the needed positions for the day dividers[m
+[32m+[m[32m            CalendarResizedEventArgs r = new CalendarResizedEventArgs[m
+[32m+[m[32m            {[m
+[32m+[m[32m                dayStartPositions = new int[] { left, left + width / 5, left + 2 * width / 5, left + 3 * width / 5, left + 4 * width / 5 },[m
+[32m+[m[32m                dayWidth = width / 5[m
+[32m+[m[32m            };[m
+[32m+[m[32m            resizeEvent?.Invoke(this, r);[m[41m            [m
+ [m
+             // draw vertical divider lines of calendar[m
+             pe.Graphics.DrawLine(pen, new Point(left, top), new Point(left, bottom));                      // left vertical border line[m
+[1mdiff --git a/TutorScheduler/Form1.Designer.cs b/TutorScheduler/Form1.Designer.cs[m
+[1mindex b44b93a..98e6b66 100644[m
+[1m--- a/TutorScheduler/Form1.Designer.cs[m
+[1m+++ b/TutorScheduler/Form1.Designer.cs[m
+[36m@@ -30,7 +30,6 @@[m
+         {[m
+             this.dayLabelPanel = new System.Windows.Forms.Panel();[m
+             this.calendarPanel = new System.Windows.Forms.Panel();[m
+[31m-            this.calendarWeekView1 = new TutorScheduler.CalendarWeekView();[m
+             this.menuStrip1 = new System.Windows.Forms.MenuStrip();[m
+             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();[m
+             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();[m
+[36m@@ -38,11 +37,18 @@[m
+             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();[m
+             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();[m
+             this.studentWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();[m
+[32m+[m[32m            this.addStudentWorkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();[m
+             this.viewAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();[m
+             this.subjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();[m
+             this.addSubjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();[m
+             this.viewAllToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();[m
+[31m-            this.addStudentWorkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();[m
+[32m+[m[32m            this.mondayLabel = new System.Windows.Forms.TextBox();[m
+[32m+[m[32m            this.tuesdayLabel = new System.Windows.Forms.TextBox();[m
+[32m+[m[32m            this.wednesdayLabel = new System.Windows.Forms.TextBox();[m
+[32m+[m[32m            this.thursdayLabel = new System.Windows.Forms.TextBox();[m
+[32m+[m[32m            this.fridayLabel = new System.Windows.Forms.TextBox();[m
+[32m+[m[32m            this.calendarWeekView1 = new TutorScheduler.CalendarWeekView();[m
+[32m+[m[32m            this.dayLabelPanel.SuspendLayout();[m
+             this.calendarPanel.SuspendLayout();[m
+             this.menuStrip1.SuspendLayout();[m
+             this.SuspendLayout();[m
+[36m@@ -52,9 +58,15 @@[m
+             this.dayLabelPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) [m
+             | System.Windows.Forms.AnchorStyles.Right)));[m
+             this.dayLabelPanel.AutoSize = true;[m
+[32m+[m[32m            this.dayLabelPanel.Controls.Add(this.fridayLabel);[m
+[32m+[m[32m            this.dayLabelPanel.Controls.Add(this.thursdayLabel);[m
+[32m+[m[32m            this.dayLabelPanel.Controls.Add(this.wednesdayLabel);[m
+[32m+[m[32m            this.dayLabelPanel.Controls.Add(this.tuesdayLabel);[m
+[32m+[m[32m            this.dayLabelPanel.Controls.Add(this.mondayLabel);[m
+             this.dayLabelPanel.Location = new System.Drawing.Point(13, 34);[m
+[32m+[m[32m            this.dayLabelPanel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);[m
+             this.dayLabelPanel.Name = "dayLabelPanel";[m
+[31m-            this.dayLabelPanel.Size = new System.Drawing.Size(838, 79);[m
+[32m+[m[32m            this.dayLabelPanel.Size = new System.Drawing.Size(838, 85);[m
+             this.dayLabelPanel.TabIndex = 1;[m
+             // [m
+             // calendarPanel[m
+[36m@@ -71,17 +83,6 @@[m
+             this.calendarPanel.TabIndex = 2;[m
+             this.calendarPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.CalendarPanel_Scroll);[m
+             // [m
+[31m-            // calendarWeekView1[m
+[31m-            // [m
+[31m-            this.calendarWeekView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) [m
+[31m-            | System.Windows.Forms.AnchorStyles.Left) [m
+[31m-            | System.Windows.Forms.AnchorStyles.Right)));[m
+[31m-            this.calendarWeekView1.Location = new System.Drawing.Point(3, 3);[m
+[31m-            this.calendarWeekView1.Name = "calendarWeekView1";[m
+[31m-            this.calendarWeekView1.Size = new System.Drawing.Size(727, 19971);[m
+[31m-            this.calendarWeekView1.TabIndex = 0;[m
+[31m-            this.calendarWeekView1.Text = "calendarWeekView1";[m
+[31m-            // [m
+             // menuStrip1[m
+             // [m
+             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 10F);[m
+[36m@@ -115,7 +116,7 @@[m
+             this.newToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;[m
+             this.newToolStripMenuItem.Name = "newToolStripMenuItem";[m
+             this.newToolStripMenuItem.ShortcutKeyDisplayString = "";[m
+[31m-            this.newToolStripMenuItem.Size = new System.Drawing.Size(224, 28);[m
+[32m+[m[32m            this.newToolStripMenuItem.Size = new System.Drawing.Size(136, 28);[m
+             this.newToolStripMenuItem.Text = "&New";[m
+             this.newToolStripMenuItem.ToolTipText = "Create a new schedule";[m
+             // [m
+[36m@@ -123,7 +124,7 @@[m
+             // [m
+             this.saveToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;[m
+             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";[m
+[31m-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 28);[m
+[32m+[m[32m            this.saveToolStripMenuItem.Size = new System.Drawing.Size(136, 28);[m
+             this.saveToolStripMenuItem.Text = "&Save";[m
+             this.saveToolStripMenuItem.ToolTipText = "Save the current schedule";[m
+             // [m
+[36m@@ -131,7 +132,7 @@[m
+             // [m
+             this.openToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;[m
+             this.openToolStripMenuItem.Name = "openToolStripMenuItem";[m
+[31m-            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 28);[m
+[32m+[m[32m            this.openToolStripMenuItem.Size = new System.Drawing.Size(136, 28);[m
+             this.openToolStripMenuItem.Text = "&Open";[m
+             this.openToolStripMenuItem.ToolTipText = "Open a different schedule";[m
+             // [m
+[36m@@ -139,7 +140,7 @@[m
+             // [m
+             this.exitToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;[m
+             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";[m
+[31m-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 28);[m
+[32m+[m[32m            this.exitToolStripMenuItem.Size = new System.Drawing.Size(136, 28);[m
+             this.exitToolStripMenuItem.Text = "E&xit";[m
+             this.exitToolStripMenuItem.ToolTipText = "Close the program";[m
+             // [m
+[36m@@ -153,6 +154,15 @@[m
+             this.studentWorkersToolStripMenuItem.Size = new System.Drawing.Size(149, 27);[m
+             this.studentWorkersToolStripMenuItem.Text = "Student Workers";[m
+             // [m
+[32m+[m[32m            // addStudentWorkerToolStripMenuItem[m
+[32m+[m[32m            //[m[41m [m
+[32m+[m[32m            this.addStudentWorkerToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;[m
+[32m+[m[32m            this.addStudentWorkerToolStripMenuItem.Name = "addStudentWorkerToolStripMenuItem";[m
+[32m+[m[32m            this.addStudentWorkerToolStripMenuItem.Size = new System.Drawing.Size(248, 28);[m
+[32m+[m[32m            this.addStudentWorkerToolStripMenuItem.Text = "Add Student Worker";[m
+[32m+[m[32m            this.addStudentWorkerToolStripMenuItem.ToolTipText = "Add a new student worker";[m
+[32m+[m[32m            this.addStudentWorkerToolStripMenuItem.Click += new System.EventHandler(this.AddStudentWorkerToolStripMenuItem_Click);[m
+[32m+[m[32m            //[m[41m [m
+             // viewAllToolStripMenuItem[m
+             // [m
+             this.viewAllToolStripMenuItem.Name = "viewAllToolStripMenuItem";[m
+[36m@@ -173,25 +183,93 @@[m
+             // addSubjectToolStripMenuItem[m
+             // [m
+             this.addSubjectToolStripMenuItem.Name = "addSubjectToolStripMenuItem";[m
+[31m-            this.addSubjectToolStripMenuItem.Size = new System.Drawing.Size(224, 28);[m
+[32m+[m[32m            this.addSubjectToolStripMenuItem.Size = new System.Drawing.Size(186, 28);[m
+             this.addSubjectToolStripMenuItem.Text = "Add Subject";[m
+             this.addSubjectToolStripMenuItem.ToolTipText = "Add a new subject. A subject flyer can then be created for the new subject.";[m
+             // [m
+             // viewAllToolStripMenuItem1[m
+             // [m
+             this.viewAllToolStripMenuItem1.Name = "viewAllToolStripMenuItem1";[m
+[31m-            this.viewAllToolStripMenuItem1.Size = new System.Drawing.Size(224, 28);[m
+[32m+[m[32m            this.viewAllToolStripMenuItem1.Size = new System.Drawing.Size(186, 28);[m
+             this.viewAllToolStripMenuItem1.Text = "View All";[m
+             this.viewAllToolStripMenuItem1.ToolTipText = "View all saved subjects";[m
+             // [m
+[31m-            // addStudentWorkerToolStripMenuItem[m
+[32m+[m[32m            // mondayLabel[m
+[32m+[m[32m            //[m[41m [m
+[32m+[m[32m            this.mondayLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;[m
+[32m+[m[32m            this.mondayLabel.Enabled = false;[m
+[32m+[m[32m            this.mondayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);[m
+[32m+[m[32m            this.mondayLabel.Location = new System.Drawing.Point(61, 48);[m
+[32m+[m[32m            this.mondayLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);[m
+[32m+[m[32m            this.mondayLabel.Name = "mondayLabel";[m
+[32m+[m[32m            this.mondayLabel.ReadOnly = true;[m
+[32m+[m[32m            this.mondayLabel.Size = new System.Drawing.Size(134, 34);[m
+[32m+[m[32m            this.mondayLabel.TabIndex = 0;[m
+[32m+[m[32m            this.mondayLabel.Text = "Monday";[m
+[32m+[m[32m            //[m[41m [m
+[32m+[m[32m            // tuesdayLabel[m
+[32m+[m[32m            //[m[41m [m
+[32m+[m[32m            this.tuesdayLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;[m
+[32m+[m[32m            this.tuesdayLabel.Enabled = false;[m
+[32m+[m[32m            this.tuesdayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);[m
+[32m+[m[32m            this.tuesdayLabel.Location = new System.Drawing.Point(211, 48);[m
+[32m+[m[32m            this.tuesdayLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);[m
+[32m+[m[32m            this.tuesdayLabel.Name = "tuesdayLabel";[m
+[32m+[m[32m            this.tuesdayLabel.ReadOnly = true;[m
+[32m+[m[32m            this.tuesdayLabel.Size = new System.Drawing.Size(134, 34);[m
+[32m+[m[32m            this.tuesdayLabel.TabIndex = 1;[m
+[32m+[m[32m            this.tuesdayLabel.Text = "Tuesday";[m
+[32m+[m[32m            //[m[41m [m
+[32m+[m[32m            // wednesdayLabel[m
+[32m+[m[32m            //[m[41m [m
+[32m+[m[32m            this.wednesdayLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;[m
+[32m+[m[32m            this.wednesdayLabel.Enabled = false;[m
+[32m+[m[32m            this.wednesdayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);[m
+[32m+[m[32m            this.wednesdayLabel.Location = new System.Drawing.Point(360, 48);[m
+[32m+[m[32m            this.wednesdayLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);[m
+[32m+[m[32m            this.wednesdayLabel.Name = "wednesdayLabel";[m
+[32m+[m[32m            this.wednesdayLabel.ReadOnly = true;[m
+[32m+[m[32m            this.wednesdayLabel.Size = new System.Drawing.Size(134, 34);[m
+[32m+[m[32m            this.wednesdayLabel.TabIndex = 2;[m
+[32m+[m[32m            this.wednesdayLabel.Text = "Wednesday";[m
+[32m+[m[32m            //[m[41m [m
+[32m+[m[32m            // thursdayLabel[m
+[32m+[m[32m            //[m[41m [m
+[32m+[m[32m            this.thursdayLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;[m
+[32m+[m[32m            this.thursdayLabel.Enabled = false;[m
+[32m+[m[32m            this.thursdayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);[m
+[32m+[m[32m            this.thursdayLabel.Location = new System.Drawing.Point(509, 48);[m
+[32m+[m[32m            this.thursdayLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);[m
+[32m+[m[32m            this.thursdayLabel.Name = "thursdayLabel";[m
+[32m+[m[32m            this.thursdayLabel.ReadOnly = true;[m
+[32m+[m[32m            this.thursdayLabel.Size = new System.Drawing.Size(134, 34);[m
+[32m+[m[32m            this.thursdayLabel.TabIndex = 3;[m
+[32m+[m[32m            this.thursdayLabel.Text = "Thursday";[m
+[32m+[m[32m            //[m[41m [m
+[32m+[m[32m            // fridayLabel[m
+[32m+[m[32m            //[m[41m [m
+[32m+[m[32m            this.fridayLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;[m
+[32m+[m[32m            this.fridayLabel.Enabled = false;[m
+[32m+[m[32m            this.fridayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);[m
+[32m+[m[32m            this.fridayLabel.Location = new System.Drawing.Point(660, 48);[m
+[32m+[m[32m            this.fridayLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);[m
+[32m+[m[32m            this.fridayLabel.Name = "fridayLabel";[m
+[32m+[m[32m            this.fridayLabel.ReadOnly = true;[m
+[32m+[m[32m            this.fridayLabel.Size = new System.Drawing.Size(134, 34);[m
+[32m+[m[32m            this.fridayLabel.TabIndex = 4;[m
+[32m+[m[32m            this.fridayLabel.Text = "Friday";[m
+             // [m
+[31m-            this.addStudentWorkerToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;[m
+[31m-            this.addStudentWorkerToolStripMenuItem.Name = "addStudentWorkerToolStripMenuItem";[m
+[31m-            this.addStudentWorkerToolStripMenuItem.Size = new System.Drawing.Size(248, 28);[m
+[31m-            this.addStudentWorkerToolStripMenuItem.Text = "Add Student Worker";[m
+[31m-            this.addStudentWorkerToolStripMenuItem.ToolTipText = "Add a new student worker";[m
+[31m-            this.addStudentWorkerToolStripMenuItem.Click += new System.EventHandler(this.AddStudentWorkerToolStripMenuItem_Click);[m
+[32m+[m[32m            // calendarWeekView1[m
+[32m+[m[32m            //[m[41m [m
+[32m+[m[32m            this.calendarWeekView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)[m[41m [m
+[32m+[m[32m            | System.Windows.Forms.AnchorStyles.Left)[m[41m [m
+[32m+[m[32m            | System.Windows.Forms.AnchorStyles.Right)));[m
+[32m+[m[32m            this.calendarWeekView1.Location = new System.Drawing.Point(1, 3);[m
+[32m+[m[32m            this.calendarWeekView1.Margin = new System.Windows.Forms.Padding(1, 3, 3, 3);[m
+[32m+[m[32m            this.calendarWeekView1.Name = "calendarWeekView1";[m
+[32m+[m[32m            this.calendarWeekView1.Size = new System.Drawing.Size(811, 21612);[m
+[32m+[m[32m            this.calendarWeekView1.TabIndex = 0;[m
+[32m+[m[32m            this.calendarWeekView1.Text = "calendarWeekView1";[m
+             // [m
+             // Form1[m
+             // [m
+[36m@@ -211,6 +289,8 @@[m
+             this.Shown += new System.EventHandler(this.Form1_Shown);[m
+             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);[m
+             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);[m
+[32m+[m[32m            this.dayLabelPanel.ResumeLayout(false);[m
+[32m+[m[32m            this.dayLabelPanel.PerformLayout();[m
+             this.calendarPanel.ResumeLayout(false);[m
+             this.menuStrip1.ResumeLayout(false);[m
+             this.menuStrip1.PerformLayout();[m
+[36m@@ -236,6 +316,11 @@[m
+         private System.Windows.Forms.ToolStripMenuItem addSubjectToolStripMenuItem;[m
+         private System.Windows.Forms.ToolStripMenuItem viewAllToolStripMenuItem1;[m
+         private System.Windows.Forms.ToolStripMenuItem addStudentWorkerToolStripMenuItem;[m
+[32m+[m[32m        private System.Windows.Forms.TextBox mondayLabel;[m
+[32m+[m[32m        private System.Windows.Forms.TextBox fridayLabel;[m
+[32m+[m[32m        private System.Windows.Forms.TextBox thursdayLabel;[m
+[32m+[m[32m        private System.Windows.Forms.TextBox wednesdayLabel;[m
+[32m+[m[32m        private System.Windows.Forms.TextBox tuesdayLabel;[m
+     }[m
+ }[m
+ [m
+[1mdiff --git a/TutorScheduler/Form1.cs b/TutorScheduler/Form1.cs[m
+[1mindex 35708d9..7b5427c 100644[m
+[1m--- a/TutorScheduler/Form1.cs[m
+[1m+++ b/TutorScheduler/Form1.cs[m
+[36m@@ -21,13 +21,18 @@[m [mnamespace TutorScheduler[m
+ [m
+         private void Form1_Shown(object sender, EventArgs e)[m
+         {            [m
+[31m-            this.MinimumSize = new Size(800, 600);[m
+[32m+[m[32m            this.MinimumSize = new Size(800, 600);[m[41m            [m
+[32m+[m
+[32m+[m[32m            ResizeHandler handler = new ResizeHandler(ResizeDayLabels);[m
+[32m+[m[32m            calendarWeekView1.resizeEvent += handler;[m
+[32m+[m
+[32m+[m[32m            calendarPanel.MouseWheel += new MouseEventHandler(CalendarPanel_MouseWheel);        // add the MouseWheel event handler to calendarPanel[m
+ [m
+             // scroll down until 7am is at the top of the panel when the form is first shown[m
+[31m-            ScrollPosition = new Point(0, 592);            [m
+[32m+[m[32m            ScrollPosition = new Point(0, 592);[m
+             calendarPanel.AutoScrollPosition = ScrollPosition;[m
+ [m
+[31m-            calendarPanel.MouseWheel += new MouseEventHandler(CalendarPanel_MouseWheel);        // add the MouseWheel event handler to calendarPanel[m
+[32m+[m[32m            Console.WriteLine("ScrollPosition: " + ScrollPosition.X + ", " + ScrollPosition.Y + "\nAutoScrollPosition" + calendarPanel.AutoScrollPosition.X + ", " + calendarPanel.AutoScrollPosition.Y);[m
+ [m
+             StudentWorker alex = new StudentWorker("Alex Dixon");[m
+ [m
+[36m@@ -56,22 +61,40 @@[m [mnamespace TutorScheduler[m
+             calendarWeekView1.AddEvents(alex.GetAvailabilitySchedule().availableTimes);[m
+         }[m
+ [m
+[32m+[m[32m        private void ResizeDayLabels(object sender, CalendarResizedEventArgs e)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            // set position and width for each day label upon repaint[m
+[32m+[m[32m            mondayLabel.Left = e.dayStartPositions[0];[m
+[32m+[m[32m            mondayLabel.Width = e.dayWidth;[m
+[32m+[m[32m            tuesdayLabel.Left = e.dayStartPositions[1];[m
+[32m+[m[32m            tuesdayLabel.Width = e.dayWidth;[m
+[32m+[m[32m            wednesdayLabel.Left = e.dayStartPositions[2];[m
+[32m+[m[32m            wednesdayLabel.Width = e.dayWidth;[m
+[32m+[m[32m            thursdayLabel.Left = e.dayStartPositions[3];[m
+[32m+[m[32m            thursdayLabel.Width = e.dayWidth;[m
+[32m+[m[32m            fridayLabel.Left = e.dayStartPositions[4];[m
+[32m+[m[32m            fridayLabel.Width = e.dayWidth;[m
+[32m+[m
+[32m+[m[41m            [m
+[32m+[m[32m        }[m
+[32m+[m[41m        [m
+[32m+[m
+         private void CalendarPanel_Scroll(object sender, ScrollEventArgs e)[m
+         {[m
+             // save scroll position          [m
+[31m-            ScrollPosition = new Point(0, calendarPanel.AutoScrollPosition.Y * -1);           [m
+[32m+[m[32m            ScrollPosition = new Point(0, Math.Abs(calendarPanel.AutoScrollPosition.Y));[m[41m           [m
+         }[m
+ [m
+         private void CalendarPanel_MouseWheel(object sender, MouseEventArgs e)[m
+         {[m
+             // save scroll position[m
+[31m-            ScrollPosition = new Point(0, calendarPanel.AutoScrollPosition.Y * -1);            [m
+[32m+[m[32m            ScrollPosition = new Point(0, Math.Abs(calendarPanel.AutoScrollPosition.Y));[m[41m            [m
+         }[m
+ [m
+         private void Form1_Paint(object sender, PaintEventArgs e)[m
+         {[m
+             // restore scroll position[m
+[31m-            calendarPanel.AutoScrollPosition = ScrollPosition;          [m
+[32m+[m[32m            calendarPanel.AutoScrollPosition = ScrollPosition;[m
+         }[m
+ [m
+         //Add a student worker is clicked[m
+[1mdiff --git a/TutorScheduler/TutorScheduler.csproj b/TutorScheduler/TutorScheduler.csproj[m
+[1mindex 2399396..9ac66e8 100644[m
+[1m--- a/TutorScheduler/TutorScheduler.csproj[m
+[1m+++ b/TutorScheduler/TutorScheduler.csproj[m
+[36m@@ -54,6 +54,7 @@[m
+     </Compile>[m
+     <Compile Include="AvailabilitySchedule.cs" />[m
+     <Compile Include="CalendarEvent.cs" />[m
+[32m+[m[32m    <Compile Include="CalendarResize.cs" />[m
+     <Compile Include="CalendarWeekView.cs">[m
+       <SubType>Component</SubType>[m
+     </Compile>[m

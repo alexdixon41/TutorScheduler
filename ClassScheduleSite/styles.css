@@ -1,0 +1,115 @@
+header {
+    position: center;
+    font-size: 3.5em;
+    width: 100%;
+    background-color: #914B5B;
+    text-align: center;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+body {
+    background-color: #914B5B;
+    text-align: center;
+}
+
+h1 {
+   font-size: 4em;
+}
+
+table {
+    width: 600px;
+}
+
+td, th {
+    padding: 5px;
+    text-align: left;
+}
+
+th {
+    padding: 10px;
+    font-size: 1.5em;
+}
+
+hr {
+    height: 2px;
+    background-color: black;
+    border: none;
+}
+
+#studentIDSection {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: #914B5B;
+    text-align: center;
+}
+
+#studentIDInput {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 400px;
+    height: 60px;
+    margin: auto;
+}
+
+#studentID {
+    width: 150px;
+}
+
+#classListName {
+    width: 300px;
+}
+
+#startTime, #endTime {
+    width: 100%;
+}
+
+#className {
+    width: 100%;
+}
+
+#firstColumn {
+    width: 120px;
+}
+
+#addClassButton {
+    margin-top: 20px;
+    padding: 5px;
+}
+
+.classRegion {
+    padding: 10px;
+    display: inline-block;
+}
+
+.inputElement, .classInfoElement, .submitButton {
+    padding: 5px;
+    font-size: 1.7em;
+}
+
+.submitButton {
+    background-color: #B7B6C1;
+    border: none;
+}
+
+.submitButton:hover {
+    background-color: #D7D5E1
+}
+
+.inputElement, .classInfoElement {
+    border: none;
+}
+
+.classInfoElement {
+    width: 100%;
+}

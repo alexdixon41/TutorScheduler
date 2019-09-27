@@ -11,35 +11,23 @@ using System.Windows.Forms;
 namespace TutorScheduler
 { 
     public partial class CalendarWeekView : Control
-    { 
-        public const int leftMargin = 60;           // distance from left side of client rectangle to left vertical border of calendar
+    {
+        public event ResizeHandler resizeEvent;
+
+        public const int leftMargin = 60;           // distance from left side of client rectangle to left vertical border of Monday
         public const int rightMargin = 10;
-        public const int topMargin = 30;
+        public const int topMargin = 30;        
 
         internal List<CalendarEvent> CalendarEvents { get; set; } = new List<CalendarEvent>();
 
         public CalendarWeekView()
-        {            
+        {         
             InitializeComponent();
             ResizeRedraw = true;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer |
                 ControlStyles.UserPaint |
-                ControlStyles.AllPaintingInWmPaint, true);
-
-            //CalendarEvents.Add(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Monday, CalendarEvent.CLASS));
-            //CalendarEvents.Add(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Wednesday, CalendarEvent.CLASS));
-            //CalendarEvents.Add(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Friday, CalendarEvent.CLASS));
-            //CalendarEvents.Add(new CalendarEvent(new Time(11, 15), new Time(12, 5), (int)Day.Monday, CalendarEvent.CLASS));
-            //CalendarEvents.Add(new CalendarEvent(new Time(11, 15), new Time(12, 5), (int)Day.Wednesday, CalendarEvent.CLASS));
-            //CalendarEvents.Add(new CalendarEvent(new Time(14, 30), new Time(17, 15), (int)Day.Wednesday, CalendarEvent.CLASS));
-            //CalendarEvents.Add(new CalendarEvent(new Time(12, 30), new Time(13, 45), (int)Day.Tuesday, CalendarEvent.CLASS));
-            //CalendarEvents.Add(new CalendarEvent(new Time(12, 30), new Time(13, 45), (int)Day.Thursday, CalendarEvent.CLASS));
-            //CalendarEvents.Add(new CalendarEvent(new Time(14, 0), new Time(15, 15), (int)Day.Tuesday, CalendarEvent.CLASS));
-            //CalendarEvents.Add(new CalendarEvent(new Time(14, 0), new Time(15, 15), (int)Day.Thursday, CalendarEvent.CLASS));
-            //CalendarEvents.Add(new CalendarEvent(new Time(16, 45), new Time(18, 0), (int)Day.Tuesday, CalendarEvent.CLASS));
-            //CalendarEvents.Add(new CalendarEvent(new Time(16, 45), new Time(18, 0), (int)Day.Thursday, CalendarEvent.CLASS));
-          
-        }
+                ControlStyles.AllPaintingInWmPaint, true);         
+        }      
 
         internal void AddEvents(List<CalendarEvent> events)
         {
@@ -156,7 +144,15 @@ namespace TutorScheduler
             int right = left + width;
             int bottom = top + height;            
 
-            System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.LightGray);                      
+            System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.LightGray);
+            
+            // fire the resize event with the needed positions for the day dividers
+            CalendarResizedEventArgs r = new CalendarResizedEventArgs
+            {
+                dayStartPositions = new int[] { left, left + width / 5, left + 2 * width / 5, left + 3 * width / 5, left + 4 * width / 5 },
+                dayWidth = width / 5
+            };
+            resizeEvent?.Invoke(this, r);            
 
             // draw vertical divider lines of calendar
             pe.Graphics.DrawLine(pen, new Point(left, top), new Point(left, bottom));                      // left vertical border line
