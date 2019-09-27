@@ -41,14 +41,14 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dayViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.studentWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addStudentWorkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addSubjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dayViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calendarWeekView1 = new TutorScheduler.CalendarWeekView();
             this.dayLabelPanel.SuspendLayout();
             this.calendarPanel.SuspendLayout();
@@ -202,6 +202,20 @@
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.ToolTipText = "Close the program";
             // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dayViewToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(60, 27);
+            this.viewToolStripMenuItem.Text = "&View";
+            // 
+            // dayViewToolStripMenuItem
+            // 
+            this.dayViewToolStripMenuItem.Name = "dayViewToolStripMenuItem";
+            this.dayViewToolStripMenuItem.Size = new System.Drawing.Size(164, 28);
+            this.dayViewToolStripMenuItem.Text = "&Day View";
+            // 
             // studentWorkersToolStripMenuItem
             // 
             this.studentWorkersToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -241,30 +255,18 @@
             // addSubjectToolStripMenuItem
             // 
             this.addSubjectToolStripMenuItem.Name = "addSubjectToolStripMenuItem";
-            this.addSubjectToolStripMenuItem.Size = new System.Drawing.Size(186, 28);
+            this.addSubjectToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
             this.addSubjectToolStripMenuItem.Text = "Add Subject";
             this.addSubjectToolStripMenuItem.ToolTipText = "Add a new subject. A subject flyer can then be created for the new subject.";
+            this.addSubjectToolStripMenuItem.Click += new System.EventHandler(this.AddSubjectToolStripMenuItem_Click);
             // 
             // viewAllToolStripMenuItem1
             // 
             this.viewAllToolStripMenuItem1.Name = "viewAllToolStripMenuItem1";
-            this.viewAllToolStripMenuItem1.Size = new System.Drawing.Size(186, 28);
+            this.viewAllToolStripMenuItem1.Size = new System.Drawing.Size(224, 28);
             this.viewAllToolStripMenuItem1.Text = "View All";
             this.viewAllToolStripMenuItem1.ToolTipText = "View all saved subjects";
-            // 
-            // viewToolStripMenuItem
-            // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dayViewToolStripMenuItem});
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(60, 27);
-            this.viewToolStripMenuItem.Text = "&View";
-            // 
-            // dayViewToolStripMenuItem
-            // 
-            this.dayViewToolStripMenuItem.Name = "dayViewToolStripMenuItem";
-            this.dayViewToolStripMenuItem.Size = new System.Drawing.Size(164, 28);
-            this.dayViewToolStripMenuItem.Text = "&Day View";
+            this.viewAllToolStripMenuItem1.Click += new System.EventHandler(this.ViewAllToolStripMenuItem1_Click);
             // 
             // calendarWeekView1
             // 
@@ -274,7 +276,7 @@
             this.calendarWeekView1.Location = new System.Drawing.Point(0, 3);
             this.calendarWeekView1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.calendarWeekView1.Name = "calendarWeekView1";
-            this.calendarWeekView1.Size = new System.Drawing.Size(811, 24894);
+            this.calendarWeekView1.Size = new System.Drawing.Size(811, 26535);
             this.calendarWeekView1.TabIndex = 0;
             this.calendarWeekView1.Text = "calendarWeekView1";
             // 

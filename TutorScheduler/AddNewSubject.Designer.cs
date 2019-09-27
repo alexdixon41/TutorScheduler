@@ -46,9 +46,9 @@
             this.addPanel = new System.Windows.Forms.Panel();
             this.saveButton = new System.Windows.Forms.Button();
             this.confirmationPanel = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.confirmButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.confirmButton = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.addPanel.SuspendLayout();
             this.confirmationPanel.SuspendLayout();
             this.SuspendLayout();
@@ -239,15 +239,16 @@
             this.confirmationPanel.TabIndex = 16;
             this.confirmationPanel.Visible = false;
             // 
-            // label4
+            // cancelButton
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(63, 62);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(399, 25);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Are you sure you want to add the subject(s)?";
+            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cancelButton.Location = new System.Drawing.Point(349, 138);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(95, 38);
+            this.cancelButton.TabIndex = 2;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // confirmButton
             // 
@@ -260,24 +261,23 @@
             this.confirmButton.UseVisualStyleBackColor = true;
             this.confirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
             // 
-            // cancelButton
+            // label4
             // 
-            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.cancelButton.Location = new System.Drawing.Point(349, 138);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(95, 38);
-            this.cancelButton.TabIndex = 2;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label4.Location = new System.Drawing.Point(63, 62);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(399, 25);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Are you sure you want to add the subject(s)?";
             // 
             // AddNewSubject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(555, 306);
-            this.Controls.Add(this.confirmationPanel);
             this.Controls.Add(this.addPanel);
+            this.Controls.Add(this.confirmationPanel);
             this.Name = "AddNewSubject";
             this.Text = "AddNewSubject";
             this.Load += new System.EventHandler(this.AddNewSubject_Load);

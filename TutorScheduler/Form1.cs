@@ -136,5 +136,10 @@ namespace TutorScheduler
         {
             new ViewAllSubjects().Show();
         }
+
+        private void AddSubjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AddNewSubject().Show();
+        }
     }
 }
