@@ -41,6 +41,7 @@
             this.RemoveSubject = new System.Windows.Forms.Button();
             this.SearchButton = new System.Windows.Forms.Button();
             this.SubjectSearchTextBox = new System.Windows.Forms.TextBox();
+            this.viewFlyerButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SubjectList
@@ -55,7 +56,7 @@
             listViewItem1,
             listViewItem2});
             this.SubjectList.Location = new System.Drawing.Point(16, 70);
-            this.SubjectList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SubjectList.Margin = new System.Windows.Forms.Padding(4);
             this.SubjectList.Name = "SubjectList";
             this.SubjectList.Size = new System.Drawing.Size(767, 304);
             this.SubjectList.TabIndex = 0;
@@ -75,8 +76,8 @@
             // 
             // AddSubjectButton
             // 
-            this.AddSubjectButton.Location = new System.Drawing.Point(16, 383);
-            this.AddSubjectButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddSubjectButton.Location = new System.Drawing.Point(463, 383);
+            this.AddSubjectButton.Margin = new System.Windows.Forms.Padding(4);
             this.AddSubjectButton.Name = "AddSubjectButton";
             this.AddSubjectButton.Size = new System.Drawing.Size(149, 53);
             this.AddSubjectButton.TabIndex = 1;
@@ -87,7 +88,7 @@
             // RemoveSubject
             // 
             this.RemoveSubject.Location = new System.Drawing.Point(641, 383);
-            this.RemoveSubject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RemoveSubject.Margin = new System.Windows.Forms.Padding(4);
             this.RemoveSubject.Name = "RemoveSubject";
             this.RemoveSubject.Size = new System.Drawing.Size(143, 53);
             this.RemoveSubject.TabIndex = 2;
@@ -98,7 +99,7 @@
             // SearchButton
             // 
             this.SearchButton.Location = new System.Drawing.Point(641, 15);
-            this.SearchButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SearchButton.Margin = new System.Windows.Forms.Padding(4);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(136, 34);
             this.SearchButton.TabIndex = 3;
@@ -109,22 +110,34 @@
             // SubjectSearchTextBox
             // 
             this.SubjectSearchTextBox.Location = new System.Drawing.Point(16, 21);
-            this.SubjectSearchTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SubjectSearchTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.SubjectSearchTextBox.Name = "SubjectSearchTextBox";
             this.SubjectSearchTextBox.Size = new System.Drawing.Size(616, 22);
             this.SubjectSearchTextBox.TabIndex = 4;
+            // 
+            // viewFlyerButton
+            // 
+            this.viewFlyerButton.Location = new System.Drawing.Point(16, 384);
+            this.viewFlyerButton.Margin = new System.Windows.Forms.Padding(4);
+            this.viewFlyerButton.Name = "viewFlyerButton";
+            this.viewFlyerButton.Size = new System.Drawing.Size(143, 53);
+            this.viewFlyerButton.TabIndex = 5;
+            this.viewFlyerButton.Text = "View Flyer";
+            this.viewFlyerButton.UseVisualStyleBackColor = true;
+            this.viewFlyerButton.Click += new System.EventHandler(this.ViewFlyerButton_Click);
             // 
             // ViewAllSubjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.viewFlyerButton);
             this.Controls.Add(this.SubjectSearchTextBox);
             this.Controls.Add(this.SearchButton);
             this.Controls.Add(this.RemoveSubject);
             this.Controls.Add(this.AddSubjectButton);
             this.Controls.Add(this.SubjectList);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ViewAllSubjects";
             this.Text = "Subjects";
             this.ResumeLayout(false);
@@ -141,5 +154,6 @@
         private System.Windows.Forms.TextBox SubjectSearchTextBox;
         private System.Windows.Forms.ColumnHeader SubjectPrefix;
         private System.Windows.Forms.ColumnHeader SubjectName;
+        private System.Windows.Forms.Button viewFlyerButton;
     }
 }

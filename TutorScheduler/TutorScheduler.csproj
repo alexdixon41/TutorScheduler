@@ -120,6 +120,12 @@
     <Compile Include="ViewAllWorkers.Designer.cs">
       <DependentUpon>ViewAllWorkers.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewSubjectFlyer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewSubjectFlyer.Designer.cs">
+      <DependentUpon>ViewSubjectFlyer.cs</DependentUpon>
+    </Compile>
     <Compile Include="WorkLocation.cs" />
     <EmbeddedResource Include="AddClass.resx">
       <DependentUpon>AddClass.cs</DependentUpon>
@@ -162,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ViewAllWorkers.resx">
       <DependentUpon>ViewAllWorkers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewSubjectFlyer.resx">
+      <DependentUpon>ViewSubjectFlyer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

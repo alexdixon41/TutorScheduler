@@ -41,5 +41,11 @@ namespace TutorScheduler
         {
 
         }
+
+        //View subject flyer button is clicked
+        private void ViewFlyerButton_Click(object sender, EventArgs e)
+        {
+            new ViewSubjectFlyer().Show();
+        }
     }
 }
