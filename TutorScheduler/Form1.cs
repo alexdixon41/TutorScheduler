@@ -141,5 +141,10 @@ namespace TutorScheduler
         {
             new AddNewSubject().Show();
         }
+
+        private void CalendarWeekView1_Click(object sender, EventArgs e)
+        {
+            new AddNewWorkShift().Show();
+        }
     }
 }

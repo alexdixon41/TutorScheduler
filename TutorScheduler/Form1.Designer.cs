@@ -150,6 +150,7 @@
             this.calendarWeekView1.Size = new System.Drawing.Size(811, 28176);
             this.calendarWeekView1.TabIndex = 0;
             this.calendarWeekView1.Text = "calendarWeekView1";
+            this.calendarWeekView1.Click += new System.EventHandler(this.CalendarWeekView1_Click);
             // 
             // menuStrip1
             // 
