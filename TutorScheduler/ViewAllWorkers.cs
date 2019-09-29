@@ -19,8 +19,17 @@ namespace TutorScheduler
 
         private void SelectedButton_Click(object sender, EventArgs e)
         {
-            StudentWorkerInfoForm form = new StudentWorkerInfoForm();
-            form.Show();
+            new StudentWorkerInfoForm().Show();
+        }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = new ConfirmationPopup("Are you sure you want to remove Kinsey Wilson?", "This will remove them from the schedule.").ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                //Remove the student worker
+            }
+
         }
     }
 }

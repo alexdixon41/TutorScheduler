@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Alex Dixon",
             "Guru",
             "MAT, CSC, STA, PHY"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "Kinsey Wilson",
             "Lead",
             "MAT, CSC, CHE"}, -1);
@@ -43,6 +43,7 @@
             this.subjects = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.searchButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.removeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // selectedButton
@@ -66,8 +67,8 @@
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3,
-            listViewItem4});
+            listViewItem1,
+            listViewItem2});
             this.listView1.Location = new System.Drawing.Point(13, 60);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(775, 341);
@@ -107,11 +108,23 @@
             this.textBox1.Size = new System.Drawing.Size(633, 22);
             this.textBox1.TabIndex = 4;
             // 
+            // removeButton
+            // 
+            this.removeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.removeButton.Location = new System.Drawing.Point(497, 407);
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(136, 35);
+            this.removeButton.TabIndex = 8;
+            this.removeButton.Text = "Remove";
+            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.RemoveButton_Click);
+            // 
             // ViewAllWorkers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.removeButton);
             this.Controls.Add(this.selectedButton);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.searchButton);
@@ -132,5 +145,6 @@
         private System.Windows.Forms.ColumnHeader subjects;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button removeButton;
     }
 }

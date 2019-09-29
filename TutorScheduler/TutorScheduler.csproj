@@ -80,6 +80,12 @@
       <DependentUpon>CalendarWeekView.cs</DependentUpon>
     </Compile>
     <Compile Include="ClassSchedule.cs" />
+    <Compile Include="ConfirmationPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfirmationPopup.Designer.cs">
+      <DependentUpon>ConfirmationPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="DayCalendarForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CalendarWeekView.resx">
       <DependentUpon>CalendarWeekView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfirmationPopup.resx">
+      <DependentUpon>ConfirmationPopup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DayCalendarForm.resx">
       <DependentUpon>DayCalendarForm.cs</DependentUpon>
