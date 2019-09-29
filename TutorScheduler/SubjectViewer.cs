@@ -27,9 +27,14 @@ namespace TutorScheduler
             new AddNewSubject().Show();
         }
 
+        //Remove button is clicked
         private void RemoveSubject_Click(object sender, EventArgs e)
         {
-
+            DialogResult dialogResult = new ConfirmationPopup("Are you sure you want to remove this subject?", "This will remove it from all student workers.").ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                //Remove the subject
+            }
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
