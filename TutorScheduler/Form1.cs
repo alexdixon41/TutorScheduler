@@ -14,6 +14,8 @@ namespace TutorScheduler
     {
         Point ScrollPosition = new Point(0, 0);         // save the scroll position so it can be restored when panel is resized
         Label[] dayLabels;                              // the weekday labels on top of the calendar
+        bool weekView = true;                           // whether the calendar view mode is set to week view or day view
+        DayOfWeek dayShown = DayOfWeek.Monday;          // which day of the week is shown when in day view mode
 
         public Form1()
         {
@@ -28,6 +30,7 @@ namespace TutorScheduler
 
             ResizeHandler handler = new ResizeHandler(ResizeDayLabels);
             calendarWeekView1.resizeEvent += handler;
+            calendarDayView1.resizeEvent += handler;
 
             calendarPanel.MouseWheel += new MouseEventHandler(CalendarPanel_MouseWheel);        // add the MouseWheel event handler to calendarPanel
 
@@ -65,8 +68,8 @@ namespace TutorScheduler
         private void ResizeDayLabels(object sender, CalendarResizedEventArgs e)
         {
             // set position and width for each day label upon repaint
-            for (int i = 0; i < dayLabels.Length; i++)
-            {
+            for (int i = 0; i < e.dayStartPositions.Length - 1; i++)
+            {                
                 dayLabels[i].Left = e.dayStartPositions[i];
                 dayLabels[i].Width = e.dayStartPositions[i + 1] - e.dayStartPositions[i] + 1;
             }
@@ -145,6 +148,49 @@ namespace TutorScheduler
         private void CalendarWeekView1_Click(object sender, EventArgs e)
         {
             new AddNewWorkShift().Show();
+        }
+
+        // switch between week view and day view
+        private void DayViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (weekView)
+            {
+                weekView = false;
+                dayLabels = new Label[] { mondayLabel };
+                foreach (Label l in dayLabelPanel.Controls)
+                {
+                    if (dayLabels.Contains<Label>(l)) {
+                        l.Visible = true;
+                        l.TextAlign = ContentAlignment.MiddleCenter;
+                    }
+                    else
+                    {
+                        l.Visible = false;
+                    }
+                }
+                calendarDayView1.Invalidate();
+                calViewToolStripMenuItem.Text = "Week View";            // change the menu item text to switch back to week view
+                calendarWeekView1.Visible = false;
+                calendarDayView1.Visible = true;
+            }
+            else
+            {
+                weekView = true;
+                dayLabels = new Label[] { mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel };
+                foreach (Label l in dayLabels)
+                {
+                    l.Visible = true;
+                    l.TextAlign = ContentAlignment.MiddleLeft;
+                }
+                calViewToolStripMenuItem.Text = "Day View";             // change the menu item text to switch to day view
+                calendarDayView1.Visible = false;
+                calendarWeekView1.Visible = true;
+            }
+        }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

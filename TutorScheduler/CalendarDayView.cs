@@ -63,7 +63,7 @@ namespace TutorScheduler
         }
 
         protected override void OnPaint(PaintEventArgs pe)
-        {                                             
+        {           
             DrawCalendarFrame(pe);
             DrawCalendarEvents(pe);
             pe.Graphics.Flush();           
@@ -136,8 +136,8 @@ namespace TutorScheduler
             // fire the resize event with the needed positions for the day dividers
             CalendarResizedEventArgs r = new CalendarResizedEventArgs
             {
-                dayStartPositions = new int[] { left, left + width / 5, left + 2 * width / 5, left + 3 * width / 5, left + 4 * width / 5, right },                
-            };
+                dayStartPositions = new int[] {left + 2 * width / 5, left + 3 * width / 5 },                
+            };            
             resizeEvent?.Invoke(this, r);            
 
             // draw vertical divider lines of calendar
