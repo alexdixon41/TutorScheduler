@@ -64,6 +64,13 @@
     <Compile Include="AddNewWorkShift.Designer.cs">
       <DependentUpon>AddNewWorkShift.cs</DependentUpon>
     </Compile>
+    <Compile Include="AlertDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlertDialog.Designer.cs">
+      <DependentUpon>AlertDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AvailabilitySchedule.cs" />
     <Compile Include="CalendarEvent.cs" />
     <Compile Include="CalendarResize.cs" />
     <Compile Include="CalendarDayView.cs">
@@ -143,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddNewWorkShift.resx">
       <DependentUpon>AddNewWorkShift.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlertDialog.resx">
+      <DependentUpon>AlertDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CalendarDayView.resx">
       <DependentUpon>CalendarDayView.cs</DependentUpon>
