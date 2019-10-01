@@ -14,7 +14,7 @@ namespace TutorScheduler
     {
         String messageText;
 
-        public AlertDialog()
+        public AlertDialog(String messageText)
         {
             this.messageText = messageText;
             InitializeComponent();

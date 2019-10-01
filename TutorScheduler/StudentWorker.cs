@@ -8,7 +8,7 @@ namespace TutorScheduler
     {
         public string Name;
         private Schedule classSchedule;                 // the student's class schedule
-        private Schedule availability = new Schedule(CalendarEvent.AVAILABILITY);           // the student's work availability schedule
+        private Schedule availability = new Schedule();           // the student's work availability schedule
 
         public StudentWorker(string name)
         {

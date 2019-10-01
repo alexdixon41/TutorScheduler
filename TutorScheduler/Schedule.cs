@@ -7,15 +7,8 @@ using System.Threading.Tasks;
 namespace TutorScheduler
 {
     class Schedule
-    {
-        public int type;                                        // the type of events on the schedule (class, availability, or work)
-        public List<CalendarEvent> events = new List<CalendarEvent>();          // list of events on the schedule
-
-
-        public Schedule(int type)
-        {
-            this.type = type;
-        }
+    {        
+        public List<CalendarEvent> events = new List<CalendarEvent>();          // list of events on the schedule       
 
         /// <summary>
         /// Add an event to the schedule, maintaining sequential ordering of events by start time and day
