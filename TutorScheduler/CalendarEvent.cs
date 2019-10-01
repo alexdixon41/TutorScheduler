@@ -21,7 +21,7 @@ namespace TutorScheduler
         public const int WORK = 1;
         public const int AVAILABILITY = 2;
 
-        private int type;                    // the type of event (class or work)
+        private readonly int type;                    // the type of event (class or work)
         private int day;
         private Rectangle bounds;
 

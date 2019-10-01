@@ -1,48 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace TutorScheduler
 {
-    /// <summary>
-    /// A weekly schedule of class meeting times organized by lists of Meetings for each day of the week.
-    /// </summary>
-    class ClassSchedule
+    class Schedule
     {
-        // lists of class meetings ordered by start time ascending
-        public List<CalendarEvent> classMeetings = new List<CalendarEvent>();
+        public int type;                                        // the type of events on the schedule (class, availability, or work)
+        public List<CalendarEvent> events = new List<CalendarEvent>();          // list of events on the schedule
+
+
+        public Schedule(int type)
+        {
+            this.type = type;
+        }
 
         /// <summary>
-        /// Add a class meeting to the schedule, maintaining the start time ordering for the appropriate weekday meeting list.
+        /// Add an event to the schedule, maintaining sequential ordering of events by start time and day
         /// </summary>
-        /// <param name="newClass">The new class meeting to add to the schedule</param>
-        public void AddClassMeeting(CalendarEvent newClass)
-        {            
-            // add the new class meeting to the schedule at the correct index to maintain the sequential ordering by start time and day
-            if (classMeetings.Count == 0)
+        /// <param name="newEvent">The CalendarEvent to add to the schedule</param>
+        public void AddEvent(CalendarEvent newEvent)
+        {
+            // add events to the schedule in the correct location to maintain sequential order by start time and day
+            if (events.Count == 0)
             {
-                classMeetings.Add(newClass);
+                events.Add(newEvent);
             }
             else
             {
-                int index = classMeetings.Count - 1;                
-                while (newClass < classMeetings[index] && index >= 0)
+                int index = events.Count - 1;
+                while (newEvent < events[index])                // CalendarEvent operator overload (<)
                 {
                     index--;
-                }               
-                classMeetings.Insert(index + 1, newClass);
+                }
+                events.Insert(index + 1, newEvent);
             }
         }
 
         /// <summary>
-        /// Add an array of meetings to the schedule by iteratively calling the AddClassMeeting function.
+        /// Add an array of events to the schedule by iteratively calling AddEvent
         /// </summary>
-        /// <param name="newClasses">Array of meetings to add to the class schedule</param>
-        public void AddClassMeetings(CalendarEvent[] newClasses)
+        /// <param name="newEvents">Array of events to add to the schedule</param>
+        public void AddEvents(CalendarEvent[] newEvents)
         {
-            foreach (CalendarEvent classMeeting in newClasses)
+            foreach (CalendarEvent cEvent in newEvents)
             {
-                AddClassMeeting(classMeeting);
+                AddEvent(cEvent);
             }
         }
 
@@ -84,9 +89,5 @@ namespace TutorScheduler
             return newTime.AddTime(new Time(0, 5));                 // if minutes are not a multiple of 15 or 10, add 5 minutes
         }
 
-        //public int SumAvailableHours()
-        //{
-            
-        //}
     }
 }

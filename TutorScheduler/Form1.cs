@@ -41,30 +41,30 @@ namespace TutorScheduler
             StudentWorker alex = new StudentWorker("Alex Dixon");
 
             // add schedule to calendar view
-            ClassSchedule schedule = new ClassSchedule();
-            schedule.AddClassMeeting(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Monday, CalendarEvent.CLASS, alex.Name));
-            schedule.AddClassMeeting(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Wednesday, CalendarEvent.CLASS, alex.Name));
-            schedule.AddClassMeeting(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Friday, CalendarEvent.CLASS, alex.Name));
-            schedule.AddClassMeeting(new CalendarEvent(new Time(11, 15), new Time(12, 5), (int)Day.Monday, CalendarEvent.CLASS, alex.Name));
-            schedule.AddClassMeeting(new CalendarEvent(new Time(11, 15), new Time(12, 5), (int)Day.Wednesday, CalendarEvent.CLASS, alex.Name));
-            schedule.AddClassMeeting(new CalendarEvent(new Time(14, 30), new Time(17, 15), (int)Day.Wednesday, CalendarEvent.CLASS, alex.Name));
-            schedule.AddClassMeeting(new CalendarEvent(new Time(12, 30), new Time(13, 45), (int)Day.Tuesday, CalendarEvent.CLASS, alex.Name));
-            schedule.AddClassMeeting(new CalendarEvent(new Time(12, 30), new Time(13, 45), (int)Day.Thursday, CalendarEvent.CLASS, alex.Name));
-            schedule.AddClassMeeting(new CalendarEvent(new Time(14, 0), new Time(15, 15), (int)Day.Tuesday, CalendarEvent.CLASS, alex.Name));
-            schedule.AddClassMeeting(new CalendarEvent(new Time(14, 0), new Time(15, 15), (int)Day.Thursday, CalendarEvent.CLASS, alex.Name));
-            schedule.AddClassMeeting(new CalendarEvent(new Time(16, 45), new Time(18, 0), (int)Day.Tuesday, CalendarEvent.CLASS, alex.Name));
-            schedule.AddClassMeeting(new CalendarEvent(new Time(16, 45), new Time(18, 0), (int)Day.Thursday, CalendarEvent.CLASS, alex.Name));
+            Schedule schedule = new Schedule(CalendarEvent.CLASS);
+            schedule.AddEvent(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Monday, CalendarEvent.CLASS, alex.Name));
+            schedule.AddEvent(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Wednesday, CalendarEvent.CLASS, alex.Name));
+            schedule.AddEvent(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Friday, CalendarEvent.CLASS, alex.Name));
+            schedule.AddEvent(new CalendarEvent(new Time(11, 15), new Time(12, 5), (int)Day.Monday, CalendarEvent.CLASS, alex.Name));
+            schedule.AddEvent(new CalendarEvent(new Time(11, 15), new Time(12, 5), (int)Day.Wednesday, CalendarEvent.CLASS, alex.Name));
+            schedule.AddEvent(new CalendarEvent(new Time(14, 30), new Time(17, 15), (int)Day.Wednesday, CalendarEvent.CLASS, alex.Name));
+            schedule.AddEvent(new CalendarEvent(new Time(12, 30), new Time(13, 45), (int)Day.Tuesday, CalendarEvent.CLASS, alex.Name));
+            schedule.AddEvent(new CalendarEvent(new Time(12, 30), new Time(13, 45), (int)Day.Thursday, CalendarEvent.CLASS, alex.Name));
+            schedule.AddEvent(new CalendarEvent(new Time(14, 0), new Time(15, 15), (int)Day.Tuesday, CalendarEvent.CLASS, alex.Name));
+            schedule.AddEvent(new CalendarEvent(new Time(14, 0), new Time(15, 15), (int)Day.Thursday, CalendarEvent.CLASS, alex.Name));
+            schedule.AddEvent(new CalendarEvent(new Time(16, 45), new Time(18, 0), (int)Day.Tuesday, CalendarEvent.CLASS, alex.Name));
+            schedule.AddEvent(new CalendarEvent(new Time(16, 45), new Time(18, 0), (int)Day.Thursday, CalendarEvent.CLASS, alex.Name));
 
             
             alex.SetClassSchedule(schedule);
 
-            calendarWeekView1.AddEvents(schedule.classMeetings);
-            calendarDayView1.AddEvents(schedule.classMeetings);
+            calendarWeekView1.AddEvents(schedule.events);
+            calendarDayView1.AddEvents(schedule.events);
 
             alex.BuildAvailabilitySchedule();
 
-            calendarWeekView1.AddEvents(alex.GetAvailabilitySchedule().availableTimes);
-            calendarDayView1.AddEvents(alex.GetAvailabilitySchedule().availableTimes);
+            calendarWeekView1.AddEvents(alex.GetAvailabilitySchedule().events);
+            calendarDayView1.AddEvents(alex.GetAvailabilitySchedule().events);
         }
 
         private void ResizeDayLabels(object sender, CalendarResizedEventArgs e)

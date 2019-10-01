@@ -64,7 +64,6 @@
     <Compile Include="AddNewWorkShift.Designer.cs">
       <DependentUpon>AddNewWorkShift.cs</DependentUpon>
     </Compile>
-    <Compile Include="AvailabilitySchedule.cs" />
     <Compile Include="CalendarEvent.cs" />
     <Compile Include="CalendarResize.cs" />
     <Compile Include="CalendarDayView.cs">
@@ -79,7 +78,6 @@
     <Compile Include="CalendarWeekView.Designer.cs">
       <DependentUpon>CalendarWeekView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ClassSchedule.cs" />
     <Compile Include="ConfirmationPopup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +102,7 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Schedule.cs" />
     <Compile Include="StudentWorkerInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
