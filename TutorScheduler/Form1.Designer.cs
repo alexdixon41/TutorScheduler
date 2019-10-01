@@ -44,10 +44,10 @@
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.studentWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addStudentWorkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectStudentWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calendarDayView1 = new TutorScheduler.CalendarDayView();
             this.calendarWeekView1 = new TutorScheduler.CalendarWeekView();
             this.dayLabelPanel.SuspendLayout();
@@ -65,10 +65,10 @@
             this.dayLabelPanel.Controls.Add(this.tuesdayLabel);
             this.dayLabelPanel.Controls.Add(this.wednesdayLabel);
             this.dayLabelPanel.Controls.Add(this.mondayLabel);
-            this.dayLabelPanel.Location = new System.Drawing.Point(13, 34);
+            this.dayLabelPanel.Location = new System.Drawing.Point(13, 36);
             this.dayLabelPanel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.dayLabelPanel.Name = "dayLabelPanel";
-            this.dayLabelPanel.Size = new System.Drawing.Size(838, 85);
+            this.dayLabelPanel.Size = new System.Drawing.Size(838, 83);
             this.dayLabelPanel.TabIndex = 1;
             // 
             // fridayLabel
@@ -143,7 +143,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -152,7 +152,7 @@
             this.subjectsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(863, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(863, 33);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.MenuActivate += new System.EventHandler(this.MenuStrip1_MenuActivate);
@@ -167,7 +167,7 @@
             this.openToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(49, 27);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(55, 29);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuItem
@@ -175,7 +175,7 @@
             this.newToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(136, 28);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.ToolTipText = "Create a new schedule";
             // 
@@ -183,7 +183,7 @@
             // 
             this.saveToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(136, 28);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.ToolTipText = "Save the current schedule";
             // 
@@ -191,7 +191,7 @@
             // 
             this.openToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(136, 28);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.ToolTipText = "Open a different schedule";
             // 
@@ -199,7 +199,7 @@
             // 
             this.exitToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(136, 28);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.ToolTipText = "Close the program";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
@@ -207,42 +207,33 @@
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.calViewToolStripMenuItem});
+            this.calViewToolStripMenuItem,
+            this.selectStudentWorkersToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(60, 27);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(67, 29);
             this.viewToolStripMenuItem.Text = "&View";
             // 
             // calViewToolStripMenuItem
             // 
             this.calViewToolStripMenuItem.Name = "calViewToolStripMenuItem";
-            this.calViewToolStripMenuItem.Size = new System.Drawing.Size(164, 28);
-            this.calViewToolStripMenuItem.Text = "Day View";
+            this.calViewToolStripMenuItem.Size = new System.Drawing.Size(302, 30);
+            this.calViewToolStripMenuItem.Text = "Switch to Day View";
             this.calViewToolStripMenuItem.Click += new System.EventHandler(this.DayViewToolStripMenuItem_Click);
             // 
             // studentWorkersToolStripMenuItem
             // 
             this.studentWorkersToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.studentWorkersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addStudentWorkerToolStripMenuItem,
             this.viewAllToolStripMenuItem});
             this.studentWorkersToolStripMenuItem.Name = "studentWorkersToolStripMenuItem";
-            this.studentWorkersToolStripMenuItem.Size = new System.Drawing.Size(149, 27);
+            this.studentWorkersToolStripMenuItem.Size = new System.Drawing.Size(164, 29);
             this.studentWorkersToolStripMenuItem.Text = "Student Workers";
-            // 
-            // addStudentWorkerToolStripMenuItem
-            // 
-            this.addStudentWorkerToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.addStudentWorkerToolStripMenuItem.Name = "addStudentWorkerToolStripMenuItem";
-            this.addStudentWorkerToolStripMenuItem.Size = new System.Drawing.Size(248, 28);
-            this.addStudentWorkerToolStripMenuItem.Text = "Add Student Worker";
-            this.addStudentWorkerToolStripMenuItem.ToolTipText = "Add a new student worker";
-            this.addStudentWorkerToolStripMenuItem.Click += new System.EventHandler(this.AddStudentWorkerToolStripMenuItem_Click);
             // 
             // viewAllToolStripMenuItem
             // 
             this.viewAllToolStripMenuItem.Name = "viewAllToolStripMenuItem";
-            this.viewAllToolStripMenuItem.Size = new System.Drawing.Size(248, 28);
-            this.viewAllToolStripMenuItem.Text = "View All";
+            this.viewAllToolStripMenuItem.Size = new System.Drawing.Size(310, 30);
+            this.viewAllToolStripMenuItem.Text = "Manage Student Workers";
             this.viewAllToolStripMenuItem.ToolTipText = "View all student workers";
             this.viewAllToolStripMenuItem.Click += new System.EventHandler(this.ViewAllToolStripMenuItem_Click);
             // 
@@ -251,16 +242,23 @@
             this.subjectsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.viewAllToolStripMenuItem1});
             this.subjectsToolStripMenuItem.Name = "subjectsToolStripMenuItem";
-            this.subjectsToolStripMenuItem.Size = new System.Drawing.Size(87, 27);
+            this.subjectsToolStripMenuItem.Size = new System.Drawing.Size(96, 29);
             this.subjectsToolStripMenuItem.Text = "Subjects";
             // 
             // viewAllToolStripMenuItem1
             // 
             this.viewAllToolStripMenuItem1.Name = "viewAllToolStripMenuItem1";
-            this.viewAllToolStripMenuItem1.Size = new System.Drawing.Size(154, 28);
-            this.viewAllToolStripMenuItem1.Text = "View All";
+            this.viewAllToolStripMenuItem1.Size = new System.Drawing.Size(242, 30);
+            this.viewAllToolStripMenuItem1.Text = "Manage Subjects";
             this.viewAllToolStripMenuItem1.ToolTipText = "View all saved subjects";
             this.viewAllToolStripMenuItem1.Click += new System.EventHandler(this.ViewAllToolStripMenuItem1_Click);
+            // 
+            // selectStudentWorkersToolStripMenuItem
+            // 
+            this.selectStudentWorkersToolStripMenuItem.Name = "selectStudentWorkersToolStripMenuItem";
+            this.selectStudentWorkersToolStripMenuItem.Size = new System.Drawing.Size(302, 30);
+            this.selectStudentWorkersToolStripMenuItem.Text = "Display Student Workers";
+            this.selectStudentWorkersToolStripMenuItem.Click += new System.EventHandler(this.SelectStudentWorkersToolStripMenuItem_Click);
             // 
             // calendarDayView1
             // 
@@ -328,7 +326,6 @@
         private System.Windows.Forms.ToolStripMenuItem viewAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem subjectsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewAllToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem addStudentWorkerToolStripMenuItem;
         private System.Windows.Forms.Label fridayLabel;
         private System.Windows.Forms.Label thursdayLabel;
         private System.Windows.Forms.Label tuesdayLabel;
@@ -337,6 +334,7 @@
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem calViewToolStripMenuItem;
         private CalendarDayView calendarDayView1;
+        private System.Windows.Forms.ToolStripMenuItem selectStudentWorkersToolStripMenuItem;
     }
 }
 

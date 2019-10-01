@@ -18,7 +18,7 @@ namespace TutorScheduler
         public const int rightMargin = 10;
         public const int topMargin = 30;
 
-        private int day = (int)Day.Monday;                            // the currently-selected day to display
+        private int day = (int)Day.Tuesday;                            // the currently-selected day to display
 
         private List<CalendarEvent> CalendarEvents { get; set; } = new List<CalendarEvent>();
 
@@ -83,8 +83,7 @@ namespace TutorScheduler
             foreach (CalendarEvent calendarEvent in CalendarEvents)
             {
                 if (calendarEvent.Day == day)
-                {
-                    Console.WriteLine(day);
+                {                    
                     SolidBrush brush = new SolidBrush(calendarEvent.BackgroundColor);
 
                     Time eventDuration = calendarEvent.EndTime - calendarEvent.StartTime;

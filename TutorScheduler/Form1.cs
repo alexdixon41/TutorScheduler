@@ -59,10 +59,12 @@ namespace TutorScheduler
             alex.SetClassSchedule(schedule);
 
             calendarWeekView1.AddEvents(schedule.classMeetings);
+            calendarDayView1.AddEvents(schedule.classMeetings);
 
             alex.BuildAvailabilitySchedule();
 
             calendarWeekView1.AddEvents(alex.GetAvailabilitySchedule().availableTimes);
+            calendarDayView1.AddEvents(alex.GetAvailabilitySchedule().availableTimes);
         }
 
         private void ResizeDayLabels(object sender, CalendarResizedEventArgs e)
@@ -169,7 +171,7 @@ namespace TutorScheduler
                     }
                 }
                 calendarDayView1.Invalidate();
-                calViewToolStripMenuItem.Text = "Week View";            // change the menu item text to switch back to week view
+                calViewToolStripMenuItem.Text = "Switch to Week View";            // change the menu item text to switch back to week view
                 calendarWeekView1.Visible = false;
                 calendarDayView1.Visible = true;
             }
@@ -182,7 +184,7 @@ namespace TutorScheduler
                     l.Visible = true;
                     l.TextAlign = ContentAlignment.MiddleLeft;
                 }
-                calViewToolStripMenuItem.Text = "Day View";             // change the menu item text to switch to day view
+                calViewToolStripMenuItem.Text = "Switch to Day View";             // change the menu item text to switch to day view
                 calendarDayView1.Visible = false;
                 calendarWeekView1.Visible = true;
             }
@@ -191,6 +193,11 @@ namespace TutorScheduler
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void SelectStudentWorkersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new DisplayStudentWorkers().Show();
         }
     }
 }
