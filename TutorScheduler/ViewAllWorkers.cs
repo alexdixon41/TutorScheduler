@@ -31,5 +31,10 @@ namespace TutorScheduler
             }
 
         }
+
+        private void NewStudentWorkerButton_Click(object sender, EventArgs e)
+        {
+            new StudentWorkerInfoForm().Show();
+        }
     }
 }

@@ -124,6 +124,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudentWorker.cs" />
+    <Compile Include="Subject.cs" />
     <Compile Include="SubjectViewer.cs">
       <SubType>Form</SubType>
     </Compile>

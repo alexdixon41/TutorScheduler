@@ -44,6 +44,7 @@
             this.searchButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.removeButton = new System.Windows.Forms.Button();
+            this.newStudentWorkerButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // selectedButton
@@ -119,11 +120,23 @@
             this.removeButton.UseVisualStyleBackColor = true;
             this.removeButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
+            // newStudentWorkerButton
+            // 
+            this.newStudentWorkerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.newStudentWorkerButton.Location = new System.Drawing.Point(13, 407);
+            this.newStudentWorkerButton.Name = "newStudentWorkerButton";
+            this.newStudentWorkerButton.Size = new System.Drawing.Size(136, 35);
+            this.newStudentWorkerButton.TabIndex = 9;
+            this.newStudentWorkerButton.Text = "Add New";
+            this.newStudentWorkerButton.UseVisualStyleBackColor = true;
+            this.newStudentWorkerButton.Click += new System.EventHandler(this.NewStudentWorkerButton_Click);
+            // 
             // ViewAllWorkers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.newStudentWorkerButton);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.selectedButton);
             this.Controls.Add(this.listView1);
@@ -146,5 +159,6 @@
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button removeButton;
+        private System.Windows.Forms.Button newStudentWorkerButton;
     }
 }
