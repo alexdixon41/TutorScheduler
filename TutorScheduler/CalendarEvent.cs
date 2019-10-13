@@ -61,7 +61,7 @@ namespace TutorScheduler
             }
         }
 
-        public CalendarEvent(Time startTime, Time endTime, int day, int type, string primaryText)
+        public CalendarEvent(Time startTime, Time endTime, int day, int type, string primaryText, int baseColor)
         {
             if (startTime.minutes % 5 != 0 || endTime.minutes % 5 != 0)
             {
@@ -71,22 +71,27 @@ namespace TutorScheduler
             StartTime = startTime;
             EndTime = endTime;
             this.day = day;
-            this.type = type;
+            this.type = type;            
             PrimaryText = primaryText;
-            
+
+            // convert baseColor to RGB values
+            int red = baseColor / 256 / 256;
+            int green = baseColor % (256 * 256) / 256;
+            int blue = baseColor % 256;            
+
             // set background color and text
             switch (type)
             {
                 case CLASS:
-                    BackgroundColor = Color.Red;
+                    BackgroundColor = Color.FromArgb(255, red, green, blue);
                     SecondaryText = "Class";
                     break;
-                case WORK:
-                    BackgroundColor = Color.FromArgb(200, 255, 0, 0);
+                case WORK:                    
+                    BackgroundColor = Color.FromArgb(200, red, green, blue);
                     SecondaryText = "Work";
                     break;
                 case AVAILABILITY:
-                    BackgroundColor = Color.FromArgb(120, 255, 0, 0);
+                    BackgroundColor = Color.FromArgb(120, red, green, blue);
                     SecondaryText = "Availability";
                     break;
                 default:

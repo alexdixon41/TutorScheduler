@@ -36,35 +36,23 @@ namespace TutorScheduler
 
             // scroll down until 7am is at the top of the panel when the form is first shown
             ScrollPosition = new Point(0, 592);
-            calendarPanel.AutoScrollPosition = ScrollPosition;            
+            calendarPanel.AutoScrollPosition = ScrollPosition;
 
-            StudentWorker alex = new StudentWorker("Alex Dixon");
-
-            // add schedule to calendar view
-            Schedule classSchedule = new Schedule();
-            classSchedule.AddEvent(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Monday, CalendarEvent.CLASS, alex.Name));
-            classSchedule.AddEvent(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Wednesday, CalendarEvent.CLASS, alex.Name));
-            classSchedule.AddEvent(new CalendarEvent(new Time(10, 10), new Time(11, 0), (int)Day.Friday, CalendarEvent.CLASS, alex.Name));
-            classSchedule.AddEvent(new CalendarEvent(new Time(11, 15), new Time(12, 5), (int)Day.Monday, CalendarEvent.CLASS, alex.Name));
-            classSchedule.AddEvent(new CalendarEvent(new Time(11, 15), new Time(12, 5), (int)Day.Wednesday, CalendarEvent.CLASS, alex.Name));
-            classSchedule.AddEvent(new CalendarEvent(new Time(14, 30), new Time(17, 15), (int)Day.Wednesday, CalendarEvent.CLASS, alex.Name));
-            classSchedule.AddEvent(new CalendarEvent(new Time(12, 30), new Time(13, 45), (int)Day.Tuesday, CalendarEvent.CLASS, alex.Name));
-            classSchedule.AddEvent(new CalendarEvent(new Time(12, 30), new Time(13, 45), (int)Day.Thursday, CalendarEvent.CLASS, alex.Name));
-            classSchedule.AddEvent(new CalendarEvent(new Time(14, 0), new Time(15, 15), (int)Day.Tuesday, CalendarEvent.CLASS, alex.Name));
-            classSchedule.AddEvent(new CalendarEvent(new Time(14, 0), new Time(15, 15), (int)Day.Thursday, CalendarEvent.CLASS, alex.Name));
-            classSchedule.AddEvent(new CalendarEvent(new Time(16, 45), new Time(18, 0), (int)Day.Tuesday, CalendarEvent.CLASS, alex.Name));
-            classSchedule.AddEvent(new CalendarEvent(new Time(16, 45), new Time(18, 0), (int)Day.Thursday, CalendarEvent.CLASS, alex.Name));
-
+            // TODO only show schedule of selected student workers
+            // get all student workers and their schedules from database
+            List<StudentWorker> studentWorkers = StudentWorker.GetStudentWorkers();
             
-            alex.SetClassSchedule(classSchedule);
+            foreach (StudentWorker sw in studentWorkers)
+            {
+                calendarWeekView1.AddEvents(sw.GetClassSchedule().events);
+                calendarDayView1.AddEvents(sw.GetClassSchedule().events);
+                sw.BuildAvailabilitySchedule();
+                calendarWeekView1.AddEvents(sw.GetAvailabilitySchedule().events);
+                calendarDayView1.AddEvents(sw.GetAvailabilitySchedule().events);
+            }
 
-            calendarWeekView1.AddEvents(classSchedule.events);
-            calendarDayView1.AddEvents(classSchedule.events);
-
-            alex.BuildAvailabilitySchedule();
-
-            calendarWeekView1.AddEvents(alex.GetAvailabilitySchedule().events);
-            calendarDayView1.AddEvents(alex.GetAvailabilitySchedule().events);
+            calendarWeekView1.Invalidate();
+            calendarDayView1.Invalidate();            
         }
 
         private void ResizeDayLabels(object sender, CalendarResizedEventArgs e)

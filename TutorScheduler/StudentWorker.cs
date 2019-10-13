@@ -6,8 +6,12 @@ namespace TutorScheduler
 {
     class StudentWorker
     {
+        private int StudentID;
         public string Name;
-        private Schedule classSchedule;                 // the student's class schedule
+        public string JobPosition;
+        public int DisplayColor;        
+        private Schedule classSchedule;                           // the student's class schedule
+        private Schedule workSchedule;
         private Schedule availability = new Schedule();           // the student's work availability schedule
 
         public StudentWorker(string name)
@@ -15,14 +19,32 @@ namespace TutorScheduler
             Name = name;
         }
 
+        public StudentWorker(int id, string name, string jobPosition, int displayColor)
+        {
+            StudentID = id;
+            Name = name;
+            JobPosition = jobPosition;
+            DisplayColor = displayColor;
+        }
+
         public void SetClassSchedule(Schedule schedule)
         {
-            this.classSchedule = schedule;
+            classSchedule = schedule;
         }
 
         public Schedule GetClassSchedule()
         {
             return classSchedule;
+        }
+
+        public void SetWorkSchedule(Schedule schedule)
+        {
+            workSchedule = schedule;
+        }
+
+        public Schedule GetWorkSchedule()
+        {
+            return workSchedule;
         }
 
         public Schedule GetAvailabilitySchedule()
@@ -58,10 +80,15 @@ namespace TutorScheduler
 
             foreach (List<CalendarEvent> dayClasses in dailyEvents)
             {
-                for (int i = 0; i < dayClasses.Count; i++)
+                // if no classes for the day, available hours equal open hours
+                if (dayClasses.Count == 0)
                 {
-                    // TODO schedule available time for each day of the week - before all classes, between classes, and after all classes
-
+                    Time availableStart = WorkLocation.openingTimes[(int)day];
+                    Time availableStop = WorkLocation.closingTimes[(int)day];
+                    availability.AddEvent(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+                }
+                for (int i = 0; i < dayClasses.Count; i++)
+                {                   
                     if (i == 0)
                     {
                         // check if at least 1.75 hours between opening time and start of first class
@@ -69,7 +96,7 @@ namespace TutorScheduler
                         {
                             Time availableStart = WorkLocation.openingTimes[(int)day];
                             Time availableStop = Schedule.GetPrecedingStopTime(dayClasses[i].StartTime);
-                            availability.AddEvent(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name));
+                            availability.AddEvent(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
                         }
                     }
                     else            // attempt to schedule availability between classes
@@ -79,7 +106,7 @@ namespace TutorScheduler
                         {
                             Time availableStart = Schedule.GetSucceedingStartTime(dayClasses[i - 1].EndTime);
                             Time availableStop = Schedule.GetPrecedingStopTime(dayClasses[i].StartTime);
-                            availability.AddEvent(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name));
+                            availability.AddEvent(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
                         }
                     }
 
@@ -90,12 +117,30 @@ namespace TutorScheduler
                         {
                             Time availableStart = Schedule.GetSucceedingStartTime(dayClasses[i].EndTime);
                             Time availableStop = WorkLocation.closingTimes[day];
-                            availability.AddEvent(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name));
+                            availability.AddEvent(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
                         }
                     }
                 }
                 day++;
             }
         }
+
+        
+        #region StaticMethods
+        public static List<StudentWorker> GetStudentWorkers()
+        {
+            // TODO database query on separate thread
+            List<StudentWorker> studentWorkers = DatabaseManager.GetStudentWorkers();            
+            foreach (StudentWorker sw in studentWorkers)
+            {
+                // set the class and work schedule of the student worker
+                sw.SetClassSchedule(DatabaseManager.GetSchedule(sw.StudentID, CalendarEvent.CLASS));
+                sw.SetWorkSchedule(DatabaseManager.GetSchedule(sw.StudentID, CalendarEvent.WORK));
+            }
+
+            return studentWorkers;
+        }
+
+        #endregion 
     }
 }

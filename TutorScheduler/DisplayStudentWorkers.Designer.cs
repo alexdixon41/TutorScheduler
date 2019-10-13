@@ -28,19 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Alex Dixon",
-            "Guru"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "McKinsey Wilson",
-            "Lead Guru"}, -1);
             this.displayStudentWorkersListView = new System.Windows.Forms.ListView();
             this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.positionColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.filterButton = new System.Windows.Forms.Button();
             this.clearButton = new System.Windows.Forms.Button();
+            this.filterButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,11 +50,6 @@
             this.displayStudentWorkersListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.displayStudentWorkersListView.FullRowSelect = true;
             this.displayStudentWorkersListView.HideSelection = false;
-            listViewItem1.StateImageIndex = 0;
-            listViewItem2.StateImageIndex = 0;
-            this.displayStudentWorkersListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
             this.displayStudentWorkersListView.Location = new System.Drawing.Point(13, 94);
             this.displayStudentWorkersListView.Name = "displayStudentWorkersListView";
             this.displayStudentWorkersListView.Size = new System.Drawing.Size(1057, 647);
@@ -100,17 +89,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter by Subject";
             // 
-            // filterButton
-            // 
-            this.filterButton.AutoSize = true;
-            this.filterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.filterButton.Location = new System.Drawing.Point(244, 22);
-            this.filterButton.Name = "filterButton";
-            this.filterButton.Size = new System.Drawing.Size(62, 31);
-            this.filterButton.TabIndex = 2;
-            this.filterButton.Text = "Filter";
-            this.filterButton.UseVisualStyleBackColor = true;
-            // 
             // clearButton
             // 
             this.clearButton.AutoSize = true;
@@ -122,6 +100,17 @@
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
             // 
+            // filterButton
+            // 
+            this.filterButton.AutoSize = true;
+            this.filterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.filterButton.Location = new System.Drawing.Point(244, 22);
+            this.filterButton.Name = "filterButton";
+            this.filterButton.Size = new System.Drawing.Size(62, 31);
+            this.filterButton.TabIndex = 2;
+            this.filterButton.Text = "Filter";
+            this.filterButton.UseVisualStyleBackColor = true;
+            // 
             // DisplayStudentWorkers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -131,6 +120,7 @@
             this.Controls.Add(this.displayStudentWorkersListView);
             this.Name = "DisplayStudentWorkers";
             this.Text = "DisplayStudentWorkers";
+            this.Load += new System.EventHandler(this.DisplayStudentWorkers_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

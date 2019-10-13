@@ -16,5 +16,14 @@ namespace TutorScheduler
         {
             InitializeComponent();
         }
+
+        private void DisplayStudentWorkers_Load(object sender, EventArgs e)
+        {
+            List<StudentWorker> studentWorkers = StudentWorker.GetStudentWorkers();
+            foreach(StudentWorker sw in studentWorkers)
+            {
+                displayStudentWorkersListView.Items.Add(sw.Name).SubItems.Add(sw.JobPosition);
+            }
+        }
     }
 }

@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -90,6 +91,7 @@
     <Compile Include="ConfirmationPopup.Designer.cs">
       <DependentUpon>ConfirmationPopup.cs</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseManager.cs" />
     <Compile Include="DayCalendarForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +110,7 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Manager.cs" />
     <Compile Include="Schedule.cs" />
     <Compile Include="StudentWorkerInfoForm.cs">
       <SubType>Form</SubType>

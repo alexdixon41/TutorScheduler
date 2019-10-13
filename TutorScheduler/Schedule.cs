@@ -45,6 +45,15 @@ namespace TutorScheduler
         }
 
         /// <summary>
+        /// Set the list of events on the schedule, overwriting previous events if any
+        /// </summary>
+        /// <param name="allEvents">The list of events on the schedule</param>
+        public void SetEvents(List<CalendarEvent> allEvents)
+        {
+            events = allEvents;
+        }
+
+        /// <summary>
         /// Get the latest time ending in a multiple of 15 that a worker can stop work before a scheduled class.
         /// Must be at least 15 minutes before the scheduled class. 
         /// </summary>
