@@ -54,6 +54,14 @@ namespace TutorScheduler
         }
 
         /// <summary>
+        /// Clear all events from the schedule
+        /// </summary>
+        public void Clear()
+        {
+            Events.Clear();
+        }
+
+        /// <summary>
         /// Get the latest time ending in a multiple of 15 that a worker can stop work before a scheduled class.
         /// Must be at least 15 minutes before the scheduled class. 
         /// </summary>

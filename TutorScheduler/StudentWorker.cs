@@ -57,10 +57,12 @@ namespace TutorScheduler
         /// </summary>
         public void BuildAvailabilitySchedule()
         {
+            availability.Clear();
+
             if (classSchedule == null)
             {
                 return;
-            }
+            }           
 
             List<CalendarEvent>[] dailyEvents = new List<CalendarEvent>[]
             {

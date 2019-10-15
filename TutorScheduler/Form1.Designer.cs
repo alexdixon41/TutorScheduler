@@ -50,6 +50,7 @@
             this.viewAllToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.calendarDayView1 = new TutorScheduler.CalendarDayView();
             this.calendarWeekView1 = new TutorScheduler.CalendarWeekView();
+            this.availabilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dayLabelPanel.SuspendLayout();
             this.calendarPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -208,7 +209,8 @@
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.calViewToolStripMenuItem,
-            this.selectStudentWorkersToolStripMenuItem});
+            this.selectStudentWorkersToolStripMenuItem,
+            this.availabilityToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(67, 29);
             this.viewToolStripMenuItem.Text = "&View";
@@ -285,6 +287,13 @@
             this.calendarWeekView1.Text = "calendarWeekView1";
             this.calendarWeekView1.Click += new System.EventHandler(this.CalendarWeekView1_Click);
             // 
+            // availabilityToolStripMenuItem
+            // 
+            this.availabilityToolStripMenuItem.Name = "availabilityToolStripMenuItem";
+            this.availabilityToolStripMenuItem.Size = new System.Drawing.Size(302, 30);
+            this.availabilityToolStripMenuItem.Text = "Availability";
+            this.availabilityToolStripMenuItem.Click += new System.EventHandler(this.AvailabilityToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -335,6 +344,7 @@
         private System.Windows.Forms.ToolStripMenuItem calViewToolStripMenuItem;
         private CalendarDayView calendarDayView1;
         private System.Windows.Forms.ToolStripMenuItem selectStudentWorkersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem availabilityToolStripMenuItem;
     }
 }
 

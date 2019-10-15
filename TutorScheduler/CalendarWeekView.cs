@@ -92,6 +92,11 @@ namespace TutorScheduler
             }
         }
 
+        public void Clear()
+        {
+            CalendarEvents.Clear();
+        }
+
         protected override void OnPaint(PaintEventArgs pe)
         {                                             
             DrawCalendarFrame(pe);
@@ -151,15 +156,7 @@ namespace TutorScheduler
                     {
                         overlappingEvents[j].SetBounds(new Rectangle(eventLeft, eventTop, eventWidth, eventHeight));
                     }
-                }
-                
-                //else
-                //{
-                //    Time eventDuration = calendarEvent.EndTime - calendarEvent.StartTime;
-                //    int eventTop = 80 * calendarEvent.StartTime.hours + 4 * calendarEvent.StartTime.minutes / 3 + topMargin;
-                //    int eventHeight = 80 * eventDuration.hours + 4 * eventDuration.minutes / 3;
-                //    calendarEvent.SetBounds(new Rectangle(dayLeft, eventTop, dayWidth, eventHeight));
-                //}
+                }               
             }
         }
 
@@ -196,7 +193,6 @@ namespace TutorScheduler
                 pe.Graphics.DrawString(calendarEvent.SecondaryText, font, brush, 
                     new RectangleF(bounds.Left + 5, bounds.Top + 25, bounds.Width, bounds.Height), new StringFormat(StringFormatFlags.NoWrap));
                 
-
                 brush.Dispose();
             }
         }

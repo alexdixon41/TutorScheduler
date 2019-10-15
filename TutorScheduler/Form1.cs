@@ -15,9 +15,14 @@ namespace TutorScheduler
         Point ScrollPosition = new Point(0, 0);         // save the scroll position so it can be restored when panel is resized
         Label[] dayLabels;                              // the weekday labels on top of the calendar
         bool weekView = true;                           // whether the calendar view mode is set to week view or day view
+        bool showAvailability = true;                       // whether to show availability times on the calendar
         DayOfWeek dayShown = DayOfWeek.Monday;          // which day of the week is shown when in day view mode
         Button leftDayButton, rightDayButton;
         Label selectedDayLabel;                         // save the selected day for day view
+
+        string[] dayLabelText = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
+
+        List<StudentWorker> studentWorkers = new List<StudentWorker>();
 
         public Form1()
         {
@@ -49,11 +54,13 @@ namespace TutorScheduler
             dayLabels = new Label[] { mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel };
             selectedDayLabel = dayLabels[0];
 
-            // add day change buttons to the dayLabelPanel for easier positioning
-            dayLabelPanel.Controls.Add(leftDayButton);
-            dayLabelPanel.Controls.Add(rightDayButton);
+            // configure and add day change buttons to the dayLabelPanel for easier positioning
             leftDayButton.Top = selectedDayLabel.Top;
+            leftDayButton.Click += new EventHandler(LeftDayButton_Click);
+            dayLabelPanel.Controls.Add(leftDayButton);
             rightDayButton.Top = selectedDayLabel.Top;
+            rightDayButton.Click += new EventHandler(RightDayButton_Click);
+            dayLabelPanel.Controls.Add(rightDayButton);            
 
             ResizeHandler handler = new ResizeHandler(ResizeDayLabels);
             calendarWeekView1.resizeEvent += handler;
@@ -64,10 +71,9 @@ namespace TutorScheduler
             // scroll down until 7am is at the top of the panel when the form is first shown
             ScrollPosition = new Point(0, 592);
             calendarPanel.AutoScrollPosition = ScrollPosition;
-
-            // TODO only show schedule of selected student workers
+            
             // get all student workers and their schedules from database
-            List<StudentWorker> studentWorkers = StudentWorker.GetStudentWorkers();
+            studentWorkers = StudentWorker.GetStudentWorkers();
 
             // TODO - in separate thread, load events for selected student workers into a list
             // in this thread, add the list of events to week view and day view
@@ -80,13 +86,26 @@ namespace TutorScheduler
 
         private void PopulateCalendars(List<StudentWorker> studentWorkers)
         {
+            calendarWeekView1.Clear();
+            calendarDayView1.Clear();
             // TODO - only get selected student workers
             foreach (StudentWorker sw in studentWorkers)
             {
-                sw.BuildAvailabilitySchedule();
-                calendarWeekView1.AddSchedule(sw.GetClassSchedule());               
-                calendarWeekView1.AddSchedule(sw.GetAvailabilitySchedule());
+                Schedule s = sw.GetClassSchedule();
+                calendarWeekView1.AddSchedule(s);
+                calendarDayView1.AddSchedule(s);
+                // include availability schedule only if enabled
+                if (showAvailability)
+                {
+                    sw.BuildAvailabilitySchedule();
+                    Schedule a = sw.GetAvailabilitySchedule();
+                    calendarWeekView1.AddSchedule(a);
+                    calendarDayView1.AddSchedule(a);
+                }                
             }
+                      
+            calendarWeekView1.Invalidate();
+            calendarDayView1.Invalidate();
         }
 
         private void ResizeDayLabels(object sender, CalendarResizedEventArgs e)
@@ -220,10 +239,13 @@ namespace TutorScheduler
             {
                 weekView = true;
                 dayLabels = new Label[] { mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel };
+                int i = 0;
                 foreach (Label l in dayLabels)
                 {
+                    l.Text = dayLabelText[i];
                     l.Visible = true;
                     l.TextAlign = ContentAlignment.MiddleLeft;
+                    i++;
                 }
                 calViewToolStripMenuItem.Text = "Switch to Day View";             // change the menu item text to switch to day view
                 calendarDayView1.Visible = false;
@@ -236,9 +258,33 @@ namespace TutorScheduler
             Application.Exit();
         }
 
+        private void AvailabilityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showAvailability = !showAvailability;
+            PopulateCalendars(studentWorkers);
+        }
+
         private void SelectStudentWorkersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new DisplayStudentWorkers().Show();
+        }
+
+        private void LeftDayButton_Click(object sender, EventArgs e)
+        {
+            if (calendarDayView1.SelectedDay > (int)Day.Monday)
+            {
+                calendarDayView1.SetDay(calendarDayView1.SelectedDay - 1);
+                selectedDayLabel.Text = dayLabelText[calendarDayView1.SelectedDay];
+            }
+        }
+
+        private void RightDayButton_Click(object sender, EventArgs e)
+        {
+            if (calendarDayView1.SelectedDay < (int)Day.Friday)
+            {
+                calendarDayView1.SetDay(calendarDayView1.SelectedDay + 1);
+                selectedDayLabel.Text = dayLabelText[calendarDayView1.SelectedDay];
+            }
         }
     }
 }

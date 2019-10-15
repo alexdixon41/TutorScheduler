@@ -16,5 +16,10 @@ namespace TutorScheduler
         void DrawCalendarEvents(System.Windows.Forms.PaintEventArgs pe);
         void DrawCalendarFrame(System.Windows.Forms.PaintEventArgs pe);
         string GetHourLabel(int hours);
+
+        /// <summary>
+        /// Clear all events from the calendar
+        /// </summary>
+        void Clear();
     }
 }

@@ -18,7 +18,7 @@ namespace TutorScheduler
         public const int rightMargin = 10;
         public const int topMargin = 30;
 
-        private int day = (int)Day.Tuesday;                            // the currently-selected day to display
+        public int SelectedDay { get; private set; } = (int)Day.Monday;                            // the currently-selected day to display
 
         private List<CalendarEvent> CalendarEvents { get; set; } = new List<CalendarEvent>();
 
@@ -29,6 +29,12 @@ namespace TutorScheduler
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer |
                 ControlStyles.UserPaint |
                 ControlStyles.AllPaintingInWmPaint, true);               
+        }
+
+        public void SetDay(int day)
+        {
+            SelectedDay = day;
+            this.Invalidate();
         }
 
         /// <summary>
@@ -85,12 +91,73 @@ namespace TutorScheduler
             }
         }
 
+        public void Clear()
+        {
+            CalendarEvents.Clear();
+        }
+
         protected override void OnPaint(PaintEventArgs pe)
         {           
             DrawCalendarFrame(pe);
             DrawCalendarEvents(pe);
             pe.Graphics.Flush();           
-        }       
+        }
+
+        public void CalculateEventBounds()
+        {
+            int width = this.ClientRectangle.Width - leftMargin - rightMargin;              // calendar width
+            //int eventWidth = width / 5 - 10;
+
+            foreach (CalendarEvent calendarEvent in CalendarEvents)
+            {
+                calendarEvent.SetBounds(new Rectangle(leftMargin, 0, width - 10, 0));
+            }
+
+            for (int i = 0; i < CalendarEvents.Count; i++)
+            {
+                CalendarEvent calendarEvent = CalendarEvents[i];
+
+                int eventLeft = calendarEvent.GetBounds().Left;
+                int eventWidth = calendarEvent.GetBounds().Width;
+
+                List<CalendarEvent> overlappingEvents = new List<CalendarEvent>() { CalendarEvents[i] };
+
+                int k = i + 1;
+                while (k < CalendarEvents.Count && CalendarEvent.Overlap(CalendarEvents[i], CalendarEvents[k]))
+                {
+                    overlappingEvents.Add(CalendarEvents[k]);
+                    k++;
+                }
+
+                foreach (CalendarEvent e in overlappingEvents)
+                {
+                    Console.WriteLine(e.PrimaryText + " - " + e.StartTime.hours + ":" + e.StartTime.minutes + " - " + e.EndTime.hours + ":" + e.EndTime.minutes + "  " + e.Day);
+                }
+                Console.WriteLine("------------------");
+
+
+                if (overlappingEvents.Count > 1)
+                {
+                    eventWidth = eventWidth / 2;
+                }
+
+                // calculate sizes of all overlapping events
+                for (int j = 0; j < overlappingEvents.Count; j++)
+                {
+                    Time eventDuration = overlappingEvents[j].EndTime - overlappingEvents[j].StartTime;
+                    int eventTop = 80 * overlappingEvents[j].StartTime.hours + 4 * overlappingEvents[j].StartTime.minutes / 3 + topMargin;
+                    int eventHeight = 80 * eventDuration.hours + 4 * eventDuration.minutes / 3;
+                    if (j != 0)
+                    {
+                        overlappingEvents[j].SetBounds(new Rectangle(eventLeft + eventWidth, eventTop, eventWidth, eventHeight));
+                    }
+                    else
+                    {
+                        overlappingEvents[j].SetBounds(new Rectangle(eventLeft, eventTop, eventWidth, eventHeight));
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// Draw each calendar event in CalendarEvents on the calendar view
@@ -102,38 +169,29 @@ namespace TutorScheduler
             {
                 return;
             }
-            int width = this.ClientRectangle.Width - leftMargin - rightMargin;
+
+            CalculateEventBounds();
+
             foreach (CalendarEvent calendarEvent in CalendarEvents)
             {
-                if (calendarEvent.Day == day)
-                {                    
+                if (calendarEvent.Day == SelectedDay) { 
+                    Rectangle bounds = calendarEvent.GetBounds();
+
                     SolidBrush brush = new SolidBrush(calendarEvent.BackgroundColor);
-
-                    Time eventDuration = calendarEvent.EndTime - calendarEvent.StartTime;
-
-                    // size and position of event rectangle
-                    int eventLeft = leftMargin;
-                    int eventTop = 80 * calendarEvent.StartTime.hours + 4 * calendarEvent.StartTime.minutes / 3 + topMargin;
-                    int eventWidth = width - 10;
-                    int eventHeight = 80 * eventDuration.hours + 4 * eventDuration.minutes / 3;
-
-                    calendarEvent.SetBounds(new Rectangle(eventLeft, eventTop, eventWidth, eventHeight));
-
-                    pe.Graphics.FillRectangle(brush, new Rectangle(eventLeft, eventTop, eventWidth, eventHeight));
+                    pe.Graphics.FillRectangle(brush, calendarEvent.GetBounds());
 
                     // draw event text
                     brush.Color = calendarEvent.TextColor;
-                    System.Drawing.Font font = new System.Drawing.Font("Segoe UI", 11, FontStyle.Bold);
+                    Font font = new Font("Segoe UI", 11, FontStyle.Bold);
 
                     // draw text to fit within event bounds with no wrap - just cut off characters that don't fit
                     pe.Graphics.DrawString(calendarEvent.PrimaryText, font, brush,
-                        new RectangleF(eventLeft + 5, eventTop + 5, eventWidth, eventHeight), new StringFormat(StringFormatFlags.NoWrap));
+                        new RectangleF(bounds.Left + 5, bounds.Top + 5, bounds.Width, bounds.Height), new StringFormat(StringFormatFlags.NoWrap));
 
                     // draw secondary text below primary text in the same way, just not bold
                     font = new System.Drawing.Font("Segoe UI", 11, FontStyle.Regular);
                     pe.Graphics.DrawString(calendarEvent.SecondaryText, font, brush,
-                        new RectangleF(eventLeft + 5, eventTop + 25, eventWidth, eventHeight), new StringFormat(StringFormatFlags.NoWrap));
-
+                        new RectangleF(bounds.Left + 5, bounds.Top + 25, bounds.Width, bounds.Height), new StringFormat(StringFormatFlags.NoWrap));
 
                     brush.Dispose();
                 }
