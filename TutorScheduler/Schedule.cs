@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TutorScheduler
 {
-    class Schedule
-    {        
-        public List<CalendarEvent> events = new List<CalendarEvent>();          // list of events on the schedule       
+    public class Schedule
+    {
+        public List<CalendarEvent> Events { get; private set; } = new List<CalendarEvent>();          // list of events on the schedule         
 
         /// <summary>
         /// Add an event to the schedule, maintaining sequential ordering of events by start time and day
@@ -17,18 +17,18 @@ namespace TutorScheduler
         public void AddEvent(CalendarEvent newEvent)
         {
             // add events to the schedule in the correct location to maintain sequential order by start time and day
-            if (events.Count == 0)
+            if (Events.Count == 0)
             {
-                events.Add(newEvent);
+                Events.Add(newEvent);
             }
             else
             {
-                int index = events.Count - 1;
-                while (newEvent < events[index])                // CalendarEvent operator overload (<)
+                int index = Events.Count - 1;
+                while (index >= 0 && newEvent < Events[index])                // CalendarEvent operator overload (<)
                 {
                     index--;
                 }
-                events.Insert(index + 1, newEvent);
+                Events.Insert(index + 1, newEvent);
             }
         }
 
@@ -50,7 +50,7 @@ namespace TutorScheduler
         /// <param name="allEvents">The list of events on the schedule</param>
         public void SetEvents(List<CalendarEvent> allEvents)
         {
-            events = allEvents;
+            Events = allEvents;
         }
 
         /// <summary>

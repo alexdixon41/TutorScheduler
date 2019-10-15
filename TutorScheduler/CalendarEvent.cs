@@ -15,7 +15,7 @@ namespace TutorScheduler
     /// <summary>
     /// An event to display on the schedule calendar. 
     /// </summary>
-    class CalendarEvent
+    public class CalendarEvent
     {
         public const int CLASS = 0;
         public const int WORK = 1;
@@ -25,6 +25,7 @@ namespace TutorScheduler
         private int day;
         private Rectangle bounds;
 
+        internal bool BoundsSet = false;
         internal Color BackgroundColor { get; set; }
         internal Color TextColor;
         internal string PrimaryText;
@@ -42,11 +43,12 @@ namespace TutorScheduler
 
         public void SetBounds(Rectangle bounds)
         {
+            BoundsSet = true;
             this.bounds = bounds;
         }
 
         public Rectangle GetBounds()
-        {
+        {            
             return bounds;
         }
 
@@ -109,6 +111,31 @@ namespace TutorScheduler
             }
         }
 
+        #region Static Methods
+
+        public static bool Overlap(List<CalendarEvent> overlappingEvents, CalendarEvent e) {
+            bool result = false;
+            foreach (CalendarEvent overlappingEvent in overlappingEvents)
+            {
+                if (Overlap(overlappingEvent, e))
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
+
+        public static bool Overlap(CalendarEvent event1, CalendarEvent event2)
+        {
+            if (event2 < event1)
+            {
+                CalendarEvent t = event1;
+                event1 = event2;
+                event2 = t;
+            }
+            return event1.Day == event2.Day && event2.StartTime < event1.EndTime;
+        }
+
         public static bool operator <(CalendarEvent m1, CalendarEvent m2)
         {
             return m1.Day < m2.Day || (m1.Day == m2.Day && m1.StartTime < m2.StartTime);
@@ -118,5 +145,7 @@ namespace TutorScheduler
         {
             return m1.Day > m2.Day || (m1.Day == m2.Day && m1.StartTime > m2.StartTime);
         }
+
+        #endregion
     }
 }

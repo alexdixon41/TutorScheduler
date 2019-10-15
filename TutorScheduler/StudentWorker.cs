@@ -71,7 +71,7 @@ namespace TutorScheduler
                 new List<CalendarEvent>()
             };
 
-            foreach (CalendarEvent classMeeting in classSchedule.events)
+            foreach (CalendarEvent classMeeting in classSchedule.Events)
             {
                 dailyEvents[(int)classMeeting.Day].Add(classMeeting);
             }

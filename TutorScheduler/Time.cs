@@ -7,7 +7,7 @@ namespace TutorScheduler
     /// <summary>
     /// Simple time representation for 24-hour times
     /// </summary>
-    class Time
+    public class Time
     {
         public int hours;
         public int minutes;

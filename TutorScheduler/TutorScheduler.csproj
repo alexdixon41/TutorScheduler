@@ -71,6 +71,7 @@
     <Compile Include="AlertDialog.Designer.cs">
       <DependentUpon>AlertDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="ICalendar.cs" />
     <Compile Include="CalendarEvent.cs" />
     <Compile Include="CalendarResize.cs" />
     <Compile Include="CalendarDayView.cs">

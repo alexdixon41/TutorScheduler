@@ -81,7 +81,7 @@ namespace TutorScheduler
             conn.Close();
             Console.WriteLine("Done.");
 
-            List<CalendarEvent> events = new List<CalendarEvent>();
+            Schedule newSchedule = new Schedule();
 
             foreach (DataRow row in table.Rows)
             {
@@ -102,13 +102,11 @@ namespace TutorScheduler
                     if (days[i])
                     {
                         CalendarEvent newEvent = new CalendarEvent(startTime, endTime, i, eventType, studentName, displayColor);
-                        events.Add(newEvent);
+                        newSchedule.AddEvent(newEvent);
                     }
                 }
             }
-
-            Schedule newSchedule = new Schedule();
-            newSchedule.SetEvents(events);
+                       
             return newSchedule;
         }
 

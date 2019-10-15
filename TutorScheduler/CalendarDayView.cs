@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace TutorScheduler
 { 
-    public partial class CalendarDayView : Control
+    public partial class CalendarDayView : Control, ICalendar
     {
         public event ResizeHandler resizeEvent;
 
@@ -28,15 +28,38 @@ namespace TutorScheduler
             ResizeRedraw = true;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer |
                 ControlStyles.UserPaint |
-                ControlStyles.AllPaintingInWmPaint, true);         
-        }      
-
-        internal void AddEvents(List<CalendarEvent> events)
-        {
-            CalendarEvents.AddRange(events);
+                ControlStyles.AllPaintingInWmPaint, true);               
         }
 
-        internal CalendarEvent EventAt(Point p)
+        /// <summary>
+        /// Add every event of each schedule to the calendar, maintaining sequential order by merging. Assumes each schedule is sorted.
+        /// </summary>
+        /// <param name="schedules">List of schedule objects containing events sorted in sequential order</param>
+        public void AddSchedule(Schedule schedule)
+        {
+            int events_index = 0, schedule_index = 0;
+
+            // merge events from the schedule with current events on the calendar
+            while (events_index < CalendarEvents.Count && schedule_index < schedule.Events.Count)
+            {
+
+                while (events_index < CalendarEvents.Count && CalendarEvents[events_index] < schedule.Events[schedule_index])
+                {
+                    events_index++;
+                }
+                CalendarEvents.Insert(events_index, schedule.Events[schedule_index]);
+                schedule_index++;
+                events_index++;
+            }
+
+            // add remaining events on the schedule to the calendar
+            for (; schedule_index < schedule.Events.Count; schedule_index++)
+            {
+                CalendarEvents.Add(schedule.Events[schedule_index]);
+            }
+        }
+
+        public CalendarEvent EventAt(Point p)
         {
             foreach (CalendarEvent calendarEvent in CalendarEvents)
             {
@@ -73,7 +96,7 @@ namespace TutorScheduler
         /// Draw each calendar event in CalendarEvents on the calendar view
         /// </summary>
         /// <param name="pe">PaintEventArgs for drawing graphics on the control</param>
-        private void DrawCalendarEvents(PaintEventArgs pe)
+        public void DrawCalendarEvents(PaintEventArgs pe)
         {
             if (CalendarEvents == null)
             {
@@ -121,7 +144,7 @@ namespace TutorScheduler
         /// Draw the day/hour grid and hour labels for the frame of the calendar
         /// </summary>
         /// <param name="pe">PaintEventArgs for drawing graphics on the control</param>        
-        private void DrawCalendarFrame(PaintEventArgs pe)
+        public void DrawCalendarFrame(PaintEventArgs pe)
         {                                                       
             int width = this.ClientRectangle.Width - leftMargin - rightMargin;
             int height = 1920;
