@@ -15,8 +15,7 @@ namespace TutorScheduler
         Point ScrollPosition = new Point(0, 0);         // save the scroll position so it can be restored when panel is resized
         Label[] dayLabels;                              // the weekday labels on top of the calendar
         bool weekView = true;                           // whether the calendar view mode is set to week view or day view
-        bool showAvailability = true;                       // whether to show availability times on the calendar
-        DayOfWeek dayShown = DayOfWeek.Monday;          // which day of the week is shown when in day view mode
+        bool showAvailability = true;                   // whether to show availability times on the calendar        
         Button leftDayButton, rightDayButton;
         Label selectedDayLabel;                         // save the selected day for day view
 
@@ -217,6 +216,7 @@ namespace TutorScheduler
                 // draw day labels
                 dayLabels = new Label[] { selectedDayLabel };
 
+                // hide all day labels except selected one
                 for (int i = 0; i < dayLabelPanel.Controls.Count; i++)
                 {
                     if (dayLabelPanel.Controls[i].GetType() == typeof(Label)) 
@@ -238,6 +238,8 @@ namespace TutorScheduler
             else
             {
                 weekView = true;
+
+                // reconfigure day labels before switching back to week view
                 dayLabels = new Label[] { mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel };
                 int i = 0;
                 foreach (Label l in dayLabels)
@@ -271,15 +273,17 @@ namespace TutorScheduler
 
         private void LeftDayButton_Click(object sender, EventArgs e)
         {
+            // move back one day
             if (calendarDayView1.SelectedDay > (int)Day.Monday)
             {
                 calendarDayView1.SetDay(calendarDayView1.SelectedDay - 1);
                 selectedDayLabel.Text = dayLabelText[calendarDayView1.SelectedDay];
             }
         }
-
+        
         private void RightDayButton_Click(object sender, EventArgs e)
         {
+            // move forward one day
             if (calendarDayView1.SelectedDay < (int)Day.Friday)
             {
                 calendarDayView1.SetDay(calendarDayView1.SelectedDay + 1);
