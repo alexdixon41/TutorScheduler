@@ -6,7 +6,7 @@ namespace TutorScheduler
 {
     class StudentWorker
     {
-        private int StudentID;
+        public int StudentID { get; private set; }
         public string Name;
         public string JobPosition;
         public int DisplayColor;        
@@ -14,13 +14,6 @@ namespace TutorScheduler
         private Schedule workSchedule;
         private Schedule availability = new Schedule();           // the student's work availability schedule
 
-        public int ID
-        {
-            get
-            {
-                return StudentID;
-            }
-        }
 
         public StudentWorker(string name)
         {
@@ -133,6 +126,11 @@ namespace TutorScheduler
                 }
                 day++;
             }
+        }
+
+        public void removeStudentWorker()
+        {
+            DatabaseManager.RemoveStudentWorker(StudentID);
         }
 
         

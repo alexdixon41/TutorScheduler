@@ -178,9 +178,26 @@ namespace TutorScheduler
             return studentWorkers;
         }
 
-        public static void RemoveStudentWorker()
+        public static void RemoveStudentWorker(int studentID)
         {
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"DELETE FROM studentworker where studentID=@studentID";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@studentID", studentID);
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("Student Worker removed");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
 
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
         }
 
         public static void RemoveSubject()
@@ -202,7 +219,7 @@ namespace TutorScheduler
                 conn.Open();
                 string sql = @"INSERT INTO studentworker (studentID, studentName, displayColor, jobPosition) VALUES (@studentID, @name, @color, @position);";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@studentID", student.ID);
+                cmd.Parameters.AddWithValue("@studentID", student.StudentID);
                 cmd.Parameters.AddWithValue("@name", student.Name);
                 cmd.Parameters.AddWithValue("@color", student.DisplayColor);
                 cmd.Parameters.AddWithValue("@position", student.JobPosition);

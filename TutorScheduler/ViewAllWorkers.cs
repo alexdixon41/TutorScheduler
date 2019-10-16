@@ -26,10 +26,20 @@ namespace TutorScheduler
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = new ConfirmationPopup("Are you sure you want to remove Kinsey Wilson?", "This will remove them from the schedule.").ShowDialog();
-            if (dialogResult == DialogResult.OK)
+            if (studentWorkerListView.SelectedIndices.Count != 0)
             {
-                //Remove the student worker
+                //Get selected student worker
+                StudentWorker selectedStudentWorker = studentWorkers[studentWorkerListView.SelectedItems[0].Index];
+
+                //Ask for confirmation from the user
+                DialogResult dialogResult = new ConfirmationPopup("Are you sure you want to remove " + selectedStudentWorker.Name + "?", "This will remove them from the schedule.").ShowDialog();
+                if (dialogResult == DialogResult.OK)
+                {
+                    //Remove the student worker
+                    selectedStudentWorker.removeStudentWorker();
+                    updateStudentWorkerList();
+                    displayStudentWorkers();
+                }
             }
 
         }
