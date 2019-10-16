@@ -188,9 +188,37 @@ namespace TutorScheduler
 
         }       
 
-        public static void SaveStudentWorker()
+        /// <summary>
+        /// Saves a new student worker in the database
+        /// </summary>
+        /// <param name="student">A student worker object containing the information for the new student worker</param>
+        /// <returns>True if the save was successful. False if there was an error.</returns>
+        public static bool SaveStudentWorker(StudentWorker student)
         {
+            bool success = false;
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"INSERT INTO studentworker (studentID, studentName, displayColor, jobPosition) VALUES (@studentID, @name, @color, @position);";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@studentID", student.ID);
+                cmd.Parameters.AddWithValue("@name", student.Name);
+                cmd.Parameters.AddWithValue("@color", student.DisplayColor);
+                cmd.Parameters.AddWithValue("@position", student.JobPosition);
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("Student Worker created");
+                success = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
 
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+            return success;
         }
 
         public static void SaveSubject()

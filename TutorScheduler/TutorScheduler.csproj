@@ -68,6 +68,12 @@
     <Compile Include="AddClass.Designer.cs">
       <DependentUpon>AddClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddNewStudentWorker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewStudentWorker.Designer.cs">
+      <DependentUpon>AddNewStudentWorker.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddNewSubject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +172,9 @@
     <Compile Include="WorkLocation.cs" />
     <EmbeddedResource Include="AddClass.resx">
       <DependentUpon>AddClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddNewStudentWorker.resx">
+      <DependentUpon>AddNewStudentWorker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddNewWorkShift.resx">
       <DependentUpon>AddNewWorkShift.cs</DependentUpon>

@@ -14,6 +14,14 @@ namespace TutorScheduler
         private Schedule workSchedule;
         private Schedule availability = new Schedule();           // the student's work availability schedule
 
+        public int ID
+        {
+            get
+            {
+                return StudentID;
+            }
+        }
+
         public StudentWorker(string name)
         {
             Name = name;
@@ -141,6 +149,36 @@ namespace TutorScheduler
             }
 
             return studentWorkers;
+        }
+
+        
+        public static bool createStudentWorker(int studentID, string name, string position, int color)
+        {
+            StudentWorker newStudentWorker = new StudentWorker(studentID, name, position, color);
+            //Call save function from DBMgr
+            bool success = DatabaseManager.SaveStudentWorker(newStudentWorker);
+            return success;
+        }
+
+        public static bool verifyID(string idString)
+        {
+            //ID must be 9 digits long
+            if (idString.Length != 9)
+            {
+                new AlertDialog("Student ID must contain 9 numbers.").ShowDialog();
+                return false;
+            }
+            //ID must only contain numbers
+            try
+            {
+                Int32.Parse(idString);
+                return true;
+            }
+            catch (Exception e)
+            {
+                new AlertDialog("Student ID can only contain numbers.").ShowDialog();
+                return false;
+            }
         }
 
         #endregion 

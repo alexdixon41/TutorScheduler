@@ -29,7 +29,7 @@ namespace TutorScheduler
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Example Class",
             "12:30 pm",
             "1:45 pm",
@@ -44,7 +44,7 @@ namespace TutorScheduler
             this.days = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.positionLabel = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.subjectListBox = new System.Windows.Forms.ListBox();
             this.colorPicker = new System.Windows.Forms.ColorDialog();
             this.colorButton = new System.Windows.Forms.Button();
             this.addSubjectButton = new System.Windows.Forms.Button();
@@ -98,7 +98,7 @@ namespace TutorScheduler
             this.classesListView.FullRowSelect = true;
             this.classesListView.HideSelection = false;
             this.classesListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.classesListView.Location = new System.Drawing.Point(3, 61);
             this.classesListView.Name = "classesListView";
             this.classesListView.Size = new System.Drawing.Size(1219, 201);
@@ -146,12 +146,12 @@ namespace TutorScheduler
             this.positionLabel.TabIndex = 3;
             this.positionLabel.Text = "Guru";
             // 
-            // listBox1
+            // subjectListBox
             // 
-            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 25;
-            this.listBox1.Items.AddRange(new object[] {
+            this.subjectListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.subjectListBox.FormattingEnabled = true;
+            this.subjectListBox.ItemHeight = 25;
+            this.subjectListBox.Items.AddRange(new object[] {
             "CSC 185",
             "CSC 190",
             "CSC 310",
@@ -163,12 +163,12 @@ namespace TutorScheduler
             "MAT 114",
             "MAT 234",
             "STA 270"});
-            this.listBox1.Location = new System.Drawing.Point(13, 212);
-            this.listBox1.MultiColumn = true;
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(1225, 179);
-            this.listBox1.Sorted = true;
-            this.listBox1.TabIndex = 5;
+            this.subjectListBox.Location = new System.Drawing.Point(13, 212);
+            this.subjectListBox.MultiColumn = true;
+            this.subjectListBox.Name = "subjectListBox";
+            this.subjectListBox.Size = new System.Drawing.Size(1225, 179);
+            this.subjectListBox.Sorted = true;
+            this.subjectListBox.TabIndex = 5;
             // 
             // colorButton
             // 
@@ -191,19 +191,19 @@ namespace TutorScheduler
             this.addSubjectButton.Text = "Add a Subject";
             this.addSubjectButton.UseVisualStyleBackColor = true;
             // 
-            // EditClassSchedule
+            // StudentWorkerInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1250, 690);
             this.Controls.Add(this.addSubjectButton);
             this.Controls.Add(this.colorButton);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.subjectListBox);
             this.Controls.Add(this.positionLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.classEditPanel);
             this.Controls.Add(this.nameLabel);
-            this.Name = "EditClassSchedule";
+            this.Name = "StudentWorkerInfoForm";
             this.Text = "Edit Class Schedule";
             this.classEditPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -223,7 +223,7 @@ namespace TutorScheduler
         private System.Windows.Forms.ColumnHeader days;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label positionLabel;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox subjectListBox;
         private System.Windows.Forms.ColorDialog colorPicker;
         private System.Windows.Forms.Button colorButton;
         private System.Windows.Forms.Button addSubjectButton;

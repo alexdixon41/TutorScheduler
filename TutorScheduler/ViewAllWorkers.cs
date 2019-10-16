@@ -12,6 +12,8 @@ namespace TutorScheduler
 {
     public partial class ViewAllWorkers : Form
     {
+        private List<StudentWorker> studentWorkers = StudentWorker.GetStudentWorkers();
+
         public ViewAllWorkers()
         {
             InitializeComponent();
@@ -34,7 +36,33 @@ namespace TutorScheduler
 
         private void NewStudentWorkerButton_Click(object sender, EventArgs e)
         {
-            new StudentWorkerInfoForm().Show();
+            new AddNewStudentWorker().ShowDialog();
+            updateStudentWorkerList();
+            displayStudentWorkers();
+        }
+
+        private void displayStudentWorkers()
+        {
+            studentWorkerListView.Items.Clear();
+            int i = 0;
+            foreach (StudentWorker student in studentWorkers)
+            {
+                studentWorkerListView.Items.Add(student.Name);
+                studentWorkerListView.Items[i].SubItems.Add(student.JobPosition);
+                //TODO: Get student worker's subjects and display them in list view
+                i++;
+            }
+        }
+
+        private void updateStudentWorkerList()
+        {
+            studentWorkers = StudentWorker.GetStudentWorkers();
+        }
+
+        private void ViewAllWorkers_Load(object sender, EventArgs e)
+        {
+            updateStudentWorkerList();
+            displayStudentWorkers();
         }
     }
 }

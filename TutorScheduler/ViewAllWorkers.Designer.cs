@@ -28,16 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Alex Dixon",
-            "Guru",
-            "MAT, CSC, STA, PHY"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Kinsey Wilson",
-            "Lead",
-            "MAT, CSC, CHE"}, -1);
             this.selectedButton = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.studentWorkerListView = new System.Windows.Forms.ListView();
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.position = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.subjects = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -58,24 +50,21 @@
             this.selectedButton.UseVisualStyleBackColor = true;
             this.selectedButton.Click += new System.EventHandler(this.SelectedButton_Click);
             // 
-            // listView1
+            // studentWorkerListView
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.studentWorkerListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.name,
             this.position,
             this.subjects});
-            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.listView1.FullRowSelect = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
-            this.listView1.Location = new System.Drawing.Point(13, 60);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(775, 341);
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.studentWorkerListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.studentWorkerListView.FullRowSelect = true;
+            this.studentWorkerListView.HideSelection = false;
+            this.studentWorkerListView.Location = new System.Drawing.Point(13, 60);
+            this.studentWorkerListView.Name = "studentWorkerListView";
+            this.studentWorkerListView.Size = new System.Drawing.Size(775, 341);
+            this.studentWorkerListView.TabIndex = 6;
+            this.studentWorkerListView.UseCompatibleStateImageBehavior = false;
+            this.studentWorkerListView.View = System.Windows.Forms.View.Details;
             // 
             // name
             // 
@@ -139,11 +128,12 @@
             this.Controls.Add(this.newStudentWorkerButton);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.selectedButton);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.studentWorkerListView);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.textBox1);
             this.Name = "ViewAllWorkers";
             this.Text = "ViewAllWorkers";
+            this.Load += new System.EventHandler(this.ViewAllWorkers_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,7 +142,7 @@
         #endregion
 
         private System.Windows.Forms.Button selectedButton;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView studentWorkerListView;
         private System.Windows.Forms.ColumnHeader name;
         private System.Windows.Forms.ColumnHeader position;
         private System.Windows.Forms.ColumnHeader subjects;
