@@ -37,6 +37,8 @@ namespace TutorScheduler
                 {
                     //Remove the student worker
                     selectedStudentWorker.removeStudentWorker();
+                    //TODO: Remove all the student worker's schedule events and subjects
+
                     updateStudentWorkerList();
                     displayStudentWorkers();
                 }

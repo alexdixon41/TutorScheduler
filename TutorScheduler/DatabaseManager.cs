@@ -178,6 +178,10 @@ namespace TutorScheduler
             return studentWorkers;
         }
 
+        /// <summary>
+        /// Deletes a student worker from the database 
+        /// </summary>
+        /// <param name="studentID"></param>
         public static void RemoveStudentWorker(int studentID)
         {
             try
@@ -238,9 +242,32 @@ namespace TutorScheduler
             return success;
         }
 
-        public static void SaveSubject()
+        /// <summary>
+        /// Creates a record for a subject in the database
+        /// </summary>
+        /// <param name="subject">The new subject to be saved in the database</param>
+        public static void SaveSubject(Subject subject)
         {
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"INSERT INTO subject (abbreviation, subNum, subName) VALUES (@abbreviation, @num, @name);";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@abbreviation", subject.abbreviation);
+                cmd.Parameters.AddWithValue("@num", subject.subjectNumber);
+                cmd.Parameters.AddWithValue("@name", subject.name);
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("Subject created");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
 
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
         }
     }
 }

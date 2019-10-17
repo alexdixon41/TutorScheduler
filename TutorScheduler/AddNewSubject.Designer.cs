@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.prefixBox = new System.Windows.Forms.TextBox();
+            this.abbreviationBox = new System.Windows.Forms.TextBox();
             this.numBox1 = new System.Windows.Forms.TextBox();
             this.addTextboxButton = new System.Windows.Forms.Button();
             this.numBox2 = new System.Windows.Forms.TextBox();
@@ -45,12 +45,7 @@
             this.nameBox5 = new System.Windows.Forms.TextBox();
             this.addPanel = new System.Windows.Forms.Panel();
             this.saveButton = new System.Windows.Forms.Button();
-            this.confirmationPanel = new System.Windows.Forms.Panel();
-            this.cancelButton = new System.Windows.Forms.Button();
-            this.confirmButton = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.addPanel.SuspendLayout();
-            this.confirmationPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -73,13 +68,13 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Number:";
             // 
-            // prefixBox
+            // abbreviationBox
             // 
-            this.prefixBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.prefixBox.Location = new System.Drawing.Point(127, 9);
-            this.prefixBox.Name = "prefixBox";
-            this.prefixBox.Size = new System.Drawing.Size(75, 26);
-            this.prefixBox.TabIndex = 2;
+            this.abbreviationBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.abbreviationBox.Location = new System.Drawing.Point(127, 9);
+            this.abbreviationBox.Name = "abbreviationBox";
+            this.abbreviationBox.Size = new System.Drawing.Size(75, 26);
+            this.abbreviationBox.TabIndex = 2;
             // 
             // numBox1
             // 
@@ -197,7 +192,7 @@
             // addPanel
             // 
             this.addPanel.Controls.Add(this.saveButton);
-            this.addPanel.Controls.Add(this.prefixBox);
+            this.addPanel.Controls.Add(this.abbreviationBox);
             this.addPanel.Controls.Add(this.label1);
             this.addPanel.Controls.Add(this.label2);
             this.addPanel.Controls.Add(this.numBox1);
@@ -212,9 +207,9 @@
             this.addPanel.Controls.Add(this.label3);
             this.addPanel.Controls.Add(this.numBox5);
             this.addPanel.Controls.Add(this.nameBox1);
-            this.addPanel.Location = new System.Drawing.Point(1, 3);
+            this.addPanel.Location = new System.Drawing.Point(1, 1);
             this.addPanel.Name = "addPanel";
-            this.addPanel.Size = new System.Drawing.Size(552, 308);
+            this.addPanel.Size = new System.Drawing.Size(553, 310);
             this.addPanel.TabIndex = 15;
             // 
             // saveButton
@@ -228,63 +223,17 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // confirmationPanel
-            // 
-            this.confirmationPanel.Controls.Add(this.cancelButton);
-            this.confirmationPanel.Controls.Add(this.confirmButton);
-            this.confirmationPanel.Controls.Add(this.label4);
-            this.confirmationPanel.Location = new System.Drawing.Point(4, 3);
-            this.confirmationPanel.Name = "confirmationPanel";
-            this.confirmationPanel.Size = new System.Drawing.Size(549, 305);
-            this.confirmationPanel.TabIndex = 16;
-            this.confirmationPanel.Visible = false;
-            // 
-            // cancelButton
-            // 
-            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.cancelButton.Location = new System.Drawing.Point(349, 138);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(95, 38);
-            this.cancelButton.TabIndex = 2;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
-            // 
-            // confirmButton
-            // 
-            this.confirmButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.confirmButton.Location = new System.Drawing.Point(237, 138);
-            this.confirmButton.Name = "confirmButton";
-            this.confirmButton.Size = new System.Drawing.Size(95, 38);
-            this.confirmButton.TabIndex = 1;
-            this.confirmButton.Text = "Add";
-            this.confirmButton.UseVisualStyleBackColor = true;
-            this.confirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(63, 62);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(399, 25);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Are you sure you want to add the subject(s)?";
-            // 
             // AddNewSubject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(555, 306);
             this.Controls.Add(this.addPanel);
-            this.Controls.Add(this.confirmationPanel);
             this.Name = "AddNewSubject";
             this.Text = "AddNewSubject";
             this.Load += new System.EventHandler(this.AddNewSubject_Load);
             this.addPanel.ResumeLayout(false);
             this.addPanel.PerformLayout();
-            this.confirmationPanel.ResumeLayout(false);
-            this.confirmationPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -293,7 +242,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox prefixBox;
+        private System.Windows.Forms.TextBox abbreviationBox;
         private System.Windows.Forms.TextBox numBox1;
         private System.Windows.Forms.Button addTextboxButton;
         private System.Windows.Forms.TextBox numBox2;
@@ -308,9 +257,5 @@
         private System.Windows.Forms.TextBox nameBox5;
         private System.Windows.Forms.Panel addPanel;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Panel confirmationPanel;
-        private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.Button confirmButton;
-        private System.Windows.Forms.Label label4;
     }
 }
