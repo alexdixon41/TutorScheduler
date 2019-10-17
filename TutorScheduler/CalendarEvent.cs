@@ -21,8 +21,8 @@ namespace TutorScheduler
         public const int WORK = 1;
         public const int AVAILABILITY = 2;
 
-        private readonly int type;                    // the type of event (class or work)
-        private int day;
+        public int type { get; private set; }                    // the type of event (class or work)
+        private int day { get; set; }
         private Rectangle bounds;
 
         internal bool BoundsSet = false;
@@ -111,24 +111,19 @@ namespace TutorScheduler
             }
         }
 
-        #region Static Methods
+        #region Static Methods     
 
-        public static bool Overlap(List<CalendarEvent> overlappingEvents, CalendarEvent e) {
-            bool result = false;
-            foreach (CalendarEvent overlappingEvent in overlappingEvents)
-            {
-                if (Overlap(overlappingEvent, e))
-                {
-                    result = true;
-                }
-            }
-            return result;
-        }
-
+        /// <summary>
+        /// Check if event 2 overlaps event 1 chronologically
+        /// </summary>
+        /// <param name="event1">The earlier event</param>
+        /// <param name="event2">The later event</param>
+        /// <returns>True if event2 overlaps event 1, otherwise false</returns>
         public static bool Overlap(CalendarEvent event1, CalendarEvent event2)
         {
             if (event2 < event1)
             {
+                // swap event1 and event2 so event1 always starts before event2
                 CalendarEvent t = event1;
                 event1 = event2;
                 event2 = t;

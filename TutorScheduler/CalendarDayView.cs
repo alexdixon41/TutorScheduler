@@ -16,7 +16,7 @@ namespace TutorScheduler
 
         public const int leftMargin = 60;           // distance from left side of client rectangle to left vertical border of Monday
         public const int rightMargin = 10;
-        public const int topMargin = 30;
+        public const int topMargin = 0;
 
         public int SelectedDay { get; private set; } = (int)Day.Monday;                            // the currently-selected day to display
 
@@ -103,61 +103,76 @@ namespace TutorScheduler
             pe.Graphics.Flush();           
         }
 
-        public void CalculateEventBounds()
+        public int MaxOverlap(List<CalendarEvent> events)
         {
-            int width = this.ClientRectangle.Width - leftMargin - rightMargin;              // calendar width
-            //int eventWidth = width / 5 - 10;
+            int[] overlaps = new int[events.Count];
+
+            for (int i = 0; i < events.Count; i++)
+            {
+                int k = i + 1;
+                while (k < events.Count && CalendarEvent.Overlap(events[i], events[k]))
+                {                    
+                    overlaps[k] += 1;
+                    k++;
+                }
+            }
+
+            if (overlaps.Length > 0)
+            {
+                return overlaps.Max() + 1;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+
+        /// <summary>
+        /// Calculate and set bounds for each calendar event, adjusting for overlap as needed
+        /// </summary>
+        public void CalculateBounds()
+        {
+            int width = (ClientRectangle.Width - leftMargin - rightMargin);             // full width of a day on the calendar
+
+            List<CalendarEvent>[] dayEvents = new List<CalendarEvent>[5];
+
+            for (int i = 0; i < 5; i++)
+            {
+                dayEvents[i] = new List<CalendarEvent>();
+            }
 
             foreach (CalendarEvent calendarEvent in CalendarEvents)
             {
-                calendarEvent.SetBounds(new Rectangle(leftMargin, 0, width - 10, 0));
+                dayEvents[calendarEvent.Day].Add(calendarEvent);
             }
 
-            for (int i = 0; i < CalendarEvents.Count; i++)
+            
+            List<CalendarEvent> toPlace = dayEvents[SelectedDay];
+            int left = leftMargin;
+            int minWidth = (width - 10) / MaxOverlap(toPlace);
+
+            while (toPlace.Count > 0)
             {
-                CalendarEvent calendarEvent = CalendarEvents[i];
-
-                int eventLeft = calendarEvent.GetBounds().Left;
-                int eventWidth = calendarEvent.GetBounds().Width;
-
-                List<CalendarEvent> overlappingEvents = new List<CalendarEvent>() { CalendarEvents[i] };
-
-                int k = i + 1;
-                while (k < CalendarEvents.Count && CalendarEvent.Overlap(CalendarEvents[i], CalendarEvents[k]))
+                for (int j = 0; j < toPlace.Count;)
                 {
-                    overlappingEvents.Add(CalendarEvents[k]);
-                    k++;
-                }
+                    int k = j + 1;
+                    while (k < toPlace.Count && CalendarEvent.Overlap(toPlace[j], toPlace[k]))
+                    {
+                        k++;
+                    }
 
-                foreach (CalendarEvent e in overlappingEvents)
-                {
-                    Console.WriteLine(e.PrimaryText + " - " + e.StartTime.hours + ":" + e.StartTime.minutes + " - " + e.EndTime.hours + ":" + e.EndTime.minutes + "  " + e.Day);
-                }
-                Console.WriteLine("------------------");
-
-
-                if (overlappingEvents.Count > 1)
-                {
-                    eventWidth = eventWidth / 2;
-                }
-
-                // calculate sizes of all overlapping events
-                for (int j = 0; j < overlappingEvents.Count; j++)
-                {
-                    Time eventDuration = overlappingEvents[j].EndTime - overlappingEvents[j].StartTime;
-                    int eventTop = 80 * overlappingEvents[j].StartTime.hours + 4 * overlappingEvents[j].StartTime.minutes / 3 + topMargin;
+                    Time eventDuration = toPlace[j].EndTime - toPlace[j].StartTime;
+                    int eventTop = 80 * toPlace[j].StartTime.hours + 4 * toPlace[j].StartTime.minutes / 3 + topMargin;
                     int eventHeight = 80 * eventDuration.hours + 4 * eventDuration.minutes / 3;
-                    if (j != 0)
-                    {
-                        overlappingEvents[j].SetBounds(new Rectangle(eventLeft + eventWidth, eventTop, eventWidth, eventHeight));
-                    }
-                    else
-                    {
-                        overlappingEvents[j].SetBounds(new Rectangle(eventLeft, eventTop, eventWidth, eventHeight));
-                    }
+                    toPlace[j].SetBounds(new Rectangle(left, eventTop, minWidth, eventHeight));
+
+                    toPlace.RemoveAt(j);
+
+                    j = k - 1;
                 }
-            }
-        }
+                left += minWidth;
+            }            
+        }       
 
         /// <summary>
         /// Draw each calendar event in CalendarEvents on the calendar view
@@ -170,7 +185,7 @@ namespace TutorScheduler
                 return;
             }
 
-            CalculateEventBounds();
+            CalculateBounds();
 
             foreach (CalendarEvent calendarEvent in CalendarEvents)
             {
@@ -178,7 +193,7 @@ namespace TutorScheduler
                     Rectangle bounds = calendarEvent.GetBounds();
 
                     SolidBrush brush = new SolidBrush(calendarEvent.BackgroundColor);
-                    pe.Graphics.FillRectangle(brush, calendarEvent.GetBounds());
+                    pe.Graphics.FillRectangle(brush, new Rectangle(bounds.Left + 1, bounds.Top + 1, bounds.Width - 2, bounds.Height - 2));
 
                     // draw event text
                     brush.Color = calendarEvent.TextColor;
@@ -254,7 +269,7 @@ namespace TutorScheduler
             // draw label for each hour
             for (int i = 0; i < 24; i++)
             {
-                pe.Graphics.DrawString(GetHourLabel(i), drawFont, brush, 0, top + 80 * i, drawFormat);
+                pe.Graphics.DrawString(GetHourLabel(i), drawFont, brush, 5, top + 80 * i, drawFormat);
             }
 
             // dispose of string drawing resources
@@ -285,6 +300,62 @@ namespace TutorScheduler
             else
             {
                 return "" + hours % 12 + " pm";
+            }
+        }
+
+        public void CalculateEventBounds()
+        {
+            int width = this.ClientRectangle.Width - leftMargin - rightMargin;              // calendar width
+            //int eventWidth = width / 5 - 10;
+
+            foreach (CalendarEvent calendarEvent in CalendarEvents)
+            {
+                calendarEvent.SetBounds(new Rectangle(leftMargin, 0, width - 10, 0));
+            }
+
+            for (int i = 0; i < CalendarEvents.Count; i++)
+            {
+                CalendarEvent calendarEvent = CalendarEvents[i];
+
+                int eventLeft = calendarEvent.GetBounds().Left;
+                int eventWidth = calendarEvent.GetBounds().Width;
+
+                List<CalendarEvent> overlappingEvents = new List<CalendarEvent>() { CalendarEvents[i] };
+
+                int k = i + 1;
+                while (k < CalendarEvents.Count && CalendarEvent.Overlap(CalendarEvents[i], CalendarEvents[k]))
+                {
+                    overlappingEvents.Add(CalendarEvents[k]);
+                    k++;
+                }
+
+                foreach (CalendarEvent e in overlappingEvents)
+                {
+                    Console.WriteLine(e.PrimaryText + " - " + e.StartTime.hours + ":" + e.StartTime.minutes + " - " + e.EndTime.hours + ":" + e.EndTime.minutes + "  " + e.Day);
+                }
+                Console.WriteLine("------------------");
+
+
+                if (overlappingEvents.Count > 1)
+                {
+                    eventWidth = eventWidth / 2;
+                }
+
+                // calculate sizes of all overlapping events
+                for (int j = 0; j < overlappingEvents.Count; j++)
+                {
+                    Time eventDuration = overlappingEvents[j].EndTime - overlappingEvents[j].StartTime;
+                    int eventTop = 80 * overlappingEvents[j].StartTime.hours + 4 * overlappingEvents[j].StartTime.minutes / 3 + topMargin;
+                    int eventHeight = 80 * eventDuration.hours + 4 * eventDuration.minutes / 3;
+                    if (j != 0)
+                    {
+                        overlappingEvents[j].SetBounds(new Rectangle(eventLeft + eventWidth, eventTop, eventWidth, eventHeight));
+                    }
+                    else
+                    {
+                        overlappingEvents[j].SetBounds(new Rectangle(eventLeft, eventTop, eventWidth, eventHeight));
+                    }
+                }
             }
         }
     }

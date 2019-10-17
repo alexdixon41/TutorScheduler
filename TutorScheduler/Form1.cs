@@ -30,14 +30,16 @@ namespace TutorScheduler
             // create day selection buttons for day view
             rightDayButton = new Button();
             leftDayButton = new Button();
-
-            rightDayButton.Height = 40;
+            
+            rightDayButton.Height = 36;
             rightDayButton.Width = 80;
+            rightDayButton.Margin = new Padding(0);
             rightDayButton.Text = "Next";
             rightDayButton.Visible = false;
-            rightDayButton.Location = new Point(0, 0);
-            leftDayButton.Height = 40;
+            rightDayButton.Location = new Point(0, 0);            
+            leftDayButton.Height = 36;
             leftDayButton.Width = 80;
+            leftDayButton.Margin = new Padding(0);
             leftDayButton.Text = "Previous";
             leftDayButton.Visible = false;
             leftDayButton.Location = new Point(0, 0);
@@ -114,22 +116,22 @@ namespace TutorScheduler
             {                
                 dayLabels[i].Left = e.dayStartPositions[i];
                 dayLabels[i].Width = e.dayStartPositions[i + 1] - e.dayStartPositions[i] + 1;
-            }
+            }            
 
             if (weekView)
             {
                 // hide day change button for week view
                 leftDayButton.Visible = false;
-                rightDayButton.Visible = false;
+                rightDayButton.Visible = false;               
             }
             else
-            {
+            {                
                 // show day change buttons for day view
                 rightDayButton.Left = e.dayStartPositions[0] + selectedDayLabel.Width + 60;
                 rightDayButton.Visible = true;
                 leftDayButton.Left = e.dayStartPositions[0] - 60 - rightDayButton.Width;
                 leftDayButton.Visible = true;
-            }
+            }            
 
             // restore scroll position
             calendarPanel.AutoScrollPosition = ScrollPosition;
@@ -214,19 +216,28 @@ namespace TutorScheduler
                 weekView = false;            
 
                 // draw day labels
-                dayLabels = new Label[] { selectedDayLabel };
+                //dayLabels = new Label[] { selectedDayLabel };
 
                 // hide all day labels except selected one
-                for (int i = 0; i < dayLabelPanel.Controls.Count; i++)
+                for (int i = 0; i < dayLabels.Length; i++)
                 {
-                    if (dayLabelPanel.Controls[i].GetType() == typeof(Label)) 
+                    if (dayLabels[i] != selectedDayLabel)
                     {
-                        if (dayLabelPanel.Controls[i] != selectedDayLabel)
-                        {
-                            dayLabelPanel.Controls[i].Visible = false;
-                        }                     
+                        Console.WriteLine(i);
+                        dayLabels[i].Visible = false;
                     }
                 }
+
+                //for (int i = 0; i < dayLabelPanel.Controls.Count; i++)
+                //{
+                //    if (dayLabelPanel.Controls[i].GetType() == typeof(Label)) 
+                //    {
+                //        if (dayLabelPanel.Controls[i] != selectedDayLabel)
+                //        {
+                //            dayLabelPanel.Controls[i].Visible = false;
+                //        }                     
+                //    }
+                //}
                 selectedDayLabel.Visible = true;
                 selectedDayLabel.TextAlign = ContentAlignment.MiddleCenter;
                
