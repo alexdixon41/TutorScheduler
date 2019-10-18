@@ -191,7 +191,7 @@ namespace TutorScheduler
             {
                 Console.Write("Connecting to MySql... ");
                 conn.Open();
-                string sql = @"SELECT subjectID, abbreviation, subNum, subName FROM subject;";
+                string sql = @"SELECT subjectID, abbreviation, subNum, subName FROM subject ORDER BY abbreviation;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
                 myAdapter.Fill(table);
@@ -211,7 +211,7 @@ namespace TutorScheduler
                 string abbreviation = row["abbreviation"].ToString();
                 int subNum = (int)row["subNum"];
                 int subjectID = (int)row["subjectID"];
-                Subject sub = new Subject(abbreviation, subNum, name);
+                Subject sub = new Subject(subjectID, abbreviation, subNum, name);
                 subjects.Add(sub);
             }
 
@@ -244,9 +244,30 @@ namespace TutorScheduler
             Console.WriteLine("Done.");
         }
 
-        public static void RemoveSubject()
+        /// <summary>
+        /// Deletes subject with given ID from the database 
+        /// </summary>
+        /// <param name="subjectID">The ID of the subject to be deleted</param>
+        public static void RemoveSubject(int subjectID)
         {
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"DELETE FROM subject where subjectID=@subjectID";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@subjectID", subjectID);
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("Subject removed");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
 
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
         }       
 
         /// <summary>

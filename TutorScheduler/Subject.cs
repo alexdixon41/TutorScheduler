@@ -8,9 +8,18 @@ namespace TutorScheduler
 {
     class Subject
     {
+        public int subjectID;
         public string abbreviation;
         public int subjectNumber;
         public string name;
+
+        public Subject(int subID, string subAbbreviation, int subNumber, string subName)
+        {
+            subjectID = subID;
+            abbreviation = subAbbreviation;
+            subjectNumber = subNumber;
+            name = subName;
+        }
 
         public Subject(string subAbbreviation, int subNumber, string subName)
         {
@@ -19,6 +28,10 @@ namespace TutorScheduler
             name = subName;
         }
 
+        public void removeSubject()
+        {
+            DatabaseManager.RemoveSubject(subjectID);
+        }
 
         #region Static Functions
 
