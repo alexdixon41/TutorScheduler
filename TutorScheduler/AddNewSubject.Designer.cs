@@ -103,6 +103,7 @@
             this.numBox2.Name = "numBox2";
             this.numBox2.Size = new System.Drawing.Size(82, 26);
             this.numBox2.TabIndex = 5;
+            this.numBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numBox2.Visible = false;
             // 
             // numBox3

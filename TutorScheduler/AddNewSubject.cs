@@ -60,7 +60,7 @@ namespace TutorScheduler
             String abbreviation = abbreviationBox.Text;
             for (int i = 0; i < subjectBoxes.GetLength(0); i++)
             {
-                if (subjectBoxes[i, 0].Visible == true)
+                if (subjectBoxes[i, 0].Visible == true && !subjectBoxes[i,0].Text.Equals(""))
                 {
                     if (Subject.verifyNumber(subjectBoxes[i, 0].Text))
                     {
