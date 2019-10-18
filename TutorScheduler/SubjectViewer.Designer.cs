@@ -28,13 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "MAT 234",
-            "Calculus 1"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "MAT 235",
-            "Calculus 2"}, -1);
-            this.SubjectList = new System.Windows.Forms.ListView();
+            this.subjectListView = new System.Windows.Forms.ListView();
             this.SubjectPrefix = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SubjectName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AddSubjectButton = new System.Windows.Forms.Button();
@@ -44,25 +38,22 @@
             this.viewFlyerButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // SubjectList
+            // subjectListView
             // 
-            this.SubjectList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.subjectListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.SubjectPrefix,
             this.SubjectName});
-            this.SubjectList.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.SubjectList.FullRowSelect = true;
-            this.SubjectList.HideSelection = false;
-            this.SubjectList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
-            this.SubjectList.Location = new System.Drawing.Point(16, 70);
-            this.SubjectList.Margin = new System.Windows.Forms.Padding(4);
-            this.SubjectList.Name = "SubjectList";
-            this.SubjectList.Size = new System.Drawing.Size(767, 304);
-            this.SubjectList.TabIndex = 0;
-            this.SubjectList.UseCompatibleStateImageBehavior = false;
-            this.SubjectList.View = System.Windows.Forms.View.Details;
-            this.SubjectList.SelectedIndexChanged += new System.EventHandler(this.SubjectList_SelectedIndexChanged);
+            this.subjectListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.subjectListView.FullRowSelect = true;
+            this.subjectListView.HideSelection = false;
+            this.subjectListView.Location = new System.Drawing.Point(16, 70);
+            this.subjectListView.Margin = new System.Windows.Forms.Padding(4);
+            this.subjectListView.Name = "subjectListView";
+            this.subjectListView.Size = new System.Drawing.Size(767, 304);
+            this.subjectListView.TabIndex = 0;
+            this.subjectListView.UseCompatibleStateImageBehavior = false;
+            this.subjectListView.View = System.Windows.Forms.View.Details;
+            this.subjectListView.SelectedIndexChanged += new System.EventHandler(this.SubjectList_SelectedIndexChanged);
             // 
             // SubjectPrefix
             // 
@@ -136,10 +127,11 @@
             this.Controls.Add(this.SearchButton);
             this.Controls.Add(this.RemoveSubject);
             this.Controls.Add(this.AddSubjectButton);
-            this.Controls.Add(this.SubjectList);
+            this.Controls.Add(this.subjectListView);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ViewAllSubjects";
             this.Text = "Subjects";
+            this.Load += new System.EventHandler(this.ViewAllSubjects_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,7 +139,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView SubjectList;
+        private System.Windows.Forms.ListView subjectListView;
         private System.Windows.Forms.Button AddSubjectButton;
         private System.Windows.Forms.Button RemoveSubject;
         private System.Windows.Forms.Button SearchButton;

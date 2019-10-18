@@ -25,6 +25,7 @@ namespace TutorScheduler
         private void AddSubjectButton_Click(object sender, EventArgs e)
         {
             new AddNewSubject().ShowDialog();
+            displaySubjects();
         }
 
         //Remove button is clicked
@@ -51,6 +52,25 @@ namespace TutorScheduler
         private void ViewFlyerButton_Click(object sender, EventArgs e)
         {
             new ViewSubjectFlyer().Show();
+        }
+
+        private void displaySubjects()
+        {
+            List<Subject> subjectList = Subject.getSubjects();
+            subjectListView.Items.Clear();
+            int i = 0;
+            foreach (Subject subject in subjectList)
+            {
+                string subString = subject.abbreviation + " " + subject.subjectNumber;
+                subjectListView.Items.Add(subString);
+                subjectListView.Items[i].SubItems.Add(subject.name);
+                i++;
+            }
+        }
+
+        private void ViewAllSubjects_Load(object sender, EventArgs e)
+        {
+            displaySubjects();
         }
     }
 }

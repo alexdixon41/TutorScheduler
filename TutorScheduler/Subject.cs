@@ -31,6 +31,11 @@ namespace TutorScheduler
             DatabaseManager.SaveSubject(newSubject);
         }
 
+        public static List<Subject> getSubjects()
+        {
+            return DatabaseManager.getSubjects();
+        }
+
         public static bool verifyNumber(string numString)
         {
             if (numString.Length != 3)
