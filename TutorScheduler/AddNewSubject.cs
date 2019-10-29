@@ -13,65 +13,66 @@ namespace TutorScheduler
 {
     public partial class AddNewSubject : Form
     {
-        //Possible TODO: Could make these a 2D array instead??
-        TextBox[] numBoxes;
-        TextBox[] nameBoxes;
+        TextBox[,] subjectBoxes;
 
         int numOfBoxesShowing = 1;      //number of boxes currently visible
-        
+
+        /// <summary>
+        /// Initializes the subjectBoxes array with the number and name textboxes
+        /// </summary>
+        void populateSubjectBoxes()
+        {
+            subjectBoxes = new TextBox[5,2] { 
+                {numBox1, nameBox1 }, 
+                {numBox2, nameBox2 },
+                {numBox3, nameBox3 },
+                {numBox4, nameBox4 },
+                {numBox5, nameBox5 }
+            };
+        }
 
         public AddNewSubject()
         {
             InitializeComponent();
+            populateSubjectBoxes();
         }
 
         private void AddTextboxButton_Click(object sender, EventArgs e)
         {
             if (numOfBoxesShowing < 5)
             {
-                numBoxes[numOfBoxesShowing].Show();
-                nameBoxes[numOfBoxesShowing].Show();
+                subjectBoxes[numOfBoxesShowing,0].Show();
+                subjectBoxes[numOfBoxesShowing,1].Show();
                 numOfBoxesShowing++;
             }
         }
 
         private void AddNewSubject_Load(object sender, EventArgs e)
         {
-            populateNumBoxes();
-            populateNameBoxes();
-        }
-
-        //Add the number text boxes into the array
-        private void populateNumBoxes()
-        {
-            numBoxes = new TextBox[5] { numBox1, numBox2, numBox3, numBox4, numBox5};
-        }
-
-        //Add the name text boxes into the array
-        private void populateNameBoxes()
-        {
-            nameBoxes = new TextBox[5] { nameBox1, nameBox2, nameBox3, nameBox4, nameBox5 };
+            
         }
 
         //User clicks to save the new subjects
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            addPanel.Hide();
-            confirmationPanel.Show();
-        }
+            //Get user input
+            //TODO: Verify abbreviation
+            String abbreviation = abbreviationBox.Text;
+            for (int i = 0; i < subjectBoxes.GetLength(0); i++)
+            {
+                if (subjectBoxes[i, 0].Visible == true && !subjectBoxes[i,0].Text.Equals(""))
+                {
+                    if (Subject.verifyNumber(subjectBoxes[i, 0].Text))
+                    {
+                        int num = Int32.Parse(subjectBoxes[i, 0].Text);
+                        String name = subjectBoxes[i, 1].Text;
 
-        //User confirms they want to add the new subjects
-        private void ConfirmButton_Click(object sender, EventArgs e)
-        {
-            //TODO: Save the new subjects
+                        //Create and save subject
+                        Subject.create(abbreviation, num, name);
+                    }
+                }
+            }
             this.Close();
-        }
-
-        //User does not confirm the changes
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            addPanel.Show();
-            confirmationPanel.Hide();
         }
     }
 }
