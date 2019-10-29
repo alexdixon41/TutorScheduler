@@ -46,7 +46,7 @@ namespace TutorScheduler
 
         public static List<Subject> getSubjects()
         {
-            return DatabaseManager.getSubjects();
+            return DatabaseManager.GetSubjects();
         }
 
         public static bool verifyNumber(string numString)

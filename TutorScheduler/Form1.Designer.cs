@@ -44,7 +44,6 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.selectStudentWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.availabilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.studentWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -220,7 +219,6 @@
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.calViewToolStripMenuItem,
-            this.selectStudentWorkersToolStripMenuItem,
             this.availabilityToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(67, 29);
@@ -229,21 +227,14 @@
             // calViewToolStripMenuItem
             // 
             this.calViewToolStripMenuItem.Name = "calViewToolStripMenuItem";
-            this.calViewToolStripMenuItem.Size = new System.Drawing.Size(302, 30);
+            this.calViewToolStripMenuItem.Size = new System.Drawing.Size(258, 30);
             this.calViewToolStripMenuItem.Text = "Switch to Day View";
             this.calViewToolStripMenuItem.Click += new System.EventHandler(this.DayViewToolStripMenuItem_Click);
-            // 
-            // selectStudentWorkersToolStripMenuItem
-            // 
-            this.selectStudentWorkersToolStripMenuItem.Name = "selectStudentWorkersToolStripMenuItem";
-            this.selectStudentWorkersToolStripMenuItem.Size = new System.Drawing.Size(302, 30);
-            this.selectStudentWorkersToolStripMenuItem.Text = "Display Student Workers";
-            this.selectStudentWorkersToolStripMenuItem.Click += new System.EventHandler(this.SelectStudentWorkersToolStripMenuItem_Click);
             // 
             // availabilityToolStripMenuItem
             // 
             this.availabilityToolStripMenuItem.Name = "availabilityToolStripMenuItem";
-            this.availabilityToolStripMenuItem.Size = new System.Drawing.Size(302, 30);
+            this.availabilityToolStripMenuItem.Size = new System.Drawing.Size(258, 30);
             this.availabilityToolStripMenuItem.Text = "Availability";
             this.availabilityToolStripMenuItem.Click += new System.EventHandler(this.AvailabilityToolStripMenuItem_Click);
             // 
@@ -288,7 +279,7 @@
             this.calendarWeekView1.Location = new System.Drawing.Point(0, 0);
             this.calendarWeekView1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.calendarWeekView1.Name = "calendarWeekView1";
-            this.calendarWeekView1.Size = new System.Drawing.Size(836, 44179);
+            this.calendarWeekView1.Size = new System.Drawing.Size(836, 45790);
             this.calendarWeekView1.TabIndex = 0;
             this.calendarWeekView1.Text = "calendarWeekView1";
             this.calendarWeekView1.Click += new System.EventHandler(this.CalendarWeekView1_Click);
@@ -301,7 +292,7 @@
             this.calendarDayView1.Location = new System.Drawing.Point(0, 0);
             this.calendarDayView1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.calendarDayView1.Name = "calendarDayView1";
-            this.calendarDayView1.Size = new System.Drawing.Size(836, 10102);
+            this.calendarDayView1.Size = new System.Drawing.Size(836, 11713);
             this.calendarDayView1.TabIndex = 1;
             this.calendarDayView1.Text = "calendarDayView1";
             this.calendarDayView1.Visible = false;
@@ -355,7 +346,6 @@
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem calViewToolStripMenuItem;
         private CalendarDayView calendarDayView1;
-        private System.Windows.Forms.ToolStripMenuItem selectStudentWorkersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem availabilityToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
     }

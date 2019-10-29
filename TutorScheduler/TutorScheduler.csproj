@@ -120,12 +120,6 @@
     <Compile Include="DayCalendarForm.Designer.cs">
       <DependentUpon>DayCalendarForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DisplayStudentWorkers.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DisplayStudentWorkers.Designer.cs">
-      <DependentUpon>DisplayStudentWorkers.cs</DependentUpon>
-    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +128,7 @@
     </Compile>
     <Compile Include="Manager.cs" />
     <Compile Include="Schedule.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="StudentWorkerInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,9 +191,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DayCalendarForm.resx">
       <DependentUpon>DayCalendarForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DisplayStudentWorkers.resx">
-      <DependentUpon>DisplayStudentWorkers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

@@ -182,7 +182,7 @@ namespace TutorScheduler
         /// Retrieves all the subjects from the database
         /// </summary>
         /// <returns>List of all subjects</returns>
-        public static List<Subject> getSubjects()
+        public static List<Subject> GetSubjects()
         {
             List<Subject> subjects = new List<Subject>();
             DataTable table = new DataTable();
@@ -232,7 +232,7 @@ namespace TutorScheduler
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@studentID", studentID);
                 cmd.ExecuteNonQuery();
-                Console.WriteLine("Student Worker removed");
+                Console.WriteLine("Student Worker removed.");
             }
             catch (Exception ex)
             {
@@ -258,7 +258,7 @@ namespace TutorScheduler
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@subjectID", subjectID);
                 cmd.ExecuteNonQuery();
-                Console.WriteLine("Subject removed");
+                Console.WriteLine("Subject removed.");
             }
             catch (Exception ex)
             {
@@ -289,7 +289,7 @@ namespace TutorScheduler
                 cmd.Parameters.AddWithValue("@color", student.DisplayColor);
                 cmd.Parameters.AddWithValue("@position", student.JobPosition);
                 cmd.ExecuteNonQuery();
-                Console.WriteLine("Student Worker created");
+                Console.WriteLine("Student Worker created.");
                 success = true;
             }
             catch (Exception ex)
@@ -319,7 +319,7 @@ namespace TutorScheduler
                 cmd.Parameters.AddWithValue("@num", subject.subjectNumber);
                 cmd.Parameters.AddWithValue("@name", subject.name);
                 cmd.ExecuteNonQuery();
-                Console.WriteLine("Subject created");
+                Console.WriteLine("Subject created.");
             }
             catch (Exception ex)
             {

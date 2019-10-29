@@ -52,6 +52,7 @@
             // 
             // studentWorkerListView
             // 
+            this.studentWorkerListView.CheckBoxes = true;
             this.studentWorkerListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.name,
             this.position,
@@ -65,6 +66,7 @@
             this.studentWorkerListView.TabIndex = 6;
             this.studentWorkerListView.UseCompatibleStateImageBehavior = false;
             this.studentWorkerListView.View = System.Windows.Forms.View.Details;
+            this.studentWorkerListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.StudentWorkerListView_ItemChecked);
             // 
             // name
             // 

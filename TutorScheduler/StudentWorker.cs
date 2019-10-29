@@ -9,7 +9,8 @@ namespace TutorScheduler
         public int StudentID { get; private set; }
         public string Name;
         public string JobPosition;
-        public int DisplayColor;        
+        public int DisplayColor;
+        public bool Selected;
         private Schedule classSchedule;                           // the student's class schedule
         private Schedule workSchedule;
         private Schedule availability = new Schedule();           // the student's work availability schedule
