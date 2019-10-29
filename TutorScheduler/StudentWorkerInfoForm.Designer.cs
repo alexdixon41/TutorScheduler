@@ -29,11 +29,6 @@ namespace TutorScheduler
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Example Class",
-            "12:30 pm",
-            "1:45 pm",
-            "T, TR"}, -1);
             this.nameLabel = new System.Windows.Forms.Label();
             this.classEditPanel = new System.Windows.Forms.Panel();
             this.addClassButton = new System.Windows.Forms.Button();
@@ -97,8 +92,6 @@ namespace TutorScheduler
             this.classesListView.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.classesListView.FullRowSelect = true;
             this.classesListView.HideSelection = false;
-            this.classesListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
             this.classesListView.Location = new System.Drawing.Point(3, 61);
             this.classesListView.Name = "classesListView";
             this.classesListView.Size = new System.Drawing.Size(1219, 201);
@@ -151,18 +144,6 @@ namespace TutorScheduler
             this.subjectListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.subjectListBox.FormattingEnabled = true;
             this.subjectListBox.ItemHeight = 25;
-            this.subjectListBox.Items.AddRange(new object[] {
-            "CSC 185",
-            "CSC 190",
-            "CSC 310",
-            "CSC 313",
-            "CSC 320",
-            "CSC 340",
-            "CSC 541",
-            "MAT 112",
-            "MAT 114",
-            "MAT 234",
-            "STA 270"});
             this.subjectListBox.Location = new System.Drawing.Point(13, 212);
             this.subjectListBox.MultiColumn = true;
             this.subjectListBox.Name = "subjectListBox";
@@ -205,6 +186,7 @@ namespace TutorScheduler
             this.Controls.Add(this.nameLabel);
             this.Name = "StudentWorkerInfoForm";
             this.Text = "Edit Class Schedule";
+            this.Load += new System.EventHandler(this.StudentWorkerInfoForm_Load);
             this.classEditPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TutorScheduler
 {
-    class StudentWorker
+    public class StudentWorker
     {
         public int StudentID { get; private set; }
         public string Name;

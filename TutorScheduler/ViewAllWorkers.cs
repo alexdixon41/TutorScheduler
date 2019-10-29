@@ -23,7 +23,11 @@ namespace TutorScheduler
 
         private void SelectedButton_Click(object sender, EventArgs e)
         {
-            new StudentWorkerInfoForm().Show();
+            if (studentWorkerListView.SelectedIndices.Count != 0)
+            {
+                StudentWorker selectedStudentWorker = studentWorkers[studentWorkerListView.SelectedItems[0].Index];
+                new StudentWorkerInfoForm(selectedStudentWorker).Show();
+            }
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)

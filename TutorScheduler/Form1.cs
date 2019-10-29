@@ -155,11 +155,6 @@ namespace TutorScheduler
             calendarPanel.AutoScrollPosition = ScrollPosition;            
         }
 
-        //Add a student worker is clicked
-        private void AddStudentWorkerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new StudentWorkerInfoForm().Show();
-        }
 
         //View all student workers is clicked
         private void ViewAllToolStripMenuItem_Click(object sender, EventArgs e)
@@ -275,11 +270,6 @@ namespace TutorScheduler
         {
             showAvailability = !showAvailability;
             PopulateCalendars(studentWorkers);
-        }
-
-        private void SelectStudentWorkersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new DisplayStudentWorkers().Show();
         }
 
         private void LeftDayButton_Click(object sender, EventArgs e)
