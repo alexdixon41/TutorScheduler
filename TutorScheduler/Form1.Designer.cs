@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.dayLabelPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.fridayLabel = new System.Windows.Forms.Label();
             this.thursdayLabel = new System.Windows.Forms.Label();
             this.tuesdayLabel = new System.Windows.Forms.Label();
@@ -49,9 +50,8 @@
             this.viewAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.calendarDayView1 = new TutorScheduler.CalendarDayView();
             this.calendarWeekView1 = new TutorScheduler.CalendarWeekView();
+            this.calendarDayView1 = new TutorScheduler.CalendarDayView();
             this.dayLabelPanel.SuspendLayout();
             this.calendarPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -62,7 +62,6 @@
             this.dayLabelPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dayLabelPanel.AutoSize = true;
-            this.dayLabelPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dayLabelPanel.Controls.Add(this.panel1);
             this.dayLabelPanel.Controls.Add(this.fridayLabel);
             this.dayLabelPanel.Controls.Add(this.thursdayLabel);
@@ -70,10 +69,19 @@
             this.dayLabelPanel.Controls.Add(this.wednesdayLabel);
             this.dayLabelPanel.Controls.Add(this.mondayLabel);
             this.dayLabelPanel.Location = new System.Drawing.Point(0, 36);
-            this.dayLabelPanel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.dayLabelPanel.Margin = new System.Windows.Forms.Padding(0);
             this.dayLabelPanel.Name = "dayLabelPanel";
             this.dayLabelPanel.Size = new System.Drawing.Size(863, 85);
             this.dayLabelPanel.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 81);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(863, 4);
+            this.panel1.TabIndex = 5;
             // 
             // fridayLabel
             // 
@@ -272,14 +280,18 @@
             this.viewAllToolStripMenuItem1.ToolTipText = "View all saved subjects";
             this.viewAllToolStripMenuItem1.Click += new System.EventHandler(this.ViewAllToolStripMenuItem1_Click);
             // 
-            // panel1
+            // calendarWeekView1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 79);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(861, 4);
-            this.panel1.TabIndex = 5;
+            this.calendarWeekView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.calendarWeekView1.Location = new System.Drawing.Point(0, 0);
+            this.calendarWeekView1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.calendarWeekView1.Name = "calendarWeekView1";
+            this.calendarWeekView1.Size = new System.Drawing.Size(836, 44179);
+            this.calendarWeekView1.TabIndex = 0;
+            this.calendarWeekView1.Text = "calendarWeekView1";
+            this.calendarWeekView1.Click += new System.EventHandler(this.CalendarWeekView1_Click);
             // 
             // calendarDayView1
             // 
@@ -289,23 +301,10 @@
             this.calendarDayView1.Location = new System.Drawing.Point(0, 0);
             this.calendarDayView1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.calendarDayView1.Name = "calendarDayView1";
-            this.calendarDayView1.Size = new System.Drawing.Size(836, 8491);
+            this.calendarDayView1.Size = new System.Drawing.Size(836, 10102);
             this.calendarDayView1.TabIndex = 1;
             this.calendarDayView1.Text = "calendarDayView1";
             this.calendarDayView1.Visible = false;
-            // 
-            // calendarWeekView1
-            // 
-            this.calendarWeekView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.calendarWeekView1.Location = new System.Drawing.Point(0, 0);
-            this.calendarWeekView1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.calendarWeekView1.Name = "calendarWeekView1";
-            this.calendarWeekView1.Size = new System.Drawing.Size(836, 42568);
-            this.calendarWeekView1.TabIndex = 0;
-            this.calendarWeekView1.Text = "calendarWeekView1";
-            this.calendarWeekView1.Click += new System.EventHandler(this.CalendarWeekView1_Click);
             // 
             // Form1
             // 
