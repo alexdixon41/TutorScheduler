@@ -142,6 +142,50 @@ namespace TutorScheduler
             return sw;
         }
 
+        /// <summary>
+        /// Queries the database for all of the subjects tutored by a single student worker
+        /// </summary>
+        /// <param name="studentID">The ID of the student worker whose subjects you want</param>
+        /// <returns>A list of the subjects the student worker tutors</returns>
+        public static List<Subject> GetStudentWorkersSubjects(int studentID)
+        {
+            List<Subject> subjects = new List<Subject>();
+            DataTable table = new DataTable();
+
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"SELECT subject.subjectID, subject.subName, subject.abbreviation, subject.subNum
+                                FROM subject JOIN subjecttutored on subject.subjectID = subjecttutored.subjectID
+                                WHERE subjecttutored.studentID = @id;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", studentID);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                myAdapter.Fill(table);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+
+            foreach (DataRow row in table.Rows)
+            {
+                int id = (int)(row["subjectID"]);
+                String name = row["subName"].ToString();
+                String abbr = row["abbreviation"].ToString();
+                int num = (int)(row["subNum"]);
+                Subject subj = new Subject(id, abbr, num, name);
+                subjects.Add(subj);
+            }
+
+            return subjects;
+        }
+
         public static List<StudentWorker> GetStudentWorkers()
         {
             List<StudentWorker> studentWorkers = new List<StudentWorker>();

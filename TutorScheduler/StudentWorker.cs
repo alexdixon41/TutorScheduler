@@ -54,6 +54,13 @@ namespace TutorScheduler
             return availability;
         }
 
+        public List<Subject> GetSubjectsTutored()
+        {
+            List<Subject> subjects = DatabaseManager.GetStudentWorkersSubjects(StudentID);
+            return subjects;
+        }
+
+
         /// <summary>
         /// Build the schedule of available work times for the student from their class schedule, if it is set.
         /// </summary>
@@ -128,6 +135,7 @@ namespace TutorScheduler
                 day++;
             }
         }
+
 
         public void removeStudentWorker()
         {

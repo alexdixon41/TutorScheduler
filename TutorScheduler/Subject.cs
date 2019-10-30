@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TutorScheduler
 {
-    class Subject
+    public class Subject
     {
         public int subjectID;
         public string abbreviation;
