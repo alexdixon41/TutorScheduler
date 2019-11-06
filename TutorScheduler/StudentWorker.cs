@@ -60,6 +60,14 @@ namespace TutorScheduler
             return subjects;
         }
 
+        /// <summary>
+        /// Add a subject to the list of subjects the student worker tutors
+        /// </summary>
+        /// <param name="subjectID">The ID of the subject to be added to the list</param>
+        public void AddSubjectTutored(int subjectID)
+        {
+            DatabaseManager.AddSubjectTutored(subjectID, StudentID);
+        }
 
         /// <summary>
         /// Build the schedule of available work times for the student from their class schedule, if it is set.

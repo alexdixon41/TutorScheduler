@@ -13,6 +13,28 @@ namespace TutorScheduler
         private static string connectionString = "server=localhost;user=root;database=tutorscheduler;port=3306;SSLMode=none";
         private static MySqlConnection conn = new MySqlConnection(connectionString);
 
+        public static void AddSubjectTutored(int subjectID, int studentID)
+        {
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"INSERT INTO subjecttutored (studentID, subjectID) values (@studentID, @subjectID);";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@studentID", studentID);
+                cmd.Parameters.AddWithValue("subjectID", subjectID);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+        }
+
         public static bool GetManager(string email, string pass)
         {
             bool result = false;

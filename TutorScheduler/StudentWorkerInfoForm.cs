@@ -90,7 +90,8 @@ namespace TutorScheduler
 
         private void AddSubjectButton_Click(object sender, EventArgs e)
         {
-            new AddSubjectToStudentWorker(selectedStudentWorker).Show();
+            new AddSubjectToStudentWorker(selectedStudentWorker).ShowDialog();
+            displaySubjects();
         }
     }
 }

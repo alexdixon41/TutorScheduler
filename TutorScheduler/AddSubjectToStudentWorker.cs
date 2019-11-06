@@ -48,7 +48,15 @@ namespace TutorScheduler
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            //TODO: Add Subject to SubjectTutored in database
+            int i = 0;
+            foreach (Subject subject in subjectList)
+            {
+                if (subjectListView.Items[i].Checked)
+                {
+                    selectedStudentWorker.AddSubjectTutored(subject.subjectID);
+                }
+                i++;
+            }
             this.Close();
         }
     }
