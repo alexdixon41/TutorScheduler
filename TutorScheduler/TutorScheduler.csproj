@@ -86,6 +86,12 @@
     <Compile Include="AddNewWorkShift.Designer.cs">
       <DependentUpon>AddNewWorkShift.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddSubjectToStudentWorker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddSubjectToStudentWorker.Designer.cs">
+      <DependentUpon>AddSubjectToStudentWorker.cs</DependentUpon>
+    </Compile>
     <Compile Include="AlertDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddNewWorkShift.resx">
       <DependentUpon>AddNewWorkShift.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddSubjectToStudentWorker.resx">
+      <DependentUpon>AddSubjectToStudentWorker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AlertDialog.resx">
       <DependentUpon>AlertDialog.cs</DependentUpon>

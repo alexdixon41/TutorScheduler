@@ -161,6 +161,7 @@ namespace TutorScheduler
             this.addSubjectButton.TabIndex = 7;
             this.addSubjectButton.Text = "Add a Subject";
             this.addSubjectButton.UseVisualStyleBackColor = true;
+            this.addSubjectButton.Click += new System.EventHandler(this.AddSubjectButton_Click);
             // 
             // subjectListView
             // 
