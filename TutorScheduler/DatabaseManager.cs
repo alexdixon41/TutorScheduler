@@ -334,7 +334,29 @@ namespace TutorScheduler
             // close connection
             conn.Close();
             Console.WriteLine("Done.");
-        }       
+        }      
+        
+        public static void RemoveSubjectTutored(int subjectID)
+        {
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"DELETE FROM subjecttutored where subjectID=@subjectID";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@subjectID", subjectID);
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("Subject removed.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+        }
 
         /// <summary>
         /// Saves a new student worker in the database
