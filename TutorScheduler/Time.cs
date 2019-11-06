@@ -23,6 +23,29 @@ namespace TutorScheduler
             this.minutes = minutes;
         }   
 
+        public string getTimeString()
+        {
+            string timeStr = "";
+            string amOrPM = " a.m.";
+            if (hours >= 12)
+            {
+                amOrPM = " p.m.";
+            }
+            if (hours > 12)
+            {
+                timeStr += hours % 12 + ":";
+            }
+            else
+            {
+                timeStr += hours + ":";
+            }
+            if (minutes < 10)
+            {
+                timeStr += "0";
+            }
+            return timeStr + minutes + amOrPM;
+        }
+
         public static bool operator <(Time t1, Time t2)
         {
             return t1.hours < t2.hours || (t1.hours == t2.hours && t1.minutes < t2.minutes);

@@ -48,7 +48,8 @@ namespace TutorScheduler
             //set subjects
             displaySubjects();
 
-            //TODO: Display classes
+            //set classes
+            displayClasses();
         }
 
         private void displaySubjects()
@@ -61,8 +62,24 @@ namespace TutorScheduler
                 String subjStr = subject.abbreviation + " " + subject.subjectNumber;
                 subjectListView.Items.Add(subjStr);
                 subjectListView.Items[i].SubItems.Add(subject.name);
+                i++;
             }
+        }
 
+        private void displayClasses()
+        {
+            List<CalendarEvent> classes = selectedStudentWorker.GetClassSchedule().Events;
+            classesListView.Items.Clear();
+            int i = 0;
+            foreach (CalendarEvent classEvent in classes)
+            {
+                //TODO: How to display class name when it isn't stored in the database??
+                classesListView.Items.Add("Class " + i);
+                classesListView.Items[i].SubItems.Add(classEvent.StartTime.getTimeString());
+                classesListView.Items[i].SubItems.Add(classEvent.EndTime.getTimeString());
+                classesListView.Items[i].SubItems.Add(""+classEvent.Day);
+                i++;
+            }
 
         }
 
