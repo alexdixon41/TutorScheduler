@@ -285,6 +285,48 @@ namespace TutorScheduler
         }
 
         /// <summary>
+        /// Retrieves a list of studentIDs of the student workers who tutor a selected subject
+        /// </summary>
+        /// <param name="subjectID">The id of the subject</param>
+        /// <returns>A list of integers containing the studentIDs of the students who tutor the subject</returns>
+        public static List<StudentWorker> getTutorsForSubject(int subjectID)
+        {
+            List<StudentWorker> tutorList = new List<StudentWorker>();
+            DataTable table = new DataTable();
+
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"SELECT sw.studentID, sw.studentName
+                                FROM studentworker sw JOIN subjecttutored sub on sw.studentID = sub.studentID
+                                WHERE sub.subjectID = @subID";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@subID", subjectID);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                myAdapter.Fill(table);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+
+            foreach (DataRow row in table.Rows)
+            {
+                int studentID = (int)row["studentID"];
+                string name = row["studentName"].ToString();
+                StudentWorker tutor = new StudentWorker(studentID, name);
+                tutorList.Add(tutor);
+            }
+
+            return tutorList;
+        }
+
+        /// <summary>
         /// Deletes a student worker from the database 
         /// </summary>
         /// <param name="studentID"></param>

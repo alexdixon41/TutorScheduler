@@ -28,6 +28,11 @@ namespace TutorScheduler
             name = subName;
         }
 
+        public List<StudentWorker> getTutors()
+        {
+            return DatabaseManager.getTutorsForSubject(subjectID);
+        }
+
         public void removeSubject()
         {
             DatabaseManager.RemoveSubject(subjectID);

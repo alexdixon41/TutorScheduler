@@ -21,6 +21,12 @@ namespace TutorScheduler
             Name = name;
         }
 
+        public StudentWorker(int id, string name)
+        {
+            StudentID = id;
+            Name = name;
+        }
+
         public StudentWorker(int id, string name, string jobPosition, int displayColor)
         {
             StudentID = id;
@@ -144,6 +150,11 @@ namespace TutorScheduler
             }
         }
 
+
+        public void fetchWorkSchedule()
+        {
+            workSchedule = DatabaseManager.GetSchedule(StudentID, 2);
+        }
 
         public void removeStudentWorker()
         {
