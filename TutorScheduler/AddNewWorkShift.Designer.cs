@@ -175,6 +175,7 @@
             this.Controls.Add(this.label4);
             this.Name = "AddNewWorkShift";
             this.Text = "AddNewWorkShift";
+            this.Load += new System.EventHandler(this.AddNewWorkShift_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

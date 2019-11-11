@@ -24,5 +24,45 @@ namespace TutorScheduler
             //TODO: Create shift
             this.Close();
         }
+
+        private void AddNewWorkShift_Load(object sender, EventArgs e)
+        {
+            displayStudentWorkers();
+        }
+
+        private void displayStudentWorkers()
+        {
+            studentWorkerListView.Items.Clear();
+            List<StudentWorker> studentWorkerList = StudentWorker.GetStudentWorkers();
+            int i = 0;
+            foreach (StudentWorker studentWorker in studentWorkerList)
+            {
+                studentWorkerListView.Items.Add(studentWorker.Name);
+                studentWorkerListView.Items[i].SubItems.Add(studentWorker.JobPosition);
+                studentWorkerListView.Items[i].SubItems.Add(getSubjectString(studentWorker));
+                i++;
+            }
+        }
+
+        private string getSubjectString(StudentWorker studentWorker)
+        {
+            string subjectString = "";
+
+            //Get all subjects tutored by the student worker
+            List<Subject> subjectList = studentWorker.GetSubjectsTutored();
+
+            //Add each subject into string
+            foreach (Subject subject in subjectList)
+            {
+                subjectString += subject.abbreviation + " " + subject.subjectNumber + ", ";
+            }
+
+            //Remove the final comma
+            if (subjectString.Length > 0)
+                subjectString = subjectString.Substring(0, (subjectString.Length - 2));
+
+            return subjectString;
+        }
+
     }
 }
