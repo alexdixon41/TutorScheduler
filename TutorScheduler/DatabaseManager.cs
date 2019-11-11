@@ -353,6 +353,56 @@ namespace TutorScheduler
         }
 
         /// <summary>
+        /// Deletes all events belonging to a student worker from the database
+        /// </summary>
+        /// <param name="studentID">The ID of the student worker</param>
+        public static void RemoveStudentWorkersSchedules(int studentID)
+        {
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"DELETE FROM scheduleevent where studentID=@studentID";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@studentID", studentID);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+        }
+
+        /// <summary>
+        /// Deletes all subjects tutored belonging to a student worker from the database
+        /// </summary>
+        /// <param name="studentID">The ID of the student worker</param>
+        public static void RemoveStudentWorkersSubjects(int studentID)
+        {
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"DELETE FROM subjecttutored where studentID=@studentID";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@studentID", studentID);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+        }
+
+        /// <summary>
         /// Deletes subject with given ID from the database 
         /// </summary>
         /// <param name="subjectID">The ID of the subject to be deleted</param>

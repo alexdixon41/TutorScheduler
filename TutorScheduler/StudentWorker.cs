@@ -155,10 +155,16 @@ namespace TutorScheduler
         {
             workSchedule = DatabaseManager.GetSchedule(StudentID, 2);
         }
-
+        
+        /// <summary>
+        /// Deletes the student worker and all information belonging to them from the database
+        /// </summary>
         public void removeStudentWorker()
         {
+            //Remove the student worker, their schedules, and the subjects they tutor
             DatabaseManager.RemoveStudentWorker(StudentID);
+            DatabaseManager.RemoveStudentWorkersSchedules(StudentID);
+            DatabaseManager.RemoveStudentWorkersSubjects(StudentID);
         }
 
         
