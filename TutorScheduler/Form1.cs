@@ -95,6 +95,12 @@ namespace TutorScheduler
                 Schedule s = sw.GetClassSchedule();
                 calendarWeekView1.AddSchedule(s);
                 calendarDayView1.AddSchedule(s);
+
+                Schedule w = sw.GetWorkSchedule();
+                calendarWeekView1.AddSchedule(w);
+                calendarDayView1.AddSchedule(w);
+                
+
                 // include availability schedule only if enabled
                 if (showAvailability)
                 {

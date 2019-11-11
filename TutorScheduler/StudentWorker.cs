@@ -153,7 +153,7 @@ namespace TutorScheduler
 
         public void fetchWorkSchedule()
         {
-            workSchedule = DatabaseManager.GetSchedule(StudentID, 2);
+            workSchedule = DatabaseManager.GetSchedule(StudentID, CalendarEvent.WORK);
         }
         
         /// <summary>
