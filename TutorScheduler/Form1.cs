@@ -15,7 +15,8 @@ namespace TutorScheduler
         Point ScrollPosition = new Point(0, 0);         // save the scroll position so it can be restored when panel is resized
         Label[] dayLabels;                              // the weekday labels on top of the calendar
         bool weekView = true;                           // whether the calendar view mode is set to week view or day view
-        bool showAvailability = true;                   // whether to show availability times on the calendar        
+        bool showAvailability = true;                   // whether to show availability times on the calendar  
+        bool showClasses = true;                        // whether to show class times on the calendar
         Button leftDayButton, rightDayButton;
         Label selectedDayLabel;                         // save the selected day for day view
 
@@ -92,14 +93,18 @@ namespace TutorScheduler
             // TODO - only get selected student workers
             foreach (StudentWorker sw in studentWorkers)
             {
-                Schedule s = sw.GetClassSchedule();
-                calendarWeekView1.AddSchedule(s);
-                calendarDayView1.AddSchedule(s);
-
+                //Show work schedule
                 Schedule w = sw.GetWorkSchedule();
                 calendarWeekView1.AddSchedule(w);
                 calendarDayView1.AddSchedule(w);
-                
+
+                //include class schedule only if enabled
+                if (showClasses)
+                {
+                    Schedule s = sw.GetClassSchedule();
+                    calendarWeekView1.AddSchedule(s);
+                    calendarDayView1.AddSchedule(s);
+                }
 
                 // include availability schedule only if enabled
                 if (showAvailability)
@@ -287,7 +292,13 @@ namespace TutorScheduler
                 selectedDayLabel.Text = dayLabelText[calendarDayView1.SelectedDay];
             }
         }
-        
+
+        private void ClassesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showClasses = !showClasses;
+            PopulateCalendars(studentWorkers);
+        }
+
         private void RightDayButton_Click(object sender, EventArgs e)
         {
             // move forward one day
