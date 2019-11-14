@@ -171,6 +171,7 @@ namespace TutorScheduler
         #region StaticMethods
         public static List<StudentWorker> GetStudentWorkers()
         {
+            // TODO: Seperate this into GetAllStudentWorkers function and a GetSelectedStudentWorkers function
             // TODO database query on separate thread
             List<StudentWorker> studentWorkers = DatabaseManager.GetStudentWorkers();            
             foreach (StudentWorker sw in studentWorkers)
@@ -178,6 +179,7 @@ namespace TutorScheduler
                 // set the class and work schedule of the student worker
                 sw.SetClassSchedule(DatabaseManager.GetSchedule(sw.StudentID, CalendarEvent.CLASS));
                 sw.SetWorkSchedule(DatabaseManager.GetSchedule(sw.StudentID, CalendarEvent.WORK));
+                sw.BuildAvailabilitySchedule();
             }
 
             return studentWorkers;

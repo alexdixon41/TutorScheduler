@@ -451,6 +451,50 @@ namespace TutorScheduler
         }
 
         /// <summary>
+        /// Saves a new event to the database
+        /// </summary>
+        /// <param name="owner">The ID of the student worker who the event belongs to</param>
+        public static void SaveEvent(int studentID, CalendarEvent newEvent)
+        {
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"INSERT INTO scheduleevent 
+                            (studentID, eventType, startHour, startMinute, endHour, endMinute, monday, tuesday, wednesday, thursday, friday) 
+                             VALUES (@studentID, @type, @startHour, @startMin, @endHour, @endMin, @mon, @tues, @wed, @thurs, @fri);";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@studentID", studentID);
+                cmd.Parameters.AddWithValue("@type", newEvent.type);
+                cmd.Parameters.AddWithValue("@startHour", newEvent.StartTime.hours);
+                cmd.Parameters.AddWithValue("@startMin", newEvent.StartTime.minutes);
+                cmd.Parameters.AddWithValue("@endHour", newEvent.EndTime.hours);
+                cmd.Parameters.AddWithValue("@endMin", newEvent.EndTime.minutes);
+
+                //Bind day
+                int[] days = new int[5];
+                days[newEvent.Day] = 1;
+
+                cmd.Parameters.AddWithValue("@mon", days[0]);
+                cmd.Parameters.AddWithValue("@tues", days[1]);
+                cmd.Parameters.AddWithValue("@wed", days[2]);
+                cmd.Parameters.AddWithValue("@thurs", days[3]);
+                cmd.Parameters.AddWithValue("@fri", days[4]);
+
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("Event created.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+        }
+
+        /// <summary>
         /// Saves a new student worker in the database
         /// </summary>
         /// <param name="student">A student worker object containing the information for the new student worker</param>

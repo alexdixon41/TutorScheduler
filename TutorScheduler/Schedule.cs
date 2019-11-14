@@ -62,6 +62,58 @@ namespace TutorScheduler
         }
 
         /// <summary>
+        /// Determines if an event falls within the current schedule
+        /// </summary>
+        /// <param name="testEvent">The event that is being checked to see if it falls within the schedule</param>
+        /// <returns>True if the event is falls within the schedule. False if it does not</returns>
+        public bool Contains(CalendarEvent testEvent)
+        {
+
+            foreach (CalendarEvent existingEvent in Events)
+            {
+
+                //Check if events are on the same day
+                if (existingEvent.Day == testEvent.Day)
+                {
+                    //Check if the testEvent falls withing the times of the existingEvent
+                    if (existingEvent.StartTime <= testEvent.StartTime && existingEvent.EndTime >= testEvent.EndTime)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool Overlaps(CalendarEvent testEvent)
+        {
+            foreach (CalendarEvent existingEvent in Events)
+            {
+
+                //Check if events are on the same day
+                if (existingEvent.Day == testEvent.Day)
+                {
+                    //Check if the testEvent overlaps the times of the existingEvent
+                    if (CalendarEvent.Overlap(testEvent, existingEvent)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public void SaveSchedule(int studentID)
+        {
+            foreach(CalendarEvent newEvent in Events)
+            {
+                DatabaseManager.SaveEvent(studentID, newEvent);
+            }
+        }
+
+
+        #region Static Functions 
+
+        /// <summary>
         /// Get the latest time ending in a multiple of 15 that a worker can stop work before a scheduled class.
         /// Must be at least 15 minutes before the scheduled class. 
         /// </summary>
@@ -98,6 +150,8 @@ namespace TutorScheduler
             }
             return newTime.AddTime(new Time(0, 5));                 // if minutes are not a multiple of 15 or 10, add 5 minutes
         }
+
+        #endregion
 
     }
 }

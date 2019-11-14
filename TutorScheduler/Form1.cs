@@ -109,7 +109,6 @@ namespace TutorScheduler
                 // include availability schedule only if enabled
                 if (showAvailability)
                 {
-                    sw.BuildAvailabilitySchedule();
                     Schedule a = sw.GetAvailabilitySchedule();
                     calendarWeekView1.AddSchedule(a);
                     calendarDayView1.AddSchedule(a);
@@ -211,7 +210,11 @@ namespace TutorScheduler
 
         private void CalendarWeekView1_Click(object sender, EventArgs e)
         {
-            new AddNewWorkShift().Show();
+            new AddNewWorkShift().ShowDialog();
+            //Refresh the schedule
+            studentWorkers = StudentWorker.GetStudentWorkers();
+            PopulateCalendars(studentWorkers);
+
         }
 
         // switch between week view and day view

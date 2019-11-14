@@ -47,6 +47,13 @@
             this.searchButton = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.createButton = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.fridayCheckBox = new System.Windows.Forms.CheckBox();
+            this.thursdayCheckBox = new System.Windows.Forms.CheckBox();
+            this.wednesdayCheckBox = new System.Windows.Forms.CheckBox();
+            this.tuesdayCheckBox = new System.Windows.Forms.CheckBox();
+            this.mondayCheckBox = new System.Windows.Forms.CheckBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // endTimePicker
@@ -56,11 +63,11 @@
             this.endTimePicker.CustomFormat = "hh:mm tt";
             this.endTimePicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.endTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker.Location = new System.Drawing.Point(540, 48);
+            this.endTimePicker.Location = new System.Drawing.Point(539, 4);
             this.endTimePicker.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.endTimePicker.Name = "endTimePicker";
             this.endTimePicker.ShowUpDown = true;
-            this.endTimePicker.Size = new System.Drawing.Size(245, 34);
+            this.endTimePicker.Size = new System.Drawing.Size(258, 34);
             this.endTimePicker.TabIndex = 6;
             this.endTimePicker.Value = new System.DateTime(2019, 9, 15, 10, 0, 0, 0);
             // 
@@ -68,7 +75,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(410, 53);
+            this.label5.Location = new System.Drawing.Point(409, 10);
             this.label5.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(97, 28);
@@ -80,7 +87,7 @@
             this.startTimePicker.CustomFormat = "hh:mm tt";
             this.startTimePicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.startTimePicker.Location = new System.Drawing.Point(147, 48);
+            this.startTimePicker.Location = new System.Drawing.Point(146, 4);
             this.startTimePicker.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.startTimePicker.Name = "startTimePicker";
             this.startTimePicker.ShowUpDown = true;
@@ -92,7 +99,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(9, 53);
+            this.label4.Location = new System.Drawing.Point(8, 10);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(105, 28);
             this.label4.TabIndex = 7;
@@ -110,7 +117,7 @@
             this.studentWorkerListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2});
-            this.studentWorkerListView.Location = new System.Drawing.Point(13, 145);
+            this.studentWorkerListView.Location = new System.Drawing.Point(12, 190);
             this.studentWorkerListView.Name = "studentWorkerListView";
             this.studentWorkerListView.Size = new System.Drawing.Size(775, 250);
             this.studentWorkerListView.TabIndex = 11;
@@ -135,7 +142,7 @@
             // searchButton
             // 
             this.searchButton.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.searchButton.Location = new System.Drawing.Point(666, 94);
+            this.searchButton.Location = new System.Drawing.Point(666, 139);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(122, 45);
             this.searchButton.TabIndex = 10;
@@ -144,7 +151,7 @@
             // 
             // searchBox
             // 
-            this.searchBox.Location = new System.Drawing.Point(14, 108);
+            this.searchBox.Location = new System.Drawing.Point(13, 154);
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(633, 22);
             this.searchBox.TabIndex = 9;
@@ -152,7 +159,7 @@
             // createButton
             // 
             this.createButton.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.createButton.Location = new System.Drawing.Point(666, 401);
+            this.createButton.Location = new System.Drawing.Point(666, 457);
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(122, 45);
             this.createButton.TabIndex = 12;
@@ -160,11 +167,90 @@
             this.createButton.UseVisualStyleBackColor = true;
             this.createButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.fridayCheckBox);
+            this.groupBox1.Controls.Add(this.thursdayCheckBox);
+            this.groupBox1.Controls.Add(this.wednesdayCheckBox);
+            this.groupBox1.Controls.Add(this.tuesdayCheckBox);
+            this.groupBox1.Controls.Add(this.mondayCheckBox);
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(13, 55);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(775, 78);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Days";
+            // 
+            // fridayCheckBox
+            // 
+            this.fridayCheckBox.AutoSize = true;
+            this.fridayCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fridayCheckBox.Location = new System.Drawing.Point(561, 33);
+            this.fridayCheckBox.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.fridayCheckBox.Name = "fridayCheckBox";
+            this.fridayCheckBox.Size = new System.Drawing.Size(88, 32);
+            this.fridayCheckBox.TabIndex = 5;
+            this.fridayCheckBox.Text = "Friday";
+            this.fridayCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // thursdayCheckBox
+            // 
+            this.thursdayCheckBox.AutoSize = true;
+            this.thursdayCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thursdayCheckBox.Location = new System.Drawing.Point(425, 33);
+            this.thursdayCheckBox.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.thursdayCheckBox.Name = "thursdayCheckBox";
+            this.thursdayCheckBox.Size = new System.Drawing.Size(113, 32);
+            this.thursdayCheckBox.TabIndex = 4;
+            this.thursdayCheckBox.Text = "Thursday";
+            this.thursdayCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // wednesdayCheckBox
+            // 
+            this.wednesdayCheckBox.AutoSize = true;
+            this.wednesdayCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.wednesdayCheckBox.Location = new System.Drawing.Point(267, 33);
+            this.wednesdayCheckBox.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.wednesdayCheckBox.Name = "wednesdayCheckBox";
+            this.wednesdayCheckBox.Size = new System.Drawing.Size(135, 32);
+            this.wednesdayCheckBox.TabIndex = 3;
+            this.wednesdayCheckBox.Text = "Wednesday";
+            this.wednesdayCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // tuesdayCheckBox
+            // 
+            this.tuesdayCheckBox.AutoSize = true;
+            this.tuesdayCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tuesdayCheckBox.Location = new System.Drawing.Point(139, 33);
+            this.tuesdayCheckBox.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.tuesdayCheckBox.Name = "tuesdayCheckBox";
+            this.tuesdayCheckBox.Size = new System.Drawing.Size(105, 32);
+            this.tuesdayCheckBox.TabIndex = 2;
+            this.tuesdayCheckBox.Text = "Tuesday";
+            this.tuesdayCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // mondayCheckBox
+            // 
+            this.mondayCheckBox.AutoSize = true;
+            this.mondayCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mondayCheckBox.Location = new System.Drawing.Point(9, 33);
+            this.mondayCheckBox.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.mondayCheckBox.Name = "mondayCheckBox";
+            this.mondayCheckBox.Size = new System.Drawing.Size(107, 32);
+            this.mondayCheckBox.TabIndex = 1;
+            this.mondayCheckBox.Text = "Monday";
+            this.mondayCheckBox.UseVisualStyleBackColor = true;
+            // 
             // AddNewWorkShift
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(813, 518);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.createButton);
             this.Controls.Add(this.studentWorkerListView);
             this.Controls.Add(this.searchButton);
@@ -176,6 +262,8 @@
             this.Name = "AddNewWorkShift";
             this.Text = "AddNewWorkShift";
             this.Load += new System.EventHandler(this.AddNewWorkShift_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,5 +282,11 @@
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.TextBox searchBox;
         private System.Windows.Forms.Button createButton;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox fridayCheckBox;
+        private System.Windows.Forms.CheckBox thursdayCheckBox;
+        private System.Windows.Forms.CheckBox wednesdayCheckBox;
+        private System.Windows.Forms.CheckBox tuesdayCheckBox;
+        private System.Windows.Forms.CheckBox mondayCheckBox;
     }
 }
