@@ -35,24 +35,39 @@ namespace TutorScheduler
                     if (checkBoxes[i].Checked)
                     {
                         //TODO: Verify event info
+                        //Verification items: Shift length should not be longer than 5 hours
+                        //                    Start time should be before End time
 
                         Time startTime = new Time(startTimePicker.Value.TimeOfDay.Hours, startTimePicker.Value.TimeOfDay.Minutes);
                         Time endTime = new Time(endTimePicker.Value.TimeOfDay.Hours, endTimePicker.Value.TimeOfDay.Minutes);
-                        //Create new event
-                        CalendarEvent newWorkEvent = new CalendarEvent(startTime, endTime, i, CalendarEvent.WORK, selectedStudentWorker.Name, selectedStudentWorker.DisplayColor);
-
-                        //Make sure that the new work shift doesn't conflict with student worker's class schedule
-                        //if the new work event is in the student's availability schedule
-                        if (selectedStudentWorker.GetAvailabilitySchedule().Contains(newWorkEvent) && !selectedStudentWorker.GetWorkSchedule().Overlaps(newWorkEvent))
+                        if (endTime < startTime)
                         {
-                            newShifts.AddEvent(newWorkEvent);
+                            new AlertDialog("Start time should be before end time.").ShowDialog();
+                            shouldSave = false;
+                        }
+                        else if (endTime.hours - startTime.hours > 5)
+                        {
+                            new AlertDialog("A work shift should not be longer than 5 hours.").ShowDialog();
+                            shouldSave = false;
                         }
                         else
                         {
-                            //Display conflict error
-                            //TODO: Display better error message
-                            new AlertDialog("The shift conflicts with one of the student worker's classes or work shifts").ShowDialog();
-                            shouldSave = false;
+                            //Create new event
+                            CalendarEvent newWorkEvent = new CalendarEvent(startTime, endTime, i, CalendarEvent.WORK, selectedStudentWorker.Name, selectedStudentWorker.DisplayColor);
+
+                            //Make sure that the new work shift doesn't conflict with student worker's class schedule
+                            //if the new work event is in the student's availability schedule
+                            if (selectedStudentWorker.GetAvailabilitySchedule().Contains(newWorkEvent) && !selectedStudentWorker.GetWorkSchedule().Overlaps(newWorkEvent))
+                            {
+                                newShifts.AddEvent(newWorkEvent);
+                            }
+                            else
+                            {
+                                //Display conflict error
+                                //TODO: Display better error message
+                                new AlertDialog("The shift conflicts with one of the student worker's classes or work shifts").ShowDialog();
+                                shouldSave = false;
+                            }
                         }
                     }
 
@@ -60,9 +75,9 @@ namespace TutorScheduler
                 if (shouldSave)
                 {
                     newShifts.SaveSchedule(selectedStudentWorker.StudentID);
+                    this.Close();
                 }
             }
-            this.Close();
         }
 
         private void AddNewWorkShift_Load(object sender, EventArgs e)
