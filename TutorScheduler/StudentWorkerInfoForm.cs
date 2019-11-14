@@ -21,7 +21,10 @@ namespace TutorScheduler
 
         private void AddClassButton_Click(object sender, EventArgs e)
         {
-            new AddClass().Show();
+            new AddClass(selectedStudentWorker).Show();
+
+            //TODO: Fetch updated class list from database?
+            displayClasses();
         }
 
         private void ColorButton_Click(object sender, EventArgs e)

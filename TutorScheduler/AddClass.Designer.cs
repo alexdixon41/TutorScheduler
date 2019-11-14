@@ -37,11 +37,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.endTimePicker = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.mondayCheckBox = new System.Windows.Forms.CheckBox();
-            this.tuesdayCheckBox = new System.Windows.Forms.CheckBox();
-            this.wednesdayCheckBox = new System.Windows.Forms.CheckBox();
-            this.thursdayCheckBox = new System.Windows.Forms.CheckBox();
             this.fridayCheckBox = new System.Windows.Forms.CheckBox();
+            this.thursdayCheckBox = new System.Windows.Forms.CheckBox();
+            this.wednesdayCheckBox = new System.Windows.Forms.CheckBox();
+            this.tuesdayCheckBox = new System.Windows.Forms.CheckBox();
+            this.mondayCheckBox = new System.Windows.Forms.CheckBox();
             this.saveClassButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -52,7 +52,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(9, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(177, 46);
+            this.label1.Size = new System.Drawing.Size(172, 45);
             this.label1.TabIndex = 0;
             this.label1.Text = "New Class";
             // 
@@ -155,41 +155,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Days";
             // 
-            // mondayCheckBox
+            // fridayCheckBox
             // 
-            this.mondayCheckBox.AutoSize = true;
-            this.mondayCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mondayCheckBox.Location = new System.Drawing.Point(23, 74);
-            this.mondayCheckBox.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
-            this.mondayCheckBox.Name = "mondayCheckBox";
-            this.mondayCheckBox.Size = new System.Drawing.Size(107, 32);
-            this.mondayCheckBox.TabIndex = 1;
-            this.mondayCheckBox.Text = "Monday";
-            this.mondayCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // tuesdayCheckBox
-            // 
-            this.tuesdayCheckBox.AutoSize = true;
-            this.tuesdayCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tuesdayCheckBox.Location = new System.Drawing.Point(153, 74);
-            this.tuesdayCheckBox.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
-            this.tuesdayCheckBox.Name = "tuesdayCheckBox";
-            this.tuesdayCheckBox.Size = new System.Drawing.Size(105, 32);
-            this.tuesdayCheckBox.TabIndex = 2;
-            this.tuesdayCheckBox.Text = "Tuesday";
-            this.tuesdayCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // wednesdayCheckBox
-            // 
-            this.wednesdayCheckBox.AutoSize = true;
-            this.wednesdayCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.wednesdayCheckBox.Location = new System.Drawing.Point(281, 74);
-            this.wednesdayCheckBox.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
-            this.wednesdayCheckBox.Name = "wednesdayCheckBox";
-            this.wednesdayCheckBox.Size = new System.Drawing.Size(135, 32);
-            this.wednesdayCheckBox.TabIndex = 3;
-            this.wednesdayCheckBox.Text = "Wednesday";
-            this.wednesdayCheckBox.UseVisualStyleBackColor = true;
+            this.fridayCheckBox.AutoSize = true;
+            this.fridayCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fridayCheckBox.Location = new System.Drawing.Point(575, 74);
+            this.fridayCheckBox.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.fridayCheckBox.Name = "fridayCheckBox";
+            this.fridayCheckBox.Size = new System.Drawing.Size(88, 32);
+            this.fridayCheckBox.TabIndex = 5;
+            this.fridayCheckBox.Text = "Friday";
+            this.fridayCheckBox.UseVisualStyleBackColor = true;
             // 
             // thursdayCheckBox
             // 
@@ -203,17 +179,41 @@
             this.thursdayCheckBox.Text = "Thursday";
             this.thursdayCheckBox.UseVisualStyleBackColor = true;
             // 
-            // fridayCheckBox
+            // wednesdayCheckBox
             // 
-            this.fridayCheckBox.AutoSize = true;
-            this.fridayCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fridayCheckBox.Location = new System.Drawing.Point(575, 74);
-            this.fridayCheckBox.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
-            this.fridayCheckBox.Name = "fridayCheckBox";
-            this.fridayCheckBox.Size = new System.Drawing.Size(88, 32);
-            this.fridayCheckBox.TabIndex = 5;
-            this.fridayCheckBox.Text = "Friday";
-            this.fridayCheckBox.UseVisualStyleBackColor = true;
+            this.wednesdayCheckBox.AutoSize = true;
+            this.wednesdayCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.wednesdayCheckBox.Location = new System.Drawing.Point(281, 74);
+            this.wednesdayCheckBox.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.wednesdayCheckBox.Name = "wednesdayCheckBox";
+            this.wednesdayCheckBox.Size = new System.Drawing.Size(135, 32);
+            this.wednesdayCheckBox.TabIndex = 3;
+            this.wednesdayCheckBox.Text = "Wednesday";
+            this.wednesdayCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // tuesdayCheckBox
+            // 
+            this.tuesdayCheckBox.AutoSize = true;
+            this.tuesdayCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tuesdayCheckBox.Location = new System.Drawing.Point(153, 74);
+            this.tuesdayCheckBox.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.tuesdayCheckBox.Name = "tuesdayCheckBox";
+            this.tuesdayCheckBox.Size = new System.Drawing.Size(105, 32);
+            this.tuesdayCheckBox.TabIndex = 2;
+            this.tuesdayCheckBox.Text = "Tuesday";
+            this.tuesdayCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // mondayCheckBox
+            // 
+            this.mondayCheckBox.AutoSize = true;
+            this.mondayCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mondayCheckBox.Location = new System.Drawing.Point(23, 74);
+            this.mondayCheckBox.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.mondayCheckBox.Name = "mondayCheckBox";
+            this.mondayCheckBox.Size = new System.Drawing.Size(107, 32);
+            this.mondayCheckBox.TabIndex = 1;
+            this.mondayCheckBox.Text = "Monday";
+            this.mondayCheckBox.UseVisualStyleBackColor = true;
             // 
             // saveClassButton
             // 
@@ -225,6 +225,7 @@
             this.saveClassButton.TabIndex = 5;
             this.saveClassButton.Text = "Save";
             this.saveClassButton.UseVisualStyleBackColor = true;
+            this.saveClassButton.Click += new System.EventHandler(this.SaveClassButton_Click);
             // 
             // AddClass
             // 
