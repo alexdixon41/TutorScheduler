@@ -426,8 +426,12 @@ namespace TutorScheduler
             // close connection
             conn.Close();
             Console.WriteLine("Done.");
-        }      
-        
+        } 
+   
+        /// <summary>
+        /// Removes subject from the list of subjects a student worker tutors
+        /// </summary>
+        /// <param name="subjectID">The subject to be removed</param>
         public static void RemoveSubjectTutored(int subjectID)
         {
             try

@@ -167,6 +167,11 @@ namespace TutorScheduler
             DatabaseManager.RemoveStudentWorkersSubjects(StudentID);
         }
 
+        public void RemoveSubjectTutored(int subjectID)
+        {
+            DatabaseManager.RemoveSubjectTutored(subjectID);
+        }
+
         
         #region StaticMethods
         public static List<StudentWorker> GetStudentWorkers()

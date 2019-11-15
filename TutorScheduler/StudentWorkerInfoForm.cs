@@ -13,6 +13,8 @@ namespace TutorScheduler
     public partial class StudentWorkerInfoForm : Form
     {
         StudentWorker selectedStudentWorker;
+        List<Subject> subjectsTutored;
+
         public StudentWorkerInfoForm(StudentWorker selected)
         {
             InitializeComponent();
@@ -57,7 +59,7 @@ namespace TutorScheduler
 
         private void displaySubjects()
         {
-            List<Subject> subjectsTutored = selectedStudentWorker.GetSubjectsTutored();
+            subjectsTutored = selectedStudentWorker.GetSubjectsTutored();
             subjectListView.Items.Clear();
             int i = 0;
             foreach (Subject subject in subjectsTutored)
@@ -95,6 +97,27 @@ namespace TutorScheduler
         {
             new AddSubjectToStudentWorker(selectedStudentWorker).ShowDialog();
             displaySubjects();
+        }
+
+        private void RemoveSubjectButton_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = new ConfirmationPopup("Are you sure you want to remove the subject(s)?", "This will only remove them from " + selectedStudentWorker.Name).ShowDialog();
+            if(dialogResult == DialogResult.OK)
+            {
+                int i = 0;
+                foreach (Subject subject in subjectsTutored)
+                {
+                    if (subjectListView.Items[i].Checked)
+                    {
+                        selectedStudentWorker.RemoveSubjectTutored(subject.subjectID);
+                    }
+                    i++;
+                }
+
+                //Refresh list of subjects
+                displaySubjects();
+            }
+
         }
     }
 }

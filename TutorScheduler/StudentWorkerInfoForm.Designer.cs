@@ -45,6 +45,7 @@ namespace TutorScheduler
             this.subjectListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.removeSubjectButton = new System.Windows.Forms.Button();
             this.classEditPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -159,7 +160,7 @@ namespace TutorScheduler
             this.addSubjectButton.Name = "addSubjectButton";
             this.addSubjectButton.Size = new System.Drawing.Size(233, 51);
             this.addSubjectButton.TabIndex = 7;
-            this.addSubjectButton.Text = "Add a Subject";
+            this.addSubjectButton.Text = "Add Subject";
             this.addSubjectButton.UseVisualStyleBackColor = true;
             this.addSubjectButton.Click += new System.EventHandler(this.AddSubjectButton_Click);
             // 
@@ -168,6 +169,7 @@ namespace TutorScheduler
             this.subjectListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.subjectListView.CheckBoxes = true;
             this.subjectListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
@@ -191,11 +193,23 @@ namespace TutorScheduler
             this.columnHeader2.Text = "Name";
             this.columnHeader2.Width = 256;
             // 
+            // removeSubjectButton
+            // 
+            this.removeSubjectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.removeSubjectButton.Location = new System.Drawing.Point(261, 155);
+            this.removeSubjectButton.Name = "removeSubjectButton";
+            this.removeSubjectButton.Size = new System.Drawing.Size(233, 51);
+            this.removeSubjectButton.TabIndex = 9;
+            this.removeSubjectButton.Text = "Remove Subject";
+            this.removeSubjectButton.UseVisualStyleBackColor = true;
+            this.removeSubjectButton.Click += new System.EventHandler(this.RemoveSubjectButton_Click);
+            // 
             // StudentWorkerInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1250, 690);
+            this.Controls.Add(this.removeSubjectButton);
             this.Controls.Add(this.subjectListView);
             this.Controls.Add(this.addSubjectButton);
             this.Controls.Add(this.colorButton);
@@ -204,7 +218,7 @@ namespace TutorScheduler
             this.Controls.Add(this.classEditPanel);
             this.Controls.Add(this.nameLabel);
             this.Name = "StudentWorkerInfoForm";
-            this.Text = "Edit Class Schedule";
+            this.Text = "Student Worker Information";
             this.Load += new System.EventHandler(this.StudentWorkerInfoForm_Load);
             this.classEditPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -230,5 +244,6 @@ namespace TutorScheduler
         private System.Windows.Forms.ListView subjectListView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Button removeSubjectButton;
     }
 }
