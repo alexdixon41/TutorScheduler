@@ -151,11 +151,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudentWorker.cs" />
     <Compile Include="Subject.cs" />
-    <Compile Include="SubjectViewer.cs">
+    <Compile Include="ViewAllSubjects.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SubjectViewer.Designer.cs">
-      <DependentUpon>SubjectViewer.cs</DependentUpon>
+    <Compile Include="ViewAllSubjects.Designer.cs">
+      <DependentUpon>ViewAllSubjects.cs</DependentUpon>
     </Compile>
     <Compile Include="Time.cs" />
     <Compile Include="ViewAllWorkers.cs">
@@ -220,8 +220,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="SubjectViewer.resx">
-      <DependentUpon>SubjectViewer.cs</DependentUpon>
+    <EmbeddedResource Include="ViewAllSubjects.resx">
+      <DependentUpon>ViewAllSubjects.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewAllWorkers.resx">
       <DependentUpon>ViewAllWorkers.cs</DependentUpon>
