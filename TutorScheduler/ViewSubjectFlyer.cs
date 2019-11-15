@@ -35,7 +35,8 @@ namespace TutorScheduler
                 {
                     if (!subjectSchedule.Contains(shift))
                     {
-                        if (!subjectSchedule.Overlaps(shift))
+                        Console.WriteLine("Do they overlaps? " + subjectSchedule.CoverageOverlaps(shift));
+                        if (!subjectSchedule.CoverageOverlaps(shift))
                         {
                             subjectSchedule.AddEvent(shift);
                         }
@@ -67,11 +68,11 @@ namespace TutorScheduler
 
         private void resetLabels()
         {
-            mondayLabel.Text = "Monday: ";
-            tuesdayLabel.Text = "Tuesday: ";
-            wednesdayLabel.Text = "Wednesday: ";
-            thursdayLabel.Text = "Thursday: ";
-            fridayLabel.Text = "Friday: ";
+            mondayLabel.Text = "Monday:  ";
+            tuesdayLabel.Text = "Tuesday:  ";
+            wednesdayLabel.Text = "Wednesday:  ";
+            thursdayLabel.Text = "Thursday:  ";
+            fridayLabel.Text = "Friday:  ";
         }
 
         private void ViewSubjectFlyer_Load(object sender, EventArgs e)

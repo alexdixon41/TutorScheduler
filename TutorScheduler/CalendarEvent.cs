@@ -131,6 +131,18 @@ namespace TutorScheduler
             return event1.Day == event2.Day && event2.StartTime < event1.EndTime;
         }
 
+        public static bool CoverageOverlap(CalendarEvent event1, CalendarEvent event2)
+        {
+            if (event2 < event1)
+            {
+                // swap event1 and event2 so event1 always starts before event2
+                CalendarEvent t = event1;
+                event1 = event2;
+                event2 = t;
+            }
+            return event1.Day == event2.Day && event2.StartTime <= event1.EndTime;
+        }
+
         public static bool operator <(CalendarEvent m1, CalendarEvent m2)
         {
             return m1.Day < m2.Day || (m1.Day == m2.Day && m1.StartTime < m2.StartTime);

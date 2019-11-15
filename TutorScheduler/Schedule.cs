@@ -102,13 +102,31 @@ namespace TutorScheduler
             return false;
         }
 
+        public bool CoverageOverlaps(CalendarEvent testEvent)
+        {
+            foreach (CalendarEvent existingEvent in Events)
+            {
+
+                //Check if events are on the same day
+                if (existingEvent.Day == testEvent.Day)
+                {
+                    //Check if the testEvent overlaps the times of the existingEvent
+                    if (CalendarEvent.CoverageOverlap(testEvent, existingEvent))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         public void Merge(CalendarEvent newEvent)
         {
             foreach(CalendarEvent existingEvent in Events)
             {
                 if (existingEvent.Day == newEvent.Day)
                 {
-                    if (CalendarEvent.Overlap(newEvent, existingEvent))
+                    if (CalendarEvent.CoverageOverlap(newEvent, existingEvent))
                     {
                         existingEvent.StartTime = Time.Min(existingEvent.StartTime, newEvent.StartTime);
                         existingEvent.EndTime = Time.Max(existingEvent.EndTime, newEvent.EndTime);

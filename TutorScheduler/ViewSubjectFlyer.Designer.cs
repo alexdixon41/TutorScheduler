@@ -111,7 +111,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(537, 565);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(882, 505);
             this.Controls.Add(this.fridayLabel);
             this.Controls.Add(this.thursdayLabel);
             this.Controls.Add(this.wednesdayLabel);
