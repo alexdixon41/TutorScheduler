@@ -45,7 +45,7 @@ namespace TutorScheduler
                             new AlertDialog("Start time should be before end time.").ShowDialog();
                             shouldSave = false;
                         }
-                        else if (endTime.hours - startTime.hours > 5)
+                        else if (endTime.hours - startTime.hours > 5 && (selectedStudentWorker.JobPosition.Equals("Guru") || selectedStudentWorker.JobPosition.Equals("Lead Guru")))
                         {
                             new AlertDialog("A work shift should not be longer than 5 hours.").ShowDialog();
                             shouldSave = false;
