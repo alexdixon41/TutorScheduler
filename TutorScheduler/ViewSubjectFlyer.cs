@@ -22,13 +22,61 @@ namespace TutorScheduler
 
         private void setFlyer() {
             List<StudentWorker> tutorList = selectedSubject.getTutors();
+            Schedule subjectSchedule = new Schedule();
+            subjectLabel.Text = selectedSubject.abbreviation + " " + selectedSubject.subjectNumber;
+
+            resetLabels();
+
             foreach (StudentWorker tutor in tutorList)
             {
                 tutor.fetchWorkSchedule();
                 Schedule tutorSchedule = tutor.GetWorkSchedule();
-                //TODO: Combine work schedules into one flyer
+                foreach(CalendarEvent shift in tutorSchedule.Events)
+                {
+                    if (!subjectSchedule.Contains(shift))
+                    {
+                        if (!subjectSchedule.Overlaps(shift))
+                        {
+                            subjectSchedule.AddEvent(shift);
+                        }
+                        else
+                        {
+                            subjectSchedule.Merge(shift);
+                        }
+                    }
+                }
+
+            }
+
+            setLabels(subjectSchedule);
+
+        }
+
+        private void setLabels(Schedule subjectSchedule)
+        {
+            Label[] labels = { mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel };
+            foreach( CalendarEvent workEvent in subjectSchedule.Events)
+            {
+                labels[workEvent.Day].Text += workEvent.StartTime.getTimeString() + " - " + workEvent.EndTime.getTimeString() + "; ";
+            }
+            foreach(Label label in labels)
+            {
+                label.Text = label.Text.Substring(0, label.Text.Length - 2);
             }
         }
 
+        private void resetLabels()
+        {
+            mondayLabel.Text = "Monday: ";
+            tuesdayLabel.Text = "Tuesday: ";
+            wednesdayLabel.Text = "Wednesday: ";
+            thursdayLabel.Text = "Thursday: ";
+            fridayLabel.Text = "Friday: ";
+        }
+
+        private void ViewSubjectFlyer_Load(object sender, EventArgs e)
+        {
+            setFlyer();
+        }
     }
 }

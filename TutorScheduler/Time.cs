@@ -186,6 +186,32 @@ namespace TutorScheduler
             }
 
             return new Time(newHours, newMinutes);
-        }        
+        }
+        
+        /// <summary>
+        /// Returns the smaller (earliest) time
+        /// </summary>
+        /// <param name="t1">One of the times you want to compare</param>
+        /// <param name="t2">The other time you want to compare</param>
+        /// <returns></returns>
+        public static Time Min(Time t1, Time t2)
+        {
+            if (t1 < t2)
+                return t1;
+            return t2;
+        }
+
+        /// <summary>
+        /// Returns the larger (latest) time
+        /// </summary>
+        /// <param name="t1">One of the times you want to compare</param>
+        /// <param name="t2">The other time you want to compare</param>
+        /// <returns></returns>
+        public static Time Max(Time t1, Time t2)
+        {
+            if (t1 > t2)
+                return t1;
+            return t2;
+        }
     }
 }

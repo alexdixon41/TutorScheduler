@@ -102,6 +102,21 @@ namespace TutorScheduler
             return false;
         }
 
+        public void Merge(CalendarEvent newEvent)
+        {
+            foreach(CalendarEvent existingEvent in Events)
+            {
+                if (existingEvent.Day == newEvent.Day)
+                {
+                    if (CalendarEvent.Overlap(newEvent, existingEvent))
+                    {
+                        existingEvent.StartTime = Time.Min(existingEvent.StartTime, newEvent.StartTime);
+                        existingEvent.EndTime = Time.Max(existingEvent.EndTime, newEvent.EndTime);
+                    }
+                }
+            }
+        }
+
         public void SaveSchedule(int studentID)
         {
             foreach(CalendarEvent newEvent in Events)
