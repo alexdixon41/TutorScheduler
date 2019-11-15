@@ -40,8 +40,8 @@ namespace TutorScheduler
         private void displayInfo()
         {
             //set name and position
-            nameLabel.Text = selectedStudentWorker.Name;
-            positionLabel.Text = selectedStudentWorker.JobPosition;
+            nameTextBox.Text = selectedStudentWorker.Name;
+            positionTextBox.Text = selectedStudentWorker.JobPosition;
 
             //set color
             int baseColor = selectedStudentWorker.DisplayColor;
@@ -118,6 +118,19 @@ namespace TutorScheduler
                 displaySubjects();
             }
 
+        }
+
+        private void GeneralSaveButton_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = new ConfirmationPopup("Would you like to save?", "This will save any changes to name, position, or color").ShowDialog(); 
+            if (dialogResult == DialogResult.OK)
+            {
+                //Save name, position, color
+                int color = colorPicker.Color.ToArgb() & 0x00FFFFFF;
+                Console.WriteLine("Color is " + color);
+                selectedStudentWorker.updateInformation(nameTextBox.Text, positionTextBox.Text, color);
+            }
+            
         }
     }
 }

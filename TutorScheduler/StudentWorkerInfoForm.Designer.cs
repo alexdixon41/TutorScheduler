@@ -29,7 +29,6 @@ namespace TutorScheduler
         /// </summary>
         private void InitializeComponent()
         {
-            this.nameLabel = new System.Windows.Forms.Label();
             this.classEditPanel = new System.Windows.Forms.Panel();
             this.addClassButton = new System.Windows.Forms.Button();
             this.classesListView = new System.Windows.Forms.ListView();
@@ -38,7 +37,6 @@ namespace TutorScheduler
             this.end = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.days = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
-            this.positionLabel = new System.Windows.Forms.Label();
             this.colorPicker = new System.Windows.Forms.ColorDialog();
             this.colorButton = new System.Windows.Forms.Button();
             this.addSubjectButton = new System.Windows.Forms.Button();
@@ -46,18 +44,11 @@ namespace TutorScheduler
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.removeSubjectButton = new System.Windows.Forms.Button();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.positionTextBox = new System.Windows.Forms.TextBox();
+            this.generalSaveButton = new System.Windows.Forms.Button();
             this.classEditPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // nameLabel
-            // 
-            this.nameLabel.AutoSize = true;
-            this.nameLabel.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameLabel.Location = new System.Drawing.Point(13, 13);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(174, 45);
-            this.nameLabel.TabIndex = 0;
-            this.nameLabel.Text = "Alex Dixon";
             // 
             // classEditPanel
             // 
@@ -132,16 +123,6 @@ namespace TutorScheduler
             this.label1.TabIndex = 2;
             this.label1.Text = "Color:";
             // 
-            // positionLabel
-            // 
-            this.positionLabel.AutoSize = true;
-            this.positionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.positionLabel.Location = new System.Drawing.Point(15, 95);
-            this.positionLabel.Name = "positionLabel";
-            this.positionLabel.Size = new System.Drawing.Size(74, 31);
-            this.positionLabel.TabIndex = 3;
-            this.positionLabel.Text = "Guru";
-            // 
             // colorButton
             // 
             this.colorButton.BackColor = System.Drawing.Color.Red;
@@ -204,19 +185,47 @@ namespace TutorScheduler
             this.removeSubjectButton.UseVisualStyleBackColor = true;
             this.removeSubjectButton.Click += new System.EventHandler(this.RemoveSubjectButton_Click);
             // 
+            // nameTextBox
+            // 
+            this.nameTextBox.Font = new System.Drawing.Font("Segoe UI", 19.8F);
+            this.nameTextBox.Location = new System.Drawing.Point(17, 12);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(363, 51);
+            this.nameTextBox.TabIndex = 10;
+            // 
+            // positionTextBox
+            // 
+            this.positionTextBox.Font = new System.Drawing.Font("Segoe UI", 16F);
+            this.positionTextBox.Location = new System.Drawing.Point(17, 80);
+            this.positionTextBox.Name = "positionTextBox";
+            this.positionTextBox.Size = new System.Drawing.Size(363, 43);
+            this.positionTextBox.TabIndex = 11;
+            // 
+            // generalSaveButton
+            // 
+            this.generalSaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.generalSaveButton.Location = new System.Drawing.Point(1005, 12);
+            this.generalSaveButton.Name = "generalSaveButton";
+            this.generalSaveButton.Size = new System.Drawing.Size(233, 51);
+            this.generalSaveButton.TabIndex = 12;
+            this.generalSaveButton.Text = "Save";
+            this.generalSaveButton.UseVisualStyleBackColor = true;
+            this.generalSaveButton.Click += new System.EventHandler(this.GeneralSaveButton_Click);
+            // 
             // StudentWorkerInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1250, 690);
+            this.Controls.Add(this.generalSaveButton);
+            this.Controls.Add(this.positionTextBox);
+            this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.removeSubjectButton);
             this.Controls.Add(this.subjectListView);
             this.Controls.Add(this.addSubjectButton);
             this.Controls.Add(this.colorButton);
-            this.Controls.Add(this.positionLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.classEditPanel);
-            this.Controls.Add(this.nameLabel);
             this.Name = "StudentWorkerInfoForm";
             this.Text = "Student Worker Information";
             this.Load += new System.EventHandler(this.StudentWorkerInfoForm_Load);
@@ -227,8 +236,6 @@ namespace TutorScheduler
         }
 
         #endregion
-
-        private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Panel classEditPanel;
         private System.Windows.Forms.Button addClassButton;
         private System.Windows.Forms.ListView classesListView;
@@ -237,7 +244,6 @@ namespace TutorScheduler
         private System.Windows.Forms.ColumnHeader end;
         private System.Windows.Forms.ColumnHeader days;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label positionLabel;
         private System.Windows.Forms.ColorDialog colorPicker;
         private System.Windows.Forms.Button colorButton;
         private System.Windows.Forms.Button addSubjectButton;
@@ -245,5 +251,8 @@ namespace TutorScheduler
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Button removeSubjectButton;
+        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.TextBox positionTextBox;
+        private System.Windows.Forms.Button generalSaveButton;
     }
 }

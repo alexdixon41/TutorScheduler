@@ -172,6 +172,14 @@ namespace TutorScheduler
             DatabaseManager.RemoveSubjectTutored(subjectID);
         }
 
+        public void updateInformation(string newName, string newPosition, int newColor)
+        {
+            Name = newName;
+            JobPosition = newPosition;
+            DisplayColor = newColor;
+            DatabaseManager.updateStudentInfo(StudentID, Name, JobPosition, DisplayColor);
+        }
+
         
         #region StaticMethods
         public static List<StudentWorker> GetStudentWorkers()
