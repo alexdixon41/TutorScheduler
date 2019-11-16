@@ -57,9 +57,10 @@ namespace TutorScheduler
             | System.Windows.Forms.AnchorStyles.Right)));
             this.classEditPanel.Controls.Add(this.addClassButton);
             this.classEditPanel.Controls.Add(this.classesListView);
-            this.classEditPanel.Location = new System.Drawing.Point(13, 413);
+            this.classEditPanel.Location = new System.Drawing.Point(13, 416);
+            this.classEditPanel.Margin = new System.Windows.Forms.Padding(3, 20, 3, 3);
             this.classEditPanel.Name = "classEditPanel";
-            this.classEditPanel.Size = new System.Drawing.Size(1225, 265);
+            this.classEditPanel.Size = new System.Drawing.Size(1225, 262);
             this.classEditPanel.TabIndex = 1;
             // 
             // addClassButton
@@ -67,7 +68,7 @@ namespace TutorScheduler
             this.addClassButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addClassButton.Location = new System.Drawing.Point(4, 4);
             this.addClassButton.Name = "addClassButton";
-            this.addClassButton.Size = new System.Drawing.Size(233, 51);
+            this.addClassButton.Size = new System.Drawing.Size(200, 51);
             this.addClassButton.TabIndex = 1;
             this.addClassButton.Text = "Add Class";
             this.addClassButton.UseVisualStyleBackColor = true;
@@ -87,8 +88,9 @@ namespace TutorScheduler
             this.classesListView.FullRowSelect = true;
             this.classesListView.HideSelection = false;
             this.classesListView.Location = new System.Drawing.Point(3, 61);
+            this.classesListView.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.classesListView.Name = "classesListView";
-            this.classesListView.Size = new System.Drawing.Size(1219, 201);
+            this.classesListView.Size = new System.Drawing.Size(1222, 198);
             this.classesListView.TabIndex = 0;
             this.classesListView.UseCompatibleStateImageBehavior = false;
             this.classesListView.View = System.Windows.Forms.View.Details;
@@ -116,20 +118,22 @@ namespace TutorScheduler
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.label1.Location = new System.Drawing.Point(609, 80);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label1.Location = new System.Drawing.Point(433, 87);
+            this.label1.Margin = new System.Windows.Forms.Padding(50, 0, 3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 31);
+            this.label1.Size = new System.Drawing.Size(184, 32);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Color:";
+            this.label1.Text = "Display Color";
             // 
             // colorButton
             // 
             this.colorButton.BackColor = System.Drawing.Color.Red;
             this.colorButton.ForeColor = System.Drawing.Color.Red;
-            this.colorButton.Location = new System.Drawing.Point(693, 80);
+            this.colorButton.Location = new System.Drawing.Point(623, 80);
             this.colorButton.Name = "colorButton";
-            this.colorButton.Size = new System.Drawing.Size(38, 35);
+            this.colorButton.Size = new System.Drawing.Size(50, 50);
             this.colorButton.TabIndex = 6;
             this.colorButton.UseVisualStyleBackColor = false;
             this.colorButton.Click += new System.EventHandler(this.ColorButton_Click);
@@ -139,7 +143,7 @@ namespace TutorScheduler
             this.addSubjectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.addSubjectButton.Location = new System.Drawing.Point(12, 155);
             this.addSubjectButton.Name = "addSubjectButton";
-            this.addSubjectButton.Size = new System.Drawing.Size(233, 51);
+            this.addSubjectButton.Size = new System.Drawing.Size(200, 51);
             this.addSubjectButton.TabIndex = 7;
             this.addSubjectButton.Text = "Add Subject";
             this.addSubjectButton.UseVisualStyleBackColor = true;
@@ -147,8 +151,7 @@ namespace TutorScheduler
             // 
             // subjectListView
             // 
-            this.subjectListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.subjectListView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.subjectListView.CheckBoxes = true;
             this.subjectListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -159,7 +162,7 @@ namespace TutorScheduler
             this.subjectListView.HideSelection = false;
             this.subjectListView.Location = new System.Drawing.Point(12, 212);
             this.subjectListView.Name = "subjectListView";
-            this.subjectListView.Size = new System.Drawing.Size(1219, 181);
+            this.subjectListView.Size = new System.Drawing.Size(1226, 181);
             this.subjectListView.TabIndex = 8;
             this.subjectListView.UseCompatibleStateImageBehavior = false;
             this.subjectListView.View = System.Windows.Forms.View.Details;
@@ -177,9 +180,10 @@ namespace TutorScheduler
             // removeSubjectButton
             // 
             this.removeSubjectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.removeSubjectButton.Location = new System.Drawing.Point(261, 155);
+            this.removeSubjectButton.Location = new System.Drawing.Point(225, 155);
+            this.removeSubjectButton.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.removeSubjectButton.Name = "removeSubjectButton";
-            this.removeSubjectButton.Size = new System.Drawing.Size(233, 51);
+            this.removeSubjectButton.Size = new System.Drawing.Size(200, 51);
             this.removeSubjectButton.TabIndex = 9;
             this.removeSubjectButton.Text = "Remove Subject";
             this.removeSubjectButton.UseVisualStyleBackColor = true;
@@ -203,10 +207,11 @@ namespace TutorScheduler
             // 
             // generalSaveButton
             // 
+            this.generalSaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.generalSaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.generalSaveButton.Location = new System.Drawing.Point(1005, 12);
+            this.generalSaveButton.Location = new System.Drawing.Point(1068, 12);
             this.generalSaveButton.Name = "generalSaveButton";
-            this.generalSaveButton.Size = new System.Drawing.Size(233, 51);
+            this.generalSaveButton.Size = new System.Drawing.Size(170, 50);
             this.generalSaveButton.TabIndex = 12;
             this.generalSaveButton.Text = "Save";
             this.generalSaveButton.UseVisualStyleBackColor = true;
@@ -216,6 +221,7 @@ namespace TutorScheduler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1250, 690);
             this.Controls.Add(this.generalSaveButton);
             this.Controls.Add(this.positionTextBox);
@@ -226,6 +232,7 @@ namespace TutorScheduler
             this.Controls.Add(this.colorButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.classEditPanel);
+            this.MinimumSize = new System.Drawing.Size(300, 300);
             this.Name = "StudentWorkerInfoForm";
             this.Text = "Student Worker Information";
             this.Load += new System.EventHandler(this.StudentWorkerInfoForm_Load);

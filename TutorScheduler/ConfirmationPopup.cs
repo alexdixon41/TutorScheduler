@@ -21,6 +21,11 @@ namespace TutorScheduler
         /// <param name="secondaryText">The secondary or addition text of the dialog form</param>
         public ConfirmationPopup(String primaryText, String secondaryText)
         {
+            // don't allow primary text longer than 50 characters, or it will be cut off
+            if (primaryText.Length > 50)
+            {
+                primaryText = primaryText.Substring(0, 50);
+            }
             InitializeComponent();
             this.primaryText = primaryText;
             this.secondaryText = secondaryText;

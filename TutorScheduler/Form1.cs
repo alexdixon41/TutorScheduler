@@ -76,10 +76,8 @@ namespace TutorScheduler
             
             // get all student workers and their schedules from database
             studentWorkers = StudentWorker.GetStudentWorkers();
-
-            // TODO - in separate thread, load events for selected student workers into a list
-            // in this thread, add the list of events to week view and day view
-
+           
+            
             PopulateCalendars(studentWorkers);            
 
             calendarWeekView1.Invalidate();
@@ -93,12 +91,16 @@ namespace TutorScheduler
             // TODO - only get selected student workers
             foreach (StudentWorker sw in studentWorkers)
             {
-                //Show work schedule
+                //if (!sw.Selected)
+                //{
+                //    continue;
+                //}
+                // Show work schedule
                 Schedule w = sw.GetWorkSchedule();
                 calendarWeekView1.AddSchedule(w);
                 calendarDayView1.AddSchedule(w);
 
-                //include class schedule only if enabled
+                // include class schedule only if enabled
                 if (showClasses)
                 {
                     Schedule s = sw.GetClassSchedule();

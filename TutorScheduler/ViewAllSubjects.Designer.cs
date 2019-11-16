@@ -40,16 +40,19 @@
             // 
             // subjectListView
             // 
+            this.subjectListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.subjectListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.SubjectPrefix,
             this.SubjectName});
             this.subjectListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.subjectListView.FullRowSelect = true;
             this.subjectListView.HideSelection = false;
-            this.subjectListView.Location = new System.Drawing.Point(16, 70);
+            this.subjectListView.Location = new System.Drawing.Point(13, 69);
             this.subjectListView.Margin = new System.Windows.Forms.Padding(4);
             this.subjectListView.Name = "subjectListView";
-            this.subjectListView.Size = new System.Drawing.Size(767, 304);
+            this.subjectListView.Size = new System.Drawing.Size(936, 468);
             this.subjectListView.TabIndex = 0;
             this.subjectListView.UseCompatibleStateImageBehavior = false;
             this.subjectListView.View = System.Windows.Forms.View.Details;
@@ -67,10 +70,12 @@
             // 
             // AddSubjectButton
             // 
-            this.AddSubjectButton.Location = new System.Drawing.Point(463, 383);
+            this.AddSubjectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddSubjectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddSubjectButton.Location = new System.Drawing.Point(601, 545);
             this.AddSubjectButton.Margin = new System.Windows.Forms.Padding(4);
             this.AddSubjectButton.Name = "AddSubjectButton";
-            this.AddSubjectButton.Size = new System.Drawing.Size(149, 53);
+            this.AddSubjectButton.Size = new System.Drawing.Size(170, 35);
             this.AddSubjectButton.TabIndex = 1;
             this.AddSubjectButton.Text = "Add a Subject";
             this.AddSubjectButton.UseVisualStyleBackColor = true;
@@ -78,10 +83,12 @@
             // 
             // RemoveSubject
             // 
-            this.RemoveSubject.Location = new System.Drawing.Point(641, 383);
+            this.RemoveSubject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoveSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RemoveSubject.Location = new System.Drawing.Point(779, 545);
             this.RemoveSubject.Margin = new System.Windows.Forms.Padding(4);
             this.RemoveSubject.Name = "RemoveSubject";
-            this.RemoveSubject.Size = new System.Drawing.Size(143, 53);
+            this.RemoveSubject.Size = new System.Drawing.Size(170, 35);
             this.RemoveSubject.TabIndex = 2;
             this.RemoveSubject.Text = "Remove";
             this.RemoveSubject.UseVisualStyleBackColor = true;
@@ -89,10 +96,12 @@
             // 
             // SearchButton
             // 
-            this.SearchButton.Location = new System.Drawing.Point(641, 15);
+            this.SearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchButton.Location = new System.Drawing.Point(779, 13);
             this.SearchButton.Margin = new System.Windows.Forms.Padding(4);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(136, 34);
+            this.SearchButton.Size = new System.Drawing.Size(170, 35);
             this.SearchButton.TabIndex = 3;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
@@ -100,18 +109,23 @@
             // 
             // SubjectSearchTextBox
             // 
-            this.SubjectSearchTextBox.Location = new System.Drawing.Point(16, 21);
+            this.SubjectSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SubjectSearchTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SubjectSearchTextBox.Location = new System.Drawing.Point(13, 15);
             this.SubjectSearchTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.SubjectSearchTextBox.Name = "SubjectSearchTextBox";
-            this.SubjectSearchTextBox.Size = new System.Drawing.Size(616, 22);
+            this.SubjectSearchTextBox.Size = new System.Drawing.Size(758, 30);
             this.SubjectSearchTextBox.TabIndex = 4;
             // 
             // viewFlyerButton
             // 
-            this.viewFlyerButton.Location = new System.Drawing.Point(16, 384);
+            this.viewFlyerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.viewFlyerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewFlyerButton.Location = new System.Drawing.Point(13, 545);
             this.viewFlyerButton.Margin = new System.Windows.Forms.Padding(4);
             this.viewFlyerButton.Name = "viewFlyerButton";
-            this.viewFlyerButton.Size = new System.Drawing.Size(143, 53);
+            this.viewFlyerButton.Size = new System.Drawing.Size(170, 35);
             this.viewFlyerButton.TabIndex = 5;
             this.viewFlyerButton.Text = "View Flyer";
             this.viewFlyerButton.UseVisualStyleBackColor = true;
@@ -121,7 +135,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.ClientSize = new System.Drawing.Size(962, 593);
             this.Controls.Add(this.viewFlyerButton);
             this.Controls.Add(this.SubjectSearchTextBox);
             this.Controls.Add(this.SearchButton);

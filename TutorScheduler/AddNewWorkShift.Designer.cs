@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
             "Alex Dixon",
             "Guru",
             "MAT, CSC, STA, PHY"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
             "Kinsey Wilson",
             "Lead",
             "MAT, CSC, CHE"}, -1);
@@ -58,24 +58,24 @@
             // 
             // endTimePicker
             // 
-            this.endTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.endTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.endTimePicker.CustomFormat = "hh:mm tt";
             this.endTimePicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.endTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker.Location = new System.Drawing.Point(539, 4);
-            this.endTimePicker.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
+            this.endTimePicker.Location = new System.Drawing.Point(698, 11);
+            this.endTimePicker.Margin = new System.Windows.Forms.Padding(30, 3, 10, 3);
             this.endTimePicker.Name = "endTimePicker";
             this.endTimePicker.ShowUpDown = true;
-            this.endTimePicker.Size = new System.Drawing.Size(258, 34);
+            this.endTimePicker.Size = new System.Drawing.Size(245, 34);
             this.endTimePicker.TabIndex = 6;
             this.endTimePicker.Value = new System.DateTime(2019, 9, 15, 10, 0, 0, 0);
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(409, 10);
+            this.label5.Location = new System.Drawing.Point(568, 17);
             this.label5.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(97, 28);
@@ -87,7 +87,7 @@
             this.startTimePicker.CustomFormat = "hh:mm tt";
             this.startTimePicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.startTimePicker.Location = new System.Drawing.Point(146, 4);
+            this.startTimePicker.Location = new System.Drawing.Point(150, 12);
             this.startTimePicker.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.startTimePicker.Name = "startTimePicker";
             this.startTimePicker.ShowUpDown = true;
@@ -99,7 +99,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(8, 10);
+            this.label4.Location = new System.Drawing.Point(12, 17);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(105, 28);
             this.label4.TabIndex = 7;
@@ -107,6 +107,9 @@
             // 
             // studentWorkerListView
             // 
+            this.studentWorkerListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.studentWorkerListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.name,
             this.position,
@@ -115,11 +118,12 @@
             this.studentWorkerListView.FullRowSelect = true;
             this.studentWorkerListView.HideSelection = false;
             this.studentWorkerListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
-            this.studentWorkerListView.Location = new System.Drawing.Point(12, 190);
+            listViewItem7,
+            listViewItem8});
+            this.studentWorkerListView.Location = new System.Drawing.Point(12, 204);
+            this.studentWorkerListView.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
             this.studentWorkerListView.Name = "studentWorkerListView";
-            this.studentWorkerListView.Size = new System.Drawing.Size(775, 250);
+            this.studentWorkerListView.Size = new System.Drawing.Size(931, 312);
             this.studentWorkerListView.TabIndex = 11;
             this.studentWorkerListView.UseCompatibleStateImageBehavior = false;
             this.studentWorkerListView.View = System.Windows.Forms.View.Details;
@@ -141,8 +145,10 @@
             // 
             // searchButton
             // 
+            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchButton.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.searchButton.Location = new System.Drawing.Point(666, 139);
+            this.searchButton.Location = new System.Drawing.Point(821, 146);
+            this.searchButton.Margin = new System.Windows.Forms.Padding(3, 10, 10, 3);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(122, 45);
             this.searchButton.TabIndex = 10;
@@ -151,15 +157,20 @@
             // 
             // searchBox
             // 
+            this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBox.Location = new System.Drawing.Point(13, 154);
             this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(633, 22);
+            this.searchBox.Size = new System.Drawing.Size(802, 30);
             this.searchBox.TabIndex = 9;
             // 
             // createButton
             // 
+            this.createButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.createButton.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.createButton.Location = new System.Drawing.Point(666, 457);
+            this.createButton.Location = new System.Drawing.Point(821, 529);
+            this.createButton.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(122, 45);
             this.createButton.TabIndex = 12;
@@ -169,8 +180,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.fridayCheckBox);
             this.groupBox1.Controls.Add(this.thursdayCheckBox);
@@ -178,9 +188,10 @@
             this.groupBox1.Controls.Add(this.tuesdayCheckBox);
             this.groupBox1.Controls.Add(this.mondayCheckBox);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(13, 55);
+            this.groupBox1.Location = new System.Drawing.Point(12, 55);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(775, 78);
+            this.groupBox1.Size = new System.Drawing.Size(931, 78);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Days";
@@ -249,7 +260,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(813, 518);
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ClientSize = new System.Drawing.Size(962, 593);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.createButton);
             this.Controls.Add(this.studentWorkerListView);
@@ -259,7 +271,9 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.startTimePicker);
             this.Controls.Add(this.label4);
+            this.MinimumSize = new System.Drawing.Size(850, 600);
             this.Name = "AddNewWorkShift";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddNewWorkShift";
             this.Load += new System.EventHandler(this.AddNewWorkShift_Load);
             this.groupBox1.ResumeLayout(false);

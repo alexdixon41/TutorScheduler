@@ -15,7 +15,6 @@ namespace TutorScheduler
         private Schedule workSchedule;
         private Schedule availability = new Schedule();           // the student's work availability schedule
 
-
         public StudentWorker(string name)
         {
             Name = name;
@@ -180,8 +179,14 @@ namespace TutorScheduler
             DatabaseManager.updateStudentInfo(StudentID, Name, JobPosition, DisplayColor);
         }
 
-        
-        #region StaticMethods
+
+        #region StaticFields
+
+        // TODO - use this field instead of calling GetStudentWorkers everytime we need the list; this only needs to be updated on launch
+        //        and if we need to reset all student workers for some reason
+        // the global list of all student worker objects - every access to all student workers should be through this field
+        public static List<StudentWorker> allStudentWorkers = GetStudentWorkers();
+
         public static List<StudentWorker> GetStudentWorkers()
         {
             // TODO: Seperate this into GetAllStudentWorkers function and a GetSelectedStudentWorkers function
@@ -197,7 +202,6 @@ namespace TutorScheduler
 
             return studentWorkers;
         }
-
         
         public static bool createStudentWorker(int studentID, string name, string position, int color)
         {
