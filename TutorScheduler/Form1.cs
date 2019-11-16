@@ -304,6 +304,14 @@ namespace TutorScheduler
             PopulateCalendars(studentWorkers);
         }
 
+        private void CalendarDayView1_Click(object sender, EventArgs e)
+        {
+            new AddNewWorkShift().ShowDialog();
+            //Refresh the schedule
+            studentWorkers = StudentWorker.GetStudentWorkers();
+            PopulateCalendars(studentWorkers);
+        }
+
         private void RightDayButton_Click(object sender, EventArgs e)
         {
             // move forward one day
