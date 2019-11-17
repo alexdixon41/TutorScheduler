@@ -43,7 +43,7 @@ namespace TutorScheduler
 
         private void updateSubjectList()
         {
-            subjectList = Subject.getSubjects();
+            subjectList = Subject.GetSubjects();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)

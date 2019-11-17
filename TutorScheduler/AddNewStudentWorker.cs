@@ -39,21 +39,21 @@ namespace TutorScheduler
             int color = colorPicker.Color.ToArgb() & 0x00FFFFFF;
 
             //verify user input
-            if (!StudentWorker.verifyID(idString))
+            if (!StudentWorker.VerifyID(idString))
             {
                 return;
             }
             int id = Int32.Parse(idString);
 
             //Create and save student worker
-            bool success = StudentWorker.createStudentWorker(id, name, position, color);
+            bool success = StudentWorker.CreateStudentWorker(id, name, position, color);
             if (success)
             {
                 this.Close();
             }
             else
             {
-                //TODO: Display error
+                new AlertDialog("Could not save new student worker.").ShowDialog();
             }
         }
 

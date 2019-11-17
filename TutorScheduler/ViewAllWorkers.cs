@@ -13,9 +13,7 @@ using System.Xml;
 namespace TutorScheduler
 {
     public partial class ViewAllWorkers : Form
-    {
-        private List<StudentWorker> studentWorkers = StudentWorker.GetStudentWorkers();
-
+    {        
         public ViewAllWorkers()
         {
             InitializeComponent();
@@ -25,7 +23,7 @@ namespace TutorScheduler
         {
             if (studentWorkerListView.SelectedIndices.Count != 0)
             {
-                StudentWorker selectedStudentWorker = studentWorkers[studentWorkerListView.SelectedItems[0].Index];
+                StudentWorker selectedStudentWorker = StudentWorker.allStudentWorkers[studentWorkerListView.SelectedItems[0].Index];
                 new StudentWorkerInfoForm(selectedStudentWorker).Show();
             }
         }
@@ -35,18 +33,18 @@ namespace TutorScheduler
             if (studentWorkerListView.SelectedIndices.Count != 0)
             {
                 //Get selected student worker
-                StudentWorker selectedStudentWorker = studentWorkers[studentWorkerListView.SelectedItems[0].Index];
+                StudentWorker selectedStudentWorker = StudentWorker.allStudentWorkers[studentWorkerListView.SelectedItems[0].Index];
 
                 //Ask for confirmation from the user
                 DialogResult dialogResult = new ConfirmationPopup("Are you sure you want to remove " + selectedStudentWorker.Name + "?", "This will remove them from the schedule.").ShowDialog();
                 if (dialogResult == DialogResult.OK)
                 {
                     //Remove the student worker
-                    selectedStudentWorker.removeStudentWorker();
+                    selectedStudentWorker.RemoveStudentWorker();
                     //TODO: Remove all the student worker's schedule events and subjects
 
-                    updateStudentWorkerList();
-                    displayStudentWorkers();
+                    UpdateStudentWorkerList();
+                    DisplayStudentWorkers();
                 }
             }
 
@@ -55,15 +53,16 @@ namespace TutorScheduler
         private void NewStudentWorkerButton_Click(object sender, EventArgs e)
         {
             new AddNewStudentWorker().ShowDialog();
-            updateStudentWorkerList();
-            displayStudentWorkers();
+            UpdateStudentWorkerList();
+            DisplayStudentWorkers();
         }
 
-        private void displayStudentWorkers()
+        private void DisplayStudentWorkers()
         {
-            studentWorkerListView.Items.Clear();
+            studentWorkerListView.Items.Clear();            
+
             int i = 0;
-            foreach (StudentWorker student in studentWorkers)
+            foreach (StudentWorker student in StudentWorker.allStudentWorkers)
             {                
                 studentWorkerListView.Items.Add(student.Name);
                 studentWorkerListView.Items[i].SubItems.Add(student.JobPosition);
@@ -74,18 +73,18 @@ namespace TutorScheduler
                     studentWorkerListView.Items[i].Checked = true;                    
                 }
                 i++;
-            }
+            }           
         }
 
-        private void updateStudentWorkerList()
+        private void UpdateStudentWorkerList()
         {            
-            studentWorkers = StudentWorker.GetStudentWorkers();         // retrieve student workers from the database
+            StudentWorker.allStudentWorkers = StudentWorker.GetStudentWorkers();         // retrieve student workers from the database            
 
             // the selected worker IDs from application settings
             StringCollection selectedWorkers = Properties.Settings.Default.SelectedWorkers; 
 
             // check all the selected workers
-            foreach (StudentWorker worker in studentWorkers)
+            foreach (StudentWorker worker in StudentWorker.allStudentWorkers)
             {
                 if (selectedWorkers.Contains(worker.StudentID.ToString()))
                 {
@@ -96,13 +95,13 @@ namespace TutorScheduler
 
         private void ViewAllWorkers_Load(object sender, EventArgs e)
         {
-            updateStudentWorkerList();
-            displayStudentWorkers();
+            UpdateStudentWorkerList();
+            DisplayStudentWorkers();
         }
 
         private void StudentWorkerListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            int checkedID = studentWorkers[e.Item.Index].StudentID;
+            int checkedID = StudentWorker.allStudentWorkers[e.Item.Index].StudentID;
             if (e.Item.Checked)
             {                
                 Properties.Settings.Default.SelectedWorkers.Add(checkedID.ToString());

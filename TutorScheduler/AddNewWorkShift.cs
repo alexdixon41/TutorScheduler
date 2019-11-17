@@ -82,24 +82,24 @@ namespace TutorScheduler
 
         private void AddNewWorkShift_Load(object sender, EventArgs e)
         {
-            displayStudentWorkers();
+            DisplayStudentWorkers();
         }
 
-        private void displayStudentWorkers()
+        private void DisplayStudentWorkers()
         {
             studentWorkerListView.Items.Clear();
-            studentWorkerList = StudentWorker.GetStudentWorkers();
+            studentWorkerList = StudentWorker.allStudentWorkers;
             int i = 0;
             foreach (StudentWorker studentWorker in studentWorkerList)
             {
                 studentWorkerListView.Items.Add(studentWorker.Name);
                 studentWorkerListView.Items[i].SubItems.Add(studentWorker.JobPosition);
-                studentWorkerListView.Items[i].SubItems.Add(getSubjectString(studentWorker));
+                studentWorkerListView.Items[i].SubItems.Add(GetSubjectString(studentWorker));
                 i++;
             }
         }
 
-        private string getSubjectString(StudentWorker studentWorker)
+        private string GetSubjectString(StudentWorker studentWorker)
         {
             string subjectString = "";
 

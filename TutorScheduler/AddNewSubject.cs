@@ -62,13 +62,13 @@ namespace TutorScheduler
             {
                 if (subjectBoxes[i, 0].Visible == true && !subjectBoxes[i,0].Text.Equals(""))
                 {
-                    if (Subject.verifyNumber(subjectBoxes[i, 0].Text))
+                    if (Subject.VerifyNumber(subjectBoxes[i, 0].Text))
                     {
                         int num = Int32.Parse(subjectBoxes[i, 0].Text);
                         String name = subjectBoxes[i, 1].Text;
 
                         //Create and save subject
-                        Subject.create(abbreviation, num, name);
+                        Subject.Create(abbreviation, num, name);
                     }
                 }
             }

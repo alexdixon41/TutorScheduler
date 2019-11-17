@@ -21,7 +21,7 @@ namespace TutorScheduler
         }
 
         private void setFlyer() {
-            List<StudentWorker> tutorList = selectedSubject.getTutors();
+            List<StudentWorker> tutorList = selectedSubject.GetTutors();
             Schedule subjectSchedule = new Schedule();
             subjectLabel.Text = selectedSubject.abbreviation + " " + selectedSubject.subjectNumber;
 
@@ -29,7 +29,7 @@ namespace TutorScheduler
 
             foreach (StudentWorker tutor in tutorList)
             {
-                tutor.fetchWorkSchedule();
+                tutor.FetchWorkSchedule();
                 Schedule tutorSchedule = tutor.GetWorkSchedule();
                 foreach(CalendarEvent shift in tutorSchedule.Events)
                 {

@@ -28,12 +28,12 @@ namespace TutorScheduler
             name = subName;
         }
 
-        public List<StudentWorker> getTutors()
+        public List<StudentWorker> GetTutors()
         {
-            return DatabaseManager.getTutorsForSubject(subjectID);
+            return DatabaseManager.GetTutorsForSubject(subjectID);
         }
 
-        public void removeSubject()
+        public void RemoveSubject()
         {
             DatabaseManager.RemoveSubject(subjectID);
             DatabaseManager.RemoveSubjectTutored(subjectID);
@@ -41,7 +41,7 @@ namespace TutorScheduler
 
         #region Static Functions
 
-        public static void create(string subAbbreviation, int subNumber, string subName)
+        public static void Create(string subAbbreviation, int subNumber, string subName)
         {
             //Create new subject
             Subject newSubject = new Subject(subAbbreviation, subNumber, subName);
@@ -50,12 +50,12 @@ namespace TutorScheduler
             DatabaseManager.SaveSubject(newSubject);
         }
 
-        public static List<Subject> getSubjects()
+        public static List<Subject> GetSubjects()
         {
             return DatabaseManager.GetSubjects();
         }
 
-        public static bool verifyNumber(string numString)
+        public static bool VerifyNumber(string numString)
         {
             if (numString.Length != 3)
             {
@@ -66,7 +66,7 @@ namespace TutorScheduler
             {
                 Int32.Parse(numString);
             }
-            catch (Exception e)
+            catch
             {
                 new AlertDialog("The subject number should only contain numbers.");
                 return false;
@@ -74,7 +74,7 @@ namespace TutorScheduler
             return true;
         }
 
-        public static bool verifyAbbreviation(string abbreviation)
+        public static bool VerifyAbbreviation(string abbreviation)
         {
             if (abbreviation.Length != 3)
             {

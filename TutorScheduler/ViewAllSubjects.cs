@@ -12,7 +12,7 @@ namespace TutorScheduler
 {
     public partial class ViewAllSubjects : Form
     {
-        private List<Subject> subjectList = Subject.getSubjects();
+        private List<Subject> subjectList = Subject.GetSubjects();
 
         #region Windows Form Generated Code
         public ViewAllSubjects()
@@ -40,7 +40,7 @@ namespace TutorScheduler
                 DialogResult dialogResult = new ConfirmationPopup("Are you sure you want to remove " + selectedSubject.abbreviation + " " + selectedSubject.subjectNumber, "This will remove it from all student workers.").ShowDialog();
                 if (dialogResult == DialogResult.OK)
                 {
-                    selectedSubject.removeSubject();
+                    selectedSubject.RemoveSubject();
                     //TODO: Remove subject from all student workers
 
                     updateSubjectList();
@@ -84,7 +84,7 @@ namespace TutorScheduler
 
         private void updateSubjectList()
         {
-            subjectList = Subject.getSubjects();
+            subjectList = Subject.GetSubjects();
         }
 
         private void ViewAllSubjects_Load(object sender, EventArgs e)

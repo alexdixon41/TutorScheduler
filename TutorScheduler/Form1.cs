@@ -47,14 +47,12 @@ namespace TutorScheduler
 
             Controls.Add(leftDayButton);
             Controls.Add(rightDayButton);
-        }
 
-        private void Form1_Shown(object sender, EventArgs e)
-        {            
-            this.MinimumSize = new Size(800, 600);    
-            
             dayLabels = new Label[] { mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel };
             selectedDayLabel = dayLabels[0];
+
+            // hide day labels until they are fully loaded
+            dayLabelPanel.Hide();
 
             // configure and add day change buttons to the dayLabelPanel for easier positioning
             leftDayButton.Top = selectedDayLabel.Top;
@@ -62,26 +60,33 @@ namespace TutorScheduler
             dayLabelPanel.Controls.Add(leftDayButton);
             rightDayButton.Top = selectedDayLabel.Top;
             rightDayButton.Click += new EventHandler(RightDayButton_Click);
-            dayLabelPanel.Controls.Add(rightDayButton);            
+            dayLabelPanel.Controls.Add(rightDayButton);
 
             ResizeHandler handler = new ResizeHandler(ResizeDayLabels);
             calendarWeekView1.resizeEvent += handler;
             calendarDayView1.resizeEvent += handler;
+        }
 
+        private void Form1_Shown(object sender, EventArgs e)
+        {            
+            this.MinimumSize = new Size(800, 600);
+                              
             calendarPanel.MouseWheel += new MouseEventHandler(CalendarPanel_MouseWheel);        // add the MouseWheel event handler to calendarPanel
 
             // scroll down until 7am is at the top of the panel when the form is first shown
             ScrollPosition = new Point(0, 592);
             calendarPanel.AutoScrollPosition = ScrollPosition;
-            
+
             // get all student workers and their schedules from database
-            studentWorkers = StudentWorker.GetStudentWorkers();
+            studentWorkers = StudentWorker.allStudentWorkers;
            
-            
+            // load events into the calendar
             PopulateCalendars(studentWorkers);            
 
             calendarWeekView1.Invalidate();
-            calendarDayView1.Invalidate();            
+
+            // show the day label panel after day labels are sized properly
+            dayLabelPanel.Show();                  
         }
 
         private void PopulateCalendars(List<StudentWorker> studentWorkers)
@@ -214,7 +219,7 @@ namespace TutorScheduler
         {
             new AddNewWorkShift().ShowDialog();
             //Refresh the schedule
-            studentWorkers = StudentWorker.GetStudentWorkers();
+            studentWorkers = StudentWorker.allStudentWorkers;
             PopulateCalendars(studentWorkers);
 
         }
@@ -308,7 +313,7 @@ namespace TutorScheduler
         {
             new AddNewWorkShift().ShowDialog();
             //Refresh the schedule
-            studentWorkers = StudentWorker.GetStudentWorkers();
+            studentWorkers = StudentWorker.allStudentWorkers;
             PopulateCalendars(studentWorkers);
         }
 

@@ -15,11 +15,6 @@ namespace TutorScheduler
         private Schedule workSchedule;
         private Schedule availability = new Schedule();           // the student's work availability schedule
 
-        public StudentWorker(string name)
-        {
-            Name = name;
-        }
-
         public StudentWorker(int id, string name)
         {
             StudentID = id;
@@ -32,6 +27,21 @@ namespace TutorScheduler
             Name = name;
             JobPosition = jobPosition;
             DisplayColor = displayColor;
+        }
+
+        public bool Equals(StudentWorker other)
+        {
+            return other != null && StudentID == other.StudentID;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as StudentWorker);
+        }
+
+        public override int GetHashCode()
+        {
+            return StudentID;
         }
 
         public void SetClassSchedule(Schedule schedule)
@@ -150,7 +160,7 @@ namespace TutorScheduler
         }
 
 
-        public void fetchWorkSchedule()
+        public void FetchWorkSchedule()
         {
             workSchedule = DatabaseManager.GetSchedule(StudentID, CalendarEvent.WORK);
         }
@@ -158,7 +168,7 @@ namespace TutorScheduler
         /// <summary>
         /// Deletes the student worker and all information belonging to them from the database
         /// </summary>
-        public void removeStudentWorker()
+        public void RemoveStudentWorker()
         {
             //Remove the student worker, their schedules, and the subjects they tutor
             DatabaseManager.RemoveStudentWorker(StudentID);
@@ -171,16 +181,16 @@ namespace TutorScheduler
             DatabaseManager.RemoveSubjectTutored(subjectID);
         }
 
-        public void updateInformation(string newName, string newPosition, int newColor)
+        public void UpdateInformation(string newName, string newPosition, int newColor)
         {
             Name = newName;
             JobPosition = newPosition;
             DisplayColor = newColor;
-            DatabaseManager.updateStudentInfo(StudentID, Name, JobPosition, DisplayColor);
+            DatabaseManager.UpdateStudentInfo(StudentID, Name, JobPosition, DisplayColor);
         }
 
 
-        #region StaticFields
+        #region Static Methods and Fields
 
         // TODO - use this field instead of calling GetStudentWorkers everytime we need the list; this only needs to be updated on launch
         //        and if we need to reset all student workers for some reason
@@ -203,7 +213,7 @@ namespace TutorScheduler
             return studentWorkers;
         }
         
-        public static bool createStudentWorker(int studentID, string name, string position, int color)
+        public static bool CreateStudentWorker(int studentID, string name, string position, int color)
         {
             StudentWorker newStudentWorker = new StudentWorker(studentID, name, position, color);
             //Call save function from DBMgr
@@ -211,7 +221,7 @@ namespace TutorScheduler
             return success;
         }
 
-        public static bool verifyID(string idString)
+        public static bool VerifyID(string idString)
         {
             //ID must be 9 digits long
             if (idString.Length != 9)
@@ -225,7 +235,7 @@ namespace TutorScheduler
                 Int32.Parse(idString);
                 return true;
             }
-            catch (Exception e)
+            catch
             {
                 new AlertDialog("Student ID can only contain numbers.").ShowDialog();
                 return false;

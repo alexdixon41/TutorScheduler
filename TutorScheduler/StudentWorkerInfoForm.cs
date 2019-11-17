@@ -128,7 +128,7 @@ namespace TutorScheduler
                 //Save name, position, color
                 int color = colorPicker.Color.ToArgb() & 0x00FFFFFF;
                 Console.WriteLine("Color is " + color);
-                selectedStudentWorker.updateInformation(nameTextBox.Text, positionTextBox.Text, color);
+                selectedStudentWorker.UpdateInformation(nameTextBox.Text, positionTextBox.Text, color);
             }
             
         }

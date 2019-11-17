@@ -24,11 +24,12 @@ namespace TutorScheduler
                 cmd.Parameters.AddWithValue("@studentID", studentID);
                 cmd.Parameters.AddWithValue("subjectID", subjectID);
                 cmd.ExecuteNonQuery();
+                cmd.Dispose();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-            }
+            }            
 
             // close connection
             conn.Close();
@@ -46,8 +47,7 @@ namespace TutorScheduler
                 string sql = @"SELECT pword FROM manager WHERE email = @emailAddr;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@emailAddr", email);
-                MySqlDataReader reader = cmd.ExecuteReader();
-                
+                MySqlDataReader reader = cmd.ExecuteReader();                               
                 string pword = null;
 
                 if (reader.Read())
@@ -59,6 +59,8 @@ namespace TutorScheduler
                 {
                     result = true;
                 }
+                cmd.Dispose();
+                reader.Dispose();
             }
             catch (Exception ex)
             {
@@ -92,7 +94,9 @@ namespace TutorScheduler
                 cmd.Parameters.AddWithValue("@id", studentID);
                 cmd.Parameters.AddWithValue("@scheduleType", scheduleType);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
-                myAdapter.Fill(table);
+                myAdapter.Fill(table);                
+                cmd.Dispose();
+                myAdapter.Dispose();
             }
             catch (Exception ex)
             {
@@ -128,7 +132,8 @@ namespace TutorScheduler
                     }
                 }
             }
-                       
+
+            table.Dispose();                      
             return newSchedule;
         }
 
@@ -143,7 +148,7 @@ namespace TutorScheduler
                 string sql = @"SELECT studentName, displayColor, jobPosition FROM studentworker WHERE studentID = @id;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@id", studentID);
-                MySqlDataReader reader = cmd.ExecuteReader();    
+                MySqlDataReader reader = cmd.ExecuteReader();               
 
                 if (reader.Read())
                 {
@@ -151,7 +156,9 @@ namespace TutorScheduler
                     string jobPosition = reader["jobPosition"].ToString();
                     int displayColor = (int) reader["displayColor"];
                     sw = new StudentWorker(studentID, name, jobPosition, displayColor);
-                }                
+                }
+                cmd.Dispose();
+                reader.Dispose();
             }
             catch (Exception ex)
             {
@@ -183,8 +190,10 @@ namespace TutorScheduler
                                 WHERE subjecttutored.studentID = @id;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@id", studentID);
-                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);                         
                 myAdapter.Fill(table);
+                cmd.Dispose();
+                myAdapter.Dispose();
             }
             catch (Exception ex)
             {
@@ -205,6 +214,7 @@ namespace TutorScheduler
                 subjects.Add(subj);
             }
 
+            table.Dispose();
             return subjects;
         }
 
@@ -219,8 +229,10 @@ namespace TutorScheduler
                 conn.Open();
                 string sql = @"SELECT studentID, studentName, displayColor, jobPosition FROM studentworker;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);               
                 myAdapter.Fill(table);
+                cmd.Dispose();
+                myAdapter.Dispose();
             }
             catch (Exception ex)
             {
@@ -241,6 +253,7 @@ namespace TutorScheduler
                 studentWorkers.Add(sw);
             }
 
+            table.Dispose();
             return studentWorkers;
         }
 
@@ -259,8 +272,10 @@ namespace TutorScheduler
                 conn.Open();
                 string sql = @"SELECT subjectID, abbreviation, subNum, subName FROM subject ORDER BY abbreviation;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);                
                 myAdapter.Fill(table);
+                cmd.Dispose();
+                myAdapter.Dispose();
             }
             catch (Exception ex)
             {
@@ -281,6 +296,7 @@ namespace TutorScheduler
                 subjects.Add(sub);
             }
 
+            table.Dispose();
             return subjects;
         }
 
@@ -289,7 +305,7 @@ namespace TutorScheduler
         /// </summary>
         /// <param name="subjectID">The id of the subject</param>
         /// <returns>A list of integers containing the studentIDs of the students who tutor the subject</returns>
-        public static List<StudentWorker> getTutorsForSubject(int subjectID)
+        public static List<StudentWorker> GetTutorsForSubject(int subjectID)
         {
             List<StudentWorker> tutorList = new List<StudentWorker>();
             DataTable table = new DataTable();
@@ -303,8 +319,10 @@ namespace TutorScheduler
                                 WHERE sub.subjectID = @subID";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@subID", subjectID);
-                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);                
                 myAdapter.Fill(table);
+                cmd.Dispose();
+                myAdapter.Dispose();
             }
             catch (Exception ex)
             {
@@ -323,6 +341,7 @@ namespace TutorScheduler
                 tutorList.Add(tutor);
             }
 
+            table.Dispose();
             return tutorList;
         }
 
@@ -340,6 +359,7 @@ namespace TutorScheduler
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@studentID", studentID);
                 cmd.ExecuteNonQuery();
+                cmd.Dispose();
                 Console.WriteLine("Student Worker removed.");
             }
             catch (Exception ex)
@@ -366,6 +386,7 @@ namespace TutorScheduler
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@studentID", studentID);
                 cmd.ExecuteNonQuery();
+                cmd.Dispose();
             }
             catch (Exception ex)
             {
@@ -391,6 +412,7 @@ namespace TutorScheduler
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@studentID", studentID);
                 cmd.ExecuteNonQuery();
+                cmd.Dispose();
             }
             catch (Exception ex)
             {
@@ -416,6 +438,7 @@ namespace TutorScheduler
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@subjectID", subjectID);
                 cmd.ExecuteNonQuery();
+                cmd.Dispose();
                 Console.WriteLine("Subject removed.");
             }
             catch (Exception ex)
@@ -442,6 +465,7 @@ namespace TutorScheduler
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@subjectID", subjectID);
                 cmd.ExecuteNonQuery();
+                cmd.Dispose();
                 Console.WriteLine("Subject removed.");
             }
             catch (Exception ex)
@@ -486,6 +510,7 @@ namespace TutorScheduler
                 cmd.Parameters.AddWithValue("@fri", days[4]);
 
                 cmd.ExecuteNonQuery();
+                cmd.Dispose();
                 Console.WriteLine("Event created.");
             }
             catch (Exception ex)
@@ -517,6 +542,7 @@ namespace TutorScheduler
                 cmd.Parameters.AddWithValue("@color", student.DisplayColor);
                 cmd.Parameters.AddWithValue("@position", student.JobPosition);
                 cmd.ExecuteNonQuery();
+                cmd.Dispose();
                 Console.WriteLine("Student Worker created.");
                 success = true;
             }
@@ -547,6 +573,7 @@ namespace TutorScheduler
                 cmd.Parameters.AddWithValue("@num", subject.subjectNumber);
                 cmd.Parameters.AddWithValue("@name", subject.name);
                 cmd.ExecuteNonQuery();
+                cmd.Dispose();
                 Console.WriteLine("Subject created.");
             }
             catch (Exception ex)
@@ -559,7 +586,7 @@ namespace TutorScheduler
             Console.WriteLine("Done.");
         }
 
-        public static void updateStudentInfo(int studentID, string name, string position, int color)
+        public static void UpdateStudentInfo(int studentID, string name, string position, int color)
         {
             try
             {
@@ -574,6 +601,7 @@ namespace TutorScheduler
                 cmd.Parameters.AddWithValue("@position", position);
                 cmd.Parameters.AddWithValue("@id", studentID);
                 cmd.ExecuteNonQuery();
+                cmd.Dispose();
             }
             catch (Exception ex)
             {
