@@ -43,7 +43,7 @@ namespace TutorScheduler
                     selectedStudentWorker.RemoveStudentWorker();
                     //TODO: Remove all the student worker's schedule events and subjects
 
-                    UpdateStudentWorkerList();
+                    StudentWorker.allStudentWorkers = StudentWorker.GetStudentWorkers();
                     DisplayStudentWorkers();
                 }
             }
@@ -53,7 +53,7 @@ namespace TutorScheduler
         private void NewStudentWorkerButton_Click(object sender, EventArgs e)
         {
             new AddNewStudentWorker().ShowDialog();
-            UpdateStudentWorkerList();
+            StudentWorker.allStudentWorkers = StudentWorker.GetStudentWorkers();
             DisplayStudentWorkers();
         }
 
@@ -74,28 +74,11 @@ namespace TutorScheduler
                 }
                 i++;
             }           
-        }
-
-        private void UpdateStudentWorkerList()
-        {            
-            StudentWorker.allStudentWorkers = StudentWorker.GetStudentWorkers();         // retrieve student workers from the database            
-
-            // the selected worker IDs from application settings
-            StringCollection selectedWorkers = Properties.Settings.Default.SelectedWorkers; 
-
-            // check all the selected workers
-            foreach (StudentWorker worker in StudentWorker.allStudentWorkers)
-            {
-                if (selectedWorkers.Contains(worker.StudentID.ToString()))
-                {
-                    worker.Selected = true;
-                }
-            }            
-        }
+        }        
 
         private void ViewAllWorkers_Load(object sender, EventArgs e)
         {
-            UpdateStudentWorkerList();
+            StudentWorker.allStudentWorkers = StudentWorker.GetStudentWorkers();
             DisplayStudentWorkers();
         }
 
@@ -110,7 +93,13 @@ namespace TutorScheduler
             {
                 Properties.Settings.Default.SelectedWorkers.Remove(checkedID.ToString());
             }            
-            Properties.Settings.Default.Save();
+            Properties.Settings.Default.Save();            
+        }
+
+        private void ViewAllWorkers_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            StudentWorker.allStudentWorkers = StudentWorker.GetStudentWorkers();
+            RefreshCalendars.Refresh();
         }
     }
 }

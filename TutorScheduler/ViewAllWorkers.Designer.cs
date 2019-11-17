@@ -147,6 +147,7 @@
             this.Name = "ViewAllWorkers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ViewAllWorkers";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ViewAllWorkers_FormClosed);
             this.Load += new System.EventHandler(this.ViewAllWorkers_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

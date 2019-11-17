@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Text;
 
 namespace TutorScheduler
@@ -199,8 +200,9 @@ namespace TutorScheduler
 
         public static List<StudentWorker> GetStudentWorkers()
         {
-            // TODO: Seperate this into GetAllStudentWorkers function and a GetSelectedStudentWorkers function
-            // TODO database query on separate thread
+            // the selected worker IDs from application settings
+            StringCollection selectedWorkers = Properties.Settings.Default.SelectedWorkers;
+            
             List<StudentWorker> studentWorkers = DatabaseManager.GetStudentWorkers();            
             foreach (StudentWorker sw in studentWorkers)
             {
@@ -208,7 +210,13 @@ namespace TutorScheduler
                 sw.SetClassSchedule(DatabaseManager.GetSchedule(sw.StudentID, CalendarEvent.CLASS));
                 sw.SetWorkSchedule(DatabaseManager.GetSchedule(sw.StudentID, CalendarEvent.WORK));
                 sw.BuildAvailabilitySchedule();
-            }
+
+                // set selected student workers as selected
+                if (selectedWorkers.Contains(sw.StudentID.ToString()))
+                {
+                    sw.Selected = true;
+                }
+            }                       
 
             return studentWorkers;
         }

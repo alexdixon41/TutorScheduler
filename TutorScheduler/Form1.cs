@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace TutorScheduler
 {
     public partial class Form1 : Form
-    {
+    {        
         Point ScrollPosition = new Point(0, 0);         // save the scroll position so it can be restored when panel is resized
         Label[] dayLabels;                              // the weekday labels on top of the calendar
         bool weekView = true;                           // whether the calendar view mode is set to week view or day view
@@ -20,9 +20,7 @@ namespace TutorScheduler
         Button leftDayButton, rightDayButton;
         Label selectedDayLabel;                         // save the selected day for day view
 
-        string[] dayLabelText = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
-
-        List<StudentWorker> studentWorkers = new List<StudentWorker>();
+        string[] dayLabelText = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };        
 
         public Form1()
         {
@@ -62,8 +60,12 @@ namespace TutorScheduler
             rightDayButton.Click += new EventHandler(RightDayButton_Click);
             dayLabelPanel.Controls.Add(rightDayButton);
 
+            // set PopulateCalendars as the handler of the RefreshCalendarsEvent
+            RefreshCalendars.RefreshCalendarsEvent += new Action(PopulateCalendars);
+
+            // set ResizeDayLabels as the handler of the ResizeHandler of both calendar views
             ResizeHandler handler = new ResizeHandler(ResizeDayLabels);
-            calendarWeekView1.resizeEvent += handler;
+            calendarWeekView1.ResizeEvent += handler;
             calendarDayView1.resizeEvent += handler;
         }
 
@@ -77,11 +79,8 @@ namespace TutorScheduler
             ScrollPosition = new Point(0, 592);
             calendarPanel.AutoScrollPosition = ScrollPosition;
 
-            // get all student workers and their schedules from database
-            studentWorkers = StudentWorker.allStudentWorkers;
-           
             // load events into the calendar
-            PopulateCalendars(studentWorkers);            
+            RefreshCalendars.Refresh();
 
             calendarWeekView1.Invalidate();
 
@@ -89,17 +88,17 @@ namespace TutorScheduler
             dayLabelPanel.Show();                  
         }
 
-        private void PopulateCalendars(List<StudentWorker> studentWorkers)
+        private void PopulateCalendars()
         {
             calendarWeekView1.Clear();
             calendarDayView1.Clear();
             // TODO - only get selected student workers
-            foreach (StudentWorker sw in studentWorkers)
+            foreach (StudentWorker sw in StudentWorker.allStudentWorkers)
             {
-                //if (!sw.Selected)
-                //{
-                //    continue;
-                //}
+                if (!sw.Selected)
+                {
+                    continue;
+                }
                 // Show work schedule
                 Schedule w = sw.GetWorkSchedule();
                 calendarWeekView1.AddSchedule(w);
@@ -124,7 +123,7 @@ namespace TutorScheduler
                       
             calendarWeekView1.Invalidate();
             calendarDayView1.Invalidate();
-        }
+        }       
 
         private void ResizeDayLabels(object sender, CalendarResizedEventArgs e)
         {
@@ -218,10 +217,15 @@ namespace TutorScheduler
         private void CalendarWeekView1_Click(object sender, EventArgs e)
         {
             new AddNewWorkShift().ShowDialog();
-            //Refresh the schedule
-            studentWorkers = StudentWorker.allStudentWorkers;
-            PopulateCalendars(studentWorkers);
+            //Refresh the schedule           
+            RefreshCalendars.Refresh();
+        }
 
+        private void CalendarDayView1_Click(object sender, EventArgs e)
+        {
+            new AddNewWorkShift().ShowDialog();
+            //Refresh the schedule            
+            RefreshCalendars.Refresh();
         }
 
         // switch between week view and day view
@@ -290,7 +294,7 @@ namespace TutorScheduler
         private void AvailabilityToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showAvailability = !showAvailability;
-            PopulateCalendars(studentWorkers);
+            RefreshCalendars.Refresh();
         }
 
         private void LeftDayButton_Click(object sender, EventArgs e)
@@ -306,16 +310,8 @@ namespace TutorScheduler
         private void ClassesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showClasses = !showClasses;
-            PopulateCalendars(studentWorkers);
-        }
-
-        private void CalendarDayView1_Click(object sender, EventArgs e)
-        {
-            new AddNewWorkShift().ShowDialog();
-            //Refresh the schedule
-            studentWorkers = StudentWorker.allStudentWorkers;
-            PopulateCalendars(studentWorkers);
-        }
+            RefreshCalendars.Refresh();
+        }        
 
         private void RightDayButton_Click(object sender, EventArgs e)
         {

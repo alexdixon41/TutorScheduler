@@ -12,7 +12,7 @@ namespace TutorScheduler
 { 
     public partial class CalendarWeekView : Control, ICalendar
     {
-        public event ResizeHandler resizeEvent;
+        public event ResizeHandler ResizeEvent;
 
         public const int leftMargin = 60;           // distance from left side of client rectangle to left vertical border of Monday
         public const int rightMargin = 10;
@@ -251,7 +251,7 @@ namespace TutorScheduler
             {
                 dayStartPositions = new int[] { left, left + width / 5, left + 2 * width / 5, left + 3 * width / 5, left + 4 * width / 5, right },                
             };
-            resizeEvent?.Invoke(this, r);
+            ResizeEvent?.Invoke(this, r);
 
             Pen pen = new Pen(Color.LightGray);
 
