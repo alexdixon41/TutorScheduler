@@ -10,14 +10,40 @@ using System.Windows.Forms;
 
 namespace TutorScheduler
 {
-    public partial class AddNewWorkShift : Form
+    public partial class WorkShiftInfo : Form
     {
         List<StudentWorker> studentWorkerList;
+        CheckBox[] checkBoxes;
 
-
-        public AddNewWorkShift()
+        public WorkShiftInfo()
         {
             InitializeComponent();
+
+            checkBoxes = new CheckBox[] { mondayCheckBox, tuesdayCheckBox, wednesdayCheckBox, thursdayCheckBox, fridayCheckBox };
+
+            Text = "Add New Work Event";
+        }
+
+        // overloaded operator when this form is used to edit an existing event
+        public WorkShiftInfo(CalendarEvent selectedEvent)
+        {
+            InitializeComponent();
+
+            checkBoxes = new CheckBox[] { mondayCheckBox, tuesdayCheckBox, wednesdayCheckBox, thursdayCheckBox, fridayCheckBox };
+
+            // set the window title to reflect editing status
+            Text = "Edit Work Event";
+
+            // populate controls with current information for the selectedEvent
+            checkBoxes[selectedEvent.Day].Checked = true;
+
+            DateTime startTime = new DateTime(1900, 1, 1, selectedEvent.StartTime.hours, selectedEvent.StartTime.minutes, 0);
+            DateTime endTime = new DateTime(1900, 1, 1, selectedEvent.EndTime.hours, selectedEvent.EndTime.minutes, 0);
+            startTimePicker.Value = startTime;
+            endTimePicker.Value = endTime;
+
+            // do not allow user to edit the student worker the event is associated with
+            studentWorkerListView.Enabled = false;
         }
 
         //Create button is clicked
@@ -25,8 +51,7 @@ namespace TutorScheduler
         {
             if (studentWorkerListView.SelectedIndices.Count != 0)
             {
-                StudentWorker selectedStudentWorker = studentWorkerList[studentWorkerListView.SelectedItems[0].Index];
-                CheckBox[] checkBoxes = { mondayCheckBox, tuesdayCheckBox, wednesdayCheckBox, thursdayCheckBox, fridayCheckBox };
+                StudentWorker selectedStudentWorker = studentWorkerList[studentWorkerListView.SelectedItems[0].Index];               
                 Schedule newShifts = new Schedule();
                 bool shouldSave = true;
 

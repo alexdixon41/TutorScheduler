@@ -215,15 +215,15 @@ namespace TutorScheduler
         }
 
         private void CalendarWeekView1_Click(object sender, EventArgs e)
-        {
-            new AddNewWorkShift().ShowDialog();
+        {            
+            new WorkShiftInfo().ShowDialog();
             //Refresh the schedule           
             RefreshCalendars.Refresh();
         }
 
         private void CalendarDayView1_Click(object sender, EventArgs e)
         {
-            new AddNewWorkShift().ShowDialog();
+            new WorkShiftInfo().ShowDialog();
             //Refresh the schedule            
             RefreshCalendars.Refresh();
         }

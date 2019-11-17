@@ -89,6 +89,12 @@ namespace TutorScheduler
                 hitEvent.OnClick();
                 this.Invalidate(hitEvent.GetBounds());
             }
+            else
+            {
+                new WorkShiftInfo().ShowDialog();
+                //Refresh the schedule            
+                RefreshCalendars.Refresh();
+            }
         }
 
         public void Clear()

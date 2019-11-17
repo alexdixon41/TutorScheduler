@@ -1,6 +1,6 @@
 ﻿namespace TutorScheduler
 {
-    partial class AddNewWorkShift
+    partial class WorkShiftInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Alex Dixon",
             "Guru",
             "MAT, CSC, STA, PHY"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "Kinsey Wilson",
             "Lead",
             "MAT, CSC, CHE"}, -1);
@@ -118,8 +118,8 @@
             this.studentWorkerListView.FullRowSelect = true;
             this.studentWorkerListView.HideSelection = false;
             this.studentWorkerListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem7,
-            listViewItem8});
+            listViewItem1,
+            listViewItem2});
             this.studentWorkerListView.Location = new System.Drawing.Point(12, 204);
             this.studentWorkerListView.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
             this.studentWorkerListView.Name = "studentWorkerListView";
@@ -274,7 +274,7 @@
             this.MinimumSize = new System.Drawing.Size(850, 600);
             this.Name = "AddNewWorkShift";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "AddNewWorkShift";
+            this.Text = "Add New Work Shift";
             this.Load += new System.EventHandler(this.AddNewWorkShift_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

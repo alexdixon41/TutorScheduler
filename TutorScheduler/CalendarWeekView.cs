@@ -70,7 +70,7 @@ namespace TutorScheduler
         {
             foreach (CalendarEvent calendarEvent in CalendarEvents)
             {
-                if (calendarEvent.GetBounds().Contains(p) && calendarEvent.type == CalendarEvent.AVAILABILITY)
+                if (calendarEvent.GetBounds().Contains(p))
                 {
                     return calendarEvent;
                 }
@@ -80,15 +80,21 @@ namespace TutorScheduler
 
         protected override void OnMouseClick(MouseEventArgs e)
         {
-            base.OnMouseClick(e);
+            base.OnMouseClick(e);            
 
             CalendarEvent hitEvent = EventAt(e.Location);
 
             // perform actions on event that was clicked
-            if (hitEvent != null)
+            if (hitEvent != null && hitEvent.type == CalendarEvent.WORK)
             {
                 hitEvent.OnClick();
                 this.Invalidate(hitEvent.GetBounds());
+            }
+            else
+            {
+                new WorkShiftInfo().ShowDialog();
+                //Refresh the schedule           
+                RefreshCalendars.Refresh();
             }
         }
 
@@ -327,103 +333,6 @@ namespace TutorScheduler
             {
                 return "" + hours % 12 + " pm";
             }
-        }
-
-        // TODO - remove if unused
-        public void CalculateEventBounds()
-        {
-            int width = this.ClientRectangle.Width - leftMargin - rightMargin;              // calendar width
-            //int eventWidth = width / 5 - 10;
-
-            foreach (CalendarEvent calendarEvent in CalendarEvents)
-            {
-                calendarEvent.SetBounds(new Rectangle(calendarEvent.Day * width / 5 + leftMargin, 0, width / 5 - 10, 0));
-            }
-
-            List<CalendarEvent> overlappedEvents = new List<CalendarEvent>();           // save events that are overlapped from left to right
-
-            for (int i = 0; i < CalendarEvents.Count; i++)
-            {
-                CalendarEvent calendarEvent = CalendarEvents[i];
-
-                int eventLeft = calendarEvent.GetBounds().Left;
-                int eventWidth = calendarEvent.GetBounds().Width;
-
-                List<CalendarEvent> overlappingEvents = new List<CalendarEvent>() { CalendarEvents[i] };
-
-                int k = i + 1;
-                while (k < CalendarEvents.Count && CalendarEvent.Overlap(CalendarEvents[i], CalendarEvents[k]))
-                {
-                    overlappingEvents.Add(CalendarEvents[k]);
-                    k++;
-                }
-
-                //foreach (CalendarEvent e in overlappingEvents)
-                //{
-                //    Console.WriteLine(e.PrimaryText + " - " + e.StartTime.hours + ":" + e.StartTime.minutes + " - " + e.EndTime.hours + ":" + e.EndTime.minutes + "  " + e.Day);
-                //}
-                //Console.WriteLine("------------------");
-
-                // when moving to the next day, clear overlapped events
-                if (i > 0 && CalendarEvents[i].Day > CalendarEvents[i - 1].Day)
-                {
-                    overlappedEvents.Clear();
-                }
-
-                if (overlappingEvents.Count > 1)
-                {
-                    eventWidth = eventWidth / 2;
-                    // first event in overlapping list is overlapped by the others
-                    // keep track of this event to check later
-                    overlappedEvents.Add(overlappingEvents[0]);
-                    //Console.WriteLine("Overlapped events: ");
-                    //foreach (CalendarEvent e in overlappedEvents)
-                    //{
-                    //    Console.WriteLine(e.StartTime.hours + ":" + e.StartTime.minutes + "-" + e.EndTime.hours + ":" + e.EndTime.minutes + "  " + e.Day + "  " + e.PrimaryText);
-                    //}
-                    //Console.WriteLine("------------------\n");
-                }
-
-                // calculate sizes of all overlapping events
-                for (int j = 0; j < overlappingEvents.Count; j++)
-                {
-                    Time eventDuration = overlappingEvents[j].EndTime - overlappingEvents[j].StartTime;
-                    int eventTop = 80 * overlappingEvents[j].StartTime.hours + 4 * overlappingEvents[j].StartTime.minutes / 3 + topMargin;
-                    int eventHeight = 80 * eventDuration.hours + 4 * eventDuration.minutes / 3;
-
-                    // first event bounds do not change - this is the overlapped event 
-                    if (j == 0)
-                    {
-                        overlappingEvents[j].SetBounds(new Rectangle(eventLeft, eventTop, eventWidth, eventHeight));
-                    }
-                    else
-                    {
-                        bool setLeftAbsolute = false;
-                        // check if this event still overlaps all the overlapped events
-                        for (int m = overlappedEvents.Count - 1; m >= 0; m--)
-                        {
-                            if (!CalendarEvent.Overlap(overlappedEvents[m], overlappingEvents[j]))
-                            {
-                                //Console.WriteLine("No overlap with: " + overlappedEvents[m].StartTime.hours + ":" + 
-                                //    overlappedEvents[m].StartTime.minutes + "-" + overlappedEvents[m].EndTime.hours + ":" + 
-                                //    overlappedEvents[m].EndTime.minutes + "  " + overlappedEvents[m].Day + " - " + overlappedEvents[m].PrimaryText);                                
-                                eventWidth = overlappedEvents[m].GetBounds().Width;
-                                eventLeft = overlappedEvents[m].GetBounds().Left;
-                                overlappedEvents.RemoveAt(m);
-                                setLeftAbsolute = true;
-                            }
-                        }
-                        if (setLeftAbsolute)
-                        {
-                            overlappingEvents[j].SetBounds(new Rectangle(eventLeft, eventTop, eventWidth, eventHeight));
-                        }
-                        else
-                        {
-                            overlappingEvents[j].SetBounds(new Rectangle(eventLeft + eventWidth, eventTop, eventWidth, eventHeight));
-                        }
-                    }
-                }
-            }
-        }
+        }        
     }
 }

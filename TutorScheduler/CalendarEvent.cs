@@ -56,11 +56,8 @@ namespace TutorScheduler
         /// Called when the event was clicked on the calendar view
         /// </summary>
         public void OnClick()
-        {
-            if ((type == CLASS && BackgroundColor.A == 255) || (type == WORK && BackgroundColor.A == 200))
-            {
-                BackgroundColor = Color.FromArgb(BackgroundColor.A - 90, BackgroundColor.R, BackgroundColor.G, BackgroundColor.B);
-            }
+        {            
+            new WorkShiftInfo(this).ShowDialog();            
         }
 
         public CalendarEvent(Time startTime, Time endTime, int day, int type, string primaryText, int baseColor)

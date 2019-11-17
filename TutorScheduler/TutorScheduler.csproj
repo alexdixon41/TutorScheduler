@@ -80,11 +80,11 @@
     <Compile Include="AddNewSubject.Designer.cs">
       <DependentUpon>AddNewSubject.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddNewWorkShift.cs">
+    <Compile Include="WorkShiftInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddNewWorkShift.Designer.cs">
-      <DependentUpon>AddNewWorkShift.cs</DependentUpon>
+    <Compile Include="WorkShiftInfo.Designer.cs">
+      <DependentUpon>WorkShiftInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="AddSubjectToStudentWorker.cs">
       <SubType>Form</SubType>
@@ -178,8 +178,8 @@
     <EmbeddedResource Include="AddNewStudentWorker.resx">
       <DependentUpon>AddNewStudentWorker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddNewWorkShift.resx">
-      <DependentUpon>AddNewWorkShift.cs</DependentUpon>
+    <EmbeddedResource Include="WorkShiftInfo.resx">
+      <DependentUpon>WorkShiftInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddSubjectToStudentWorker.resx">
       <DependentUpon>AddSubjectToStudentWorker.cs</DependentUpon>
