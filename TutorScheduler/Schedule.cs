@@ -132,6 +132,7 @@ namespace TutorScheduler
                         existingEvent.EndTime = Time.Max(existingEvent.EndTime, newEvent.EndTime);
                     }
                 }
+                
             }
         }
 

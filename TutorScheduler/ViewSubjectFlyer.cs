@@ -23,6 +23,7 @@ namespace TutorScheduler
         private void setFlyer() {
             List<StudentWorker> tutorList = selectedSubject.GetTutors();
             Schedule subjectSchedule = new Schedule();
+            Schedule tutorSchedule = new Schedule();
             subjectLabel.Text = selectedSubject.abbreviation + " " + selectedSubject.subjectNumber;
 
             resetLabels();
@@ -30,23 +31,25 @@ namespace TutorScheduler
             foreach (StudentWorker tutor in tutorList)
             {
                 tutor.FetchWorkSchedule();
-                Schedule tutorSchedule = tutor.WorkSchedule;
-                foreach(CalendarEvent shift in tutorSchedule.Events)
+                foreach(CalendarEvent newEvent in tutor.GetWorkSchedule().Events)
                 {
-                    if (!subjectSchedule.Contains(shift))
+                    tutorSchedule.AddEvent(newEvent);
+                }
+            }
+
+            foreach(CalendarEvent shift in tutorSchedule.Events)
+            {
+                if (!subjectSchedule.Contains(shift))
+                {
+                    if (!subjectSchedule.CoverageOverlaps(shift))
                     {
-                        Console.WriteLine("Do they overlaps? " + subjectSchedule.CoverageOverlaps(shift));
-                        if (!subjectSchedule.CoverageOverlaps(shift))
-                        {
-                            subjectSchedule.AddEvent(shift);
-                        }
-                        else
-                        {
-                            subjectSchedule.Merge(shift);
-                        }
+                        subjectSchedule.AddEvent(shift);
+                    }
+                    else
+                    {
+                        subjectSchedule.Merge(shift);
                     }
                 }
-
             }
 
             setLabels(subjectSchedule);
