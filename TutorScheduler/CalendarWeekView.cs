@@ -87,8 +87,7 @@ namespace TutorScheduler
             // perform actions on event that was clicked
             if (hitEvent != null && hitEvent.type == CalendarEvent.WORK)
             {
-                hitEvent.OnClick();
-                this.Invalidate(hitEvent.GetBounds());
+                hitEvent.OnClick();                
             }
             else
             {

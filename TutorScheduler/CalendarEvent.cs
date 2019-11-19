@@ -55,11 +55,18 @@ namespace TutorScheduler
         }
 
         /// <summary>
-        /// Called when the event was clicked on the calendar view
+        /// Called when the work event was clicked on the calendar view (only work events are editable)
         /// </summary>
         public void OnClick()
         {
-            new EditWorkEventForm(this).ShowDialog();
+            if (type == WORK)
+            {
+                new EditWorkEventForm(this).ShowDialog();
+            }
+            else
+            {
+                Console.WriteLine("Attempted to edit non-WORK type event.");
+            }
         }
 
         public CalendarEvent(string eventName, Time startTime, Time endTime, int day, int type, string primaryText, int baseColor)

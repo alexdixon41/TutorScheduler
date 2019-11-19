@@ -34,6 +34,7 @@ namespace TutorScheduler
         public void SetDay(int day)
         {
             SelectedDay = day;
+            //CalculateBounds();
             this.Invalidate();
         }
 
@@ -69,7 +70,7 @@ namespace TutorScheduler
         {
             foreach (CalendarEvent calendarEvent in CalendarEvents)
             {
-                if (calendarEvent.GetBounds().Contains(p))
+                if (calendarEvent.Day == SelectedDay && calendarEvent.GetBounds().Contains(p))
                 {
                     return calendarEvent;
                 }
@@ -84,10 +85,9 @@ namespace TutorScheduler
             CalendarEvent hitEvent = EventAt(e.Location);
 
             // perform actions on event that was clicked
-            if (hitEvent != null)
+            if (hitEvent != null && hitEvent.type == CalendarEvent.WORK)
             {
-                hitEvent.OnClick();
-                this.Invalidate(hitEvent.GetBounds());
+                hitEvent.OnClick();                
             }
             else
             {
@@ -140,20 +140,18 @@ namespace TutorScheduler
         {
             int width = (ClientRectangle.Width - leftMargin - rightMargin);             // full width of a day on the calendar
 
-            List<CalendarEvent>[] dayEvents = new List<CalendarEvent>[5];
-
-            for (int i = 0; i < 5; i++)
-            {
-                dayEvents[i] = new List<CalendarEvent>();
-            }
-
+            List<CalendarEvent> dayEvents = new List<CalendarEvent>();
+           
             foreach (CalendarEvent calendarEvent in CalendarEvents)
             {
-                dayEvents[calendarEvent.Day].Add(calendarEvent);
+                // only calculate bounds for events on the selected day
+                if (calendarEvent.Day == SelectedDay)
+                {
+                    dayEvents.Add(calendarEvent);
+                }
             }
-
             
-            List<CalendarEvent> toPlace = dayEvents[SelectedDay];
+            List<CalendarEvent> toPlace = dayEvents;
             int left = leftMargin;
             int minWidth = (width - 10) / MaxOverlap(toPlace);
 

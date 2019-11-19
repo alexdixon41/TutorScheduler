@@ -131,7 +131,7 @@ namespace TutorScheduler
             this.addSubjectButton.Name = "addSubjectButton";
             this.addSubjectButton.Size = new System.Drawing.Size(160, 35);
             this.addSubjectButton.TabIndex = 7;
-            this.addSubjectButton.Text = "Add Subject";
+            this.addSubjectButton.Text = "Add Subjects";
             this.addSubjectButton.UseVisualStyleBackColor = true;
             this.addSubjectButton.Click += new System.EventHandler(this.AddSubjectButton_Click);
             // 
@@ -171,7 +171,7 @@ namespace TutorScheduler
             this.removeSubjectButton.Name = "removeSubjectButton";
             this.removeSubjectButton.Size = new System.Drawing.Size(160, 35);
             this.removeSubjectButton.TabIndex = 9;
-            this.removeSubjectButton.Text = "Remove Subject";
+            this.removeSubjectButton.Text = "Remove Subjects";
             this.removeSubjectButton.UseVisualStyleBackColor = true;
             this.removeSubjectButton.Click += new System.EventHandler(this.RemoveSubjectButton_Click);
             // 

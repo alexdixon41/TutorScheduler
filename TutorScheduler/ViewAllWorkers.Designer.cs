@@ -42,7 +42,7 @@
             // selectedButton
             // 
             this.selectedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.selectedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectedButton.Location = new System.Drawing.Point(814, 546);
             this.selectedButton.Name = "selectedButton";
             this.selectedButton.Size = new System.Drawing.Size(136, 35);
@@ -70,12 +70,13 @@
             this.studentWorkerListView.TabIndex = 6;
             this.studentWorkerListView.UseCompatibleStateImageBehavior = false;
             this.studentWorkerListView.View = System.Windows.Forms.View.Details;
+            this.studentWorkerListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.StudentWorkerListView_ColumnClick);
             this.studentWorkerListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.StudentWorkerListView_ItemChecked);
             // 
             // name
             // 
             this.name.Text = "Name";
-            this.name.Width = 130;
+            this.name.Width = 180;
             // 
             // position
             // 
@@ -90,7 +91,7 @@
             // searchButton
             // 
             this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.searchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchButton.Location = new System.Drawing.Point(814, 12);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(136, 35);
@@ -111,7 +112,7 @@
             // removeButton
             // 
             this.removeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.removeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.removeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.removeButton.Location = new System.Drawing.Point(672, 546);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(136, 35);
@@ -123,7 +124,7 @@
             // newStudentWorkerButton
             // 
             this.newStudentWorkerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.newStudentWorkerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.newStudentWorkerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newStudentWorkerButton.Location = new System.Drawing.Point(12, 546);
             this.newStudentWorkerButton.Name = "newStudentWorkerButton";
             this.newStudentWorkerButton.Size = new System.Drawing.Size(136, 35);

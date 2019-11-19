@@ -218,16 +218,14 @@ namespace TutorScheduler
         }
 
         private void CalendarWeekView1_Click(object sender, EventArgs e)
-        {            
-            new CreateWorkEventForm().ShowDialog();
-            //Refresh the schedule           
+        {                        
+            // Refresh the schedule           
             RefreshCalendars.Refresh();
         }
 
         private void CalendarDayView1_Click(object sender, EventArgs e)
-        {
-            new CreateWorkEventForm().ShowDialog();
-            //Refresh the schedule            
+        {            
+            // Refresh the schedule            
             RefreshCalendars.Refresh();
         }
 
@@ -236,10 +234,12 @@ namespace TutorScheduler
         {
             if (weekView)
             {
-                weekView = false;            
+                weekView = false;
 
                 // draw day labels
                 //dayLabels = new Label[] { selectedDayLabel };
+
+                selectedDayLabel.Text = dayLabelText[calendarDayView1.SelectedDay];
 
                 // hide all day labels except selected one
                 for (int i = 0; i < dayLabels.Length; i++)
@@ -274,7 +274,7 @@ namespace TutorScheduler
                 weekView = true;
 
                 // reconfigure day labels before switching back to week view
-                dayLabels = new Label[] { mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel };
+                dayLabels = new Label[] { mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel };                
                 int i = 0;
                 foreach (Label l in dayLabels)
                 {
