@@ -30,10 +30,12 @@ namespace TutorScheduler
         internal Color TextColor;
         internal string PrimaryText;
         internal string SecondaryText;
+        internal string EventName = "";                          // if class event, stores the class name; otherwise, just stores the type
 
         internal Time StartTime { get; set; }
         internal Time EndTime { get; set; }
-       
+
+        internal int EventID { get; set; } = -1;    
 
         public int Day
         {
@@ -56,8 +58,8 @@ namespace TutorScheduler
         /// Called when the event was clicked on the calendar view
         /// </summary>
         public void OnClick()
-        {            
-            new WorkShiftInfo(this).ShowDialog();            
+        {
+            new EditWorkEventForm(this).ShowDialog();
         }
 
         public CalendarEvent(Time startTime, Time endTime, int day, int type, string primaryText, int baseColor)
@@ -65,8 +67,8 @@ namespace TutorScheduler
             if (startTime.minutes % 5 != 0 || endTime.minutes % 5 != 0)
             {
                 throw new Exception("All times must be a multiple of 5 minutes");
-            }
-
+            }            
+            
             StartTime = startTime;
             EndTime = endTime;
             this.day = day;
@@ -106,6 +108,22 @@ namespace TutorScheduler
             {
                 TextColor = Color.White;
             }
+        }
+
+        public void UpdateEvent(int startHour, int startMinute, int endHour, int endMinute)
+        {
+            if (type == WORK)
+            {
+                StartTime = new Time(startHour, startMinute);
+                EndTime = new Time(endHour, endMinute);
+                DatabaseManager.UpdateEvent(this);
+            }
+            Console.WriteLine("ERROR: called CalendarEvent.UpdateEvent on non-WORK type event.");
+        }
+
+        public void RemoveEvent()
+        {
+            DatabaseManager.RemoveEvent(this);
         }
 
         #region Static Methods     

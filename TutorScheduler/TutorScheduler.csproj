@@ -80,11 +80,11 @@
     <Compile Include="AddNewSubject.Designer.cs">
       <DependentUpon>AddNewSubject.cs</DependentUpon>
     </Compile>
-    <Compile Include="WorkShiftInfo.cs">
+    <Compile Include="CreateWorkEventForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WorkShiftInfo.Designer.cs">
-      <DependentUpon>WorkShiftInfo.cs</DependentUpon>
+    <Compile Include="CreateWorkEventForm.Designer.cs">
+      <DependentUpon>CreateWorkEventForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AddSubjectToStudentWorker.cs">
       <SubType>Form</SubType>
@@ -97,6 +97,12 @@
     </Compile>
     <Compile Include="AlertDialog.Designer.cs">
       <DependentUpon>AlertDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditWorkEventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditWorkEventForm.Designer.cs">
+      <DependentUpon>EditWorkEventForm.cs</DependentUpon>
     </Compile>
     <Compile Include="RefreshCalendars.cs" />
     <Compile Include="ICalendar.cs" />
@@ -178,8 +184,8 @@
     <EmbeddedResource Include="AddNewStudentWorker.resx">
       <DependentUpon>AddNewStudentWorker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WorkShiftInfo.resx">
-      <DependentUpon>WorkShiftInfo.cs</DependentUpon>
+    <EmbeddedResource Include="CreateWorkEventForm.resx">
+      <DependentUpon>CreateWorkEventForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddSubjectToStudentWorker.resx">
       <DependentUpon>AddSubjectToStudentWorker.cs</DependentUpon>
@@ -201,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DayCalendarForm.resx">
       <DependentUpon>DayCalendarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditWorkEventForm.resx">
+      <DependentUpon>EditWorkEventForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

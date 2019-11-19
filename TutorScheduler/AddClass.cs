@@ -21,9 +21,7 @@ namespace TutorScheduler
         }
 
         private void SaveClassButton_Click(object sender, EventArgs e)
-        {
-            //TODO: Figure out what to do about class names?
-
+        {          
             CheckBox[] checkBoxes = { mondayCheckBox, tuesdayCheckBox, wednesdayCheckBox, thursdayCheckBox, fridayCheckBox };
             Schedule newClass = new Schedule();
             bool shouldSave = true;
@@ -42,6 +40,7 @@ namespace TutorScheduler
                     else
                     {
                         CalendarEvent newClassEvent = new CalendarEvent(startTime, endTime, i, CalendarEvent.CLASS, studentWorker.Name, studentWorker.DisplayColor);
+                        newClassEvent.EventName = classNameTextBox.Text;
 
                         if (studentWorker.GetClassSchedule().Overlaps(newClassEvent) || studentWorker.GetWorkSchedule().Overlaps(newClassEvent))
                         {
@@ -63,7 +62,6 @@ namespace TutorScheduler
                 newClass.SaveSchedule(studentWorker.StudentID);
                 this.Close();
             }
-
         }
     }
 }

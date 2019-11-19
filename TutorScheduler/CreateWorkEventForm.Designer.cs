@@ -1,6 +1,6 @@
 ﻿namespace TutorScheduler
 {
-    partial class WorkShiftInfo
+    partial class CreateWorkEventForm
     {
         /// <summary>
         /// Required designer variable.
@@ -182,6 +182,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox1.Controls.Add(this.fridayCheckBox);
             this.groupBox1.Controls.Add(this.thursdayCheckBox);
             this.groupBox1.Controls.Add(this.wednesdayCheckBox);
@@ -256,7 +257,7 @@
             this.mondayCheckBox.Text = "Monday";
             this.mondayCheckBox.UseVisualStyleBackColor = true;
             // 
-            // AddNewWorkShift
+            // CreateWorkEventForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -272,9 +273,10 @@
             this.Controls.Add(this.startTimePicker);
             this.Controls.Add(this.label4);
             this.MinimumSize = new System.Drawing.Size(850, 600);
-            this.Name = "AddNewWorkShift";
+            this.Name = "CreateWorkEventForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add New Work Shift";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateWorkEventForm_FormClosed);
             this.Load += new System.EventHandler(this.AddNewWorkShift_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

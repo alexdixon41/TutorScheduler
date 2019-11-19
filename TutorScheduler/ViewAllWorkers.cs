@@ -97,8 +97,7 @@ namespace TutorScheduler
         }
 
         private void ViewAllWorkers_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            StudentWorker.allStudentWorkers = StudentWorker.GetStudentWorkers();
+        {            
             RefreshCalendars.Refresh();
         }
     }

@@ -10,41 +10,19 @@ using System.Windows.Forms;
 
 namespace TutorScheduler
 {
-    public partial class WorkShiftInfo : Form
+    public partial class CreateWorkEventForm : Form
     {
         List<StudentWorker> studentWorkerList;
         CheckBox[] checkBoxes;
 
-        public WorkShiftInfo()
+        public CreateWorkEventForm()
         {
             InitializeComponent();
 
             checkBoxes = new CheckBox[] { mondayCheckBox, tuesdayCheckBox, wednesdayCheckBox, thursdayCheckBox, fridayCheckBox };
 
             Text = "Add New Work Event";
-        }
-
-        // overloaded operator when this form is used to edit an existing event
-        public WorkShiftInfo(CalendarEvent selectedEvent)
-        {
-            InitializeComponent();
-
-            checkBoxes = new CheckBox[] { mondayCheckBox, tuesdayCheckBox, wednesdayCheckBox, thursdayCheckBox, fridayCheckBox };
-
-            // set the window title to reflect editing status
-            Text = "Edit Work Event";
-
-            // populate controls with current information for the selectedEvent
-            checkBoxes[selectedEvent.Day].Checked = true;
-
-            DateTime startTime = new DateTime(1900, 1, 1, selectedEvent.StartTime.hours, selectedEvent.StartTime.minutes, 0);
-            DateTime endTime = new DateTime(1900, 1, 1, selectedEvent.EndTime.hours, selectedEvent.EndTime.minutes, 0);
-            startTimePicker.Value = startTime;
-            endTimePicker.Value = endTime;
-
-            // do not allow user to edit the student worker the event is associated with
-            studentWorkerListView.Enabled = false;
-        }
+        }                        
 
         //Create button is clicked
         private void CreateButton_Click(object sender, EventArgs e)
@@ -59,8 +37,8 @@ namespace TutorScheduler
                 {
                     if (checkBoxes[i].Checked)
                     {
-                        //TODO: Verify event info
-                        //Verification items: Shift length should not be longer than 5 hours
+                        // TODO: Verify event info
+                        // Verification items: Shift length should not be longer than 5 hours
                         //                    Start time should be before End time
 
                         Time startTime = new Time(startTimePicker.Value.TimeOfDay.Hours, startTimePicker.Value.TimeOfDay.Minutes);
@@ -79,6 +57,7 @@ namespace TutorScheduler
                         {
                             //Create new event
                             CalendarEvent newWorkEvent = new CalendarEvent(startTime, endTime, i, CalendarEvent.WORK, selectedStudentWorker.Name, selectedStudentWorker.DisplayColor);
+                            newWorkEvent.EventName = "Work";
 
                             //Make sure that the new work shift doesn't conflict with student worker's class schedule
                             //if the new work event is in the student's availability schedule
@@ -144,5 +123,9 @@ namespace TutorScheduler
             return subjectString;
         }
 
+        private void CreateWorkEventForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            RefreshCalendars.Refresh();
+        }
     }
 }

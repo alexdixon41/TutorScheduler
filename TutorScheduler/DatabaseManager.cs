@@ -87,7 +87,7 @@ namespace TutorScheduler
                 Console.Write("Connecting to MySql... ");
                 conn.Open();
                 string sql = @"SELECT eventID, eventType, startHour, startMinute, endHour, endMinute, 
-                            monday, tuesday, wednesday, thursday, friday, studentName, displayColor
+                            day, eventName, studentName, displayColor
                             FROM studentworker sw JOIN scheduleevent e ON e.studentID = sw.studentID
                             WHERE sw.studentID = @id AND e.eventType = @scheduleType;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -117,20 +117,14 @@ namespace TutorScheduler
                 int startMinute = (int)row["startMinute"];
                 int endHour = (int)row["endHour"];
                 int endMinute = (int)row["endMinute"];
-                bool[] days = new bool[] {(bool)row["monday"], (bool)row["tuesday"], (bool)row["wednesday"],
-                    (bool)row["thursday"], (bool)row["friday"] };
+                int day = (int)row["day"];
                 string studentName = row["studentName"].ToString();
                 int displayColor = (int)row["displayColor"];
                 Time startTime = new Time(startHour, startMinute);
                 Time endTime = new Time(endHour, endMinute);
-                for (int i = 0; i < 5; i++)
-                {
-                    if (days[i])
-                    {
-                        CalendarEvent newEvent = new CalendarEvent(startTime, endTime, i, eventType, studentName, displayColor);
-                        newSchedule.AddEvent(newEvent);
-                    }
-                }
+                CalendarEvent newEvent = new CalendarEvent(startTime, endTime, day, eventType, studentName, displayColor);
+                newEvent.EventID = eventID;
+                newSchedule.AddEvent(newEvent);
             }
 
             table.Dispose();                      
@@ -478,6 +472,8 @@ namespace TutorScheduler
             Console.WriteLine("Done.");
         }
 
+
+
         /// <summary>
         /// Saves a new event to the database
         /// </summary>
@@ -489,8 +485,9 @@ namespace TutorScheduler
                 Console.Write("Connecting to MySql... ");
                 conn.Open();
                 string sql = @"INSERT INTO scheduleevent 
-                            (studentID, eventType, startHour, startMinute, endHour, endMinute, monday, tuesday, wednesday, thursday, friday) 
-                             VALUES (@studentID, @type, @startHour, @startMin, @endHour, @endMin, @mon, @tues, @wed, @thurs, @fri);";
+                            (studentID, eventType, startHour, startMinute, endHour, endMinute, day, eventName) 
+                             VALUES (@studentID, @type, @startHour, @startMin, @endHour, @endMin, @day, @eventName);";
+
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@studentID", studentID);
                 cmd.Parameters.AddWithValue("@type", newEvent.type);
@@ -498,16 +495,8 @@ namespace TutorScheduler
                 cmd.Parameters.AddWithValue("@startMin", newEvent.StartTime.minutes);
                 cmd.Parameters.AddWithValue("@endHour", newEvent.EndTime.hours);
                 cmd.Parameters.AddWithValue("@endMin", newEvent.EndTime.minutes);
-
-                //Bind day
-                int[] days = new int[5];
-                days[newEvent.Day] = 1;
-
-                cmd.Parameters.AddWithValue("@mon", days[0]);
-                cmd.Parameters.AddWithValue("@tues", days[1]);
-                cmd.Parameters.AddWithValue("@wed", days[2]);
-                cmd.Parameters.AddWithValue("@thurs", days[3]);
-                cmd.Parameters.AddWithValue("@fri", days[4]);
+                cmd.Parameters.AddWithValue("@day", newEvent.Day);
+                cmd.Parameters.AddWithValue("@eventName", newEvent.EventName);
 
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
@@ -594,7 +583,7 @@ namespace TutorScheduler
                 conn.Open();
                 string sql = @"UPDATE studentworker 
                                 SET studentName = @name, displayColor = @color, jobPosition = @position
-                                WHERE studentID = @id ";
+                                WHERE studentID = @id;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@name", name);
                 cmd.Parameters.AddWithValue("@color", color);
@@ -602,6 +591,61 @@ namespace TutorScheduler
                 cmd.Parameters.AddWithValue("@id", studentID);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+        }
+
+        public static void UpdateEvent(CalendarEvent selectedEvent)
+        {
+            if (selectedEvent.EventID == -1)
+            {
+                return;
+            }
+            try
+            {
+                Console.Write("Connecting to MySQL... ");
+                conn.Open();
+                string sql = @"UPDATE scheduleevent
+                               SET startHour = @startHour, startMinute = @startMinute, endHour = @endHour, endMinute = @endMinute
+                               WHERE eventID = @eventID;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@startHour", selectedEvent.StartTime.hours);
+                cmd.Parameters.AddWithValue("@startMinute", selectedEvent.StartTime.minutes);
+                cmd.Parameters.AddWithValue("@endHour", selectedEvent.EndTime.hours);
+                cmd.Parameters.AddWithValue("@endMinute", selectedEvent.EndTime.minutes);
+                cmd.Parameters.AddWithValue("@eventID", selectedEvent.EventID);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+        }
+
+        public static void RemoveEvent(CalendarEvent selectedEvent)
+        {
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"DELETE FROM scheduleevent where eventID = @eventID";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@eventID", selectedEvent.EventID);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                Console.WriteLine("Event removed.");
             }
             catch (Exception ex)
             {

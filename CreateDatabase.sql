@@ -31,22 +31,19 @@ CREATE TABLE IF NOT EXISTS `ScheduleEvent` (
 	`startMinute` INT,
 	`endHour` INT,
 	`endMinute` INT,
-	`monday` TINYINT(1),
-	`tuesday` TINYINT(1),
-	`wednesday` TINYINT(1),
-	`thursday` TINYINT(1),
-	`friday` TINYINT(1),
+	`day` INT,
+	`eventName` VARCHAR(255),
 	CONSTRAINT `ScheduleEvent_StudentWorker_fk` FOREIGN KEY (`studentID`) REFERENCES `StudentWorker` (`studentID`)
 );
 	
-CREATE TABLE `Subject` (
+CREATE TABLE IF NOT EXISTS `Subject` (
 	`subjectID` INT AUTO_INCREMENT PRIMARY KEY,
 	`abbreviation` VARCHAR(10),
 	`subNum` INT,
 	`subName` VARCHAR(255)
 );
 	
-CREATE TABLE `SubjectTutored` (
+CREATE TABLE IF NOT EXISTS `SubjectTutored` (
 	`subjectID` INT,
 	`studentID` INT,
 	CONSTRAINT `subject_tutored_pk` PRIMARY KEY (`subjectID`, `studentID`)

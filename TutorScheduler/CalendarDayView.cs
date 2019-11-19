@@ -91,7 +91,7 @@ namespace TutorScheduler
             }
             else
             {
-                new WorkShiftInfo().ShowDialog();
+                new CreateWorkEventForm().ShowDialog();
                 //Refresh the schedule            
                 RefreshCalendars.Refresh();
             }

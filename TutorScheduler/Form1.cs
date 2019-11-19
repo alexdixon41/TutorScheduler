@@ -90,6 +90,9 @@ namespace TutorScheduler
 
         private void PopulateCalendars()
         {
+            // refresh student workers from the database
+            StudentWorker.allStudentWorkers = StudentWorker.GetStudentWorkers();
+
             calendarWeekView1.Clear();
             calendarDayView1.Clear();
             // TODO - only get selected student workers
@@ -216,14 +219,14 @@ namespace TutorScheduler
 
         private void CalendarWeekView1_Click(object sender, EventArgs e)
         {            
-            new WorkShiftInfo().ShowDialog();
+            new CreateWorkEventForm().ShowDialog();
             //Refresh the schedule           
             RefreshCalendars.Refresh();
         }
 
         private void CalendarDayView1_Click(object sender, EventArgs e)
         {
-            new WorkShiftInfo().ShowDialog();
+            new CreateWorkEventForm().ShowDialog();
             //Refresh the schedule            
             RefreshCalendars.Refresh();
         }
