@@ -120,7 +120,7 @@ namespace TutorScheduler
                 {
                     Time availableStart = WorkLocation.openingTimes[(int)day];
                     Time availableStop = WorkLocation.closingTimes[(int)day];
-                    availability.AddEvent(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+                    availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
                 }
                 for (int i = 0; i < dayClasses.Count; i++)
                 {                   
@@ -131,7 +131,7 @@ namespace TutorScheduler
                         {
                             Time availableStart = WorkLocation.openingTimes[(int)day];
                             Time availableStop = Schedule.GetPrecedingStopTime(dayClasses[i].StartTime);
-                            availability.AddEvent(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+                            availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
                         }
                     }
                     else            // attempt to schedule availability between classes
@@ -141,7 +141,7 @@ namespace TutorScheduler
                         {
                             Time availableStart = Schedule.GetSucceedingStartTime(dayClasses[i - 1].EndTime);
                             Time availableStop = Schedule.GetPrecedingStopTime(dayClasses[i].StartTime);
-                            availability.AddEvent(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+                            availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
                         }
                     }
 
@@ -152,7 +152,7 @@ namespace TutorScheduler
                         {
                             Time availableStart = Schedule.GetSucceedingStartTime(dayClasses[i].EndTime);
                             Time availableStop = WorkLocation.closingTimes[day];
-                            availability.AddEvent(new CalendarEvent(availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+                            availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
                         }
                     }
                 }

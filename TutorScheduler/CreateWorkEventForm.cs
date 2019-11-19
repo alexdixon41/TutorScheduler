@@ -56,8 +56,7 @@ namespace TutorScheduler
                         else
                         {
                             //Create new event
-                            CalendarEvent newWorkEvent = new CalendarEvent(startTime, endTime, i, CalendarEvent.WORK, selectedStudentWorker.Name, selectedStudentWorker.DisplayColor);
-                            newWorkEvent.EventName = "Work";
+                            CalendarEvent newWorkEvent = new CalendarEvent("Work", startTime, endTime, i, CalendarEvent.WORK, selectedStudentWorker.Name, selectedStudentWorker.DisplayColor);                            
 
                             //Make sure that the new work shift doesn't conflict with student worker's class schedule
                             //if the new work event is in the student's availability schedule

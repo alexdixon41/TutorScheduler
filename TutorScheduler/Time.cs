@@ -23,7 +23,7 @@ namespace TutorScheduler
             this.minutes = minutes;
         }   
 
-        public string getTimeString()
+        public override string ToString()
         {
             string timeStr = "";
             string amOrPM = " a.m.";

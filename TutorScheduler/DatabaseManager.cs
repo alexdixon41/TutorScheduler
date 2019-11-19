@@ -111,6 +111,7 @@ namespace TutorScheduler
 
             foreach (DataRow row in table.Rows)
             {
+                string eventName = row["eventName"].ToString();
                 int eventID = (int)row["eventID"];
                 int eventType = (int)row["eventType"];
                 int startHour = (int)row["startHour"];
@@ -122,7 +123,7 @@ namespace TutorScheduler
                 int displayColor = (int)row["displayColor"];
                 Time startTime = new Time(startHour, startMinute);
                 Time endTime = new Time(endHour, endMinute);
-                CalendarEvent newEvent = new CalendarEvent(startTime, endTime, day, eventType, studentName, displayColor);
+                CalendarEvent newEvent = new CalendarEvent(eventName, startTime, endTime, day, eventType, studentName, displayColor);
                 newEvent.EventID = eventID;
                 newSchedule.AddEvent(newEvent);
             }

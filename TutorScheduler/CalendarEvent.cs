@@ -62,7 +62,7 @@ namespace TutorScheduler
             new EditWorkEventForm(this).ShowDialog();
         }
 
-        public CalendarEvent(Time startTime, Time endTime, int day, int type, string primaryText, int baseColor)
+        public CalendarEvent(string eventName, Time startTime, Time endTime, int day, int type, string primaryText, int baseColor)
         {
             if (startTime.minutes % 5 != 0 || endTime.minutes % 5 != 0)
             {
@@ -74,6 +74,8 @@ namespace TutorScheduler
             this.day = day;
             this.type = type;            
             PrimaryText = primaryText;
+
+            this.EventName = eventName;
 
             // convert baseColor to RGB values
             int red = baseColor / 256 / 256;

@@ -75,17 +75,29 @@ namespace TutorScheduler
         {
             List<CalendarEvent> classes = selectedStudentWorker.GetClassSchedule().Events;
             classesListView.Items.Clear();
-            int i = 0;
+            Dictionary<string, string> classesByDay = new Dictionary<string, string>();
+            string[] days = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };            
             foreach (CalendarEvent classEvent in classes)
             {
-                //TODO: How to display class name when it isn't stored in the database??
-                classesListView.Items.Add("Class " + i);
-                classesListView.Items[i].SubItems.Add(classEvent.StartTime.getTimeString());
-                classesListView.Items[i].SubItems.Add(classEvent.EndTime.getTimeString());
-                classesListView.Items[i].SubItems.Add(""+classEvent.Day);
-                i++;
+                // if class with same name already exists, add this event's time and day to it
+                if (classesByDay.ContainsKey(classEvent.EventName))
+                {
+                    classesByDay[classEvent.EventName] += "; " + classEvent.StartTime.ToString() 
+                        + " - " + classEvent.EndTime.ToString() + " " + days[classEvent.Day];
+                }        
+                else
+                {
+                    classesByDay[classEvent.EventName] = classEvent.StartTime.ToString()
+                        + " - " + classEvent.EndTime.ToString() + " " + days[classEvent.Day];
+                }
             }
 
+            int i = 0;
+            foreach (KeyValuePair<string, string> classEntry in classesByDay) {
+                classesListView.Items.Add(classEntry.Key);
+                classesListView.Items[i].SubItems.Add(classEntry.Value);
+                i++;
+            }
         }
 
         private void StudentWorkerInfoForm_Load(object sender, EventArgs e)

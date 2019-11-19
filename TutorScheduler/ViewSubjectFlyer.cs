@@ -58,7 +58,7 @@ namespace TutorScheduler
             Label[] labels = { mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel };
             foreach( CalendarEvent workEvent in subjectSchedule.Events)
             {
-                labels[workEvent.Day].Text += workEvent.StartTime.getTimeString() + " - " + workEvent.EndTime.getTimeString() + "; ";
+                labels[workEvent.Day].Text += workEvent.StartTime.ToString() + " - " + workEvent.EndTime.ToString() + "; ";
             }
             foreach(Label label in labels)
             {
