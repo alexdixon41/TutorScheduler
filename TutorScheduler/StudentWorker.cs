@@ -224,6 +224,7 @@ namespace TutorScheduler
         public static bool CreateStudentWorker(int studentID, string name, string position, int color)
         {
             StudentWorker newStudentWorker = new StudentWorker(studentID, name, position, color);
+            newStudentWorker.Selected = true;               // display the new student worker by default
             //Call save function from DBMgr
             bool success = DatabaseManager.SaveStudentWorker(newStudentWorker);
             return success;

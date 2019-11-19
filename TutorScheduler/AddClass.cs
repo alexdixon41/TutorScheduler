@@ -17,7 +17,9 @@ namespace TutorScheduler
         public AddClass(StudentWorker selectedStudentWorker)
         {
             InitializeComponent();
+
             studentWorker = selectedStudentWorker;
+            studentWorkerNameLabel.Text = selectedStudentWorker.Name;
         }
 
         private void SaveClassButton_Click(object sender, EventArgs e)
@@ -44,7 +46,7 @@ namespace TutorScheduler
 
                         if (studentWorker.GetClassSchedule().Overlaps(newClassEvent) || studentWorker.GetWorkSchedule().Overlaps(newClassEvent))
                         {
-                            //TODO: Display better error message
+                            // [Future] - Display better error message
                             new AlertDialog("The class you are trying to create conflicts with an existing class or work shift.").ShowDialog();
                             shouldSave = false;
                         }
@@ -58,7 +60,8 @@ namespace TutorScheduler
             }
 
             if (shouldSave)
-            {
+            {                
+                studentWorker.GetClassSchedule().AddEvents(newClass.Events.ToArray());
                 newClass.SaveSchedule(studentWorker.StudentID);
                 this.Close();
             }

@@ -111,7 +111,7 @@
             // 
             this.updateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.updateButton.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updateButton.Location = new System.Drawing.Point(273, 246);
+            this.updateButton.Location = new System.Drawing.Point(320, 259);
             this.updateButton.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(122, 35);
@@ -124,7 +124,7 @@
             // 
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.deleteButton.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteButton.Location = new System.Drawing.Point(138, 246);
+            this.deleteButton.Location = new System.Drawing.Point(185, 259);
             this.deleteButton.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(122, 35);
@@ -138,7 +138,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(415, 300);
+            this.ClientSize = new System.Drawing.Size(462, 313);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.updateButton);
             this.Controls.Add(this.dayLabel);
@@ -147,7 +147,9 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.startTimePicker);
             this.Controls.Add(this.label4);
+            this.MinimumSize = new System.Drawing.Size(450, 350);
             this.Name = "EditWorkEventForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Edit Work Event";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditWorkEventForm_FormClosed);
             this.ResumeLayout(false);

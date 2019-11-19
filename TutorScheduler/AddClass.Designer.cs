@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.studentWorkerNameLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.classNameTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,29 +49,29 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 13);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(172, 45);
+            this.label1.Size = new System.Drawing.Size(158, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "New Class";
             // 
-            // label2
+            // studentWorkerNameLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(199, 19);
-            this.label2.Margin = new System.Windows.Forms.Padding(10, 0, 3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(292, 38);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Student Worker Name";
+            this.studentWorkerNameLabel.AutoSize = true;
+            this.studentWorkerNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.studentWorkerNameLabel.Location = new System.Drawing.Point(183, 16);
+            this.studentWorkerNameLabel.Margin = new System.Windows.Forms.Padding(10, 0, 3, 0);
+            this.studentWorkerNameLabel.Name = "studentWorkerNameLabel";
+            this.studentWorkerNameLabel.Size = new System.Drawing.Size(250, 29);
+            this.studentWorkerNameLabel.TabIndex = 1;
+            this.studentWorkerNameLabel.Text = "Student Worker Name";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 104);
+            this.label3.Location = new System.Drawing.Point(7, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(117, 28);
             this.label3.TabIndex = 2;
@@ -82,17 +82,17 @@
             this.classNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.classNameTextBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.classNameTextBox.Location = new System.Drawing.Point(150, 101);
+            this.classNameTextBox.Location = new System.Drawing.Point(157, 87);
             this.classNameTextBox.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.classNameTextBox.Name = "classNameTextBox";
-            this.classNameTextBox.Size = new System.Drawing.Size(638, 34);
+            this.classNameTextBox.Size = new System.Drawing.Size(631, 34);
             this.classNameTextBox.TabIndex = 0;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 180);
+            this.label4.Location = new System.Drawing.Point(7, 166);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(105, 28);
             this.label4.TabIndex = 3;
@@ -103,11 +103,11 @@
             this.startTimePicker.CustomFormat = "hh:mm tt";
             this.startTimePicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.startTimePicker.Location = new System.Drawing.Point(150, 175);
+            this.startTimePicker.Location = new System.Drawing.Point(157, 161);
             this.startTimePicker.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.startTimePicker.Name = "startTimePicker";
             this.startTimePicker.ShowUpDown = true;
-            this.startTimePicker.Size = new System.Drawing.Size(245, 34);
+            this.startTimePicker.Size = new System.Drawing.Size(238, 34);
             this.startTimePicker.TabIndex = 1;
             this.startTimePicker.Value = new System.DateTime(2019, 9, 15, 10, 0, 0, 0);
             // 
@@ -115,7 +115,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(413, 180);
+            this.label5.Location = new System.Drawing.Point(413, 166);
             this.label5.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(97, 28);
@@ -129,7 +129,7 @@
             this.endTimePicker.CustomFormat = "hh:mm tt";
             this.endTimePicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.endTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker.Location = new System.Drawing.Point(543, 175);
+            this.endTimePicker.Location = new System.Drawing.Point(543, 161);
             this.endTimePicker.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.endTimePicker.Name = "endTimePicker";
             this.endTimePicker.ShowUpDown = true;
@@ -148,9 +148,9 @@
             this.groupBox1.Controls.Add(this.tuesdayCheckBox);
             this.groupBox1.Controls.Add(this.mondayCheckBox);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(17, 247);
+            this.groupBox1.Location = new System.Drawing.Point(12, 232);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(771, 191);
+            this.groupBox1.Size = new System.Drawing.Size(776, 166);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Days";
@@ -218,10 +218,10 @@
             // saveClassButton
             // 
             this.saveClassButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveClassButton.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveClassButton.Location = new System.Drawing.Point(691, 19);
+            this.saveClassButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveClassButton.Location = new System.Drawing.Point(648, 12);
             this.saveClassButton.Name = "saveClassButton";
-            this.saveClassButton.Size = new System.Drawing.Size(97, 40);
+            this.saveClassButton.Size = new System.Drawing.Size(140, 35);
             this.saveClassButton.TabIndex = 5;
             this.saveClassButton.Text = "Save";
             this.saveClassButton.UseVisualStyleBackColor = true;
@@ -232,7 +232,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 410);
             this.Controls.Add(this.saveClassButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.endTimePicker);
@@ -241,7 +241,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.classNameTextBox);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.studentWorkerNameLabel);
             this.Controls.Add(this.label1);
             this.Name = "AddClass";
             this.Text = "AddClass";
@@ -255,7 +255,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label studentWorkerNameLabel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox classNameTextBox;
         private System.Windows.Forms.Label label4;

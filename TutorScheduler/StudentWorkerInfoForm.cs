@@ -26,6 +26,7 @@ namespace TutorScheduler
             new AddClass(selectedStudentWorker).Show();
 
             //TODO: Fetch updated class list from database?
+            
             displayClasses();
         }
 

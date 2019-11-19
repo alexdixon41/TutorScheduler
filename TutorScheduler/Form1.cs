@@ -235,10 +235,7 @@ namespace TutorScheduler
             if (weekView)
             {
                 weekView = false;
-
-                // draw day labels
-                //dayLabels = new Label[] { selectedDayLabel };
-
+                
                 selectedDayLabel.Text = dayLabelText[calendarDayView1.SelectedDay];
 
                 // hide all day labels except selected one
@@ -251,16 +248,6 @@ namespace TutorScheduler
                     }
                 }
 
-                //for (int i = 0; i < dayLabelPanel.Controls.Count; i++)
-                //{
-                //    if (dayLabelPanel.Controls[i].GetType() == typeof(Label)) 
-                //    {
-                //        if (dayLabelPanel.Controls[i] != selectedDayLabel)
-                //        {
-                //            dayLabelPanel.Controls[i].Visible = false;
-                //        }                     
-                //    }
-                //}
                 selectedDayLabel.Visible = true;
                 selectedDayLabel.TextAlign = ContentAlignment.MiddleCenter;
                
