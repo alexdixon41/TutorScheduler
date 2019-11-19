@@ -60,7 +60,7 @@ namespace TutorScheduler
 
                             //Make sure that the new work shift doesn't conflict with student worker's class schedule
                             //if the new work event is in the student's availability schedule
-                            if (selectedStudentWorker.GetAvailabilitySchedule().Contains(newWorkEvent) && !selectedStudentWorker.GetWorkSchedule().Overlaps(newWorkEvent))
+                            if (selectedStudentWorker.GetAvailabilitySchedule().Contains(newWorkEvent) && !selectedStudentWorker.WorkSchedule.Overlaps(newWorkEvent))
                             {
                                 newShifts.AddEvent(newWorkEvent);
                             }

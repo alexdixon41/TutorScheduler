@@ -30,7 +30,7 @@ namespace TutorScheduler
             foreach (StudentWorker tutor in tutorList)
             {
                 tutor.FetchWorkSchedule();
-                Schedule tutorSchedule = tutor.GetWorkSchedule();
+                Schedule tutorSchedule = tutor.WorkSchedule;
                 foreach(CalendarEvent shift in tutorSchedule.Events)
                 {
                     if (!subjectSchedule.Contains(shift))

@@ -12,9 +12,9 @@ namespace TutorScheduler
         public string JobPosition;
         public int DisplayColor;
         public bool Selected;
-        private Schedule classSchedule;                           // the student's class schedule
-        private Schedule workSchedule;
-        private Schedule availability = new Schedule();           // the student's work availability schedule
+        public Schedule ClassSchedule { get; set; }                           // the student's class schedule
+        public Schedule WorkSchedule { get; set; }
+        public Schedule Availability { get; set; } = new Schedule();           // the student's work availability schedule
 
         public StudentWorker(int id, string name)
         {
@@ -43,31 +43,11 @@ namespace TutorScheduler
         public override int GetHashCode()
         {
             return StudentID;
-        }
-
-        public void SetClassSchedule(Schedule schedule)
-        {
-            classSchedule = schedule;
-        }
-
-        public Schedule GetClassSchedule()
-        {
-            return classSchedule;
-        }
-
-        public void SetWorkSchedule(Schedule schedule)
-        {
-            workSchedule = schedule;
-        }
-
-        public Schedule GetWorkSchedule()
-        {
-            return workSchedule;
-        }
+        }        
 
         public Schedule GetAvailabilitySchedule()
         {
-            return availability;
+            return Availability;
         }
 
         public List<Subject> GetSubjectsTutored()
@@ -90,9 +70,9 @@ namespace TutorScheduler
         /// </summary>
         public void BuildAvailabilitySchedule()
         {
-            availability.Clear();
+            Availability.Clear();
 
-            if (classSchedule == null)
+            if (ClassSchedule == null)
             {
                 return;
             }           
@@ -106,7 +86,7 @@ namespace TutorScheduler
                 new List<CalendarEvent>()
             };
 
-            foreach (CalendarEvent classMeeting in classSchedule.Events)
+            foreach (CalendarEvent classMeeting in ClassSchedule.Events)
             {
                 dailyEvents[(int)classMeeting.Day].Add(classMeeting);
             }
@@ -120,7 +100,7 @@ namespace TutorScheduler
                 {
                     Time availableStart = WorkLocation.openingTimes[(int)day];
                     Time availableStop = WorkLocation.closingTimes[(int)day];
-                    availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+                    Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
                 }
                 for (int i = 0; i < dayClasses.Count; i++)
                 {                   
@@ -131,7 +111,7 @@ namespace TutorScheduler
                         {
                             Time availableStart = WorkLocation.openingTimes[(int)day];
                             Time availableStop = Schedule.GetPrecedingStopTime(dayClasses[i].StartTime);
-                            availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+                            Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
                         }
                     }
                     else            // attempt to schedule availability between classes
@@ -141,7 +121,7 @@ namespace TutorScheduler
                         {
                             Time availableStart = Schedule.GetSucceedingStartTime(dayClasses[i - 1].EndTime);
                             Time availableStop = Schedule.GetPrecedingStopTime(dayClasses[i].StartTime);
-                            availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+                            Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
                         }
                     }
 
@@ -152,7 +132,7 @@ namespace TutorScheduler
                         {
                             Time availableStart = Schedule.GetSucceedingStartTime(dayClasses[i].EndTime);
                             Time availableStop = WorkLocation.closingTimes[day];
-                            availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+                            Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
                         }
                     }
                 }
@@ -160,10 +140,20 @@ namespace TutorScheduler
             }
         }
 
+        /// <summary>
+        /// Retrieve the student worker's class schedule from the database
+        /// </summary>
+        public void FetchClassSchedule()
+        {
+            ClassSchedule = DatabaseManager.GetSchedule(StudentID, CalendarEvent.WORK);
+        }
 
+        /// <summary>
+        /// Retrieve the student worker's work schedule from the database
+        /// </summary>
         public void FetchWorkSchedule()
         {
-            workSchedule = DatabaseManager.GetSchedule(StudentID, CalendarEvent.WORK);
+            WorkSchedule = DatabaseManager.GetSchedule(StudentID, CalendarEvent.WORK);
         }
         
         /// <summary>
@@ -207,8 +197,8 @@ namespace TutorScheduler
             foreach (StudentWorker sw in studentWorkers)
             {
                 // set the class and work schedule of the student worker
-                sw.SetClassSchedule(DatabaseManager.GetSchedule(sw.StudentID, CalendarEvent.CLASS));
-                sw.SetWorkSchedule(DatabaseManager.GetSchedule(sw.StudentID, CalendarEvent.WORK));
+                sw.ClassSchedule = DatabaseManager.GetSchedule(sw.StudentID, CalendarEvent.CLASS);
+                sw.WorkSchedule = DatabaseManager.GetSchedule(sw.StudentID, CalendarEvent.WORK);
                 sw.BuildAvailabilitySchedule();
 
                 // set selected student workers as selected

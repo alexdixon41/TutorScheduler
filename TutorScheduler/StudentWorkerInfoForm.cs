@@ -24,9 +24,8 @@ namespace TutorScheduler
         private void AddClassButton_Click(object sender, EventArgs e)
         {
             new AddClass(selectedStudentWorker).Show();
-
-            //TODO: Fetch updated class list from database?
             
+            selectedStudentWorker.FetchClassSchedule();
             displayClasses();
         }
 
@@ -74,7 +73,7 @@ namespace TutorScheduler
 
         private void displayClasses()
         {
-            List<CalendarEvent> classes = selectedStudentWorker.GetClassSchedule().Events;
+            List<CalendarEvent> classes = selectedStudentWorker.ClassSchedule.Events;
             classesListView.Items.Clear();
             Dictionary<string, string> classesByDay = new Dictionary<string, string>();
             string[] days = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };            

@@ -44,7 +44,7 @@ namespace TutorScheduler
                         CalendarEvent newClassEvent = new CalendarEvent(classNameTextBox.Text, startTime, endTime, i, CalendarEvent.CLASS, studentWorker.Name, studentWorker.DisplayColor);
                         newClassEvent.EventName = classNameTextBox.Text;
 
-                        if (studentWorker.GetClassSchedule().Overlaps(newClassEvent) || studentWorker.GetWorkSchedule().Overlaps(newClassEvent))
+                        if (studentWorker.ClassSchedule.Overlaps(newClassEvent) || studentWorker.WorkSchedule.Overlaps(newClassEvent))
                         {
                             // [Future] - Display better error message
                             new AlertDialog("The class you are trying to create conflicts with an existing class or work shift.").ShowDialog();
@@ -61,7 +61,7 @@ namespace TutorScheduler
 
             if (shouldSave)
             {                
-                studentWorker.GetClassSchedule().AddEvents(newClass.Events.ToArray());
+                studentWorker.ClassSchedule.AddEvents(newClass.Events.ToArray());
                 newClass.SaveSchedule(studentWorker.StudentID);
                 this.Close();
             }

@@ -103,14 +103,14 @@ namespace TutorScheduler
                     continue;
                 }
                 // Show work schedule
-                Schedule w = sw.GetWorkSchedule();
+                Schedule w = sw.WorkSchedule;
                 calendarWeekView1.AddSchedule(w);
                 calendarDayView1.AddSchedule(w);
 
                 // include class schedule only if enabled
                 if (showClasses)
                 {
-                    Schedule s = sw.GetClassSchedule();
+                    Schedule s = sw.ClassSchedule;
                     calendarWeekView1.AddSchedule(s);
                     calendarDayView1.AddSchedule(s);
                 }
