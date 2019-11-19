@@ -162,7 +162,7 @@
             this.calendarWeekView1.Location = new System.Drawing.Point(0, 0);
             this.calendarWeekView1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.calendarWeekView1.Name = "calendarWeekView1";
-            this.calendarWeekView1.Size = new System.Drawing.Size(836, 52234);
+            this.calendarWeekView1.Size = new System.Drawing.Size(836, 53845);
             this.calendarWeekView1.TabIndex = 0;
             this.calendarWeekView1.Text = "calendarWeekView1";
             // 
@@ -174,14 +174,14 @@
             this.calendarDayView1.Location = new System.Drawing.Point(0, 0);
             this.calendarDayView1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.calendarDayView1.Name = "calendarDayView1";
-            this.calendarDayView1.Size = new System.Drawing.Size(836, 18157);
+            this.calendarDayView1.Size = new System.Drawing.Size(836, 19768);
             this.calendarDayView1.TabIndex = 1;
             this.calendarDayView1.Text = "calendarDayView1";
             this.calendarDayView1.Visible = false;
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.menuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -190,7 +190,7 @@
             this.subjectsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(863, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(863, 30);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.MenuActivate += new System.EventHandler(this.MenuStrip1_MenuActivate);
@@ -205,7 +205,7 @@
             this.openToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(55, 29);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(50, 26);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuItem
@@ -213,7 +213,7 @@
             this.newToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(144, 30);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.ToolTipText = "Create a new schedule";
             // 
@@ -221,7 +221,7 @@
             // 
             this.saveToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(144, 30);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.ToolTipText = "Save the current schedule";
             // 
@@ -229,7 +229,7 @@
             // 
             this.openToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(144, 30);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.ToolTipText = "Open a different schedule";
             // 
@@ -237,7 +237,7 @@
             // 
             this.exitToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(144, 30);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.ToolTipText = "Close the program";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
@@ -249,27 +249,27 @@
             this.availabilityToolStripMenuItem,
             this.classesToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(67, 29);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(59, 26);
             this.viewToolStripMenuItem.Text = "&View";
             // 
             // calViewToolStripMenuItem
             // 
             this.calViewToolStripMenuItem.Name = "calViewToolStripMenuItem";
-            this.calViewToolStripMenuItem.Size = new System.Drawing.Size(258, 30);
+            this.calViewToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
             this.calViewToolStripMenuItem.Text = "Switch to Day View";
             this.calViewToolStripMenuItem.Click += new System.EventHandler(this.DayViewToolStripMenuItem_Click);
             // 
             // availabilityToolStripMenuItem
             // 
             this.availabilityToolStripMenuItem.Name = "availabilityToolStripMenuItem";
-            this.availabilityToolStripMenuItem.Size = new System.Drawing.Size(258, 30);
+            this.availabilityToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
             this.availabilityToolStripMenuItem.Text = "Availability";
             this.availabilityToolStripMenuItem.Click += new System.EventHandler(this.AvailabilityToolStripMenuItem_Click);
             // 
             // classesToolStripMenuItem
             // 
             this.classesToolStripMenuItem.Name = "classesToolStripMenuItem";
-            this.classesToolStripMenuItem.Size = new System.Drawing.Size(258, 30);
+            this.classesToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
             this.classesToolStripMenuItem.Text = "Classes";
             this.classesToolStripMenuItem.Click += new System.EventHandler(this.ClassesToolStripMenuItem_Click);
             // 
@@ -279,13 +279,13 @@
             this.studentWorkersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.viewAllToolStripMenuItem});
             this.studentWorkersToolStripMenuItem.Name = "studentWorkersToolStripMenuItem";
-            this.studentWorkersToolStripMenuItem.Size = new System.Drawing.Size(164, 29);
+            this.studentWorkersToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
             this.studentWorkersToolStripMenuItem.Text = "Student Workers";
             // 
             // viewAllToolStripMenuItem
             // 
             this.viewAllToolStripMenuItem.Name = "viewAllToolStripMenuItem";
-            this.viewAllToolStripMenuItem.Size = new System.Drawing.Size(310, 30);
+            this.viewAllToolStripMenuItem.Size = new System.Drawing.Size(281, 26);
             this.viewAllToolStripMenuItem.Text = "Manage Student Workers";
             this.viewAllToolStripMenuItem.ToolTipText = "View all student workers";
             this.viewAllToolStripMenuItem.Click += new System.EventHandler(this.ViewAllToolStripMenuItem_Click);
@@ -295,13 +295,13 @@
             this.subjectsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.viewAllToolStripMenuItem1});
             this.subjectsToolStripMenuItem.Name = "subjectsToolStripMenuItem";
-            this.subjectsToolStripMenuItem.Size = new System.Drawing.Size(96, 29);
+            this.subjectsToolStripMenuItem.Size = new System.Drawing.Size(88, 26);
             this.subjectsToolStripMenuItem.Text = "Subjects";
             // 
             // viewAllToolStripMenuItem1
             // 
             this.viewAllToolStripMenuItem1.Name = "viewAllToolStripMenuItem1";
-            this.viewAllToolStripMenuItem1.Size = new System.Drawing.Size(242, 30);
+            this.viewAllToolStripMenuItem1.Size = new System.Drawing.Size(221, 26);
             this.viewAllToolStripMenuItem1.Text = "Manage Subjects";
             this.viewAllToolStripMenuItem1.ToolTipText = "View all saved subjects";
             this.viewAllToolStripMenuItem1.Click += new System.EventHandler(this.ViewAllToolStripMenuItem1_Click);

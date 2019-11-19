@@ -53,12 +53,12 @@ namespace TutorScheduler
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(549, 37);
+            this.label1.Location = new System.Drawing.Point(561, 37);
             this.label1.Margin = new System.Windows.Forms.Padding(50, 0, 3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 29);
+            this.label1.Size = new System.Drawing.Size(128, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "Display Color";
             // 
@@ -66,7 +66,7 @@ namespace TutorScheduler
             // 
             this.colorButton.BackColor = System.Drawing.Color.Red;
             this.colorButton.ForeColor = System.Drawing.Color.Red;
-            this.colorButton.Location = new System.Drawing.Point(712, 30);
+            this.colorButton.Location = new System.Drawing.Point(709, 27);
             this.colorButton.Name = "colorButton";
             this.colorButton.Size = new System.Drawing.Size(50, 50);
             this.colorButton.TabIndex = 6;

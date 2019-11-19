@@ -67,6 +67,7 @@
             this.Controls.Add(this.confirmButton);
             this.Controls.Add(this.primaryText);
             this.Name = "AlertDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AlertDialog";
             this.Load += new System.EventHandler(this.AlertDialog_Load);
             this.ResumeLayout(false);
