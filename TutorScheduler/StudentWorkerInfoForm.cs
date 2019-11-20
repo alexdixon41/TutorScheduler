@@ -23,8 +23,7 @@ namespace TutorScheduler
 
         private void AddClassButton_Click(object sender, EventArgs e)
         {
-            new AddClass(selectedStudentWorker).Show();
-            
+            new AddClass(selectedStudentWorker).ShowDialog();
             selectedStudentWorker.FetchClassSchedule();
             displayClasses();
         }
