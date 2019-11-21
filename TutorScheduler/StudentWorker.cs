@@ -145,7 +145,7 @@ namespace TutorScheduler
         /// </summary>
         public void FetchClassSchedule()
         {
-            ClassSchedule = DatabaseManager.GetSchedule(StudentID, CalendarEvent.WORK);
+            ClassSchedule = DatabaseManager.GetSchedule(StudentID, CalendarEvent.CLASS);
         }
 
         /// <summary>
