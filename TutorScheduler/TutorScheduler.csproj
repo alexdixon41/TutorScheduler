@@ -276,6 +276,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Icons\Exit_16x.png" />
+    <Content Include="Icons\MainIcon_Small.ico" />
     <Content Include="Icons\NewFile_16x.png" />
     <Content Include="Icons\OpenFolder_16x.png" />
     <Content Include="Icons\SwitchSourceOrTarget_16x.png" />
