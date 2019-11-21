@@ -36,9 +36,9 @@
             // 
             this.scheduleListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.scheduleListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scheduleListBox.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scheduleListBox.FormattingEnabled = true;
-            this.scheduleListBox.ItemHeight = 25;
+            this.scheduleListBox.ItemHeight = 24;
             this.scheduleListBox.Items.AddRange(new object[] {
             "Fall 2019",
             "Spring 2020",
@@ -46,13 +46,13 @@
             this.scheduleListBox.Location = new System.Drawing.Point(49, 49);
             this.scheduleListBox.Margin = new System.Windows.Forms.Padding(40);
             this.scheduleListBox.Name = "scheduleListBox";
-            this.scheduleListBox.Size = new System.Drawing.Size(489, 254);
+            this.scheduleListBox.Size = new System.Drawing.Size(489, 244);
             this.scheduleListBox.TabIndex = 1;
             // 
             // openButton
             // 
             this.openButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.openButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.openButton.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openButton.Location = new System.Drawing.Point(378, 346);
             this.openButton.Margin = new System.Windows.Forms.Padding(3, 3, 40, 5);
             this.openButton.Name = "openButton";

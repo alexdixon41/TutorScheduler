@@ -273,5 +273,12 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Icons\Exit_16x.png" />
+    <Content Include="Icons\NewFile_16x.png" />
+    <Content Include="Icons\OpenFolder_16x.png" />
+    <Content Include="Icons\SwitchSourceOrTarget_16x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

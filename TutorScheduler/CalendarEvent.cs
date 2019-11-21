@@ -73,7 +73,7 @@ namespace TutorScheduler
         {
             if (startTime.minutes % 5 != 0 || endTime.minutes % 5 != 0)
             {
-                throw new Exception("All times must be a multiple of 5 minutes");
+                new AlertDialog("All times must be a multiple of 5 minutes").ShowDialog();
             }            
             
             StartTime = startTime;

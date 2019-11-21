@@ -15,7 +15,7 @@ namespace TutorScheduler
         Point ScrollPosition = new Point(0, 0);         // save the scroll position so it can be restored when panel is resized
         Label[] dayLabels;                              // the weekday labels on top of the calendar
         bool weekView = true;                           // whether the calendar view mode is set to week view or day view
-        bool showAvailability = true;                   // whether to show availability times on the calendar  
+        bool showAvailability = false;                   // whether to show availability times on the calendar  
         bool showClasses = true;                        // whether to show class times on the calendar
         Button leftDayButton, rightDayButton;
         Label selectedDayLabel;                         // save the selected day for day view
@@ -78,6 +78,17 @@ namespace TutorScheduler
             // scroll down until 7am is at the top of the panel when the form is first shown
             ScrollPosition = new Point(0, 592);
             calendarPanel.AutoScrollPosition = ScrollPosition;
+
+            // update the Form title
+            string scheduleName = DatabaseManager.GetCurrentScheduleName();
+            if (scheduleName == "")
+            {
+                Text = "Tutor Scheduler";
+            }
+            else
+            {
+                Text = "Tutor Scheduler - " + scheduleName;
+            }
 
             // load events into the calendar
             RefreshCalendars.Refresh();
@@ -306,11 +317,33 @@ namespace TutorScheduler
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new OpenScheduleForm().ShowDialog();
+
+            // update schedule name in title
+            string scheduleName = DatabaseManager.GetCurrentScheduleName();
+            if (scheduleName == "")
+            {
+                Text = "Tutor Scheduler";
+            }
+            else
+            {
+                Text = "Tutor Scheduler - " + scheduleName;
+            }
         }
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new NewScheduleForm().ShowDialog();
+
+            // update schedule name in title
+            string scheduleName = DatabaseManager.GetCurrentScheduleName();
+            if (scheduleName == "")
+            {
+                Text = "Tutor Scheduler";
+            }
+            else
+            {
+                Text = "Tutor Scheduler - " + scheduleName;
+            }
         }
 
         private void RightDayButton_Click(object sender, EventArgs e)

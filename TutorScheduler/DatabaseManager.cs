@@ -745,6 +745,8 @@ namespace TutorScheduler
                 if (lastID == null)
                 {
                     Console.WriteLine("Failed to retrieve last insert id for new schedule.");
+                    cmd.Dispose();
+                    conn.Close();
                     return;
                 }
 
@@ -778,6 +780,49 @@ namespace TutorScheduler
             // close connection
             conn.Close();
             Console.WriteLine("Done.");
+        }
+
+        /// <summary>
+        /// Get the name of the current schedule to display in the main form title
+        /// </summary>
+        /// <returns>The name of the current schedule</returns>
+        public static string GetCurrentScheduleName()
+        {
+            string currentName = null;
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                
+                string sql = @"SELECT (Name) FROM Schedule 
+                                WHERE ScheduleID = (SELECT (ScheduleID) FROM CurrentSchedule);";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);                                                
+                MySqlDataReader reader = cmd.ExecuteReader();                
+                if (reader.Read())
+                {
+                    currentName = reader["Name"].ToString();
+                }
+                reader.Dispose();
+                cmd.Dispose();                                                            
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+
+            if (currentName == null)
+            {
+                Console.WriteLine("Failed to retrieve current schedule name.");
+                return "";
+            }
+            else
+            {
+                return currentName;
+            }
         }
     }
 }
