@@ -36,7 +36,7 @@ namespace TutorScheduler
             string idString = IDTextbox.Text;
             string name = nameTextbox.Text;
             string position = positionTextbox.Text;
-            int color = colorPicker.Color.ToArgb() & 0x00FFFFFF;
+            int color = colorButton.BackColor.ToArgb() & 0x00FFFFFF;
 
             //verify user input
             if (!StudentWorker.VerifyID(idString))
