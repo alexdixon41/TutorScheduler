@@ -29,6 +29,7 @@ namespace TutorScheduler
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentWorkerInfoForm));
             this.label1 = new System.Windows.Forms.Label();
             this.colorPicker = new System.Windows.Forms.ColorDialog();
             this.colorButton = new System.Windows.Forms.Button();
@@ -234,6 +235,7 @@ namespace TutorScheduler
             this.Controls.Add(this.colorButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1000, 540);
             this.Name = "StudentWorkerInfoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

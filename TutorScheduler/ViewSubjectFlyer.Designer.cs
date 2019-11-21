@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewSubjectFlyer));
             this.label1 = new System.Windows.Forms.Label();
             this.subjectLabel = new System.Windows.Forms.Label();
             this.mondayLabel = new System.Windows.Forms.Label();
@@ -121,8 +122,10 @@
             this.Controls.Add(this.mondayLabel);
             this.Controls.Add(this.subjectLabel);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ViewSubjectFlyer";
-            this.Text = "ViewSubjectFlyer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Subject Flyer";
             this.Load += new System.EventHandler(this.ViewSubjectFlyer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

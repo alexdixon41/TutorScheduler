@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfirmationPopup));
             this.confirmButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.secondaryLabel = new System.Windows.Forms.Label();
@@ -39,11 +40,11 @@
             this.confirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.confirmButton.AutoSize = true;
             this.confirmButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.confirmButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirmButton.Location = new System.Drawing.Point(356, 136);
+            this.confirmButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.confirmButton.Location = new System.Drawing.Point(348, 139);
             this.confirmButton.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
             this.confirmButton.Name = "confirmButton";
-            this.confirmButton.Size = new System.Drawing.Size(96, 38);
+            this.confirmButton.Size = new System.Drawing.Size(100, 35);
             this.confirmButton.TabIndex = 7;
             this.confirmButton.Text = "Confirm";
             this.confirmButton.UseVisualStyleBackColor = true;
@@ -53,11 +54,11 @@
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.AutoSize = true;
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelButton.Location = new System.Drawing.Point(465, 136);
+            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelButton.Location = new System.Drawing.Point(461, 139);
             this.cancelButton.Margin = new System.Windows.Forms.Padding(3, 3, 20, 10);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(96, 38);
+            this.cancelButton.Size = new System.Drawing.Size(100, 35);
             this.cancelButton.TabIndex = 6;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
@@ -65,22 +66,22 @@
             // secondaryLabel
             // 
             this.secondaryLabel.AutoSize = true;
-            this.secondaryLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.secondaryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.secondaryLabel.Location = new System.Drawing.Point(13, 51);
             this.secondaryLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
             this.secondaryLabel.Name = "secondaryLabel";
-            this.secondaryLabel.Size = new System.Drawing.Size(143, 28);
+            this.secondaryLabel.Size = new System.Drawing.Size(151, 25);
             this.secondaryLabel.TabIndex = 5;
             this.secondaryLabel.Text = "Secondary Text";
             // 
             // primaryLabel
             // 
             this.primaryLabel.AutoSize = true;
-            this.primaryLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.primaryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.primaryLabel.Location = new System.Drawing.Point(12, 9);
             this.primaryLabel.MaximumSize = new System.Drawing.Size(560, 0);
             this.primaryLabel.Name = "primaryLabel";
-            this.primaryLabel.Size = new System.Drawing.Size(125, 28);
+            this.primaryLabel.Size = new System.Drawing.Size(148, 29);
             this.primaryLabel.TabIndex = 4;
             this.primaryLabel.Text = "Primary Text";
             // 
@@ -94,8 +95,10 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.secondaryLabel);
             this.Controls.Add(this.primaryLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConfirmationPopup";
-            this.Text = "ConfirmationPopup";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Confirmation";
             this.Load += new System.EventHandler(this.ConfirmationPopup_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

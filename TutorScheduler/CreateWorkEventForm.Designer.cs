@@ -36,6 +36,7 @@
             "Kinsey Wilson",
             "Lead",
             "MAT, CSC, CHE"}, -1);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateWorkEventForm));
             this.endTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.startTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -272,6 +273,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.startTimePicker);
             this.Controls.Add(this.label4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(850, 600);
             this.Name = "CreateWorkEventForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

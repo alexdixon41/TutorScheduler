@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddNewSubject));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.abbreviationBox = new System.Windows.Forms.TextBox();
@@ -260,8 +261,10 @@
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(542, 353);
             this.Controls.Add(this.addPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(540, 400);
             this.Name = "AddNewSubject";
-            this.Text = "AddNewSubject";
+            this.Text = "Add Subject";
             this.Load += new System.EventHandler(this.AddNewSubject_Load);
             this.addPanel.ResumeLayout(false);
             this.addPanel.PerformLayout();

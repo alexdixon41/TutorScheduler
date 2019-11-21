@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddSubjectToStudentWorker));
             this.subjectListView = new System.Windows.Forms.ListView();
             this.SubjectAbbreviation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SubjectName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -44,10 +45,10 @@
             this.subjectListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.subjectListView.FullRowSelect = true;
             this.subjectListView.HideSelection = false;
-            this.subjectListView.Location = new System.Drawing.Point(13, 38);
-            this.subjectListView.Margin = new System.Windows.Forms.Padding(4);
+            this.subjectListView.Location = new System.Drawing.Point(13, 44);
+            this.subjectListView.Margin = new System.Windows.Forms.Padding(4, 10, 4, 4);
             this.subjectListView.Name = "subjectListView";
-            this.subjectListView.Size = new System.Drawing.Size(671, 316);
+            this.subjectListView.Size = new System.Drawing.Size(674, 310);
             this.subjectListView.TabIndex = 1;
             this.subjectListView.UseCompatibleStateImageBehavior = false;
             this.subjectListView.View = System.Windows.Forms.View.Details;
@@ -64,10 +65,10 @@
             // 
             // saveButton
             // 
-            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.saveButton.Location = new System.Drawing.Point(607, 361);
+            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveButton.Location = new System.Drawing.Point(587, 361);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(77, 38);
+            this.saveButton.Size = new System.Drawing.Size(100, 35);
             this.saveButton.TabIndex = 2;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -87,12 +88,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(699, 411);
             this.Controls.Add(this.instructionLabel);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.subjectListView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddSubjectToStudentWorker";
-            this.Text = "AddSubjectToStudentWorker";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Add Subjects to Student Worker";
             this.Load += new System.EventHandler(this.AddSubjectToStudentWorker_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
