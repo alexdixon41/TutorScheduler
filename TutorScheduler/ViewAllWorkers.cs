@@ -16,9 +16,7 @@ namespace TutorScheduler
     {        
         public ViewAllWorkers()
         {
-            InitializeComponent();
-
-            studentWorkers = StudentWorker.allStudentWorkers;
+            InitializeComponent();            
         }
 
         private List<StudentWorker> studentWorkers;
@@ -58,13 +56,13 @@ namespace TutorScheduler
         private void NewStudentWorkerButton_Click(object sender, EventArgs e)
         {
             new AddNewStudentWorker().ShowDialog();
-            StudentWorker.allStudentWorkers = StudentWorker.GetStudentWorkers();
             studentWorkers = StudentWorker.allStudentWorkers;
             DisplayStudentWorkers();
         }
 
         private void DisplayStudentWorkers()
         {
+            studentWorkerListView.BeginUpdate();
             studentWorkerListView.Items.Clear();            
 
             int i = 0;
@@ -76,10 +74,11 @@ namespace TutorScheduler
 
                 if (student.Selected)
                 {
-                    studentWorkerListView.Items[i].Checked = true;                    
+                    studentWorkerListView.Items[i].Checked = true;
                 }
                 i++;
-            }           
+            }
+            studentWorkerListView.EndUpdate();
         }        
 
         private void ViewAllWorkers_Load(object sender, EventArgs e)

@@ -22,8 +22,8 @@ namespace TutorScheduler
 
         private void setFlyer() {
             List<StudentWorker> tutorList = selectedSubject.GetTutors();
-            Schedule subjectSchedule = new Schedule();
-            Schedule tutorSchedule = new Schedule();
+            IndividualSchedule subjectSchedule = new IndividualSchedule();
+            IndividualSchedule tutorSchedule = new IndividualSchedule();
             subjectLabel.Text = selectedSubject.abbreviation + " " + selectedSubject.subjectNumber;
 
             resetLabels();
@@ -56,7 +56,7 @@ namespace TutorScheduler
 
         }
 
-        private void setLabels(Schedule subjectSchedule)
+        private void setLabels(IndividualSchedule subjectSchedule)
         {
             Label[] labels = { mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel };
             foreach( CalendarEvent workEvent in subjectSchedule.Events)

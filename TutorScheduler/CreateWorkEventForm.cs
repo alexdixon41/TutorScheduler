@@ -30,7 +30,7 @@ namespace TutorScheduler
             if (studentWorkerListView.SelectedIndices.Count != 0)
             {
                 StudentWorker selectedStudentWorker = studentWorkerList[studentWorkerListView.SelectedItems[0].Index];               
-                Schedule newShifts = new Schedule();
+                IndividualSchedule newShifts = new IndividualSchedule();
                 bool shouldSave = true;
 
                 for (int i = 0; i < checkBoxes.Length; i++)

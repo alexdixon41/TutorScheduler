@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TutorScheduler
 {
-    public class Schedule
+    public class IndividualSchedule
     {
         public List<CalendarEvent> Events { get; private set; } = new List<CalendarEvent>();          // list of events on the schedule         
 

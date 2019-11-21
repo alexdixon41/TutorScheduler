@@ -25,7 +25,7 @@ namespace TutorScheduler
         private void SaveClassButton_Click(object sender, EventArgs e)
         {          
             CheckBox[] checkBoxes = { mondayCheckBox, tuesdayCheckBox, wednesdayCheckBox, thursdayCheckBox, fridayCheckBox };
-            Schedule newClass = new Schedule();
+            IndividualSchedule newClass = new IndividualSchedule();
             bool shouldSave = true;
             for (int i = 0; i < checkBoxes.Length; i++)
             {

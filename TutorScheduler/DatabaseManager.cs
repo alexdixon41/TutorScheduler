@@ -78,7 +78,7 @@ namespace TutorScheduler
         /// </summary>
         /// <param name="studentID">The studentID of the student worker whose schedule will be loaded</param>
         /// <returns>Schedule of class or work events for the specified student worker</returns>
-        public static Schedule GetSchedule(int studentID, int scheduleType)
+        public static IndividualSchedule GetSchedule(int studentID, int scheduleType)
         {
             DataTable table = new DataTable();
 
@@ -89,7 +89,8 @@ namespace TutorScheduler
                 string sql = @"SELECT eventID, eventType, startHour, startMinute, endHour, endMinute, 
                             day, eventName, studentName, displayColor
                             FROM studentworker sw JOIN scheduleevent e ON e.studentID = sw.studentID
-                            WHERE sw.studentID = @id AND e.eventType = @scheduleType;";
+                            WHERE sw.studentID = @id AND e.eventType = @scheduleType 
+                                AND e.ScheduleID = (SELECT (ScheduleID) FROM CurrentSchedule);";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@id", studentID);
                 cmd.Parameters.AddWithValue("@scheduleType", scheduleType);
@@ -107,7 +108,7 @@ namespace TutorScheduler
             conn.Close();
             Console.WriteLine("Done.");
 
-            Schedule newSchedule = new Schedule();
+            IndividualSchedule newSchedule = new IndividualSchedule();
 
             foreach (DataRow row in table.Rows)
             {
@@ -130,41 +131,7 @@ namespace TutorScheduler
 
             table.Dispose();                      
             return newSchedule;
-        }
-
-        public static StudentWorker GetStudentWorkerByID(int studentID)
-        {
-            StudentWorker sw = null;           // the student worker to be retrieved from the database
-
-            try
-            {
-                Console.Write("Connecting to MySql... ");
-                conn.Open();
-                string sql = @"SELECT studentName, displayColor, jobPosition FROM studentworker WHERE studentID = @id;";
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@id", studentID);
-                MySqlDataReader reader = cmd.ExecuteReader();               
-
-                if (reader.Read())
-                {
-                    string name = reader["studentName"].ToString();
-                    string jobPosition = reader["jobPosition"].ToString();
-                    int displayColor = (int) reader["displayColor"];
-                    sw = new StudentWorker(studentID, name, jobPosition, displayColor);
-                }
-                cmd.Dispose();
-                reader.Dispose();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-            // close connection
-            conn.Close();
-            Console.WriteLine("Done.");
-
-            return sw;
-        }
+        }        
 
         /// <summary>
         /// Queries the database for all of the subjects tutored by a single student worker
@@ -222,7 +189,11 @@ namespace TutorScheduler
             {
                 Console.Write("Connecting to MySql... ");
                 conn.Open();
-                string sql = @"SELECT studentID, studentName, displayColor, jobPosition FROM studentworker;";
+                string sql = @"SELECT studentID, studentName, displayColor, jobPosition 
+                                FROM studentworker WHERE studentID IN 
+	                                (SELECT StudentWorkerID FROM StudentWorkerSchedule 
+		                            WHERE ScheduleID = (SELECT ScheduleID FROM CurrentSchedule)
+	                                );";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);               
                 myAdapter.Fill(table);
@@ -310,8 +281,12 @@ namespace TutorScheduler
                 Console.Write("Connecting to MySql... ");
                 conn.Open();
                 string sql = @"SELECT sw.studentID, sw.studentName
-                                FROM studentworker sw JOIN subjecttutored sub on sw.studentID = sub.studentID
-                                WHERE sub.subjectID = @subID";
+                              FROM studentworker sw JOIN subjecttutored sub on sw.studentID = sub.studentID
+                              WHERE sub.subjectID = @subID	
+	                              AND sw.studentID IN 
+                                  (SELECT StudentWorkerID FROM StudentWorkerSchedule 
+                                    WHERE ScheduleID = (SELECT ScheduleID FROM CurrentSchedule)
+                                  );";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@subID", subjectID);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);                
@@ -341,7 +316,7 @@ namespace TutorScheduler
         }
 
         /// <summary>
-        /// Deletes a student worker from the database 
+        /// Removes a student worker from the current schedule
         /// </summary>
         /// <param name="studentID"></param>
         public static void RemoveStudentWorker(int studentID)
@@ -350,7 +325,9 @@ namespace TutorScheduler
             {
                 Console.Write("Connecting to MySql... ");
                 conn.Open();
-                string sql = @"DELETE FROM studentworker where studentID=@studentID";
+                string sql = @"DELETE FROM StudentWorkerSchedule 
+                                WHERE StudentWorkerID = @studentID
+                                AND ScheduleID = (SELECT ScheduleID FROM CurrentSchedule);";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@studentID", studentID);
                 cmd.ExecuteNonQuery();
@@ -368,7 +345,7 @@ namespace TutorScheduler
         }
 
         /// <summary>
-        /// Deletes all events belonging to a student worker from the database
+        /// Deletes all events belonging to a student worker for the current schedule
         /// </summary>
         /// <param name="studentID">The ID of the student worker</param>
         public static void RemoveStudentWorkersSchedules(int studentID)
@@ -377,7 +354,8 @@ namespace TutorScheduler
             {
                 Console.Write("Connecting to MySql... ");
                 conn.Open();
-                string sql = @"DELETE FROM scheduleevent where studentID=@studentID";
+                string sql = @"DELETE FROM scheduleevent WHERE studentID = @studentID
+                                AND ScheduleID = (SELECT ScheduleID FROM CurrentSchedule);";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@studentID", studentID);
                 cmd.ExecuteNonQuery();
@@ -394,6 +372,7 @@ namespace TutorScheduler
         }
 
         /// <summary>
+        /// [UNUSED]
         /// Deletes all subjects tutored belonging to a student worker from the database
         /// </summary>
         /// <param name="studentID">The ID of the student worker</param>
@@ -474,11 +453,11 @@ namespace TutorScheduler
         }
 
 
-
         /// <summary>
         /// Saves a new event to the database
         /// </summary>
-        /// <param name="owner">The ID of the student worker who the event belongs to</param>
+        /// <param name="studentID">The ID of the student worker who the event belongs to</param>
+        /// <param name="newEvent">The CalendarEvent to save for the specified student worker</param>
         public static void SaveEvent(int studentID, CalendarEvent newEvent)
         {
             try
@@ -486,8 +465,9 @@ namespace TutorScheduler
                 Console.Write("Connecting to MySql... ");
                 conn.Open();
                 string sql = @"INSERT INTO scheduleevent 
-                            (studentID, eventType, startHour, startMinute, endHour, endMinute, day, eventName) 
-                             VALUES (@studentID, @type, @startHour, @startMin, @endHour, @endMin, @day, @eventName);";
+                            (studentID, eventType, startHour, startMinute, endHour, endMinute, day, eventName, ScheduleID) 
+                             VALUES (@studentID, @type, @startHour, @startMin, @endHour, @endMin, @day, @eventName, 
+                                (SELECT (ScheduleID) FROM CurrentSchedule));";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@studentID", studentID);
@@ -514,7 +494,7 @@ namespace TutorScheduler
         }
 
         /// <summary>
-        /// Saves a new student worker in the database
+        /// Saves a new student worker in the database, and add them to the current schedule
         /// </summary>
         /// <param name="student">A student worker object containing the information for the new student worker</param>
         /// <returns>True if the save was successful. False if there was an error.</returns>
@@ -525,12 +505,21 @@ namespace TutorScheduler
             {
                 Console.Write("Connecting to MySql... ");
                 conn.Open();
-                string sql = @"INSERT INTO studentworker (studentID, studentName, displayColor, jobPosition) VALUES (@studentID, @name, @color, @position);";
+                string sql = @"REPLACE studentworker (studentID, studentName, displayColor, jobPosition) 
+                                VALUES (@studentID, @name, @color, @position);";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@studentID", student.StudentID);
                 cmd.Parameters.AddWithValue("@name", student.Name);
                 cmd.Parameters.AddWithValue("@color", student.DisplayColor);
                 cmd.Parameters.AddWithValue("@position", student.JobPosition);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+
+                // add student worker to the current schedule
+                sql = @"INSERT INTO StudentWorkerSchedule (StudentWorkerID, ScheduleID)
+                        VALUES (@studentID, (SELECT (ScheduleID) FROM CurrentSchedule));";
+                cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@studentID", student.StudentID);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
                 Console.WriteLine("Student Worker created.");
@@ -647,6 +636,139 @@ namespace TutorScheduler
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
                 Console.WriteLine("Event removed.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+        }
+
+        /// <summary>
+        /// Opens the specified schedule by setting CurrentSchedule to the scheduleID in the database         
+        /// </summary>
+        /// <param name="scheduleID"></param>
+        public static void OpenSchedule(string scheduleID) {
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+
+                // remove CurrentSchedule entry
+                string sql = @"DELETE FROM CurrentSchedule;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);                
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+
+                // enter specified scheduleID as the new CurrentSchedule
+                sql = @"INSERT INTO CurrentSchedule(CurrentScheduleID, ScheduleID) VALUES (1, @scheduleID);";
+                cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@scheduleID", scheduleID);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                Console.WriteLine("Current schedule updated.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+        }
+
+        /// <summary>
+        /// Retrieve all full schedules including name and ID for opening a different schedule
+        /// </summary>
+        /// <returns>A list of arrays containing the id and name of each schedule</returns>
+        public static List<string[]> GetFullSchedules()
+        {
+            List<string[]> schedules = new List<string[]>();
+            DataTable table = new DataTable();
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"SELECT * FROM Schedule";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                myAdapter.Fill(table);                                
+                cmd.Dispose();
+                myAdapter.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return schedules;
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+
+            foreach (DataRow row in table.Rows)
+            {
+                schedules.Add(new string[] { row["ScheduleID"].ToString(), row["Name"].ToString() });
+            }
+            table.Dispose();
+
+            return schedules;
+        }
+
+        public static void CreateSchedule(string name)
+        {
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+
+                // create new Schedule entry with specified name
+                string sql = @"INSERT INTO Schedule (Name) VALUES (@name);";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.ExecuteNonQuery();                
+
+                // get the id of the Schedule entry just created
+                sql = @"SELECT LAST_INSERT_ID() AS lastID;";
+                cmd.CommandText = sql;                
+                MySqlDataReader reader = cmd.ExecuteReader();
+                string lastID = null;
+                if (reader.Read())
+                {
+                    lastID = reader["lastID"].ToString();
+                }
+                reader.Dispose();
+                if (lastID == null)
+                {
+                    Console.WriteLine("Failed to retrieve last insert id for new schedule.");
+                    return;
+                }
+
+                // assign all student workers on the current schedule to the new schedule
+                sql = @"INSERT INTO StudentWorkerSchedule (StudentWorkerID, ScheduleID)
+	                    SELECT StudentWorkerID, @lastID
+		                    FROM StudentWorkerSchedule
+		                    WHERE ScheduleID = (SELECT (ScheduleID) FROM CurrentSchedule);";
+                cmd.CommandText = sql;
+                cmd.Parameters.AddWithValue("@lastID", lastID);
+                cmd.ExecuteNonQuery();
+
+                // remove the CurrentSchedule entry
+                sql = @"DELETE FROM CurrentSchedule;";
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+
+                // update the CurrentSchedule to the new Schedule
+                sql = @"INSERT INTO CurrentSchedule (CurrentScheduleID, ScheduleID) VALUES (1, @lastID);";
+                cmd.CommandText = sql;                
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                
+                Console.WriteLine("Current schedule updated.");
             }
             catch (Exception ex)
             {

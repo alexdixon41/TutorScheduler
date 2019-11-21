@@ -42,7 +42,7 @@ namespace TutorScheduler
         /// Add every event of each schedule to the calendar, maintaining sequential order by merging. Assumes each schedule is sorted.
         /// </summary>
         /// <param name="schedules">List of schedule objects containing events sorted in sequential order</param>
-        public void AddSchedule(Schedule schedule)
+        public void AddSchedule(IndividualSchedule schedule)
         {
             int events_index = 0, schedule_index = 0;
 
@@ -205,12 +205,12 @@ namespace TutorScheduler
 
                     // draw text to fit within event bounds with no wrap - just cut off characters that don't fit
                     pe.Graphics.DrawString(calendarEvent.PrimaryText, font, brush,
-                        new RectangleF(bounds.Left + 5, bounds.Top + 5, bounds.Width, bounds.Height), new StringFormat(StringFormatFlags.NoWrap));
+                        new RectangleF(bounds.Left + 5, bounds.Top + 5, bounds.Width - 6, bounds.Height - 6), new StringFormat(StringFormatFlags.NoWrap));
 
                     // draw secondary text below primary text in the same way, just not bold
                     font = new System.Drawing.Font("Segoe UI", 11, FontStyle.Regular);
                     pe.Graphics.DrawString(calendarEvent.SecondaryText, font, brush,
-                        new RectangleF(bounds.Left + 5, bounds.Top + 25, bounds.Width, bounds.Height), new StringFormat(StringFormatFlags.NoWrap));
+                        new RectangleF(bounds.Left + 5, bounds.Top + 25, bounds.Width - 6, bounds.Height - 26), new StringFormat(StringFormatFlags.NoWrap));
 
                     brush.Dispose();
                 }

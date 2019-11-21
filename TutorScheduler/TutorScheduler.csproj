@@ -104,6 +104,18 @@
     <Compile Include="EditWorkEventForm.Designer.cs">
       <DependentUpon>EditWorkEventForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewScheduleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewScheduleForm.Designer.cs">
+      <DependentUpon>NewScheduleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpenScheduleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OpenScheduleForm.Designer.cs">
+      <DependentUpon>OpenScheduleForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="RefreshCalendars.cs" />
     <Compile Include="ICalendar.cs" />
     <Compile Include="CalendarEvent.cs" />
@@ -127,12 +139,6 @@
       <DependentUpon>ConfirmationPopup.cs</DependentUpon>
     </Compile>
     <Compile Include="DatabaseManager.cs" />
-    <Compile Include="DayCalendarForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DayCalendarForm.Designer.cs">
-      <DependentUpon>DayCalendarForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,7 +146,7 @@
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Manager.cs" />
-    <Compile Include="Schedule.cs" />
+    <Compile Include="IndividualSchedule.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="StudentWorkerInfoForm.cs">
       <SubType>Form</SubType>
@@ -205,14 +211,17 @@
     <EmbeddedResource Include="ConfirmationPopup.resx">
       <DependentUpon>ConfirmationPopup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DayCalendarForm.resx">
-      <DependentUpon>DayCalendarForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="EditWorkEventForm.resx">
       <DependentUpon>EditWorkEventForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewScheduleForm.resx">
+      <DependentUpon>NewScheduleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpenScheduleForm.resx">
+      <DependentUpon>OpenScheduleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StudentWorkerInfoForm.resx">
       <DependentUpon>StudentWorkerInfoForm.cs</DependentUpon>

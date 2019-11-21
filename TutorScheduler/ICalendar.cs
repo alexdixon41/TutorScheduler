@@ -11,7 +11,7 @@ namespace TutorScheduler
     /// </summary>
     internal interface ICalendar
     {
-        void AddSchedule(Schedule schedule);
+        void AddSchedule(IndividualSchedule schedule);
         CalendarEvent EventAt(System.Drawing.Point p);        
         void DrawCalendarEvents(System.Windows.Forms.PaintEventArgs pe);
         void DrawCalendarFrame(System.Windows.Forms.PaintEventArgs pe);

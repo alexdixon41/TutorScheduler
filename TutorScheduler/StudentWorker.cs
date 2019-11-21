@@ -12,9 +12,9 @@ namespace TutorScheduler
         public string JobPosition;
         public int DisplayColor;
         public bool Selected;
-        public Schedule ClassSchedule { get; set; }                           // the student's class schedule
-        public Schedule WorkSchedule { get; set; }
-        public Schedule Availability { get; set; } = new Schedule();           // the student's work availability schedule
+        public IndividualSchedule ClassSchedule { get; set; }                           // the student's class schedule
+        public IndividualSchedule WorkSchedule { get; set; }
+        public IndividualSchedule Availability { get; set; } = new IndividualSchedule();           // the student's work availability schedule
 
         public StudentWorker(int id, string name)
         {
@@ -45,7 +45,7 @@ namespace TutorScheduler
             return StudentID;
         }        
 
-        public Schedule GetAvailabilitySchedule()
+        public IndividualSchedule GetAvailabilitySchedule()
         {
             return Availability;
         }
@@ -110,7 +110,7 @@ namespace TutorScheduler
                         if (dayClasses[i].StartTime - WorkLocation.openingTimes[(int)day] >= new Time(1, 45))
                         {
                             Time availableStart = WorkLocation.openingTimes[(int)day];
-                            Time availableStop = Schedule.GetPrecedingStopTime(dayClasses[i].StartTime);
+                            Time availableStop = IndividualSchedule.GetPrecedingStopTime(dayClasses[i].StartTime);
                             Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
                         }
                     }
@@ -119,8 +119,8 @@ namespace TutorScheduler
                         // check if at least 2 hours between end of previous class and start of this class
                         if (dayClasses[i].StartTime.SubtractTime(dayClasses[i - 1].EndTime) >= new Time(2, 0))
                         {
-                            Time availableStart = Schedule.GetSucceedingStartTime(dayClasses[i - 1].EndTime);
-                            Time availableStop = Schedule.GetPrecedingStopTime(dayClasses[i].StartTime);
+                            Time availableStart = IndividualSchedule.GetSucceedingStartTime(dayClasses[i - 1].EndTime);
+                            Time availableStop = IndividualSchedule.GetPrecedingStopTime(dayClasses[i].StartTime);
                             Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
                         }
                     }
@@ -130,7 +130,7 @@ namespace TutorScheduler
                         // check if at least 1.75 hours between end of this class and closing time
                         if (WorkLocation.closingTimes[day].SubtractTime(dayClasses[i].EndTime) >= new Time(1, 45))
                         {
-                            Time availableStart = Schedule.GetSucceedingStartTime(dayClasses[i].EndTime);
+                            Time availableStart = IndividualSchedule.GetSucceedingStartTime(dayClasses[i].EndTime);
                             Time availableStop = WorkLocation.closingTimes[day];
                             Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
                         }
@@ -163,8 +163,7 @@ namespace TutorScheduler
         {
             //Remove the student worker, their schedules, and the subjects they tutor
             DatabaseManager.RemoveStudentWorker(StudentID);
-            DatabaseManager.RemoveStudentWorkersSchedules(StudentID);
-            DatabaseManager.RemoveStudentWorkersSubjects(StudentID);
+            DatabaseManager.RemoveStudentWorkersSchedules(StudentID);            
         }
 
         public void RemoveSubjectTutored(int subjectID)
@@ -217,6 +216,12 @@ namespace TutorScheduler
             newStudentWorker.Selected = true;               // display the new student worker by default
             //Call save function from DBMgr
             bool success = DatabaseManager.SaveStudentWorker(newStudentWorker);
+
+            if (success)
+            {
+                // go ahead and add student worker so the database does not need to be queried for all student workers immediately
+                allStudentWorkers.Add(newStudentWorker);
+            }
             return success;
         }
 

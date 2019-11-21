@@ -103,14 +103,14 @@ namespace TutorScheduler
                     continue;
                 }
                 // Show work schedule
-                Schedule w = sw.WorkSchedule;
+                IndividualSchedule w = sw.WorkSchedule;
                 calendarWeekView1.AddSchedule(w);
                 calendarDayView1.AddSchedule(w);
 
                 // include class schedule only if enabled
                 if (showClasses)
                 {
-                    Schedule s = sw.ClassSchedule;
+                    IndividualSchedule s = sw.ClassSchedule;
                     calendarWeekView1.AddSchedule(s);
                     calendarDayView1.AddSchedule(s);
                 }
@@ -118,7 +118,7 @@ namespace TutorScheduler
                 // include availability schedule only if enabled
                 if (showAvailability)
                 {
-                    Schedule a = sw.GetAvailabilitySchedule();
+                    IndividualSchedule a = sw.GetAvailabilitySchedule();
                     calendarWeekView1.AddSchedule(a);
                     calendarDayView1.AddSchedule(a);
                 }                
@@ -178,7 +178,7 @@ namespace TutorScheduler
         //View all student workers is clicked
         private void ViewAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ViewAllWorkers().Show();
+            new ViewAllWorkers().ShowDialog();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -301,7 +301,17 @@ namespace TutorScheduler
         {
             showClasses = !showClasses;
             RefreshCalendars.Refresh();
-        }        
+        }
+
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new OpenScheduleForm().ShowDialog();
+        }
+
+        private void NewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new NewScheduleForm().ShowDialog();
+        }
 
         private void RightDayButton_Click(object sender, EventArgs e)
         {
