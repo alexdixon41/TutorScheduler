@@ -59,5 +59,12 @@ namespace TutorScheduler
             }
             this.Close();
         }
+
+        private void NewSubjectButton_Click(object sender, EventArgs e)
+        {
+            new AddNewSubject().ShowDialog();
+            updateSubjectList();
+            displaySubjects();
+        }
     }
 }
