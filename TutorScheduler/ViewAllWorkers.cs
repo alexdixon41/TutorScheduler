@@ -70,7 +70,7 @@ namespace TutorScheduler
             {                
                 studentWorkerListView.Items.Add(student.Name);
                 studentWorkerListView.Items[i].SubItems.Add(student.JobPosition);
-                //TODO: Get student worker's subjects and display them in list view
+                studentWorkerListView.Items[i].SubItems.Add(GetSubjectString(student));
 
                 if (student.Selected)
                 {
@@ -79,7 +79,27 @@ namespace TutorScheduler
                 i++;
             }
             studentWorkerListView.EndUpdate();
-        }        
+        }
+
+        private string GetSubjectString(StudentWorker studentWorker)
+        {
+            string subjectString = "";
+
+            //Get all subjects tutored by the student worker
+            List<Subject> subjectList = studentWorker.GetSubjectsTutored();
+
+            //Add each subject into string
+            foreach (Subject subject in subjectList)
+            {
+                subjectString += subject.abbreviation + " " + subject.subjectNumber + ", ";
+            }
+
+            //Remove the final comma
+            if (subjectString.Length > 0)
+                subjectString = subjectString.Substring(0, (subjectString.Length - 2));
+
+            return subjectString;
+        }
 
         private void ViewAllWorkers_Load(object sender, EventArgs e)
         {
