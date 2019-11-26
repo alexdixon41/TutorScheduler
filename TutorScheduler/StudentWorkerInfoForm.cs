@@ -40,7 +40,7 @@ namespace TutorScheduler
         {
             //set name and position
             nameTextBox.Text = selectedStudentWorker.Name;
-            positionTextBox.Text = selectedStudentWorker.JobPosition;
+            positionComboBox.Text = selectedStudentWorker.JobPosition;
 
             //set color
             int baseColor = selectedStudentWorker.DisplayColor;
@@ -139,7 +139,7 @@ namespace TutorScheduler
                 //Save name, position, color
                 int color = colorButton.BackColor.ToArgb() & 0x00FFFFFF;
                 Console.WriteLine("Color is " + color);
-                selectedStudentWorker.UpdateInformation(nameTextBox.Text, positionTextBox.Text, color);
+                selectedStudentWorker.UpdateInformation(nameTextBox.Text, positionComboBox.Text, color);
             }
             
         }
