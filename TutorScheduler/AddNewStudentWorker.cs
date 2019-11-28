@@ -35,7 +35,7 @@ namespace TutorScheduler
             //Get user's input
             string idString = IDTextbox.Text;
             string name = nameTextbox.Text;
-            string position = positionTextbox.Text;
+            string position = positionComboBox.Text;
             int color = colorButton.BackColor.ToArgb() & 0x00FFFFFF;
 
             //verify user input

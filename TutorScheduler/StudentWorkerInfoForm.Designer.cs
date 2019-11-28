@@ -39,7 +39,6 @@ namespace TutorScheduler
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.removeSubjectButton = new System.Windows.Forms.Button();
             this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.positionTextBox = new System.Windows.Forms.TextBox();
             this.generalSaveButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.addClassButton = new System.Windows.Forms.Button();
@@ -47,6 +46,7 @@ namespace TutorScheduler
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.times = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.positionComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -133,14 +133,6 @@ namespace TutorScheduler
             this.nameTextBox.Size = new System.Drawing.Size(363, 38);
             this.nameTextBox.TabIndex = 10;
             // 
-            // positionTextBox
-            // 
-            this.positionTextBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.positionTextBox.Location = new System.Drawing.Point(17, 56);
-            this.positionTextBox.Name = "positionTextBox";
-            this.positionTextBox.Size = new System.Drawing.Size(363, 34);
-            this.positionTextBox.TabIndex = 11;
-            // 
             // generalSaveButton
             // 
             this.generalSaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -220,6 +212,21 @@ namespace TutorScheduler
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Subject Coverage";
             // 
+            // positionComboBox
+            // 
+            this.positionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.positionComboBox.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.positionComboBox.FormattingEnabled = true;
+            this.positionComboBox.Items.AddRange(new object[] {
+            "Guru",
+            "Lead Guru",
+            "Graduate Assistant",
+            "Success Coach"});
+            this.positionComboBox.Location = new System.Drawing.Point(17, 59);
+            this.positionComboBox.Name = "positionComboBox";
+            this.positionComboBox.Size = new System.Drawing.Size(363, 38);
+            this.positionComboBox.TabIndex = 15;
+            // 
             // StudentWorkerInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -228,9 +235,9 @@ namespace TutorScheduler
             this.AutoScrollMinSize = new System.Drawing.Size(0, 600);
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1250, 753);
+            this.Controls.Add(this.positionComboBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.generalSaveButton);
-            this.Controls.Add(this.positionTextBox);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.colorButton);
             this.Controls.Add(this.label1);
@@ -258,7 +265,6 @@ namespace TutorScheduler
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Button removeSubjectButton;
         private System.Windows.Forms.TextBox nameTextBox;
-        private System.Windows.Forms.TextBox positionTextBox;
         private System.Windows.Forms.Button generalSaveButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button addClassButton;
@@ -266,5 +272,6 @@ namespace TutorScheduler
         private System.Windows.Forms.ColumnHeader name;
         private System.Windows.Forms.ColumnHeader times;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox positionComboBox;
     }
 }

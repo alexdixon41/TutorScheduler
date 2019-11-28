@@ -34,6 +34,7 @@
             this.SubjectName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.saveButton = new System.Windows.Forms.Button();
             this.instructionLabel = new System.Windows.Forms.Label();
+            this.newSubjectButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // subjectListView
@@ -84,12 +85,24 @@
             this.instructionLabel.TabIndex = 3;
             this.instructionLabel.Text = "Select the subjects you wish to add";
             // 
+            // newSubjectButton
+            // 
+            this.newSubjectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newSubjectButton.Location = new System.Drawing.Point(13, 364);
+            this.newSubjectButton.Name = "newSubjectButton";
+            this.newSubjectButton.Size = new System.Drawing.Size(100, 35);
+            this.newSubjectButton.TabIndex = 4;
+            this.newSubjectButton.Text = "New Subject";
+            this.newSubjectButton.UseVisualStyleBackColor = true;
+            this.newSubjectButton.Click += new System.EventHandler(this.NewSubjectButton_Click);
+            // 
             // AddSubjectToStudentWorker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(699, 411);
+            this.Controls.Add(this.newSubjectButton);
             this.Controls.Add(this.instructionLabel);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.subjectListView);
@@ -110,5 +123,6 @@
         private System.Windows.Forms.ColumnHeader SubjectName;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Label instructionLabel;
+        private System.Windows.Forms.Button newSubjectButton;
     }
 }

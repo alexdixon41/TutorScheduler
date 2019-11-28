@@ -86,6 +86,26 @@ namespace TutorScheduler
             studentWorkerListView.EndUpdate(); 
         }        
 
+        private string GetSubjectString(StudentWorker studentWorker)
+        {
+            string subjectString = "";
+
+            //Get all subjects tutored by the student worker
+            List<Subject> subjectList = studentWorker.GetSubjectsTutored();
+
+            //Add each subject into string
+            foreach (Subject subject in subjectList)
+            {
+                subjectString += subject.abbreviation + " " + subject.subjectNumber + ", ";
+            }
+
+            //Remove the final comma
+            if (subjectString.Length > 0)
+                subjectString = subjectString.Substring(0, (subjectString.Length - 2));
+
+            return subjectString;
+        }
+
         private void ViewAllWorkers_Load(object sender, EventArgs e)
         {
             StudentWorker.allStudentWorkers = StudentWorker.GetStudentWorkers();
