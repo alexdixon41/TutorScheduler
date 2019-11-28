@@ -64,7 +64,7 @@ namespace TutorScheduler
         /// <summary>
         /// Determines if an event falls within the current schedule
         /// </summary>
-        /// <param name="testEvent">The event that is being checked to see if it falls within the schedule</param>
+        /// <param name="testEvent">The event that is being checked to see if it occurs entirely within another event in the schedule</param>
         /// <returns>True if the event is falls within the schedule. False if it does not</returns>
         public bool Contains(CalendarEvent testEvent)
         {
@@ -75,7 +75,7 @@ namespace TutorScheduler
                 //Check if events are on the same day
                 if (existingEvent.Day == testEvent.Day)
                 {
-                    //Check if the testEvent falls withing the times of the existingEvent
+                    //Check if the testEvent falls within the times of the existingEvent
                     if (existingEvent.StartTime <= testEvent.StartTime && existingEvent.EndTime >= testEvent.EndTime)
                     {
                         return true;

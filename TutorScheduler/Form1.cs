@@ -220,12 +220,12 @@ namespace TutorScheduler
         //View all subjects is clicked 
         private void ViewAllToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            new ViewAllSubjects().Show();
+            new ViewAllSubjects().ShowDialog();
         }
 
         private void AddSubjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new AddNewSubject().Show();
+            new AddNewSubject().ShowDialog();
         }
 
         private void CalendarWeekView1_Click(object sender, EventArgs e)

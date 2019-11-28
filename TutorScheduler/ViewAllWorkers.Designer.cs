@@ -27,10 +27,9 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
+        {            
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewAllWorkers));
             this.selectedButton = new System.Windows.Forms.Button();
-            this.studentWorkerListView = new System.Windows.Forms.ListView();
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.position = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.subjects = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -38,6 +37,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.removeButton = new System.Windows.Forms.Button();
             this.newStudentWorkerButton = new System.Windows.Forms.Button();
+            this.studentWorkerListView = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // selectedButton
@@ -51,28 +51,6 @@
             this.selectedButton.Text = "Select";
             this.selectedButton.UseVisualStyleBackColor = true;
             this.selectedButton.Click += new System.EventHandler(this.SelectedButton_Click);
-            // 
-            // studentWorkerListView
-            // 
-            this.studentWorkerListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.studentWorkerListView.CheckBoxes = true;
-            this.studentWorkerListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.name,
-            this.position,
-            this.subjects});
-            this.studentWorkerListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.studentWorkerListView.FullRowSelect = true;
-            this.studentWorkerListView.HideSelection = false;
-            this.studentWorkerListView.Location = new System.Drawing.Point(13, 69);
-            this.studentWorkerListView.Name = "studentWorkerListView";
-            this.studentWorkerListView.Size = new System.Drawing.Size(937, 468);
-            this.studentWorkerListView.TabIndex = 6;
-            this.studentWorkerListView.UseCompatibleStateImageBehavior = false;
-            this.studentWorkerListView.View = System.Windows.Forms.View.Details;
-            this.studentWorkerListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.StudentWorkerListView_ColumnClick);
-            this.studentWorkerListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.StudentWorkerListView_ItemChecked);
             // 
             // name
             // 
@@ -134,6 +112,29 @@
             this.newStudentWorkerButton.UseVisualStyleBackColor = true;
             this.newStudentWorkerButton.Click += new System.EventHandler(this.NewStudentWorkerButton_Click);
             // 
+            // studentWorkerListView
+            // 
+            this.studentWorkerListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.studentWorkerListView.AutoArrange = false;
+            this.studentWorkerListView.CheckBoxes = true;
+            this.studentWorkerListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.name,
+            this.position,
+            this.subjects});
+            this.studentWorkerListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.studentWorkerListView.FullRowSelect = true;
+            this.studentWorkerListView.HideSelection = false;
+            this.studentWorkerListView.Location = new System.Drawing.Point(13, 69);
+            this.studentWorkerListView.Name = "studentWorkerListView";
+            this.studentWorkerListView.Size = new System.Drawing.Size(937, 468);
+            this.studentWorkerListView.TabIndex = 6;
+            this.studentWorkerListView.UseCompatibleStateImageBehavior = false;
+            this.studentWorkerListView.View = System.Windows.Forms.View.Details;
+            this.studentWorkerListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.StudentWorkerListView_ColumnClick);
+            this.studentWorkerListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.StudentWorkerListView_ItemChecked);
+            // 
             // ViewAllWorkers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -152,9 +153,9 @@
             this.Text = "ViewAllWorkers";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ViewAllWorkers_FormClosed);
             this.Load += new System.EventHandler(this.ViewAllWorkers_Load);
+            this.Shown += new System.EventHandler(this.ViewAllWorkers_Shown);
             this.ResumeLayout(false);
-            this.PerformLayout();
-
+            this.PerformLayout();            
         }
 
         #endregion
