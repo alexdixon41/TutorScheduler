@@ -104,6 +104,50 @@
             this.nameTextbox.Size = new System.Drawing.Size(385, 30);
             this.nameTextbox.TabIndex = 9;
             // 
+            // saveButton
+            // 
+            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveButton.Location = new System.Drawing.Point(262, 206);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(104, 35);
+            this.saveButton.TabIndex = 12;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelButton.Location = new System.Drawing.Point(379, 206);
+            this.cancelButton.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(104, 35);
+            this.cancelButton.TabIndex = 13;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
+            // positionComboBox
+            // 
+            this.positionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.positionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.positionComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.positionComboBox.FormattingEnabled = true;
+            this.positionComboBox.Items.AddRange(new object[] {
+            "Guru",
+            "Lead Guru",
+            "Graduate Assistant",
+            "Success Coach"});
+            this.positionComboBox.Location = new System.Drawing.Point(98, 117);
+            this.positionComboBox.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.positionComboBox.Name = "positionComboBox";
+            this.positionComboBox.Size = new System.Drawing.Size(385, 33);
+            this.positionComboBox.TabIndex = 14;
+            // 
             // IDTextbox
             // 
             this.IDTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -115,74 +159,12 @@
             this.IDTextbox.Size = new System.Drawing.Size(385, 30);
             this.IDTextbox.TabIndex = 10;
             // 
-            // positionTextbox
-            // 
-            this.positionTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.positionTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.positionTextbox.Location = new System.Drawing.Point(98, 117);
-            this.positionTextbox.Margin = new System.Windows.Forms.Padding(3, 15, 10, 3);
-            this.positionTextbox.Name = "positionTextbox";
-            this.positionTextbox.Size = new System.Drawing.Size(385, 30);
-            this.positionTextbox.TabIndex = 11;
-            // 
-            // saveButton
-            // 
-            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(269, 202);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(104, 39);
-            this.saveButton.TabIndex = 12;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
-            // 
-            // cancelButton
-            // 
-            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelButton.Location = new System.Drawing.Point(379, 202);
-            this.cancelButton.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(104, 39);
-            this.cancelButton.TabIndex = 13;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
-            // 
-            // positionComboBox
-            // 
-            this.positionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.positionComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.positionComboBox.FormattingEnabled = true;
-            this.positionComboBox.Items.AddRange(new object[] {
-            "Guru",
-            "Lead Guru",
-            "Graduate Assistant",
-            "Success Coach"});
-            this.positionComboBox.Location = new System.Drawing.Point(98, 112);
-            this.positionComboBox.Name = "positionComboBox";
-            this.positionComboBox.Size = new System.Drawing.Size(435, 33);
-            this.positionComboBox.TabIndex = 14;
-            // 
-            // IDTextbox
-            // 
-            this.IDTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.IDTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.IDTextbox.Location = new System.Drawing.Point(98, 69);
-            this.IDTextbox.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
-            this.IDTextbox.Name = "IDTextbox";
-            this.IDTextbox.Size = new System.Drawing.Size(435, 30);
-            this.IDTextbox.TabIndex = 10;
-            // 
             // AddNewStudentWorker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(545, 314);
+            this.ClientSize = new System.Drawing.Size(502, 253);
             this.Controls.Add(this.positionComboBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
