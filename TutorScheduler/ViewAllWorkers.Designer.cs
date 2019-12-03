@@ -38,6 +38,7 @@
             this.removeButton = new System.Windows.Forms.Button();
             this.newStudentWorkerButton = new System.Windows.Forms.Button();
             this.studentWorkerListView = new System.Windows.Forms.ListView();
+            this.checkColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // selectedButton
@@ -120,6 +121,7 @@
             this.studentWorkerListView.AutoArrange = false;
             this.studentWorkerListView.CheckBoxes = true;
             this.studentWorkerListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.checkColumn,
             this.name,
             this.position,
             this.subjects});
@@ -128,12 +130,21 @@
             this.studentWorkerListView.HideSelection = false;
             this.studentWorkerListView.Location = new System.Drawing.Point(13, 69);
             this.studentWorkerListView.Name = "studentWorkerListView";
+            this.studentWorkerListView.OwnerDraw = true;
             this.studentWorkerListView.Size = new System.Drawing.Size(937, 468);
             this.studentWorkerListView.TabIndex = 6;
             this.studentWorkerListView.UseCompatibleStateImageBehavior = false;
             this.studentWorkerListView.View = System.Windows.Forms.View.Details;
             this.studentWorkerListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.StudentWorkerListView_ColumnClick);
+            this.studentWorkerListView.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.StudentWorkerListView_DrawColumnHeader);
+            this.studentWorkerListView.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.StudentWorkerListView_DrawItem);
+            this.studentWorkerListView.DrawSubItem += new System.Windows.Forms.DrawListViewSubItemEventHandler(this.StudentWorkerListView_DrawSubItem);
             this.studentWorkerListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.StudentWorkerListView_ItemChecked);
+            // 
+            // checkColumn
+            // 
+            this.checkColumn.Text = "";
+            this.checkColumn.Width = 30;
             // 
             // ViewAllWorkers
             // 
@@ -155,7 +166,8 @@
             this.Load += new System.EventHandler(this.ViewAllWorkers_Load);
             this.Shown += new System.EventHandler(this.ViewAllWorkers_Shown);
             this.ResumeLayout(false);
-            this.PerformLayout();            
+            this.PerformLayout();
+
         }
 
         #endregion
@@ -169,5 +181,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.Button newStudentWorkerButton;
+        private System.Windows.Forms.ColumnHeader checkColumn;
     }
 }

@@ -121,7 +121,22 @@ namespace TutorScheduler
                         {
                             Time availableStart = IndividualSchedule.GetSucceedingStartTime(dayClasses[i - 1].EndTime);
                             Time availableStop = IndividualSchedule.GetPrecedingStopTime(dayClasses[i].StartTime);
-                            Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+
+                            // check that available stop time is before closing time; if not, set available stop time to the closing time
+                            if (availableStop > WorkLocation.closingTimes[day])
+                            {
+                                availableStop = WorkLocation.closingTimes[day];
+
+                                // if available time was set to the closing time, make sure the shift is still at least 1.5 hours long
+                                if (availableStop.SubtractTime(availableStart) >= new Time(1, 30))
+                                {
+                                    Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+                                }
+                            }
+                            else
+                            {
+                                Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+                            }
                         }
                     }
 

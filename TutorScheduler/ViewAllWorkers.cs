@@ -69,9 +69,10 @@ namespace TutorScheduler
             int i = 0;
             foreach (StudentWorker student in StudentWorker.allStudentWorkers)
             {
-                swItems.Add(new ListViewItem(student.Name));
+                swItems.Add(new ListViewItem(""));
+                swItems[i].SubItems.Add(student.Name);
                 swItems[i].SubItems.Add(student.JobPosition);
-                //TODO: Get student worker's subjects and display them in list view
+                swItems[i].SubItems.Add(GetSubjectString(student));                
 
                 if (student.Selected)
                 {
@@ -113,7 +114,8 @@ namespace TutorScheduler
         }
 
         private void StudentWorkerListView_ItemChecked(object sender, ItemCheckedEventArgs e)
-        {
+        {            
+            StudentWorker.allStudentWorkers[e.Item.Index].Selected = e.Item.Checked;
             int checkedID = StudentWorker.allStudentWorkers[e.Item.Index].StudentID;
             if (e.Item.Checked)
             {                
@@ -135,14 +137,59 @@ namespace TutorScheduler
         {
             if (e.Column == 0)
             {
-                // sort list view items by name
-                
+                bool value = false;
+                try
+                {
+                    value = Convert.ToBoolean(studentWorkerListView.Columns[e.Column].Tag);
+                }
+                catch (Exception)
+                {
+                }
+                studentWorkerListView.Columns[e.Column].Tag = !value;
+                foreach (ListViewItem item in studentWorkerListView.Items)
+                    item.Checked = !value;                    
+
+                studentWorkerListView.Invalidate();
             }
         }
 
         private void ViewAllWorkers_Shown(object sender, EventArgs e)
         {            
             DisplayStudentWorkers();
+        }
+
+        private void StudentWorkerListView_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                e.DrawBackground();
+                bool value = false;
+                try
+                {
+                    value = Convert.ToBoolean(e.Header.Tag);
+                }
+                catch (Exception)
+                {
+                }
+                CheckBoxRenderer.DrawCheckBox(e.Graphics,
+                    new Point(e.Bounds.Left + 4, e.Bounds.Top + 4),
+                    value ? System.Windows.Forms.VisualStyles.CheckBoxState.CheckedNormal :
+                    System.Windows.Forms.VisualStyles.CheckBoxState.UncheckedNormal);
+            }
+            else
+            {
+                e.DrawDefault = true;
+            }
+        }
+
+        private void StudentWorkerListView_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+            e.DrawDefault = true;
+        }
+
+        private void StudentWorkerListView_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+        {
+            e.DrawDefault = true;
         }
     }
 }

@@ -37,6 +37,7 @@
             this.SearchButton = new System.Windows.Forms.Button();
             this.SubjectSearchTextBox = new System.Windows.Forms.TextBox();
             this.viewFlyerButton = new System.Windows.Forms.Button();
+            this.checkColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // subjectListView
@@ -46,6 +47,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.subjectListView.CheckBoxes = true;
             this.subjectListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.checkColumn,
             this.SubjectPrefix,
             this.SubjectName});
             this.subjectListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -54,11 +56,15 @@
             this.subjectListView.Location = new System.Drawing.Point(13, 69);
             this.subjectListView.Margin = new System.Windows.Forms.Padding(4);
             this.subjectListView.Name = "subjectListView";
+            this.subjectListView.OwnerDraw = true;
             this.subjectListView.Size = new System.Drawing.Size(936, 468);
             this.subjectListView.TabIndex = 0;
             this.subjectListView.UseCompatibleStateImageBehavior = false;
             this.subjectListView.View = System.Windows.Forms.View.Details;
-            this.subjectListView.SelectedIndexChanged += new System.EventHandler(this.SubjectList_SelectedIndexChanged);
+            this.subjectListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.SubjectListView_ColumnClick);
+            this.subjectListView.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.SubjectListView_DrawColumnHeader);
+            this.subjectListView.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.SubjectListView_DrawItem);
+            this.subjectListView.DrawSubItem += new System.Windows.Forms.DrawListViewSubItemEventHandler(this.SubjectListView_DrawSubItem);
             // 
             // SubjectPrefix
             // 
@@ -133,6 +139,11 @@
             this.viewFlyerButton.UseVisualStyleBackColor = true;
             this.viewFlyerButton.Click += new System.EventHandler(this.ViewFlyerButton_Click);
             // 
+            // checkColumn
+            // 
+            this.checkColumn.Text = "";
+            this.checkColumn.Width = 30;
+            // 
             // ViewAllSubjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -165,5 +176,6 @@
         private System.Windows.Forms.ColumnHeader SubjectPrefix;
         private System.Windows.Forms.ColumnHeader SubjectName;
         private System.Windows.Forms.Button viewFlyerButton;
+        private System.Windows.Forms.ColumnHeader checkColumn;
     }
 }

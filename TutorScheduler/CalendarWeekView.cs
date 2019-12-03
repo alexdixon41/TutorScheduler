@@ -227,13 +227,17 @@ namespace TutorScheduler
                 
                 // draw text to fit within event bounds with no wrap - just cut off characters that don't fit
                 pe.Graphics.DrawString(calendarEvent.PrimaryText, font, brush,
-                    new RectangleF(bounds.Left + 5, bounds.Top + 5, bounds.Width - 6, bounds.Height - 6), 
+                    new RectangleF(bounds.Left + 5, bounds.Top + 5, 
+                    bounds.Width < 6 ? 0 : bounds.Width - 6, 
+                    bounds.Height < 6 ? 0 : bounds.Height - 6), 
                     new StringFormat(StringFormatFlags.NoWrap));
 
                 // draw secondary text below primary text in the same way, just not bold
                 font = new System.Drawing.Font("Segoe UI", 11, FontStyle.Regular);
                 pe.Graphics.DrawString(calendarEvent.SecondaryText, font, brush, 
-                    new RectangleF(bounds.Left + 5, bounds.Top + 25, bounds.Width - 6, bounds.Height - 26), 
+                    new RectangleF(bounds.Left + 5, bounds.Top + 25, 
+                    bounds.Width < 6 ? 0 : bounds.Width - 6, 
+                    bounds.Height < 26 ? 0 : bounds.Height - 26), 
                     new StringFormat(StringFormatFlags.NoWrap));
                 
                 brush.Dispose();

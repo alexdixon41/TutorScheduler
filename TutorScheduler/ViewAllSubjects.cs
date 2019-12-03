@@ -54,11 +54,6 @@ namespace TutorScheduler
 
         }
 
-        private void SubjectList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         //View subject flyer button is clicked
         private void ViewFlyerButton_Click(object sender, EventArgs e)
         {
@@ -76,7 +71,8 @@ namespace TutorScheduler
             foreach (Subject subject in subjectList)
             {
                 string subString = subject.abbreviation + " " + subject.subjectNumber;
-                subjectListView.Items.Add(subString);
+                subjectListView.Items.Add("");
+                subjectListView.Items[i].SubItems.Add(subString);
                 subjectListView.Items[i].SubItems.Add(subject.name);
                 i++;
             }
@@ -90,6 +86,60 @@ namespace TutorScheduler
         private void ViewAllSubjects_Load(object sender, EventArgs e)
         {
             displaySubjects();
+        }
+
+        private void SubjectListView_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
+        {            
+            if (e.ColumnIndex == 0)
+            {                
+                e.DrawBackground();
+                bool value = false;
+                try
+                {
+                    value = Convert.ToBoolean(e.Header.Tag);
+                }
+                catch (Exception)
+                {
+                }
+                CheckBoxRenderer.DrawCheckBox(e.Graphics,
+                    new Point(e.Bounds.Left + 4, e.Bounds.Top + 4),
+                    value ? System.Windows.Forms.VisualStyles.CheckBoxState.CheckedNormal :
+                    System.Windows.Forms.VisualStyles.CheckBoxState.UncheckedNormal);
+            }
+            else
+            {
+                e.DrawDefault = true;
+            }
+        }
+
+        private void SubjectListView_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+            e.DrawDefault = true;
+        }
+
+        private void SubjectListView_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+        {
+            e.DrawDefault = true;
+        }
+
+        private void SubjectListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column == 0)
+            {
+                bool value = false;
+                try
+                {
+                    value = Convert.ToBoolean(subjectListView.Columns[e.Column].Tag);
+                }
+                catch (Exception)
+                {
+                }
+                subjectListView.Columns[e.Column].Tag = !value;
+                foreach (ListViewItem item in subjectListView.Items)
+                    item.Checked = !value;
+
+                subjectListView.Invalidate();
+            }
         }
     }
 }

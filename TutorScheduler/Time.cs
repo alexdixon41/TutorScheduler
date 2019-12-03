@@ -133,33 +133,27 @@ namespace TutorScheduler
         }
 
         /// <summary>
-        /// Compute the time difference between the specified time and this time.
+        /// Subtract the specified time from this time.
         /// </summary>
-        /// <param name="timeToSubtract">The time for which to find the difference between this time</param>        
+        /// <param name="timeToSubtract">The earlier time for which to find the difference between this time</param>        
         /// <returns>The difference of the two times</returns>
         public Time SubtractTime(Time timeToSubtract)
-        {
-            Time laterTime;
-            Time earlierTime;
+        {     
+            // if the time difference would be negative, just return a time of 0
             if (this < timeToSubtract)
             {
-                laterTime = timeToSubtract;
-                earlierTime = this;
+                return new Time(0, 0);
             }
-            else
-            {
-                laterTime = this;
-                earlierTime = timeToSubtract;
-            }
+            
             int borrowedHours = 0;           // set to 1 if an additional hour should be subtracted due to a borrow
-            int newMinutes = laterTime.minutes - earlierTime.minutes;
+            int newMinutes = this.minutes - timeToSubtract.minutes;
             if (newMinutes < 0)
             {
                 borrowedHours = 1;
                 newMinutes += 60;
             }
 
-            int newHours = laterTime.hours - earlierTime.hours - borrowedHours;           
+            int newHours = this.hours - timeToSubtract.hours - borrowedHours;           
 
             return new Time(newHours, newMinutes);
         }
