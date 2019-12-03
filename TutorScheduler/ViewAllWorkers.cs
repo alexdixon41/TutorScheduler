@@ -18,9 +18,7 @@ namespace TutorScheduler
         public ViewAllWorkers()
         {
             InitializeComponent();            
-        }
-
-        Stopwatch stopwatch = new Stopwatch();
+        }        
 
         private void SelectedButton_Click(object sender, EventArgs e)
         {
@@ -110,26 +108,22 @@ namespace TutorScheduler
         private void ViewAllWorkers_Load(object sender, EventArgs e)
         {
             StudentWorker.allStudentWorkers = StudentWorker.GetStudentWorkers();
-            //DisplayStudentWorkers();
-        }
-
-        private void StudentWorkerListView_ItemChecked(object sender, ItemCheckedEventArgs e)
-        {            
-            StudentWorker.allStudentWorkers[e.Item.Index].Selected = e.Item.Checked;
-            int checkedID = StudentWorker.allStudentWorkers[e.Item.Index].StudentID;
-            if (e.Item.Checked)
-            {                
-                Properties.Settings.Default.SelectedWorkers.Add(checkedID.ToString());
-            }
-            else
-            {
-                Properties.Settings.Default.SelectedWorkers.Remove(checkedID.ToString());
-            }            
-            Properties.Settings.Default.Save();            
-        }
+            DisplayStudentWorkers();
+        }       
 
         private void ViewAllWorkers_FormClosed(object sender, FormClosedEventArgs e)
-        {            
+        {
+            Properties.Settings.Default.SelectedWorkers.Clear();
+            for (int i = 0; i < studentWorkerListView.Items.Count; i++)
+            {
+                bool itemChecked = studentWorkerListView.Items[i].Checked;
+                if (itemChecked)
+                {
+                    Properties.Settings.Default.SelectedWorkers.Add(StudentWorker.allStudentWorkers[i].StudentID.ToString());
+                }
+                StudentWorker.allStudentWorkers[i].Selected = itemChecked;
+            }
+            Properties.Settings.Default.Save();
             RefreshCalendars.Refresh();
         }
 
@@ -151,12 +145,19 @@ namespace TutorScheduler
 
                 studentWorkerListView.Invalidate();
             }
-        }
-
-        private void ViewAllWorkers_Shown(object sender, EventArgs e)
-        {            
-            DisplayStudentWorkers();
-        }
+            else if (e.Column == 1)
+            {
+                // sort the list of student workers by first name
+                StudentWorker.allStudentWorkers.Sort((x, y) => x.Name.CompareTo(y.Name));
+                DisplayStudentWorkers();
+            }
+            else if (e.Column == 2)
+            {
+                // sort the list of student workers by position
+                StudentWorker.allStudentWorkers.Sort((x, y) => x.JobPosition.CompareTo(y.JobPosition));
+                DisplayStudentWorkers();
+            }
+        }      
 
         private void StudentWorkerListView_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
         {
