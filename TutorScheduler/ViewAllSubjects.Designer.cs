@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewAllSubjects));
             this.subjectListView = new System.Windows.Forms.ListView();
+            this.checkColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SubjectPrefix = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SubjectName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AddSubjectButton = new System.Windows.Forms.Button();
             this.RemoveSubject = new System.Windows.Forms.Button();
             this.viewFlyerButton = new System.Windows.Forms.Button();
-            this.checkColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // subjectListView
@@ -63,6 +63,11 @@
             this.subjectListView.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.SubjectListView_DrawColumnHeader);
             this.subjectListView.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.SubjectListView_DrawItem);
             this.subjectListView.DrawSubItem += new System.Windows.Forms.DrawListViewSubItemEventHandler(this.SubjectListView_DrawSubItem);
+            // 
+            // checkColumn
+            // 
+            this.checkColumn.Text = "";
+            this.checkColumn.Width = 30;
             // 
             // SubjectPrefix
             // 
@@ -113,11 +118,6 @@
             this.viewFlyerButton.UseVisualStyleBackColor = true;
             this.viewFlyerButton.Click += new System.EventHandler(this.ViewFlyerButton_Click);
             // 
-            // checkColumn
-            // 
-            this.checkColumn.Text = "";
-            this.checkColumn.Width = 30;
-            // 
             // ViewAllSubjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -133,6 +133,7 @@
             this.Name = "ViewAllSubjects";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Subjects";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ViewAllSubjects_FormClosed);
             this.Load += new System.EventHandler(this.ViewAllSubjects_Load);
             this.ResumeLayout(false);
 

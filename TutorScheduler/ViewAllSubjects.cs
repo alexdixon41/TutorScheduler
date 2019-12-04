@@ -141,5 +141,31 @@ namespace TutorScheduler
                 subjectListView.Invalidate();
             }
         }
+
+        private void ViewAllSubjects_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            bool subjSelected = false;
+            //Get list of all student workers who tutor the selected subjects
+            List<string> tutorList = new List<string>();
+             for (int i = 0; i < subjectListView.Items.Count; i++)
+            {
+                if (subjectListView.Items[i].Checked)
+                {
+                    subjSelected = true;
+                    tutorList.AddRange(subjectList[i].GetTutorIDs());
+                }
+            }
+            tutorList = tutorList.Distinct().ToList();
+
+            //Update properties
+            if (subjSelected)
+            {
+                Properties.Settings.Default.SelectedWorkers.Clear();
+                Properties.Settings.Default.SelectedWorkers.AddRange(tutorList.ToArray());
+                Properties.Settings.Default.Save();
+                RefreshCalendars.Refresh();
+                
+            }
+        }
     }
 }

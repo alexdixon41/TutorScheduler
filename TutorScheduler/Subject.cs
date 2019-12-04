@@ -33,6 +33,11 @@ namespace TutorScheduler
             return DatabaseManager.GetTutorsForSubject(subjectID);
         }
 
+        public List<string> GetTutorIDs()
+        {
+            return DatabaseManager.GetTutorIDsForSubject(subjectID);
+        }
+
         public void RemoveSubject()
         {
             DatabaseManager.RemoveSubject(subjectID);

@@ -315,6 +315,49 @@ namespace TutorScheduler
             return tutorList;
         }
 
+
+        public static List<string> GetTutorIDsForSubject(int subjectID)
+        {
+            List<string> tutorList = new List<string>();
+            DataTable table = new DataTable();
+
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"SELECT sw.studentID
+                              FROM studentworker sw JOIN subjecttutored sub on sw.studentID = sub.studentID
+                              WHERE sub.subjectID = @subID	
+	                              AND sw.studentID IN 
+                                  (SELECT StudentWorkerID FROM StudentWorkerSchedule 
+                                    WHERE ScheduleID = (SELECT ScheduleID FROM CurrentSchedule)
+                                  );";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@subID", subjectID);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                myAdapter.Fill(table);
+                cmd.Dispose();
+                myAdapter.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+
+            foreach (DataRow row in table.Rows)
+            {
+                string studentID = row["studentID"].ToString();
+                tutorList.Add(studentID);
+            }
+
+            table.Dispose();
+            return tutorList;
+        }
+
         /// <summary>
         /// Removes a student worker from the current schedule
         /// </summary>
