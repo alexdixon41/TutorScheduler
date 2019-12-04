@@ -91,16 +91,15 @@ namespace TutorScheduler
             }
 
             // load events into the calendar
-            RefreshCalendars.Refresh();
-
-            calendarWeekView1.Invalidate();
+            RefreshCalendars.Refresh();            
 
             // show the day label panel after day labels are sized properly
             dayLabelPanel.Show();                  
         }
 
         private void PopulateCalendars()
-        {
+        {            
+            calendarPanel.AutoScrollPosition = ScrollPosition;
             // refresh student workers from the database
             StudentWorker.allStudentWorkers = StudentWorker.GetStudentWorkers();
 
@@ -134,7 +133,7 @@ namespace TutorScheduler
                     calendarDayView1.AddSchedule(a);
                 }                
             }
-                      
+            
             calendarWeekView1.Invalidate();
             calendarDayView1.Invalidate();
         }       

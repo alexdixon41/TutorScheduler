@@ -46,39 +46,43 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(34, 28);
+            this.label1.Location = new System.Drawing.Point(14, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(8, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 20);
+            this.label1.Size = new System.Drawing.Size(45, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Name:";
+            this.label1.Text = "Name";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(61, 76);
+            this.label2.Location = new System.Drawing.Point(14, 62);
+            this.label2.Margin = new System.Windows.Forms.Padding(8, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 20);
+            this.label2.Size = new System.Drawing.Size(21, 17);
             this.label2.TabIndex = 1;
-            this.label2.Text = "ID:";
+            this.label2.Text = "ID";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(18, 124);
+            this.label3.Location = new System.Drawing.Point(14, 101);
+            this.label3.Margin = new System.Windows.Forms.Padding(8, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 20);
+            this.label3.Size = new System.Drawing.Size(58, 17);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Position:";
+            this.label3.Text = "Position";
             // 
             // colorButton
             // 
             this.colorButton.BackColor = System.Drawing.Color.Red;
             this.colorButton.ForeColor = System.Drawing.Color.Red;
-            this.colorButton.Location = new System.Drawing.Point(98, 169);
+            this.colorButton.Location = new System.Drawing.Point(78, 137);
+            this.colorButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.colorButton.Name = "colorButton";
-            this.colorButton.Size = new System.Drawing.Size(38, 35);
+            this.colorButton.Size = new System.Drawing.Size(28, 28);
             this.colorButton.TabIndex = 7;
             this.colorButton.UseVisualStyleBackColor = false;
             this.colorButton.Click += new System.EventHandler(this.ColorButton_Click);
@@ -87,47 +91,58 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(38, 175);
+            this.label4.Location = new System.Drawing.Point(14, 142);
+            this.label4.Margin = new System.Windows.Forms.Padding(8, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 20);
+            this.label4.Size = new System.Drawing.Size(41, 17);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Color:";
+            this.label4.Text = "Color";
             // 
             // nameTextbox
             // 
             this.nameTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.nameTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.nameTextbox.Location = new System.Drawing.Point(98, 21);
-            this.nameTextbox.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.nameTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameTextbox.Location = new System.Drawing.Point(78, 21);
+            this.nameTextbox.Margin = new System.Windows.Forms.Padding(2, 2, 8, 2);
             this.nameTextbox.Name = "nameTextbox";
-            this.nameTextbox.Size = new System.Drawing.Size(385, 30);
+            this.nameTextbox.Size = new System.Drawing.Size(299, 22);
             this.nameTextbox.TabIndex = 9;
             // 
             // saveButton
             // 
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.saveButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.saveButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(98)))), ((int)(((byte)(107)))));
+            this.saveButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(262, 206);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.saveButton.Location = new System.Drawing.Point(298, 181);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(2, 2, 8, 8);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(104, 35);
+            this.saveButton.Size = new System.Drawing.Size(78, 28);
             this.saveButton.TabIndex = 12;
             this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.UseVisualStyleBackColor = false;
             this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // cancelButton
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cancelButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.cancelButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(98)))), ((int)(((byte)(107)))));
+            this.cancelButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelButton.Location = new System.Drawing.Point(379, 206);
-            this.cancelButton.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.cancelButton.Location = new System.Drawing.Point(210, 181);
+            this.cancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 8, 8);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(104, 35);
+            this.cancelButton.Size = new System.Drawing.Size(78, 28);
             this.cancelButton.TabIndex = 13;
             this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.UseVisualStyleBackColor = false;
             this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // positionComboBox
@@ -135,36 +150,36 @@
             this.positionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.positionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.positionComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.positionComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.positionComboBox.FormattingEnabled = true;
             this.positionComboBox.Items.AddRange(new object[] {
             "Guru",
             "Lead Guru",
             "Graduate Assistant",
             "Success Coach"});
-            this.positionComboBox.Location = new System.Drawing.Point(98, 117);
-            this.positionComboBox.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.positionComboBox.Location = new System.Drawing.Point(78, 99);
+            this.positionComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 8, 2);
             this.positionComboBox.Name = "positionComboBox";
-            this.positionComboBox.Size = new System.Drawing.Size(385, 33);
+            this.positionComboBox.Size = new System.Drawing.Size(299, 24);
             this.positionComboBox.TabIndex = 14;
             // 
             // IDTextbox
             // 
             this.IDTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.IDTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.IDTextbox.Location = new System.Drawing.Point(98, 69);
-            this.IDTextbox.Margin = new System.Windows.Forms.Padding(3, 15, 10, 3);
+            this.IDTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IDTextbox.Location = new System.Drawing.Point(78, 60);
+            this.IDTextbox.Margin = new System.Windows.Forms.Padding(2, 12, 8, 2);
             this.IDTextbox.Name = "IDTextbox";
-            this.IDTextbox.Size = new System.Drawing.Size(385, 30);
+            this.IDTextbox.Size = new System.Drawing.Size(299, 22);
             this.IDTextbox.TabIndex = 10;
             // 
             // AddNewStudentWorker
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(502, 253);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(390, 225);
             this.Controls.Add(this.positionComboBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
@@ -176,8 +191,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(520, 300);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimumSize = new System.Drawing.Size(394, 251);
             this.Name = "AddNewStudentWorker";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Student Worker";
             this.ResumeLayout(false);
             this.PerformLayout();

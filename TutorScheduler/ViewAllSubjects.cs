@@ -13,17 +13,12 @@ namespace TutorScheduler
     public partial class ViewAllSubjects : Form
     {
         private List<Subject> subjectList = Subject.GetSubjects();
-
-        #region Windows Form Generated Code
+        
         public ViewAllSubjects()
         {
-            InitializeComponent();
-            
-
-
-           
+            InitializeComponent();                       
         }
-        #endregion
+       
         private void AddSubjectButton_Click(object sender, EventArgs e)
         {
             new AddNewSubject().ShowDialog();
@@ -47,12 +42,7 @@ namespace TutorScheduler
                     displaySubjects();
                 }
             }
-        }
-
-        private void SearchButton_Click(object sender, EventArgs e)
-        {
-
-        }
+        }       
 
         //View subject flyer button is clicked
         private void ViewFlyerButton_Click(object sender, EventArgs e)

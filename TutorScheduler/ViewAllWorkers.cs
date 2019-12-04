@@ -100,7 +100,7 @@ namespace TutorScheduler
 
             //Remove the final comma
             if (subjectString.Length > 0)
-                subjectString = subjectString.Substring(0, (subjectString.Length - 2));
+                subjectString = subjectString.Substring(0, (subjectString.Length - 2));           
 
             return subjectString;
         }
