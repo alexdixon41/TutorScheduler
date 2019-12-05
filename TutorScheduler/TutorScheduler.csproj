@@ -122,6 +122,11 @@
     <Compile Include="OpenScheduleForm.Designer.cs">
       <DependentUpon>OpenScheduleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="RefreshCalendars.cs" />
     <Compile Include="ICalendar.cs" />
     <Compile Include="CalendarEvent.cs" />
@@ -237,14 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="ViewAllSubjects.resx">
       <DependentUpon>ViewAllSubjects.cs</DependentUpon>
     </EmbeddedResource>
@@ -282,11 +282,12 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Icons\Document_16x.png" />
     <Content Include="Icons\Exit_16x.png" />
-    <Content Include="Icons\MainIcon_Small.ico" />
     <Content Include="Icons\NewFile_16x.png" />
     <Content Include="Icons\OpenFolder_16x.png" />
     <Content Include="Icons\SwitchSourceOrTarget_16x.png" />
+    <None Include="Icons\User\User_16x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

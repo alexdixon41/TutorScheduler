@@ -63,6 +63,16 @@ namespace TutorScheduler.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Document_16x {
+            get {
+                object obj = ResourceManager.GetObject("Document_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Exit_16x {
             get {
                 object obj = ResourceManager.GetObject("Exit_16x", resourceCulture);
@@ -96,6 +106,16 @@ namespace TutorScheduler.Properties {
         internal static System.Drawing.Bitmap SwitchSourceOrTarget_16x {
             get {
                 object obj = ResourceManager.GetObject("SwitchSourceOrTarget_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap User_16x {
+            get {
+                object obj = ResourceManager.GetObject("User_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -151,5 +151,10 @@ namespace TutorScheduler
                 
             }
         }
+
+        private void DoneButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -35,6 +35,7 @@
             this.AddSubjectButton = new System.Windows.Forms.Button();
             this.RemoveSubject = new System.Windows.Forms.Button();
             this.viewFlyerButton = new System.Windows.Forms.Button();
+            this.doneButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // subjectListView
@@ -80,17 +81,17 @@
             // 
             // AddSubjectButton
             // 
-            this.AddSubjectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddSubjectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.AddSubjectButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.AddSubjectButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
             this.AddSubjectButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(98)))), ((int)(((byte)(107)))));
             this.AddSubjectButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.AddSubjectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddSubjectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddSubjectButton.Location = new System.Drawing.Point(673, 646);
-            this.AddSubjectButton.Margin = new System.Windows.Forms.Padding(3, 8, 8, 8);
+            this.AddSubjectButton.Location = new System.Drawing.Point(153, 646);
+            this.AddSubjectButton.Margin = new System.Windows.Forms.Padding(8);
             this.AddSubjectButton.Name = "AddSubjectButton";
-            this.AddSubjectButton.Size = new System.Drawing.Size(120, 30);
+            this.AddSubjectButton.Size = new System.Drawing.Size(140, 30);
             this.AddSubjectButton.TabIndex = 1;
             this.AddSubjectButton.Text = "Add Subjects";
             this.AddSubjectButton.UseVisualStyleBackColor = false;
@@ -98,17 +99,17 @@
             // 
             // RemoveSubject
             // 
-            this.RemoveSubject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoveSubject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RemoveSubject.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.RemoveSubject.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
             this.RemoveSubject.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(98)))), ((int)(((byte)(107)))));
             this.RemoveSubject.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.RemoveSubject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RemoveSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RemoveSubject.Location = new System.Drawing.Point(809, 646);
+            this.RemoveSubject.Location = new System.Drawing.Point(309, 646);
             this.RemoveSubject.Margin = new System.Windows.Forms.Padding(8);
             this.RemoveSubject.Name = "RemoveSubject";
-            this.RemoveSubject.Size = new System.Drawing.Size(120, 30);
+            this.RemoveSubject.Size = new System.Drawing.Size(140, 30);
             this.RemoveSubject.TabIndex = 2;
             this.RemoveSubject.Text = "Remove Subjects";
             this.RemoveSubject.UseVisualStyleBackColor = false;
@@ -124,7 +125,7 @@
             this.viewFlyerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.viewFlyerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.viewFlyerButton.Location = new System.Drawing.Point(17, 646);
-            this.viewFlyerButton.Margin = new System.Windows.Forms.Padding(6, 3, 3, 8);
+            this.viewFlyerButton.Margin = new System.Windows.Forms.Padding(6, 3, 8, 8);
             this.viewFlyerButton.Name = "viewFlyerButton";
             this.viewFlyerButton.Size = new System.Drawing.Size(120, 30);
             this.viewFlyerButton.TabIndex = 5;
@@ -132,12 +133,31 @@
             this.viewFlyerButton.UseVisualStyleBackColor = false;
             this.viewFlyerButton.Click += new System.EventHandler(this.ViewFlyerButton_Click);
             // 
+            // doneButton
+            // 
+            this.doneButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.doneButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.doneButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.doneButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(98)))), ((int)(((byte)(107)))));
+            this.doneButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.doneButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.doneButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.doneButton.Location = new System.Drawing.Point(809, 646);
+            this.doneButton.Margin = new System.Windows.Forms.Padding(8);
+            this.doneButton.Name = "doneButton";
+            this.doneButton.Size = new System.Drawing.Size(120, 30);
+            this.doneButton.TabIndex = 6;
+            this.doneButton.Text = "Done";
+            this.doneButton.UseVisualStyleBackColor = false;
+            this.doneButton.Click += new System.EventHandler(this.DoneButton_Click);
+            // 
             // ViewAllSubjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(946, 693);
+            this.Controls.Add(this.doneButton);
             this.Controls.Add(this.viewFlyerButton);
             this.Controls.Add(this.RemoveSubject);
             this.Controls.Add(this.AddSubjectButton);
@@ -161,5 +181,6 @@
         private System.Windows.Forms.ColumnHeader SubjectName;
         private System.Windows.Forms.Button viewFlyerButton;
         private System.Windows.Forms.ColumnHeader checkColumn;
+        private System.Windows.Forms.Button doneButton;
     }
 }

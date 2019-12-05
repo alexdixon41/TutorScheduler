@@ -168,7 +168,7 @@
             this.calendarWeekView1.Location = new System.Drawing.Point(0, 0);
             this.calendarWeekView1.Margin = new System.Windows.Forms.Padding(0, 2, 2, 2);
             this.calendarWeekView1.Name = "calendarWeekView1";
-            this.calendarWeekView1.Size = new System.Drawing.Size(627, 56254);
+            this.calendarWeekView1.Size = new System.Drawing.Size(627, 61267);
             this.calendarWeekView1.TabIndex = 0;
             this.calendarWeekView1.Text = "calendarWeekView1";
             // 
@@ -180,7 +180,7 @@
             this.calendarDayView1.Location = new System.Drawing.Point(0, 0);
             this.calendarDayView1.Margin = new System.Windows.Forms.Padding(0, 2, 2, 2);
             this.calendarDayView1.Name = "calendarDayView1";
-            this.calendarDayView1.Size = new System.Drawing.Size(627, 28566);
+            this.calendarDayView1.Size = new System.Drawing.Size(627, 33579);
             this.calendarDayView1.TabIndex = 1;
             this.calendarDayView1.Text = "calendarDayView1";
             this.calendarDayView1.Visible = false;
@@ -287,8 +287,9 @@
             // 
             // viewAllToolStripMenuItem
             // 
+            this.viewAllToolStripMenuItem.Image = global::TutorScheduler.Properties.Resources.User_16x;
             this.viewAllToolStripMenuItem.Name = "viewAllToolStripMenuItem";
-            this.viewAllToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.viewAllToolStripMenuItem.Size = new System.Drawing.Size(241, 26);
             this.viewAllToolStripMenuItem.Text = "Manage Student Workers";
             this.viewAllToolStripMenuItem.ToolTipText = "View all student workers";
             this.viewAllToolStripMenuItem.Click += new System.EventHandler(this.ViewAllToolStripMenuItem_Click);
@@ -303,8 +304,9 @@
             // 
             // viewAllToolStripMenuItem1
             // 
+            this.viewAllToolStripMenuItem1.Image = global::TutorScheduler.Properties.Resources.Document_16x;
             this.viewAllToolStripMenuItem1.Name = "viewAllToolStripMenuItem1";
-            this.viewAllToolStripMenuItem1.Size = new System.Drawing.Size(185, 22);
+            this.viewAllToolStripMenuItem1.Size = new System.Drawing.Size(189, 26);
             this.viewAllToolStripMenuItem1.Text = "Manage Subjects";
             this.viewAllToolStripMenuItem1.ToolTipText = "View all saved subjects";
             this.viewAllToolStripMenuItem1.Click += new System.EventHandler(this.ViewAllToolStripMenuItem1_Click);
