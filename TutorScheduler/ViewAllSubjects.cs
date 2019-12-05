@@ -22,7 +22,7 @@ namespace TutorScheduler
         private void AddSubjectButton_Click(object sender, EventArgs e)
         {
             new AddNewSubject().ShowDialog();
-            updateSubjectList();
+            subjectList = Subject.GetSubjects();
             displaySubjects();
         }
 
@@ -35,10 +35,9 @@ namespace TutorScheduler
                 DialogResult dialogResult = new ConfirmationPopup("Are you sure you want to remove " + selectedSubject.abbreviation + " " + selectedSubject.subjectNumber, "This will remove it from all student workers.").ShowDialog();
                 if (dialogResult == DialogResult.OK)
                 {
-                    selectedSubject.RemoveSubject();
-                    //TODO: Remove subject from all student workers
+                    selectedSubject.RemoveSubject();                    
 
-                    updateSubjectList();
+                    subjectList = Subject.GetSubjects();
                     displaySubjects();
                 }
             }
@@ -67,12 +66,7 @@ namespace TutorScheduler
                 i++;
             }
         }
-
-        private void updateSubjectList()
-        {
-            subjectList = Subject.GetSubjects();
-        }
-
+        
         private void ViewAllSubjects_Load(object sender, EventArgs e)
         {
             displaySubjects();

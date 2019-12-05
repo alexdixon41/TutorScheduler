@@ -153,7 +153,8 @@
             this.Controls.Add(this.selectedButton);
             this.Controls.Add(this.studentWorkerListView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MinimumSize = new System.Drawing.Size(760, 540);
             this.Name = "ViewAllWorkers";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

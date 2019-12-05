@@ -36,7 +36,7 @@
             this.tuesdayLabel = new System.Windows.Forms.Label();
             this.wednesdayLabel = new System.Windows.Forms.Label();
             this.mondayLabel = new System.Windows.Forms.Label();
-            this.calendarPanel = new System.Windows.Forms.Panel();
+            this.calendarPanel = new TutorScheduler.CalendarPanel();
             this.calendarWeekView1 = new TutorScheduler.CalendarWeekView();
             this.calendarDayView1 = new TutorScheduler.CalendarDayView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -79,7 +79,7 @@
             this.panel1.BackColor = System.Drawing.Color.Black;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 66);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(647, 3);
             this.panel1.TabIndex = 5;
@@ -155,11 +155,10 @@
             this.calendarPanel.Controls.Add(this.calendarWeekView1);
             this.calendarPanel.Controls.Add(this.calendarDayView1);
             this.calendarPanel.Location = new System.Drawing.Point(0, 97);
-            this.calendarPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.calendarPanel.Margin = new System.Windows.Forms.Padding(2);
             this.calendarPanel.Name = "calendarPanel";
             this.calendarPanel.Size = new System.Drawing.Size(647, 259);
             this.calendarPanel.TabIndex = 2;
-            this.calendarPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.CalendarPanel_Scroll);
             // 
             // calendarWeekView1
             // 
@@ -169,7 +168,7 @@
             this.calendarWeekView1.Location = new System.Drawing.Point(0, 0);
             this.calendarWeekView1.Margin = new System.Windows.Forms.Padding(0, 2, 2, 2);
             this.calendarWeekView1.Name = "calendarWeekView1";
-            this.calendarWeekView1.Size = new System.Drawing.Size(627, 52912);
+            this.calendarWeekView1.Size = new System.Drawing.Size(627, 56254);
             this.calendarWeekView1.TabIndex = 0;
             this.calendarWeekView1.Text = "calendarWeekView1";
             // 
@@ -181,7 +180,7 @@
             this.calendarDayView1.Location = new System.Drawing.Point(0, 0);
             this.calendarDayView1.Margin = new System.Windows.Forms.Padding(0, 2, 2, 2);
             this.calendarDayView1.Name = "calendarDayView1";
-            this.calendarDayView1.Size = new System.Drawing.Size(627, 25224);
+            this.calendarDayView1.Size = new System.Drawing.Size(627, 28566);
             this.calendarDayView1.TabIndex = 1;
             this.calendarDayView1.Text = "calendarDayView1";
             this.calendarDayView1.Visible = false;
@@ -201,8 +200,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(647, 25);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.MenuActivate += new System.EventHandler(this.MenuStrip1_MenuActivate);
-            this.menuStrip1.MenuDeactivate += new System.EventHandler(this.MenuStrip1_MenuDeactivate);
             // 
             // fileToolStripMenuItem
             // 
@@ -323,14 +320,11 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.calendarPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Tutor Scheduler";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Activated += new System.EventHandler(this.Form1_Activated);
             this.Shown += new System.EventHandler(this.Form1_Shown);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.dayLabelPanel.ResumeLayout(false);
             this.calendarPanel.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
@@ -344,7 +338,7 @@
 
         private CalendarWeekView calendarWeekView1;
         private System.Windows.Forms.Panel dayLabelPanel;
-        private System.Windows.Forms.Panel calendarPanel;
+        private CalendarPanel calendarPanel;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;

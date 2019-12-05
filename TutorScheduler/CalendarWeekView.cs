@@ -223,9 +223,7 @@ namespace TutorScheduler
 
                 // draw event text
                 brush.Color = calendarEvent.TextColor;
-                Font font = new Font("Segoe UI", 11, FontStyle.Bold);
-
-                Console.WriteLine((bounds.Width < 12 ? 0 : bounds.Width - 6) + " x " + (bounds.Height < 12 ? 0 : bounds.Height - 6));
+                Font font = new Font("Segoe UI", 11, FontStyle.Bold);                
 
                 // check if any part of the string can fit in the rectangle
                 if (bounds.Width > 12 && bounds.Height > 32)

@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TutorScheduler
 {
     public partial class Form1 : Form
-    {        
-        Point ScrollPosition = new Point(0, 0);         // save the scroll position so it can be restored when panel is resized
+    {              
         Label[] dayLabels;                              // the weekday labels on top of the calendar
         bool weekView = true;                           // whether the calendar view mode is set to week view or day view
         bool showAvailability = false;                   // whether to show availability times on the calendar  
@@ -34,12 +27,24 @@ namespace TutorScheduler
             rightDayButton.Width = 80;
             rightDayButton.Margin = new Padding(0);
             rightDayButton.Text = "Next";
+            rightDayButton.Font = new Font("Microsoft Sans Serif", 10);
+            rightDayButton.FlatStyle = FlatStyle.Flat;
+            rightDayButton.BackColor = SystemColors.ControlLightLight;
+            rightDayButton.FlatAppearance.BorderColor = SystemColors.ControlDark;
+            rightDayButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(153, 98, 107);
+            rightDayButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(205, 169, 169);
             rightDayButton.Visible = false;
             rightDayButton.Location = new Point(0, 0);            
             leftDayButton.Height = 36;
             leftDayButton.Width = 80;
             leftDayButton.Margin = new Padding(0);
             leftDayButton.Text = "Previous";
+            leftDayButton.Font = new Font("Microsoft Sans Serif", 10);
+            leftDayButton.FlatStyle = FlatStyle.Flat;
+            leftDayButton.BackColor = SystemColors.ControlLightLight;
+            leftDayButton.FlatAppearance.BorderColor = SystemColors.ControlDark;
+            leftDayButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(153, 98, 107);
+            leftDayButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(205, 169, 169);
             leftDayButton.Visible = false;
             leftDayButton.Location = new Point(0, 0);
 
@@ -71,13 +76,10 @@ namespace TutorScheduler
 
         private void Form1_Shown(object sender, EventArgs e)
         {            
-            this.MinimumSize = new Size(800, 600);
-                              
-            calendarPanel.MouseWheel += new MouseEventHandler(CalendarPanel_MouseWheel);        // add the MouseWheel event handler to calendarPanel
+            this.MinimumSize = new Size(800, 600);                                          
 
-            // scroll down until 7am is at the top of the panel when the form is first shown
-            ScrollPosition = new Point(0, 592);
-            calendarPanel.AutoScrollPosition = ScrollPosition;
+            // scroll down until 7am is at the top of the panel when the form is first shown            
+            calendarPanel.AutoScrollPosition = new Point(0, 592);
 
             // update the Form title
             string scheduleName = DatabaseManager.GetCurrentScheduleName();
@@ -99,12 +101,12 @@ namespace TutorScheduler
 
         private void PopulateCalendars()
         {            
-            calendarPanel.AutoScrollPosition = ScrollPosition;
             // refresh student workers from the database
             StudentWorker.allStudentWorkers = StudentWorker.GetStudentWorkers();
 
             calendarWeekView1.Clear();
             calendarDayView1.Clear();
+           
             // TODO - only get selected student workers
             foreach (StudentWorker sw in StudentWorker.allStudentWorkers)
             {
@@ -134,7 +136,7 @@ namespace TutorScheduler
                 }                
             }
             
-            calendarWeekView1.Invalidate();
+            calendarWeekView1.Invalidate(false);                        
             calendarDayView1.Invalidate();
         }       
 
@@ -161,59 +163,12 @@ namespace TutorScheduler
                 leftDayButton.Left = e.dayStartPositions[0] - 60 - rightDayButton.Width;
                 leftDayButton.Visible = true;
             }            
-
-            // restore scroll position
-            calendarPanel.AutoScrollPosition = ScrollPosition;
         }             
-
-        private void CalendarPanel_Scroll(object sender, ScrollEventArgs e)
-        {
-            // save scroll position          
-            ScrollPosition = new Point(0, Math.Abs(calendarPanel.AutoScrollPosition.Y));           
-        }
-
-        private void CalendarPanel_MouseWheel(object sender, MouseEventArgs e)
-        {
-            // save scroll position
-            ScrollPosition = new Point(0, Math.Abs(calendarPanel.AutoScrollPosition.Y));            
-        }
-
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {
-            // restore scroll position
-            calendarPanel.AutoScrollPosition = ScrollPosition;            
-        }
-
 
         //View all student workers is clicked
         private void ViewAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ViewAllWorkers().ShowDialog();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            calendarPanel.AutoScrollPosition = ScrollPosition;
-        }    
-
-        private void Form1_Activated(object sender, EventArgs e)
-        {
-            calendarPanel.AutoScrollPosition = ScrollPosition;           
-        }
-
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            calendarPanel.AutoScrollPosition = ScrollPosition;
-        }
-
-        private void MenuStrip1_MenuActivate(object sender, EventArgs e)
-        {
-            calendarPanel.AutoScrollPosition = ScrollPosition;
-        }
-
-        private void MenuStrip1_MenuDeactivate(object sender, EventArgs e)
-        {
-            calendarPanel.AutoScrollPosition = ScrollPosition;
         }
 
         //View all subjects is clicked 
@@ -307,6 +262,16 @@ namespace TutorScheduler
             }
         }
 
+        private void RightDayButton_Click(object sender, EventArgs e)
+        {
+            // move forward one day
+            if (calendarDayView1.SelectedDay < (int)Day.Friday)
+            {
+                calendarDayView1.SetDay(calendarDayView1.SelectedDay + 1);
+                selectedDayLabel.Text = dayLabelText[calendarDayView1.SelectedDay];
+            }
+        }
+
         private void ClassesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showClasses = !showClasses;
@@ -343,16 +308,6 @@ namespace TutorScheduler
             {
                 Text = "Tutor Scheduler - " + scheduleName;
             }
-        }
-
-        private void RightDayButton_Click(object sender, EventArgs e)
-        {
-            // move forward one day
-            if (calendarDayView1.SelectedDay < (int)Day.Friday)
-            {
-                calendarDayView1.SetDay(calendarDayView1.SelectedDay + 1);
-                selectedDayLabel.Text = dayLabelText[calendarDayView1.SelectedDay];
-            }
-        }
+        }               
     }
 }

@@ -83,6 +83,9 @@
     <Compile Include="AddNewSubject.Designer.cs">
       <DependentUpon>AddNewSubject.cs</DependentUpon>
     </Compile>
+    <Compile Include="CalendarPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CreateWorkEventForm.cs">
       <SubType>Form</SubType>
     </Compile>
