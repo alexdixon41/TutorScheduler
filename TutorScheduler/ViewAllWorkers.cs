@@ -18,18 +18,7 @@ namespace TutorScheduler
         public ViewAllWorkers()
         {
             InitializeComponent();            
-        }        
-
-        private void SelectedButton_Click(object sender, EventArgs e)
-        {
-            if (studentWorkerListView.SelectedIndices.Count != 0)
-            {
-                StudentWorker selectedStudentWorker = StudentWorker.allStudentWorkers[studentWorkerListView.SelectedItems[0].Index];
-                new StudentWorkerInfoForm(selectedStudentWorker).ShowDialog();
-                StudentWorker.allStudentWorkers = StudentWorker.GetStudentWorkers();                
-                DisplayStudentWorkers();
-            }
-        }
+        }            
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
@@ -191,6 +180,22 @@ namespace TutorScheduler
         private void StudentWorkerListView_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
         {
             e.DrawDefault = true;
+        }
+
+        private void StudentWorkerListView_DoubleClick(object sender, EventArgs e)
+        {
+            if (studentWorkerListView.SelectedIndices.Count != 0)
+            {
+                StudentWorker selectedStudentWorker = StudentWorker.allStudentWorkers[studentWorkerListView.SelectedItems[0].Index];
+                new StudentWorkerInfoForm(selectedStudentWorker).ShowDialog();
+                StudentWorker.allStudentWorkers = StudentWorker.GetStudentWorkers();
+                DisplayStudentWorkers();
+            }
+        }
+
+        private void DoneButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -39,7 +39,6 @@ namespace TutorScheduler
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.removeSubjectButton = new System.Windows.Forms.Button();
             this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.generalSaveButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.addClassButton = new System.Windows.Forms.Button();
             this.classesListView = new System.Windows.Forms.ListView();
@@ -47,6 +46,7 @@ namespace TutorScheduler
             this.times = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.positionComboBox = new System.Windows.Forms.ComboBox();
+            this.doneButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +68,7 @@ namespace TutorScheduler
             this.colorButton.BackColor = System.Drawing.Color.Red;
             this.colorButton.ForeColor = System.Drawing.Color.Red;
             this.colorButton.Location = new System.Drawing.Point(514, 15);
-            this.colorButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.colorButton.Margin = new System.Windows.Forms.Padding(2);
             this.colorButton.Name = "colorButton";
             this.colorButton.Size = new System.Drawing.Size(38, 41);
             this.colorButton.TabIndex = 6;
@@ -84,7 +84,7 @@ namespace TutorScheduler
             this.addSubjectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addSubjectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addSubjectButton.Location = new System.Drawing.Point(4, 17);
-            this.addSubjectButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addSubjectButton.Margin = new System.Windows.Forms.Padding(2);
             this.addSubjectButton.Name = "addSubjectButton";
             this.addSubjectButton.Size = new System.Drawing.Size(130, 30);
             this.addSubjectButton.TabIndex = 7;
@@ -104,7 +104,7 @@ namespace TutorScheduler
             this.subjectListView.FullRowSelect = true;
             this.subjectListView.HideSelection = false;
             this.subjectListView.Location = new System.Drawing.Point(4, 51);
-            this.subjectListView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.subjectListView.Margin = new System.Windows.Forms.Padding(2);
             this.subjectListView.Name = "subjectListView";
             this.subjectListView.Size = new System.Drawing.Size(896, 162);
             this.subjectListView.TabIndex = 8;
@@ -147,24 +147,6 @@ namespace TutorScheduler
             this.nameTextBox.Size = new System.Drawing.Size(273, 29);
             this.nameTextBox.TabIndex = 10;
             // 
-            // generalSaveButton
-            // 
-            this.generalSaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.generalSaveButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.generalSaveButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
-            this.generalSaveButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(98)))), ((int)(((byte)(107)))));
-            this.generalSaveButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.generalSaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.generalSaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.generalSaveButton.Location = new System.Drawing.Point(821, 17);
-            this.generalSaveButton.Margin = new System.Windows.Forms.Padding(2, 8, 8, 2);
-            this.generalSaveButton.Name = "generalSaveButton";
-            this.generalSaveButton.Size = new System.Drawing.Size(100, 30);
-            this.generalSaveButton.TabIndex = 12;
-            this.generalSaveButton.Text = "Save";
-            this.generalSaveButton.UseVisualStyleBackColor = false;
-            this.generalSaveButton.Click += new System.EventHandler(this.GeneralSaveButton_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -175,7 +157,7 @@ namespace TutorScheduler
             this.groupBox1.Location = new System.Drawing.Point(17, 330);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(904, 265);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
@@ -190,7 +172,7 @@ namespace TutorScheduler
             this.addClassButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addClassButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addClassButton.Location = new System.Drawing.Point(4, 17);
-            this.addClassButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addClassButton.Margin = new System.Windows.Forms.Padding(2);
             this.addClassButton.Name = "addClassButton";
             this.addClassButton.Size = new System.Drawing.Size(130, 30);
             this.addClassButton.TabIndex = 3;
@@ -210,7 +192,7 @@ namespace TutorScheduler
             this.classesListView.FullRowSelect = true;
             this.classesListView.HideSelection = false;
             this.classesListView.Location = new System.Drawing.Point(4, 51);
-            this.classesListView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.classesListView.Margin = new System.Windows.Forms.Padding(2);
             this.classesListView.Name = "classesListView";
             this.classesListView.Size = new System.Drawing.Size(896, 209);
             this.classesListView.TabIndex = 2;
@@ -237,7 +219,7 @@ namespace TutorScheduler
             this.groupBox2.Location = new System.Drawing.Point(17, 103);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(8);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(904, 217);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
@@ -261,6 +243,24 @@ namespace TutorScheduler
             this.positionComboBox.Size = new System.Drawing.Size(273, 28);
             this.positionComboBox.TabIndex = 15;
             // 
+            // doneButton
+            // 
+            this.doneButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.doneButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.doneButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.doneButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(98)))), ((int)(((byte)(107)))));
+            this.doneButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.doneButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.doneButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.doneButton.Location = new System.Drawing.Point(821, 17);
+            this.doneButton.Margin = new System.Windows.Forms.Padding(2, 8, 8, 2);
+            this.doneButton.Name = "doneButton";
+            this.doneButton.Size = new System.Drawing.Size(100, 30);
+            this.doneButton.TabIndex = 16;
+            this.doneButton.Text = "Done";
+            this.doneButton.UseVisualStyleBackColor = false;
+            this.doneButton.Click += new System.EventHandler(this.DoneButton_Click);
+            // 
             // StudentWorkerInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,20 +269,21 @@ namespace TutorScheduler
             this.AutoScrollMinSize = new System.Drawing.Size(0, 600);
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(938, 612);
+            this.Controls.Add(this.doneButton);
             this.Controls.Add(this.positionComboBox);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.generalSaveButton);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.colorButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(754, 446);
             this.Name = "StudentWorkerInfoForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Student Worker Information";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.StudentWorkerInfoForm_FormClosed);
             this.Load += new System.EventHandler(this.StudentWorkerInfoForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -301,7 +302,6 @@ namespace TutorScheduler
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Button removeSubjectButton;
         private System.Windows.Forms.TextBox nameTextBox;
-        private System.Windows.Forms.Button generalSaveButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button addClassButton;
         private System.Windows.Forms.ListView classesListView;
@@ -309,5 +309,6 @@ namespace TutorScheduler
         private System.Windows.Forms.ColumnHeader times;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox positionComboBox;
+        private System.Windows.Forms.Button doneButton;
     }
 }

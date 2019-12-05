@@ -129,19 +129,19 @@ namespace TutorScheduler
                 displaySubjects();
             }
 
+        }     
+
+        private void DoneButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
-        private void GeneralSaveButton_Click(object sender, EventArgs e)
+        private void StudentWorkerInfoForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            DialogResult dialogResult = new ConfirmationPopup("Would you like to save?", "This will save any changes to name, position, or color").ShowDialog(); 
-            if (dialogResult == DialogResult.OK)
-            {
-                //Save name, position, color
-                int color = colorButton.BackColor.ToArgb() & 0x00FFFFFF;
-                Console.WriteLine("Color is " + color);
-                selectedStudentWorker.UpdateInformation(nameTextBox.Text, positionComboBox.Text, color);
-            }
-            
+            //Save name, position, color
+            int color = colorButton.BackColor.ToArgb() & 0x00FFFFFF;
+            selectedStudentWorker.UpdateInformation(nameTextBox.Text, positionComboBox.Text, color);
+            RefreshCalendars.Refresh();
         }
     }
 }
