@@ -48,7 +48,8 @@ namespace TutorScheduler
             //Create and save student worker
             bool success = StudentWorker.CreateStudentWorker(id, name, position, color);
             if (success)
-            {
+            {                
+                this.DialogResult = DialogResult.Yes;
                 this.Close();
             }
             else
@@ -57,5 +58,13 @@ namespace TutorScheduler
             }
         }
 
+        private void AddNewStudentWorker_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // [Version 2] - use this to open the edit form immediately after closing this form
+            //if (DialogResult == DialogResult.Yes)
+            //{
+
+            //}
+        }
     }
 }

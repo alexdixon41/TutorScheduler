@@ -44,7 +44,10 @@ namespace TutorScheduler
 
         private void NewStudentWorkerButton_Click(object sender, EventArgs e)
         {
-            new AddNewStudentWorker().ShowDialog();
+            AddNewStudentWorker newWorker = new AddNewStudentWorker();
+            newWorker.ShowDialog();
+            
+            
             StudentWorker.allStudentWorkers = StudentWorker.GetStudentWorkers();
             DisplayStudentWorkers();
         }

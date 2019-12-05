@@ -127,6 +127,7 @@
             this.studentWorkerListView.TabIndex = 11;
             this.studentWorkerListView.UseCompatibleStateImageBehavior = false;
             this.studentWorkerListView.View = System.Windows.Forms.View.Details;
+            this.studentWorkerListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.StudentWorkerListView_ColumnClick);
             // 
             // name
             // 
@@ -175,7 +176,7 @@
             this.groupBox1.Location = new System.Drawing.Point(17, 60);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(8, 2, 8, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(688, 63);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
@@ -255,7 +256,7 @@
             this.Controls.Add(this.startTimePicker);
             this.Controls.Add(this.label4);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(642, 495);
             this.Name = "CreateWorkEventForm";
             this.ShowIcon = false;

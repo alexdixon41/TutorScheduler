@@ -80,7 +80,7 @@
             this.colorButton.BackColor = System.Drawing.Color.Red;
             this.colorButton.ForeColor = System.Drawing.Color.Red;
             this.colorButton.Location = new System.Drawing.Point(78, 137);
-            this.colorButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.colorButton.Margin = new System.Windows.Forms.Padding(2);
             this.colorButton.Name = "colorButton";
             this.colorButton.Size = new System.Drawing.Size(28, 28);
             this.colorButton.TabIndex = 7;
@@ -191,12 +191,13 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(394, 251);
             this.Name = "AddNewStudentWorker";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Student Worker";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddNewStudentWorker_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

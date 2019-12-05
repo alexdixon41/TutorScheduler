@@ -57,7 +57,7 @@ namespace TutorScheduler
                 }
                 i++;
             }
-            this.Close();
+            Close();
         }
 
         private void NewSubjectButton_Click(object sender, EventArgs e)

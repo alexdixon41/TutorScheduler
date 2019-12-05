@@ -126,5 +126,21 @@ namespace TutorScheduler
         {
             RefreshCalendars.Refresh();
         }
+
+        private void StudentWorkerListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column == 0)
+            {
+                // sort by first name
+                StudentWorker.allStudentWorkers.Sort((x, y) => x.Name.CompareTo(y.Name));
+                DisplayStudentWorkers();
+            }
+            else if (e.Column == 1)
+            {
+                // sort by job position
+                StudentWorker.allStudentWorkers.Sort((x, y) => x.JobPosition.CompareTo(y.JobPosition));
+                DisplayStudentWorkers();
+            }
+        }
     }
 }

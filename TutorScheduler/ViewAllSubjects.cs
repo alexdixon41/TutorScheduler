@@ -147,8 +147,7 @@ namespace TutorScheduler
                 Properties.Settings.Default.SelectedWorkers.Clear();
                 Properties.Settings.Default.SelectedWorkers.AddRange(tutorList.ToArray());
                 Properties.Settings.Default.Save();
-                RefreshCalendars.Refresh();
-                
+                RefreshCalendars.Refresh();                
             }
         }
 
