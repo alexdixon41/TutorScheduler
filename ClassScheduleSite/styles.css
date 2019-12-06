@@ -1,8 +1,9 @@
 header {
     position: center;
-    font-size: 3.5em;
+    font-size: 1em;
+    font-family: Tahoma, Century Gothic, serif;
     width: 100%;
-    background-color: #914B5B;
+    background-color: #ECECEC;
     text-align: center;
     color: white;
     padding-top: 10px;
@@ -10,16 +11,19 @@ header {
 }
 
 body {
-    background-color: #914B5B;
+    overflow: auto;
+    background-color: #ECECEC;
     text-align: center;
 }
 
 h1 {
-   font-size: 4em;
+    font-weight: normal;
+    font-size: 3em;
+    font-family: Tahoma, Century Gothic, serif;
 }
 
 table {
-    width: 600px;
+    width: 700px;
 }
 
 td, th {
@@ -47,7 +51,8 @@ hr {
     left: 0;
     right: 0;
     margin: auto;
-    background-color: #914B5B;
+    background-color: #ECECEC;
+   /* background-color: #914B5B;*/
     text-align: center;
 }
 
@@ -85,6 +90,25 @@ hr {
 #addClassButton {
     margin-top: 20px;
     padding: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#group1 {
+    padding-left: 0;
+}
+
+.checkBox {
+    margin-right: 4px;
+    margin-top: 8px;
+    width: 18px;
+    height: 18px;
+}
+
+.checkLabel {
+    font-family: Tahoma, Century Gothic, serif;
+    font-size: 0.9em;
+    margin-right: 10px;
 }
 
 .classRegion {
@@ -94,16 +118,19 @@ hr {
 
 .inputElement, .classInfoElement, .submitButton {
     padding: 5px;
-    font-size: 1.7em;
+    font-size: 1.6em;
 }
 
 .submitButton {
-    background-color: #B7B6C1;
-    border: none;
+    background-color: #FFFFFF;
+    border: 1px solid gray;
+    margin-left: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 .submitButton:hover {
-    background-color: #D7D5E1
+    background-color: #CDA9A9;
 }
 
 .inputElement, .classInfoElement {
@@ -112,4 +139,15 @@ hr {
 
 .classInfoElement {
     width: 100%;
+}
+
+.nameRegion {
+    position: absolute;
+    display: block;
+    left: 40px;
+    top: 20px;
+    width: 20%;
+    text-align: left;
+    font-family: Tahoma, Century Gothic, serif;
+    font-weight: lighter;
 }
