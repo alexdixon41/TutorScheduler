@@ -12,6 +12,8 @@ namespace TutorScheduler
 {
     public partial class Login : Form
     {
+        public static bool loginSuccess = false;
+
         public Login()
         {
             InitializeComponent();
@@ -19,7 +21,15 @@ namespace TutorScheduler
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            new Form1().Show();
-        }
+            if (Manager.Login(usernameBox.Text, pwordBox.Text))
+            {
+                loginSuccess = true;
+                this.Close();
+            }
+            else
+            {
+                new AlertDialog("Invalid username or password.").ShowDialog();
+            }
+        }        
     }
 }

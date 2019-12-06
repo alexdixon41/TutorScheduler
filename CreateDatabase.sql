@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `StudentWorker` (
 CREATE TABLE IF NOT EXISTS `Manager` (
 	`managerID` INT AUTO_INCREMENT PRIMARY KEY,
 	`managerName` VARCHAR(255),
-	`email` VARCHAR(320),
+	`username` VARCHAR(320),
 	`pword` VARCHAR(60),
 	CONSTRAINT `unique_email` UNIQUE (email)
 );

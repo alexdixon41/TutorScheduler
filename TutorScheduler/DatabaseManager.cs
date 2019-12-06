@@ -13,6 +13,49 @@ namespace TutorScheduler
         private static string connectionString = "server=localhost;user=root;database=tutorscheduler;port=3306;SSLMode=none";
         private static MySqlConnection conn = new MySqlConnection(connectionString);
 
+        public static bool Login(string username, string pword)
+        {
+            bool success = false;
+            try
+            {
+                Console.Write("Connecting to MySql...");
+                conn.Open();
+                string sql = @"SELECT pword FROM Manager WHERE username = @username;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@username", username);
+                MySqlDataReader reader = cmd.ExecuteReader(); 
+                
+                string hash = null;
+                if (reader.Read())
+                {
+                    hash = reader["pword"].ToString();
+                }
+
+                reader.Dispose();
+
+                sql = @"SELECT PASSWORD(@pword) as 'entered';";
+                cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@pword", pword);
+                reader = cmd.ExecuteReader();                
+                if (reader.Read())
+                {
+                    if (hash == reader["entered"].ToString())
+                    {
+                        success = true;
+                    }
+                }
+                cmd.Dispose();
+                reader.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+            Console.WriteLine("Done.");
+            return success;
+        }
+
         public static void AddSubjectTutored(int subjectID, int studentID)
         {
             try
@@ -34,44 +77,7 @@ namespace TutorScheduler
             // close connection
             conn.Close();
             Console.WriteLine("Done.");
-        }
-
-        public static bool GetManager(string email, string pass)
-        {
-            bool result = false;
-            try
-            {
-                // TODO - cryptography
-                Console.Write("Connecting to MySql... ");
-                conn.Open();
-                string sql = @"SELECT pword FROM manager WHERE email = @emailAddr;";
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@emailAddr", email);
-                MySqlDataReader reader = cmd.ExecuteReader();                               
-                string pword = null;
-
-                if (reader.Read())
-                {                   
-                    pword = reader["pword"].ToString();
-                }            
-
-                if (pword.Equals(pass))
-                {
-                    result = true;
-                }
-                cmd.Dispose();
-                reader.Dispose();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-            // close MySql connection
-            conn.Close();
-            Console.WriteLine("Done.");
-
-            return result;
-        }
+        }       
 
         /// <summary>
         /// Load the class or work schedule from the database for the specified student worker.
@@ -746,6 +752,7 @@ namespace TutorScheduler
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+                table.Dispose();
                 return schedules;
             }
 
