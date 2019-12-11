@@ -183,7 +183,7 @@ namespace TutorScheduler
 
         public void RemoveSubjectTutored(int subjectID)
         {
-            DatabaseManager.RemoveSubjectTutored(subjectID);
+            DatabaseManager.RemoveSubjectTutored(subjectID, StudentID);
         }
 
         public void UpdateInformation(string newName, string newPosition, int newColor)
