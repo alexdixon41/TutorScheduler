@@ -36,6 +36,7 @@ namespace TutorScheduler
         internal Time EndTime { get; set; }
 
         internal int EventID { get; set; } = -1;    
+        internal int StudentID { get; set; }
 
         public int Day
         {
@@ -69,7 +70,7 @@ namespace TutorScheduler
             }
         }
 
-        public CalendarEvent(string eventName, Time startTime, Time endTime, int day, int type, string primaryText, int baseColor)
+        public CalendarEvent(string eventName, Time startTime, Time endTime, int day, int type, string primaryText, int studentID, int baseColor)
         {
             if (startTime.minutes % 5 != 0 || endTime.minutes % 5 != 0)
             {
@@ -79,7 +80,8 @@ namespace TutorScheduler
             StartTime = startTime;
             EndTime = endTime;
             this.day = day;
-            this.type = type;            
+            this.type = type;
+            this.StudentID = studentID;
             PrimaryText = primaryText;
 
             this.EventName = eventName;

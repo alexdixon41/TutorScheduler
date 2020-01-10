@@ -36,11 +36,7 @@ namespace TutorScheduler
                 for (int i = 0; i < checkBoxes.Length; i++)
                 {
                     if (checkBoxes[i].Checked)
-                    {
-                        // TODO: Verify event info
-                        // Verification items: Shift length should not be longer than 5 hours
-                        //                    Start time should be before End time
-
+                    {                        
                         Time startTime = new Time(startTimePicker.Value.TimeOfDay.Hours, startTimePicker.Value.TimeOfDay.Minutes);
                         Time endTime = new Time(endTimePicker.Value.TimeOfDay.Hours, endTimePicker.Value.TimeOfDay.Minutes);
                         if (endTime < startTime)
@@ -56,7 +52,7 @@ namespace TutorScheduler
                         else
                         {
                             //Create new event
-                            CalendarEvent newWorkEvent = new CalendarEvent("Work", startTime, endTime, i, CalendarEvent.WORK, selectedStudentWorker.Name, selectedStudentWorker.DisplayColor);                            
+                            CalendarEvent newWorkEvent = new CalendarEvent("Work", startTime, endTime, i, CalendarEvent.WORK, selectedStudentWorker.Name, selectedStudentWorker.StudentID, selectedStudentWorker.DisplayColor);                            
 
                             //Make sure that the new work shift doesn't conflict with student worker's class schedule
                             //if the new work event is in the student's availability schedule

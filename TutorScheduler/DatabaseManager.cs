@@ -93,7 +93,7 @@ namespace TutorScheduler
                 Console.Write("Connecting to MySql... ");
                 conn.Open();
                 string sql = @"SELECT eventID, eventType, startHour, startMinute, endHour, endMinute, 
-                            day, eventName, studentName, displayColor
+                            day, eventName, studentName, sw.studentID, displayColor
                             FROM studentworker sw JOIN scheduleevent e ON e.studentID = sw.studentID
                             WHERE sw.studentID = @id AND e.eventType = @scheduleType 
                                 AND e.ScheduleID = (SELECT (ScheduleID) FROM CurrentSchedule);";
@@ -127,10 +127,11 @@ namespace TutorScheduler
                 int endMinute = (int)row["endMinute"];
                 int day = (int)row["day"];
                 string studentName = row["studentName"].ToString();
+                int newStudentID = (int)row["studentID"];
                 int displayColor = (int)row["displayColor"];
                 Time startTime = new Time(startHour, startMinute);
                 Time endTime = new Time(endHour, endMinute);
-                CalendarEvent newEvent = new CalendarEvent(eventName, startTime, endTime, day, eventType, studentName, displayColor);
+                CalendarEvent newEvent = new CalendarEvent(eventName, startTime, endTime, day, eventType, studentName, newStudentID, displayColor);
                 newEvent.EventID = eventID;
                 newSchedule.AddEvent(newEvent);
             }
@@ -184,6 +185,47 @@ namespace TutorScheduler
 
             table.Dispose();
             return subjects;
+        }
+
+        public static StudentWorker[] GetStudentWorkerByID(int studentID)
+        {
+            StudentWorker [] studentWorkers = new StudentWorker[1];
+
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"SELECT studentName, displayColor, jobPosition 
+                                FROM studentworker WHERE studentID = @studentID AND studentID IN 
+	                                (SELECT StudentWorkerID FROM StudentWorkerSchedule 
+		                            WHERE ScheduleID = (SELECT ScheduleID FROM CurrentSchedule)
+	                                );";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@studentID", studentID);
+                MySqlDataReader reader = cmd.ExecuteReader();
+               
+                if (reader.Read())
+                {
+                    string name = reader["studentName"].ToString();
+                    string jobPosition = reader["jobPosition"].ToString();
+                    int displayColor = (int)reader["displayColor"];
+                    studentWorkers[0] = new StudentWorker(studentID, name, jobPosition, displayColor);                    
+                }
+
+
+                cmd.Dispose();
+                reader.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+                        
+            return studentWorkers;
         }
 
         public static List<StudentWorker> GetStudentWorkers()

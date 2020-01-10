@@ -100,7 +100,7 @@ namespace TutorScheduler
                 {
                     Time availableStart = WorkLocation.openingTimes[(int)day];
                     Time availableStop = WorkLocation.closingTimes[(int)day];
-                    Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+                    Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, StudentID, DisplayColor));
                 }
                 for (int i = 0; i < dayClasses.Count; i++)
                 {                   
@@ -111,7 +111,7 @@ namespace TutorScheduler
                         {
                             Time availableStart = WorkLocation.openingTimes[(int)day];
                             Time availableStop = IndividualSchedule.GetPrecedingStopTime(dayClasses[i].StartTime);
-                            Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+                            Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, StudentID, DisplayColor));
                         }
                     }
                     else            // attempt to schedule availability between classes
@@ -130,12 +130,12 @@ namespace TutorScheduler
                                 // if available time was set to the closing time, make sure the shift is still at least 1.5 hours long
                                 if (availableStop.SubtractTime(availableStart) >= new Time(1, 30))
                                 {
-                                    Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+                                    Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, StudentID, DisplayColor));
                                 }
                             }
                             else
                             {
-                                Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+                                Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, StudentID, DisplayColor));
                             }
                         }
                     }
@@ -147,7 +147,7 @@ namespace TutorScheduler
                         {
                             Time availableStart = IndividualSchedule.GetSucceedingStartTime(dayClasses[i].EndTime);
                             Time availableStop = WorkLocation.closingTimes[day];
-                            Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, DisplayColor));
+                            Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, StudentID, DisplayColor));
                         }
                     }
                 }

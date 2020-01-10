@@ -88,8 +88,7 @@ namespace TutorScheduler
         public bool Overlaps(CalendarEvent testEvent)
         {
             foreach (CalendarEvent existingEvent in Events)
-            {
-
+            {                
                 //Check if events are on the same day
                 if (existingEvent.Day == testEvent.Day)
                 {
