@@ -520,13 +520,41 @@ namespace TutorScheduler
         /// Removes subject from the list of subjects a student worker tutors
         /// </summary>
         /// <param name="subjectID">The subject to be removed</param>
-        public static void RemoveSubjectTutored(int subjectID)
+        public static void RemoveSubjectTutored(int subjectID, int studentID)
         {
             try
             {
                 Console.Write("Connecting to MySql... ");
                 conn.Open();
-                string sql = @"DELETE FROM subjecttutored where subjectID=@subjectID";
+                string sql = @"DELETE FROM subjecttutored WHERE subjectID=@subjectID AND studentID=@studentID";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@subjectID", subjectID);
+                cmd.Parameters.AddWithValue("@studentID", studentID);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                Console.WriteLine("Subject removed.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+        }
+
+        /// <summary>
+        /// Removes subject from the list of subjects a student worker tutors
+        /// </summary>
+        /// <param name="subjectID">The subject to be removed</param>
+        public static void RemoveFromSubjectTutoredTable(int subjectID)
+        {
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"DELETE FROM subjecttutored WHERE subjectID=@subjectID";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@subjectID", subjectID);
                 cmd.ExecuteNonQuery();
@@ -542,7 +570,6 @@ namespace TutorScheduler
             conn.Close();
             Console.WriteLine("Done.");
         }
-
 
         /// <summary>
         /// Saves a new event to the database

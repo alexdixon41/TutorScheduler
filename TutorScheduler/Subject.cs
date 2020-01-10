@@ -41,7 +41,7 @@ namespace TutorScheduler
         public void RemoveSubject()
         {
             DatabaseManager.RemoveSubject(subjectID);
-            DatabaseManager.RemoveSubjectTutored(subjectID);
+            DatabaseManager.RemoveFromSubjectTutoredTable(subjectID);
         }
 
         #region Static Functions
