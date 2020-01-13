@@ -29,7 +29,8 @@ namespace TutorScheduler
         {
             if (studentWorkerListView.SelectedIndices.Count != 0)
             {
-                StudentWorker selectedStudentWorker = studentWorkerList[studentWorkerListView.SelectedItems[0].Index];               
+                StudentWorker selectedStudentWorker = studentWorkerList[studentWorkerListView.SelectedItems[0].Index];
+                selectedStudentWorker.UpdateTotalHours();
                 IndividualSchedule newShifts = new IndividualSchedule();
                 bool shouldSave = true;
 
@@ -51,21 +52,34 @@ namespace TutorScheduler
                         }
                         else
                         {
-                            //Create new event
-                            CalendarEvent newWorkEvent = new CalendarEvent("Work", startTime, endTime, i, CalendarEvent.WORK, selectedStudentWorker.Name, selectedStudentWorker.StudentID, selectedStudentWorker.DisplayColor);                            
-
-                            //Make sure that the new work shift doesn't conflict with student worker's class schedule
-                            //if the new work event is in the student's availability schedule
-                            if (selectedStudentWorker.GetAvailabilitySchedule().Contains(newWorkEvent) && !selectedStudentWorker.WorkSchedule.Overlaps(newWorkEvent))
+                            DialogResult result = DialogResult.OK;
+                            if ((selectedStudentWorker.JobPosition.Equals("Guru") || selectedStudentWorker.JobPosition.Equals("Lead Guru") && selectedStudentWorker.TotalHours + (endTime - startTime).ToDouble() > 20))
                             {
-                                newShifts.AddEvent(newWorkEvent);
+                                result = new ConfirmationPopup("Adding this work shift will put " + selectedStudentWorker.Name + " over 20 hours a week.", "Are you sure you want to do this?").ShowDialog();
+                                if (!(result == DialogResult.OK))
+                                {
+                                    shouldSave = false;
+                                }
                             }
-                            else
+
+                            if (result == DialogResult.OK)
                             {
-                                //Display conflict error
-                                //TODO: Display better error message
-                                new AlertDialog("The shift conflicts with one of the student worker's classes or work shifts").ShowDialog();
-                                shouldSave = false;
+                                //Create new event
+                                CalendarEvent newWorkEvent = new CalendarEvent("Work", startTime, endTime, i, CalendarEvent.WORK, selectedStudentWorker.Name, selectedStudentWorker.StudentID, selectedStudentWorker.DisplayColor);
+
+                                //Make sure that the new work shift doesn't conflict with student worker's class schedule
+                                //if the new work event is in the student's availability schedule
+                                if (selectedStudentWorker.GetAvailabilitySchedule().Contains(newWorkEvent) && !selectedStudentWorker.WorkSchedule.Overlaps(newWorkEvent))
+                                {
+                                    newShifts.AddEvent(newWorkEvent);
+                                }
+                                else
+                                {
+                                    //Display conflict error
+                                    //TODO: Display better error message
+                                    new AlertDialog("The shift conflicts with one of the student worker's classes or work shifts").ShowDialog();
+                                    shouldSave = false;
+                                }
                             }
                         }
                     }
@@ -91,8 +105,10 @@ namespace TutorScheduler
             int i = 0;
             foreach (StudentWorker studentWorker in studentWorkerList)
             {
+                studentWorker.UpdateTotalHours();
                 studentWorkerListView.Items.Add(studentWorker.Name);
                 studentWorkerListView.Items[i].SubItems.Add(studentWorker.JobPosition);
+                studentWorkerListView.Items[i].SubItems.Add(studentWorker.TotalHours.ToString());
                 studentWorkerListView.Items[i].SubItems.Add(GetSubjectString(studentWorker));
                 i++;
             }
