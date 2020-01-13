@@ -46,6 +46,11 @@ namespace TutorScheduler
             return timeStr + minutes + amOrPM;
         }
 
+        public double ToDouble()
+        {
+            return (double)hours + ((double)(minutes) / 60);
+        }
+
         public static bool operator <(Time t1, Time t2)
         {
             return t1.hours < t2.hours || (t1.hours == t2.hours && t1.minutes < t2.minutes);

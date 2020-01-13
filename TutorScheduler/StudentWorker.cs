@@ -12,6 +12,7 @@ namespace TutorScheduler
         public string JobPosition;
         public int DisplayColor;
         public bool Selected;
+        public double TotalHours = 0;                      //total hours a student hour currently works
         public IndividualSchedule ClassSchedule { get; set; }                           // the student's class schedule
         public IndividualSchedule WorkSchedule { get; set; }
         public IndividualSchedule Availability { get; set; } = new IndividualSchedule();           // the student's work availability schedule
@@ -194,6 +195,14 @@ namespace TutorScheduler
             DatabaseManager.UpdateStudentInfo(StudentID, Name, JobPosition, DisplayColor);
         }
 
+        public void UpdateTotalHours()
+        {
+            TotalHours = 0;
+            foreach(CalendarEvent shift in WorkSchedule.Events)
+            {
+                TotalHours = TotalHours + (shift.EndTime - shift.StartTime).ToDouble();
+            }
+        }
 
         #region Static Methods and Fields
 
