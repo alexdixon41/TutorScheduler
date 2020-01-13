@@ -38,6 +38,11 @@ CREATE TABLE IF NOT EXISTS `CurrentSchedule` (
 	`ScheduleID` INT NOT NULL,
 	CONSTRAINT `Current_Schedule_fk` FOREIGN KEY (`ScheduleID`) REFERENCES `Schedule`(`ScheduleID`));
 	
+CREATE TABLE IF NOT EXISTS `EventDetails` (
+	`EventDetailsID` INT AUTO_INCREMENT PRIMARY KEY,
+	`EventName` VARCHAR(255)
+);
+	
 CREATE TABLE IF NOT EXISTS `ScheduleEvent` (
 	`eventID` INT AUTO_INCREMENT PRIMARY KEY,
 	`studentID` INT,
@@ -47,8 +52,9 @@ CREATE TABLE IF NOT EXISTS `ScheduleEvent` (
 	`endHour` INT,
 	`endMinute` INT,
 	`day` INT,
-	`eventName` VARCHAR(255),
+	`Details` INT NOT NULL,
 	`ScheduleID` INT NOT NULL,
+	CONSTRAINT `ScheduleEvent_EventDetails_fk` FOREIGN KEY (`Details`) REFERENCES `EventDetails` (`EventDetailsID`),
 	CONSTRAINT `ScheduleEvent_StudentWorker_fk` FOREIGN KEY (`studentID`) REFERENCES `StudentWorker` (`studentID`),
 	CONSTRAINT `ScheduleEvent_Schedule_fk` FOREIGN KEY (`ScheduleID`) REFERENCES `Schedule` (`ScheduleID`)
 );

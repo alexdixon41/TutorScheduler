@@ -93,8 +93,8 @@ namespace TutorScheduler
                 Console.Write("Connecting to MySql... ");
                 conn.Open();
                 string sql = @"SELECT eventID, eventType, startHour, startMinute, endHour, endMinute, 
-                            day, eventName, studentName, sw.studentID, displayColor
-                            FROM studentworker sw JOIN scheduleevent e ON e.studentID = sw.studentID
+                            day, Details, eventName, studentName, sw.studentID, displayColor
+                            FROM studentworker sw JOIN scheduleevent e ON e.studentID = sw.studentID JOIN EventDetails d ON e.Details = d.EventDetailsID
                             WHERE sw.studentID = @id AND e.eventType = @scheduleType 
                                 AND e.ScheduleID = (SELECT (ScheduleID) FROM CurrentSchedule);";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -129,9 +129,14 @@ namespace TutorScheduler
                 string studentName = row["studentName"].ToString();
                 int newStudentID = (int)row["studentID"];
                 int displayColor = (int)row["displayColor"];
+                int details = (int)row["Details"];
                 Time startTime = new Time(startHour, startMinute);
                 Time endTime = new Time(endHour, endMinute);
                 CalendarEvent newEvent = new CalendarEvent(eventName, startTime, endTime, day, eventType, studentName, newStudentID, displayColor);
+
+                // set the EventDetailsID for the new event
+                newEvent.DetailsID = details;
+
                 newEvent.EventID = eventID;
                 newSchedule.AddEvent(newEvent);
             }
@@ -572,19 +577,60 @@ namespace TutorScheduler
         }
 
         /// <summary>
-        /// Saves a new event to the database
+        /// Create the EventDetails entry for the class or work event
         /// </summary>
-        /// <param name="studentID">The ID of the student worker who the event belongs to</param>
-        /// <param name="newEvent">The CalendarEvent to save for the specified student worker</param>
-        public static void SaveEvent(int studentID, CalendarEvent newEvent)
+        /// <returns></returns>
+        public static int CreateEventDetails(string eventName)
         {
+            int lastID = -1;
             try
             {
                 Console.Write("Connecting to MySql... ");
                 conn.Open();
+
+                // create new EventDetails entry
+                string sql = @"INSERT INTO EventDetails (EventName) VALUES (@eventName);";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@eventName", eventName);
+                cmd.ExecuteNonQuery();
+
+                // get ID of the new entry
+                sql = @"SELECT LAST_INSERT_ID() AS 'LastID';";
+                cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                
+                if (reader.Read())
+                {                    
+                    lastID = Convert.ToInt32(reader["LastID"]);                    
+                }        
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+
+            return lastID;
+        }
+
+        /// <summary>
+        /// Saves a new event to the database
+        /// </summary>
+        /// <param name="studentID">The ID of the student worker who the event belongs to</param>
+        /// <param name="newEvent">The CalendarEvent to save for the specified student worker</param>
+        public static void SaveEvent(int studentID, CalendarEvent newEvent, int eventDetailsID)
+        {
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();               
+                                
                 string sql = @"INSERT INTO scheduleevent 
-                            (studentID, eventType, startHour, startMinute, endHour, endMinute, day, eventName, ScheduleID) 
-                             VALUES (@studentID, @type, @startHour, @startMin, @endHour, @endMin, @day, @eventName, 
+                            (studentID, eventType, startHour, startMinute, endHour, endMinute, `day`, Details, ScheduleID) 
+                             VALUES (@studentID, @type, @startHour, @startMin, @endHour, @endMin, @day, @details, 
                                 (SELECT (ScheduleID) FROM CurrentSchedule));";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -595,7 +641,7 @@ namespace TutorScheduler
                 cmd.Parameters.AddWithValue("@endHour", newEvent.EndTime.hours);
                 cmd.Parameters.AddWithValue("@endMin", newEvent.EndTime.minutes);
                 cmd.Parameters.AddWithValue("@day", newEvent.Day);
-                cmd.Parameters.AddWithValue("@eventName", newEvent.EventName);
+                cmd.Parameters.AddWithValue("@details", eventDetailsID);
 
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
@@ -742,16 +788,32 @@ namespace TutorScheduler
             Console.WriteLine("Done.");
         }
 
+        /// <summary>
+        /// Remove the ScheduleEvent entry from the database, and remove the EventDetails entry if no more ScheduleEvents are related to it.
+        /// </summary>
+        /// <param name="selectedEvent">The ScheduleEvent to remove</param>
         public static void RemoveEvent(CalendarEvent selectedEvent)
         {
             try
             {
                 Console.Write("Connecting to MySql... ");
+
+                // remove the selected ScheduleEvent
                 conn.Open();
                 string sql = @"DELETE FROM scheduleevent where eventID = @eventID";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@eventID", selectedEvent.EventID);
                 cmd.ExecuteNonQuery();
+
+                // remove entries from EventDetails that have no corresponding ScheduleEvents
+                sql = @"DELETE FROM EventDetails
+                        WHERE NOT EXISTS (
+	                        SELECT * FROM ScheduleEvent
+	                        WHERE Details = EventDetailsID);";
+
+                cmd = new MySqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+
                 cmd.Dispose();
                 Console.WriteLine("Event removed.");
             }

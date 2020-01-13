@@ -198,6 +198,7 @@ namespace TutorScheduler
             this.classesListView.TabIndex = 2;
             this.classesListView.UseCompatibleStateImageBehavior = false;
             this.classesListView.View = System.Windows.Forms.View.Details;
+            this.classesListView.DoubleClick += new System.EventHandler(this.ClassesListView_DoubleClick);
             // 
             // name
             // 

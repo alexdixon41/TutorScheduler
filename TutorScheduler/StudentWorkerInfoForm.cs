@@ -25,7 +25,7 @@ namespace TutorScheduler
         {
             new AddClass(selectedStudentWorker).ShowDialog();
             selectedStudentWorker.FetchClassSchedule();
-            displayClasses();
+            DisplayClasses();
         }
 
         private void ColorButton_Click(object sender, EventArgs e)
@@ -36,7 +36,7 @@ namespace TutorScheduler
             }
         }
 
-        private void displayInfo()
+        private void DisplayInfo()
         {
             //set name and position
             nameTextBox.Text = selectedStudentWorker.Name;
@@ -50,13 +50,13 @@ namespace TutorScheduler
             colorButton.BackColor = Color.FromArgb(255, red, green, blue);
 
             //set subjects
-            displaySubjects();
+            DisplaySubjects();
 
             //set classes
-            displayClasses();
+            DisplayClasses();
         }
 
-        private void displaySubjects()
+        private void DisplaySubjects()
         {
             subjectsTutored = selectedStudentWorker.GetSubjectsTutored();
             subjectListView.Items.Clear();
@@ -70,44 +70,52 @@ namespace TutorScheduler
             }
         }
 
-        private void displayClasses()
+        /// <summary>
+        /// Display the list of class names and meeting times for the selected student worker
+        /// </summary>
+        private void DisplayClasses()
         {
-            List<CalendarEvent> classes = selectedStudentWorker.ClassSchedule.Events;
             classesListView.Items.Clear();
-            Dictionary<string, string> classesByDay = new Dictionary<string, string>();
-            string[] days = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };            
-            foreach (CalendarEvent classEvent in classes)
+            string[] days = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
+            Dictionary<int, List<CalendarEvent>> eventsByClass = new Dictionary<int, List<CalendarEvent>>();
+            foreach (CalendarEvent classEvent in selectedStudentWorker.ClassSchedule.Events)
             {
-                // if class with same name already exists, add this event's time and day to it
-                if (classesByDay.ContainsKey(classEvent.EventName))
+                if (!eventsByClass.ContainsKey(classEvent.DetailsID))
                 {
-                    classesByDay[classEvent.EventName] += "; " + classEvent.StartTime.ToString() 
-                        + " - " + classEvent.EndTime.ToString() + " " + days[classEvent.Day];
-                }        
-                else
-                {
-                    classesByDay[classEvent.EventName] = classEvent.StartTime.ToString()
-                        + " - " + classEvent.EndTime.ToString() + " " + days[classEvent.Day];
+                    eventsByClass[classEvent.DetailsID] = new List<CalendarEvent>();
                 }
+                eventsByClass[classEvent.DetailsID].Add(classEvent);
             }
 
+            // loop through each class entry
             int i = 0;
-            foreach (KeyValuePair<string, string> classEntry in classesByDay) {
-                classesListView.Items.Add(classEntry.Key);
-                classesListView.Items[i].SubItems.Add(classEntry.Value);
+            foreach (KeyValuePair<int, List<CalendarEvent>> classEntry in eventsByClass)
+            {
+                string times = "";
+                string className = "";
+                // loop through each event for a class
+                foreach (CalendarEvent classEvent in classEntry.Value) {                    
+                    times += (times == "" ? "" : "; ") + days[classEvent.Day] + " " + classEvent.StartTime.ToString() + " - " + classEvent.EndTime.ToString();
+                }
+                if (classEntry.Value[0] != null)
+                {
+                    className = classEntry.Value[0].EventName;
+                }
+                classesListView.Items.Add(className);
+                classesListView.Items[i].SubItems.Add(times);
                 i++;
             }
         }
-
+       
         private void StudentWorkerInfoForm_Load(object sender, EventArgs e)
         {
-            displayInfo();
+            DisplayInfo();
         }
 
         private void AddSubjectButton_Click(object sender, EventArgs e)
         {
             new AddSubjectToStudentWorker(selectedStudentWorker).ShowDialog();
-            displaySubjects();
+            DisplaySubjects();
         }
 
         private void RemoveSubjectButton_Click(object sender, EventArgs e)
@@ -126,7 +134,7 @@ namespace TutorScheduler
                 }
 
                 //Refresh list of subjects
-                displaySubjects();
+                DisplaySubjects();
             }
 
         }     
@@ -142,6 +150,15 @@ namespace TutorScheduler
             int color = colorButton.BackColor.ToArgb() & 0x00FFFFFF;
             selectedStudentWorker.UpdateInformation(nameTextBox.Text, positionComboBox.Text, color);
             RefreshCalendars.Refresh();
+        }
+
+        private void ClassesListView_DoubleClick(object sender, EventArgs e)
+        {
+            if (classesListView.SelectedIndices.Count != 0)
+            {
+                StudentWorker selectedStudentWorker = StudentWorker.allStudentWorkers[classesListView.SelectedItems[0].Index];
+                new StudentWorkerInfoForm(selectedStudentWorker).ShowDialog();                               
+            }
         }
     }
 }

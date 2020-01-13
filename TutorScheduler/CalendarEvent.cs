@@ -31,7 +31,7 @@ namespace TutorScheduler
         internal string PrimaryText;
         internal string SecondaryText;
         internal string EventName = "";                          // if class event, stores the class name; otherwise, just stores the type
-
+        internal int DetailsID = -1;                             // ID of the EventDetails entry
         internal Time StartTime { get; set; }
         internal Time EndTime { get; set; }
 

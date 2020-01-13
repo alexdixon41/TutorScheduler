@@ -135,12 +135,21 @@ namespace TutorScheduler
             }
         }
 
+        /// <summary>
+        /// Save the set of events for a single work shift or class time
+        /// </summary>
+        /// <param name="studentID"></param>
         public void SaveSchedule(int studentID)
         {
-            foreach(CalendarEvent newEvent in Events)
+            if (Events[0] != null)
             {
-                DatabaseManager.SaveEvent(studentID, newEvent);
-            }
+                int eventDetailsID = DatabaseManager.CreateEventDetails(Events[0].EventName);                
+
+                foreach (CalendarEvent newEvent in Events)
+                {
+                    DatabaseManager.SaveEvent(studentID, newEvent, eventDetailsID);
+                }
+            }            
         }
 
 
