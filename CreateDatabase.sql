@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `Manager` (
 	`managerName` VARCHAR(255),
 	`username` VARCHAR(320),
 	`pword` VARCHAR(60),
-	CONSTRAINT `unique_email` UNIQUE (email)
+	CONSTRAINT `unique_user` UNIQUE (`username`)
 );
 
 CREATE TABLE IF NOT EXISTS `Schedule` (
@@ -65,3 +65,12 @@ CREATE TABLE IF NOT EXISTS `SubjectTutored` (
 	`studentID` INT,
 	CONSTRAINT `subject_tutored_pk` PRIMARY KEY (`subjectID`, `studentID`)
 );
+
+INSERT INTO `Manager` (`managerName`, `username`, `pword`)
+VALUES ('Lara Vance', 'lara1', PASSWORD('password'));
+
+INSERT INTO `Schedule` (`Name`)
+VALUES ('Fall 2019');
+
+INSERT INTO `CurrentSchedule` (`CurrentScheduleID`, `ScheduleID`)
+VALUES (1, 1);

@@ -41,7 +41,7 @@ namespace TutorScheduler
                     }
                     else
                     {
-                        CalendarEvent newClassEvent = new CalendarEvent(classNameTextBox.Text, startTime, endTime, i, CalendarEvent.CLASS, studentWorker.Name, studentWorker.DisplayColor);
+                        CalendarEvent newClassEvent = new CalendarEvent(classNameTextBox.Text, startTime, endTime, i, CalendarEvent.CLASS, studentWorker.Name, studentWorker.StudentID, studentWorker.DisplayColor);
                         newClassEvent.EventName = classNameTextBox.Text;
 
                         if (studentWorker.ClassSchedule.Overlaps(newClassEvent) || studentWorker.WorkSchedule.Overlaps(newClassEvent))

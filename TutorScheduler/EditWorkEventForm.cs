@@ -35,9 +35,52 @@ namespace TutorScheduler
 
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            // save the updated event details 
-            selectedEvent.UpdateEvent(startTimePicker.Value.Hour, startTimePicker.Value.Minute, endTimePicker.Value.Hour, endTimePicker.Value.Minute);            
-            this.Close();
+            bool shouldSave = true;
+            StudentWorker[] sw = DatabaseManager.GetStudentWorkerByID(selectedEvent.StudentID);
+
+            // if StudentWorker could not be found there is an error
+            if (sw[0] == null)
+            {
+                Console.Error.WriteLine("StudentWorker not found for selected Work event.");               
+                return;
+            }
+            
+            StudentWorker selectedStudentWorker = sw[0];
+            selectedStudentWorker.WorkSchedule = DatabaseManager.GetSchedule(selectedStudentWorker.StudentID, CalendarEvent.WORK);
+            selectedStudentWorker.ClassSchedule = DatabaseManager.GetSchedule(selectedStudentWorker.StudentID, CalendarEvent.CLASS);
+            selectedStudentWorker.BuildAvailabilitySchedule();
+            Time startTime = new Time(startTimePicker.Value.TimeOfDay.Hours, startTimePicker.Value.TimeOfDay.Minutes);
+            Time endTime = new Time(endTimePicker.Value.TimeOfDay.Hours, endTimePicker.Value.TimeOfDay.Minutes);
+            CalendarEvent newEvent = new CalendarEvent(selectedEvent.EventName, startTime, endTime, selectedEvent.Day, selectedEvent.type, selectedEvent.PrimaryText, 
+                selectedEvent.StudentID, selectedStudentWorker.DisplayColor);
+            if (endTime < startTime)
+            {
+                new AlertDialog("Start time should be before end time.").ShowDialog();
+                shouldSave = false;
+            }
+            else if (endTime.hours - startTime.hours > 5 && (selectedStudentWorker.JobPosition.Equals("Guru") || selectedStudentWorker.JobPosition.Equals("Lead Guru")))
+            {
+                new AlertDialog("A work shift should not be longer than 5 hours.").ShowDialog();
+                shouldSave = false;
+            }
+            else
+            {
+                // Make sure that the new work shift doesn't conflict with student worker's class schedule
+                // if the new work event is in the student's availability schedule                
+                if (!selectedStudentWorker.GetAvailabilitySchedule().Contains(newEvent))
+                {
+                    //Display conflict error
+                    //TODO: Display better error message
+                    new AlertDialog("The shift conflicts with one of the student worker's classes or work shifts").ShowDialog();
+                    shouldSave = false;
+                }                
+            }
+            if (shouldSave)
+            {
+                // save the updated event details 
+                selectedEvent.UpdateEvent(startTimePicker.Value.Hour, startTimePicker.Value.Minute, endTimePicker.Value.Hour, endTimePicker.Value.Minute);
+                this.Close();
+            }            
         }
 
         private void EditWorkEventForm_FormClosed(object sender, FormClosedEventArgs e)
