@@ -42,6 +42,9 @@ namespace TutorScheduler
             nameTextBox.Text = selectedStudentWorker.Name;
             positionComboBox.Text = selectedStudentWorker.JobPosition;
 
+            selectedStudentWorker.UpdateTotalHours();
+            totalHoursLabel.Text = "Total Work Hours: " + selectedStudentWorker.TotalHours;
+
             //set color
             int baseColor = selectedStudentWorker.DisplayColor;
             int red = baseColor / 256 / 256;
