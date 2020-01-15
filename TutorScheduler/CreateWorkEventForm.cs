@@ -53,7 +53,7 @@ namespace TutorScheduler
                         else
                         {
                             DialogResult result = DialogResult.OK;
-                            if ((selectedStudentWorker.JobPosition.Equals("Guru") || selectedStudentWorker.JobPosition.Equals("Lead Guru") && selectedStudentWorker.TotalHours + (endTime - startTime).ToDouble() > 20))
+                            if ((selectedStudentWorker.JobPosition.Equals("Guru") || selectedStudentWorker.JobPosition.Equals("Lead Guru")) && selectedStudentWorker.TotalHours + (endTime - startTime).ToDouble() > 20)
                             {
                                 result = new ConfirmationPopup("Adding this work shift will put " + selectedStudentWorker.Name + " over 20 hours a week.", "Are you sure you want to do this?").ShowDialog();
                                 if (!(result == DialogResult.OK))
