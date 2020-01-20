@@ -40,6 +40,7 @@ namespace TutorScheduler
         public EditClass(StudentWorker selectedStudentWorker, int eventDetailsID)
         {
             InitializeComponent();
+            deleteButton.Visible = true;
 
             checkBoxes = new CheckBox[] { mondayCheckBox, tuesdayCheckBox, wednesdayCheckBox, thursdayCheckBox, fridayCheckBox };
             studentWorker = selectedStudentWorker;
@@ -207,6 +208,13 @@ namespace TutorScheduler
                 newClassSchedule.SaveSchedule(studentWorker.StudentID);
                 studentWorker.GetClassSchedule();
             }
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            // set isSaved to true so the original class will not be restored when the form is closed; this will effectively delete the original class
+            isSaved = true;
+            this.Close();
         }
     }
 }

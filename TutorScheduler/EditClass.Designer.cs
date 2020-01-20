@@ -46,6 +46,7 @@
             this.saveClassButton = new System.Windows.Forms.Button();
             this.meetingTimesGroupBox = new System.Windows.Forms.GroupBox();
             this.classTimePanel = new System.Windows.Forms.Panel();
+            this.deleteButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.meetingTimesGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -290,12 +291,33 @@
             this.classTimePanel.Size = new System.Drawing.Size(565, 223);
             this.classTimePanel.TabIndex = 0;
             // 
+            // deleteButton
+            // 
+            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.deleteButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.deleteButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.deleteButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(98)))), ((int)(((byte)(107)))));
+            this.deleteButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteButton.ForeColor = System.Drawing.Color.DarkRed;
+            this.deleteButton.Location = new System.Drawing.Point(369, 14);
+            this.deleteButton.Margin = new System.Windows.Forms.Padding(2, 6, 6, 2);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(105, 28);
+            this.deleteButton.TabIndex = 7;
+            this.deleteButton.Text = "Delete";
+            this.deleteButton.UseVisualStyleBackColor = false;
+            this.deleteButton.Visible = false;
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
             // EditClass
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(600, 542);
+            this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.meetingTimesGroupBox);
             this.Controls.Add(this.saveClassButton);
             this.Controls.Add(this.groupBox1);
@@ -337,5 +359,6 @@
         private System.Windows.Forms.Button addTimeButton;
         private System.Windows.Forms.GroupBox meetingTimesGroupBox;
         private System.Windows.Forms.Panel classTimePanel;
+        private System.Windows.Forms.Button deleteButton;
     }
 }
