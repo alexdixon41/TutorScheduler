@@ -49,6 +49,7 @@ namespace TutorScheduler
             selectedStudentWorker.WorkSchedule = DatabaseManager.GetSchedule(selectedStudentWorker.StudentID, CalendarEvent.WORK);
             selectedStudentWorker.ClassSchedule = DatabaseManager.GetSchedule(selectedStudentWorker.StudentID, CalendarEvent.CLASS);
             selectedStudentWorker.BuildAvailabilitySchedule();
+            selectedStudentWorker.UpdateTotalHours();
             Time startTime = new Time(startTimePicker.Value.TimeOfDay.Hours, startTimePicker.Value.TimeOfDay.Minutes);
             Time endTime = new Time(endTimePicker.Value.TimeOfDay.Hours, endTimePicker.Value.TimeOfDay.Minutes);
             CalendarEvent newEvent = new CalendarEvent(selectedEvent.EventName, startTime, endTime, selectedEvent.Day, selectedEvent.type, selectedEvent.PrimaryText, 
@@ -65,15 +66,27 @@ namespace TutorScheduler
             }
             else
             {
-                // Make sure that the new work shift doesn't conflict with student worker's class schedule
-                // if the new work event is in the student's availability schedule                
-                if (!selectedStudentWorker.GetAvailabilitySchedule().Contains(newEvent))
+                DialogResult result = DialogResult.OK;
+                if ((selectedStudentWorker.JobPosition.Equals("Guru") || selectedStudentWorker.JobPosition.Equals("Lead Guru")) && selectedStudentWorker.TotalHours - (selectedEvent.EndTime - selectedEvent.StartTime).ToDouble() + (endTime - startTime).ToDouble() > 20)
                 {
-                    //Display conflict error
-                    //TODO: Display better error message
-                    new AlertDialog("The shift conflicts with one of the student worker's classes or work shifts").ShowDialog();
-                    shouldSave = false;
-                }                
+                    result = new ConfirmationPopup("Adding this work shift will put " + selectedStudentWorker.Name + " over 20 hours a week.", "Are you sure you want to do this?").ShowDialog();
+                    if (!(result == DialogResult.OK))
+                    {
+                        shouldSave = false;
+                    }
+                }
+                if (result == DialogResult.OK)
+                {
+                    // Make sure that the new work shift doesn't conflict with student worker's class schedule
+                    // if the new work event is in the student's availability schedule                
+                    if (!selectedStudentWorker.GetAvailabilitySchedule().Contains(newEvent))
+                    {
+                        //Display conflict error
+                        //TODO: Display better error message
+                        new AlertDialog("The shift conflicts with one of the student worker's classes or work shifts").ShowDialog();
+                        shouldSave = false;
+                    }
+                }                      
             }
             if (shouldSave)
             {

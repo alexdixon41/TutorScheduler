@@ -141,15 +141,18 @@ namespace TutorScheduler
         /// <param name="studentID"></param>
         public void SaveSchedule(int studentID)
         {
-            if (Events[0] != null)
+            if (Events.Count > 0)
             {
-                int eventDetailsID = DatabaseManager.CreateEventDetails(Events[0].EventName);                
-
-                foreach (CalendarEvent newEvent in Events)
+                if (Events[0] != null)
                 {
-                    DatabaseManager.SaveEvent(studentID, newEvent, eventDetailsID);
+                    int eventDetailsID = DatabaseManager.CreateEventDetails(Events[0].EventName);
+
+                    foreach (CalendarEvent newEvent in Events)
+                    {
+                        DatabaseManager.SaveEvent(studentID, newEvent, eventDetailsID);
+                    }
                 }
-            }            
+            }                 
         }
 
 

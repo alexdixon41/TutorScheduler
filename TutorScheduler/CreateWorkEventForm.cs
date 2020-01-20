@@ -33,11 +33,13 @@ namespace TutorScheduler
                 selectedStudentWorker.UpdateTotalHours();
                 IndividualSchedule newShifts = new IndividualSchedule();
                 bool shouldSave = true;
+                bool boxChecked = false;
 
                 for (int i = 0; i < checkBoxes.Length; i++)
                 {
                     if (checkBoxes[i].Checked)
-                    {                        
+                    {
+                        boxChecked = true;
                         Time startTime = new Time(startTimePicker.Value.TimeOfDay.Hours, startTimePicker.Value.TimeOfDay.Minutes);
                         Time endTime = new Time(endTimePicker.Value.TimeOfDay.Hours, endTimePicker.Value.TimeOfDay.Minutes);
                         if (endTime < startTime)
@@ -53,7 +55,7 @@ namespace TutorScheduler
                         else
                         {
                             DialogResult result = DialogResult.OK;
-                            if ((selectedStudentWorker.JobPosition.Equals("Guru") || selectedStudentWorker.JobPosition.Equals("Lead Guru") && selectedStudentWorker.TotalHours + (endTime - startTime).ToDouble() > 20))
+                            if ((selectedStudentWorker.JobPosition.Equals("Guru") || selectedStudentWorker.JobPosition.Equals("Lead Guru")) && selectedStudentWorker.TotalHours + (endTime - startTime).ToDouble() > 20)
                             {
                                 result = new ConfirmationPopup("Adding this work shift will put " + selectedStudentWorker.Name + " over 20 hours a week.", "Are you sure you want to do this?").ShowDialog();
                                 if (!(result == DialogResult.OK))
@@ -85,10 +87,14 @@ namespace TutorScheduler
                     }
 
                 }
-                if (shouldSave)
+                if (boxChecked && shouldSave)
                 {
                     newShifts.SaveSchedule(selectedStudentWorker.StudentID);
                     this.Close();
+                }
+                else if (!boxChecked)
+                {
+                    new AlertDialog("You must select a day for the shift.").ShowDialog();
                 }
             }
         }
