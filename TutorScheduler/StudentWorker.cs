@@ -93,6 +93,7 @@ namespace TutorScheduler
             }
 
             int day = 0;
+            Time minimumShiftTime = new Time(0, 30);
 
             foreach (List<CalendarEvent> dayClasses in dailyEvents)
             {
@@ -107,8 +108,8 @@ namespace TutorScheduler
                 {                   
                     if (i == 0)
                     {
-                        // check if at least 1.75 hours between opening time and start of first class
-                        if (dayClasses[i].StartTime - WorkLocation.openingTimes[(int)day] >= new Time(1, 45))
+                        // check if at least 45 minutes between opening time and start of first class
+                        if (dayClasses[i].StartTime - WorkLocation.openingTimes[(int)day] >= new Time(0, 45))
                         {
                             Time availableStart = WorkLocation.openingTimes[(int)day];
                             Time availableStop = IndividualSchedule.GetPrecedingStopTime(dayClasses[i].StartTime);
@@ -117,8 +118,8 @@ namespace TutorScheduler
                     }
                     else            // attempt to schedule availability between classes
                     {
-                        // check if at least 2 hours between end of previous class and start of this class
-                        if (dayClasses[i].StartTime.SubtractTime(dayClasses[i - 1].EndTime) >= new Time(2, 0))
+                        // check if at least 1 hour between end of previous class and start of this class
+                        if (dayClasses[i].StartTime.SubtractTime(dayClasses[i - 1].EndTime) >= new Time(1, 0))
                         {
                             Time availableStart = IndividualSchedule.GetSucceedingStartTime(dayClasses[i - 1].EndTime);
                             Time availableStop = IndividualSchedule.GetPrecedingStopTime(dayClasses[i].StartTime);
@@ -129,7 +130,7 @@ namespace TutorScheduler
                                 availableStop = WorkLocation.closingTimes[day];
 
                                 // if available time was set to the closing time, make sure the shift is still at least 1.5 hours long
-                                if (availableStop.SubtractTime(availableStart) >= new Time(1, 30))
+                                if (availableStop.SubtractTime(availableStart) >= minimumShiftTime)
                                 {
                                     Availability.AddEvent(new CalendarEvent("Availability", availableStart, availableStop, day, CalendarEvent.AVAILABILITY, Name, StudentID, DisplayColor));
                                 }
@@ -143,8 +144,8 @@ namespace TutorScheduler
 
                     if (i == dayClasses.Count - 1)         // attempt to schedule availability between latest class and closing time
                     {
-                        // check if at least 1.75 hours between end of this class and closing time
-                        if (WorkLocation.closingTimes[day].SubtractTime(dayClasses[i].EndTime) >= new Time(1, 45))
+                        // check if at least 45 minutes between end of this class and closing time
+                        if (WorkLocation.closingTimes[day].SubtractTime(dayClasses[i].EndTime) >= new Time(0, 45))
                         {
                             Time availableStart = IndividualSchedule.GetSucceedingStartTime(dayClasses[i].EndTime);
                             Time availableStop = WorkLocation.closingTimes[day];
@@ -159,7 +160,7 @@ namespace TutorScheduler
         /// <summary>
         /// Retrieve the student worker's class schedule from the database
         /// </summary>
-        public void FetchClassSchedule()
+        public void GetClassSchedule()
         {
             ClassSchedule = DatabaseManager.GetSchedule(StudentID, CalendarEvent.CLASS);
         }
@@ -167,7 +168,7 @@ namespace TutorScheduler
         /// <summary>
         /// Retrieve the student worker's work schedule from the database
         /// </summary>
-        public void FetchWorkSchedule()
+        public void GetWorkSchedule()
         {
             WorkSchedule = DatabaseManager.GetSchedule(StudentID, CalendarEvent.WORK);
         }

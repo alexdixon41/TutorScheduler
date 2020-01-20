@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `ScheduleEvent` (
 CREATE TABLE IF NOT EXISTS `Subject` (
 	`subjectID` INT AUTO_INCREMENT PRIMARY KEY,
 	`abbreviation` VARCHAR(10),
-	`subNum` INT,
+	`subNum` VARCHAR(50),
 	`subName` VARCHAR(255)
 );
 	

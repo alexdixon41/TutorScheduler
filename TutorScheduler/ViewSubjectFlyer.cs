@@ -30,7 +30,7 @@ namespace TutorScheduler
 
             foreach (StudentWorker tutor in tutorList)
             {
-                tutor.FetchWorkSchedule();
+                tutor.GetWorkSchedule();
                 foreach(CalendarEvent newEvent in tutor.WorkSchedule.Events)
                 {
                     tutorSchedule.AddEvent(newEvent);

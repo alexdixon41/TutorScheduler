@@ -64,7 +64,7 @@ namespace TutorScheduler
                 {
                     if (Subject.VerifyNumber(subjectBoxes[i, 0].Text))
                     {
-                        int num = Int32.Parse(subjectBoxes[i, 0].Text);
+                        string num = subjectBoxes[i, 0].Text;
                         String name = subjectBoxes[i, 1].Text;
 
                         //Create and save subject

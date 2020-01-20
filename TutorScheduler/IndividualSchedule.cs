@@ -15,7 +15,7 @@ namespace TutorScheduler
         /// </summary>
         /// <param name="newEvent">The CalendarEvent to add to the schedule</param>
         public void AddEvent(CalendarEvent newEvent)
-        {
+        {           
             // add events to the schedule in the correct location to maintain sequential order by start time and day
             if (Events.Count == 0)
             {
@@ -27,9 +27,9 @@ namespace TutorScheduler
                 while (index >= 0 && newEvent < Events[index])                // CalendarEvent operator overload (<)
                 {
                     index--;
-                }
+                }                
                 Events.Insert(index + 1, newEvent);
-            }
+            }            
         }
 
         /// <summary>

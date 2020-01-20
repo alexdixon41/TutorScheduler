@@ -10,10 +10,10 @@ namespace TutorScheduler
     {
         public int subjectID;
         public string abbreviation;
-        public int subjectNumber;
+        public string subjectNumber;
         public string name;
 
-        public Subject(int subID, string subAbbreviation, int subNumber, string subName)
+        public Subject(int subID, string subAbbreviation, string subNumber, string subName)
         {
             subjectID = subID;
             abbreviation = subAbbreviation;
@@ -21,7 +21,7 @@ namespace TutorScheduler
             name = subName;
         }
 
-        public Subject(string subAbbreviation, int subNumber, string subName)
+        public Subject(string subAbbreviation, string subNumber, string subName)
         {
             abbreviation = subAbbreviation;
             subjectNumber = subNumber;
@@ -46,7 +46,7 @@ namespace TutorScheduler
 
         #region Static Functions
 
-        public static void Create(string subAbbreviation, int subNumber, string subName)
+        public static void Create(string subAbbreviation, string subNumber, string subName)
         {
             //Create new subject
             Subject newSubject = new Subject(subAbbreviation, subNumber, subName);

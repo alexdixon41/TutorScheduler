@@ -15,6 +15,9 @@ namespace TutorScheduler
         StudentWorker selectedStudentWorker;
         List<Subject> subjectsTutored;
 
+        // dictionary of class events where key is the EventDetailsID and value is a list of ScheduleEvents for the EventDetails
+        Dictionary<int, List<CalendarEvent>> eventsByClass = new Dictionary<int, List<CalendarEvent>>();
+
         public StudentWorkerInfoForm(StudentWorker selected)
         {
             InitializeComponent();
@@ -23,8 +26,7 @@ namespace TutorScheduler
 
         private void AddClassButton_Click(object sender, EventArgs e)
         {
-            new AddClass(selectedStudentWorker).ShowDialog();
-            selectedStudentWorker.FetchClassSchedule();
+            new EditClass(selectedStudentWorker).ShowDialog();            
             DisplayClasses();
         }
 
@@ -78,9 +80,10 @@ namespace TutorScheduler
         /// </summary>
         private void DisplayClasses()
         {
+            selectedStudentWorker.GetClassSchedule();
             classesListView.Items.Clear();
-            string[] days = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
-            Dictionary<int, List<CalendarEvent>> eventsByClass = new Dictionary<int, List<CalendarEvent>>();
+            eventsByClass.Clear();
+            string[] days = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };            
             foreach (CalendarEvent classEvent in selectedStudentWorker.ClassSchedule.Events)
             {
                 if (!eventsByClass.ContainsKey(classEvent.DetailsID))
@@ -106,6 +109,7 @@ namespace TutorScheduler
                 }
                 classesListView.Items.Add(className);
                 classesListView.Items[i].SubItems.Add(times);
+                classesListView.Items[i].Tag = classEntry.Key;
                 i++;
             }
         }
@@ -159,8 +163,10 @@ namespace TutorScheduler
         {
             if (classesListView.SelectedIndices.Count != 0)
             {
-                StudentWorker selectedStudentWorker = StudentWorker.allStudentWorkers[classesListView.SelectedItems[0].Index];
-                new StudentWorkerInfoForm(selectedStudentWorker).ShowDialog();                               
+                Console.WriteLine(classesListView.SelectedItems[0].Index + ": " + classesListView.SelectedItems[0].Tag);
+                int eventDetailsID = Convert.ToInt32(classesListView.SelectedItems[0].Tag);
+                new EditClass(selectedStudentWorker, eventDetailsID).ShowDialog();                
+                DisplayClasses();
             }
         }
     }

@@ -71,7 +71,7 @@
             this.dayLabelPanel.Location = new System.Drawing.Point(0, 29);
             this.dayLabelPanel.Margin = new System.Windows.Forms.Padding(0);
             this.dayLabelPanel.Name = "dayLabelPanel";
-            this.dayLabelPanel.Size = new System.Drawing.Size(647, 69);
+            this.dayLabelPanel.Size = new System.Drawing.Size(737, 69);
             this.dayLabelPanel.TabIndex = 1;
             // 
             // panel1
@@ -81,7 +81,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 66);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(647, 3);
+            this.panel1.Size = new System.Drawing.Size(737, 3);
             this.panel1.TabIndex = 5;
             // 
             // fridayLabel
@@ -157,7 +157,7 @@
             this.calendarPanel.Location = new System.Drawing.Point(0, 97);
             this.calendarPanel.Margin = new System.Windows.Forms.Padding(2);
             this.calendarPanel.Name = "calendarPanel";
-            this.calendarPanel.Size = new System.Drawing.Size(647, 259);
+            this.calendarPanel.Size = new System.Drawing.Size(737, 397);
             this.calendarPanel.TabIndex = 2;
             // 
             // calendarWeekView1
@@ -168,7 +168,7 @@
             this.calendarWeekView1.Location = new System.Drawing.Point(0, 0);
             this.calendarWeekView1.Margin = new System.Windows.Forms.Padding(0, 2, 2, 2);
             this.calendarWeekView1.Name = "calendarWeekView1";
-            this.calendarWeekView1.Size = new System.Drawing.Size(627, 61267);
+            this.calendarWeekView1.Size = new System.Drawing.Size(717, 62938);
             this.calendarWeekView1.TabIndex = 0;
             this.calendarWeekView1.Text = "calendarWeekView1";
             // 
@@ -180,7 +180,7 @@
             this.calendarDayView1.Location = new System.Drawing.Point(0, 0);
             this.calendarDayView1.Margin = new System.Windows.Forms.Padding(0, 2, 2, 2);
             this.calendarDayView1.Name = "calendarDayView1";
-            this.calendarDayView1.Size = new System.Drawing.Size(627, 33579);
+            this.calendarDayView1.Size = new System.Drawing.Size(717, 35250);
             this.calendarDayView1.TabIndex = 1;
             this.calendarDayView1.Text = "calendarDayView1";
             this.calendarDayView1.Visible = false;
@@ -197,7 +197,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(647, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(737, 25);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -317,7 +317,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(647, 366);
+            this.ClientSize = new System.Drawing.Size(737, 504);
             this.Controls.Add(this.dayLabelPanel);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.calendarPanel);

@@ -183,7 +183,7 @@ namespace TutorScheduler
                 int id = (int)(row["subjectID"]);
                 String name = row["subName"].ToString();
                 String abbr = row["abbreviation"].ToString();
-                int num = (int)(row["subNum"]);
+                String num = row["subNum"].ToString();
                 Subject subj = new Subject(id, abbr, num, name);
                 subjects.Add(subj);
             }
@@ -309,7 +309,7 @@ namespace TutorScheduler
             {
                 string name = row["subName"].ToString();
                 string abbreviation = row["abbreviation"].ToString();
-                int subNum = (int)row["subNum"];
+                string subNum = row["subNum"].ToString();
                 int subjectID = (int)row["subjectID"];
                 Subject sub = new Subject(subjectID, abbreviation, subNum, name);
                 subjects.Add(sub);
@@ -800,7 +800,7 @@ namespace TutorScheduler
 
                 // remove the selected ScheduleEvent
                 conn.Open();
-                string sql = @"DELETE FROM scheduleevent where eventID = @eventID";
+                string sql = @"DELETE FROM scheduleevent where eventID = @eventID;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@eventID", selectedEvent.EventID);
                 cmd.ExecuteNonQuery();
@@ -816,6 +816,98 @@ namespace TutorScheduler
 
                 cmd.Dispose();
                 Console.WriteLine("Event removed.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+        }
+
+        /// <summary>
+        /// Get all ScheduleEvents for the class specified by eventDetailsID
+        /// </summary>
+        /// <param name="eventDetailsID">The EventDetails ID for the class to retrieve events for</param>
+        /// <returns>List of all CalendarEvents associated with the specified class</returns>
+        public static List<CalendarEvent> GetClass(int eventDetailsID)
+        {
+            List<CalendarEvent> classEvents = new List<CalendarEvent>();
+            DataTable table = new DataTable();
+            string eventName = "";
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+
+                // retrieve EventName for the class
+                string sql = @"SELECT EventName FROM EventDetails WHERE EventDetailsID = @EventDetailsID;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@EventDetailsID", eventDetailsID);
+                MySqlDataReader reader = cmd.ExecuteReader();                
+                if (reader.Read())
+                {
+                    eventName = reader["EventName"].ToString();
+                }
+                reader.Dispose();
+                
+                // retrieve ScheduleEvents for the class
+                sql = @"SELECT startHour, startMinute, endHour, endMinute, day, studentID FROM ScheduleEvent WHERE Details = @EventDetailsID;";
+                cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@EventDetailsID", eventDetailsID);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                myAdapter.Fill(table);
+                cmd.Dispose();
+                myAdapter.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                table.Dispose();
+                conn.Close();
+                return classEvents;
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+
+            foreach (DataRow row in table.Rows)
+            {
+                int startHour = (int)row["startHour"];
+                int startMinute = (int)row["startMinute"];
+                int endHour = (int)row["endHour"];
+                int endMinute = (int)row["endMinute"];
+                int day = (int)row["day"];
+                int studentID = (int)row["studentID"];
+                CalendarEvent newEvent = new CalendarEvent(eventName, new Time(startHour, startMinute), new Time(endHour, endMinute), day, CalendarEvent.CLASS, eventName, studentID, 0);
+                classEvents.Add(newEvent);
+            }
+            table.Dispose();
+            return classEvents;
+        }
+
+        /// <summary>
+        /// Remove the EventDetails and all ScheduleEvents for the class specified by EventDetailsID
+        /// </summary>
+        /// <param name="EventDetailsID">The ID of the EventDetails entry for the class to be deleted</param>
+        public static void RemoveClass(int eventDetailsID)
+        {
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+
+                // remove the ScheduleEvents and the EventDetails entry
+                conn.Open();
+                string sql = @"DELETE FROM ScheduleEvent WHERE Details = @EventDetailsID;
+                                DELETE FROM EventDetails WHERE EventDetailsID = @EventDetailsID;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@EventDetailsID", eventDetailsID);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                Console.WriteLine("Events removed.");
             }
             catch (Exception ex)
             {

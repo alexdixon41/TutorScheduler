@@ -207,8 +207,7 @@ namespace TutorScheduler
                 for (int i = 0; i < dayLabels.Length; i++)
                 {
                     if (dayLabels[i] != selectedDayLabel)
-                    {
-                        Console.WriteLine(i);
+                    {                        
                         dayLabels[i].Visible = false;
                     }
                 }

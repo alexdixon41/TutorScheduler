@@ -85,9 +85,13 @@ namespace TutorScheduler
             CalendarEvent hitEvent = EventAt(e.Location);
 
             // perform actions on event that was clicked
-            if (hitEvent != null && hitEvent.type == CalendarEvent.WORK)
+            if (hitEvent != null)
             {
-                hitEvent.OnClick();                
+                // if work event, edit it; otherwise, do nothing
+                if (hitEvent.type == CalendarEvent.WORK)
+                {
+                    hitEvent.OnClick();
+                }                
             }
             else
             {
