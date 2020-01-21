@@ -60,25 +60,6 @@ namespace TutorScheduler
             return DatabaseManager.GetSubjects();
         }
 
-        public static bool VerifyNumber(string numString)
-        {
-            if (numString.Length != 3)
-            {
-                new AlertDialog("The subject number should be 3 digits").ShowDialog();
-                return false;
-            }
-            try
-            {
-                Int32.Parse(numString);
-            }
-            catch
-            {
-                new AlertDialog("The subject number should only contain numbers.");
-                return false;
-            }
-            return true;
-        }
-
         public static bool VerifyAbbreviation(string abbreviation)
         {
             if (abbreviation.Length != 3)
