@@ -36,6 +36,7 @@
             this.RemoveSubject = new System.Windows.Forms.Button();
             this.viewFlyerButton = new System.Windows.Forms.Button();
             this.doneButton = new System.Windows.Forms.Button();
+            this.saveSubjectSchedulesButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // subjectListView
@@ -88,7 +89,7 @@
             this.AddSubjectButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.AddSubjectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddSubjectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddSubjectButton.Location = new System.Drawing.Point(153, 646);
+            this.AddSubjectButton.Location = new System.Drawing.Point(309, 646);
             this.AddSubjectButton.Margin = new System.Windows.Forms.Padding(8);
             this.AddSubjectButton.Name = "AddSubjectButton";
             this.AddSubjectButton.Size = new System.Drawing.Size(140, 30);
@@ -106,7 +107,7 @@
             this.RemoveSubject.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.RemoveSubject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RemoveSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RemoveSubject.Location = new System.Drawing.Point(309, 646);
+            this.RemoveSubject.Location = new System.Drawing.Point(465, 646);
             this.RemoveSubject.Margin = new System.Windows.Forms.Padding(8);
             this.RemoveSubject.Name = "RemoveSubject";
             this.RemoveSubject.Size = new System.Drawing.Size(140, 30);
@@ -151,17 +152,37 @@
             this.doneButton.UseVisualStyleBackColor = false;
             this.doneButton.Click += new System.EventHandler(this.DoneButton_Click);
             // 
+            // saveSubjectSchedulesButton
+            // 
+            this.saveSubjectSchedulesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.saveSubjectSchedulesButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.saveSubjectSchedulesButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.saveSubjectSchedulesButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(98)))), ((int)(((byte)(107)))));
+            this.saveSubjectSchedulesButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.saveSubjectSchedulesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveSubjectSchedulesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveSubjectSchedulesButton.Location = new System.Drawing.Point(153, 646);
+            this.saveSubjectSchedulesButton.Margin = new System.Windows.Forms.Padding(8);
+            this.saveSubjectSchedulesButton.Name = "saveSubjectSchedulesButton";
+            this.saveSubjectSchedulesButton.Size = new System.Drawing.Size(140, 30);
+            this.saveSubjectSchedulesButton.TabIndex = 7;
+            this.saveSubjectSchedulesButton.Text = "Save All Flyers";
+            this.saveSubjectSchedulesButton.UseVisualStyleBackColor = false;
+            this.saveSubjectSchedulesButton.Click += new System.EventHandler(this.SaveSubjectSchedulesButton_Click);
+            // 
             // ViewAllSubjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(946, 693);
+            this.Controls.Add(this.saveSubjectSchedulesButton);
             this.Controls.Add(this.doneButton);
             this.Controls.Add(this.viewFlyerButton);
             this.Controls.Add(this.RemoveSubject);
             this.Controls.Add(this.AddSubjectButton);
             this.Controls.Add(this.subjectListView);
+            this.MinimumSize = new System.Drawing.Size(650, 700);
             this.Name = "ViewAllSubjects";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -182,5 +203,6 @@
         private System.Windows.Forms.Button viewFlyerButton;
         private System.Windows.Forms.ColumnHeader checkColumn;
         private System.Windows.Forms.Button doneButton;
+        private System.Windows.Forms.Button saveSubjectSchedulesButton;
     }
 }
