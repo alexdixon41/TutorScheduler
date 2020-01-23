@@ -155,5 +155,15 @@ namespace TutorScheduler
         {
             Close();
         }
+
+        private void SubjectListView_DoubleClick(object sender, EventArgs e)
+        {
+            if (subjectListView.SelectedIndices.Count != 0)
+            {
+                Subject selectedSubject = subjectList[subjectListView.SelectedItems[0].Index];
+                new SubjectInfoForm(selectedSubject).ShowDialog();
+                displaySubjects();
+            }
+        }
     }
 }
