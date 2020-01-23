@@ -12,51 +12,19 @@ namespace TutorScheduler
 {
     public partial class ViewSubjectFlyer : Form
     {
-        Subject selectedSubject;
+        Subject SelectedSubject;
 
         public ViewSubjectFlyer(Subject selected)
         {
-            InitializeComponent();
-            selectedSubject = selected;
+            InitializeComponent();     
+            
+            SelectedSubject = selected;
+            ResetLabels();
+            subjectLabel.Text = SelectedSubject.abbreviation + " " + SelectedSubject.subjectNumber;
+            SetLabels(SelectedSubject.SetFlyer());
         }
-
-        private void setFlyer() {
-            List<StudentWorker> tutorList = selectedSubject.GetTutors();
-            IndividualSchedule subjectSchedule = new IndividualSchedule();
-            IndividualSchedule tutorSchedule = new IndividualSchedule();
-            subjectLabel.Text = selectedSubject.abbreviation + " " + selectedSubject.subjectNumber;
-
-            resetLabels();
-
-            foreach (StudentWorker tutor in tutorList)
-            {
-                tutor.GetWorkSchedule();
-                foreach(CalendarEvent newEvent in tutor.WorkSchedule.Events)
-                {
-                    tutorSchedule.AddEvent(newEvent);
-                }
-            }
-
-            foreach(CalendarEvent shift in tutorSchedule.Events)
-            {
-                if (!subjectSchedule.Contains(shift))
-                {
-                    if (!subjectSchedule.CoverageOverlaps(shift))
-                    {
-                        subjectSchedule.AddEvent(shift);
-                    }
-                    else
-                    {
-                        subjectSchedule.Merge(shift);
-                    }
-                }
-            }
-
-            setLabels(subjectSchedule);
-
-        }
-
-        private void setLabels(IndividualSchedule subjectSchedule)
+        
+        private void SetLabels(IndividualSchedule subjectSchedule)
         {
             Label[] labels = { mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel };
             foreach( CalendarEvent workEvent in subjectSchedule.Events)
@@ -69,18 +37,13 @@ namespace TutorScheduler
             }
         }
 
-        private void resetLabels()
+        private void ResetLabels()
         {
             mondayLabel.Text = "Monday:  ";
             tuesdayLabel.Text = "Tuesday:  ";
             wednesdayLabel.Text = "Wednesday:  ";
             thursdayLabel.Text = "Thursday:  ";
             fridayLabel.Text = "Friday:  ";
-        }
-
-        private void ViewSubjectFlyer_Load(object sender, EventArgs e)
-        {
-            setFlyer();
         }
     }
 }

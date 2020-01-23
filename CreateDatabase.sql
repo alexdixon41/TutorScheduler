@@ -3,7 +3,6 @@
 # Team Project - Tutor Scheduler
 # October 12, 2019
 
-
 CREATE DATABASE IF NOT EXISTS `tutorscheduler`;
 
 USE `tutorscheduler`;

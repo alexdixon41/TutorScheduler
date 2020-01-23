@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -154,6 +155,29 @@ namespace TutorScheduler
         private void DoneButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void SaveSubjectSchedulesButton_Click(object sender, EventArgs e)
+        {
+            using (StreamWriter w = File.CreateText("Subject Schedule.txt"))
+            {                
+                foreach (Subject s in subjectList)
+                {
+                    w.WriteLine("<p><u><strong>" + s.abbreviation + "&nbsp;" + s.subjectNumber + "</strong></u></p>");
+                    IndividualSchedule coverageSchedule = s.SetFlyer();
+                    string[] dayTimes = { "Monday: ", "Tuesday: ", "Wednesday: ", "Thursday: ", "Friday: " };
+                    foreach (CalendarEvent workEvent in coverageSchedule.Events)
+                    {
+                        dayTimes[workEvent.Day] += workEvent.StartTime.ToString() + " - " + workEvent.EndTime.ToString() + "; ";
+                    }
+                    foreach (string timeString in dayTimes)
+                    {
+                        string times = timeString.Replace(" ", "&nbsp;");
+                        w.WriteLine("<p>" + times + "</p>");
+                    }
+                    w.WriteLine();
+                }
+            }
         }
 
         private void SubjectListView_DoubleClick(object sender, EventArgs e)

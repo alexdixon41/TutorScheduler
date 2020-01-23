@@ -130,12 +130,11 @@
             this.Controls.Add(this.subjectLabel);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ViewSubjectFlyer";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Subject Flyer";
-            this.Load += new System.EventHandler(this.ViewSubjectFlyer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

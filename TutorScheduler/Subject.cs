@@ -44,7 +44,44 @@ namespace TutorScheduler
             DatabaseManager.RemoveFromSubjectTutoredTable(subjectID);
         }
 
-        #region Static Functions
+        /// <summary>
+        /// Build an IndividualSchedule for all the times a subject is tutored to show on subject flyers
+        /// </summary>        
+        /// <returns>IndividualSchedule containing all the times the subject is tutored</returns>
+        public IndividualSchedule SetFlyer()
+        {
+            List<StudentWorker> tutorList = GetTutors();
+            IndividualSchedule subjectSchedule = new IndividualSchedule();
+            IndividualSchedule tutorSchedule = new IndividualSchedule();
+
+            foreach (StudentWorker tutor in tutorList)
+            {
+                tutor.GetWorkSchedule();
+                foreach (CalendarEvent newEvent in tutor.WorkSchedule.Events)
+                {
+                    tutorSchedule.AddEvent(newEvent);
+                }
+            }
+
+            foreach (CalendarEvent shift in tutorSchedule.Events)
+            {
+                if (!subjectSchedule.Contains(shift))
+                {
+                    if (!subjectSchedule.CoverageOverlaps(shift))
+                    {
+                        subjectSchedule.AddEvent(shift);
+                    }
+                    else
+                    {
+                        subjectSchedule.Merge(shift);
+                    }
+                }
+            }
+
+            return subjectSchedule;
+        }
+
+        #region Static Functions        
 
         public static void Create(string subAbbreviation, string subNumber, string subName)
         {
