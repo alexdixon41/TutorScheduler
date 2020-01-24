@@ -46,7 +46,7 @@ namespace TutorScheduler
 
         private void DoneButton_Click(object sender, EventArgs e)
         {
-            //TODO: Save updated info
+            selectedSubject.updateSubject(nameTextBox.Text, abbreviationTextBox.Text, numberTextBox.Text);
             this.Close();
         }
     }

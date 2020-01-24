@@ -81,6 +81,11 @@ namespace TutorScheduler
             return subjectSchedule;
         }
 
+        public void updateSubject(string name, string abbreviation, string number)
+        {
+            DatabaseManager.UpdateSubjectInfo(subjectID, name, abbreviation, number);
+        }
+
         #region Static Functions        
 
         public static void Create(string subAbbreviation, string subNumber, string subName)

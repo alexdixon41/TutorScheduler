@@ -729,6 +729,33 @@ namespace TutorScheduler
             Console.WriteLine("Done.");
         }
 
+        public static void UpdateSubjectInfo(int subjectID, string name, string abbreviation, string number)
+        {
+            try
+            {
+                Console.Write("Connecting to MySql... ");
+                conn.Open();
+                string sql = @"UPDATE subject 
+                                SET subName = @name, abbreviation = @abbreviation, subNum = @number
+                                WHERE subjectID = @id;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@abbreviation", abbreviation);
+                cmd.Parameters.AddWithValue("@number", number);
+                cmd.Parameters.AddWithValue("@id", subjectID);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            // close connection
+            conn.Close();
+            Console.WriteLine("Done.");
+        }
+
         public static void UpdateStudentInfo(int studentID, string name, string position, int color)
         {
             try

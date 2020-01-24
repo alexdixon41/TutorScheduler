@@ -186,6 +186,7 @@ namespace TutorScheduler
             {
                 Subject selectedSubject = subjectList[subjectListView.SelectedItems[0].Index];
                 new SubjectInfoForm(selectedSubject).ShowDialog();
+                subjectList = Subject.GetSubjects();
                 displaySubjects();
             }
         }
